@@ -98,11 +98,11 @@
             Share a complaint, suggestion, idea, or issue affecting your community.
         </p>
 
-        <form>
+        <form id="feedbackForm">
 
             <label>Category</label>
 
-            <select>
+            <select id="category">
                 <option>Select category</option>
                 <option>Roads</option>
                 <option>Water</option>
@@ -115,11 +115,11 @@
 
             <label>Area / Location</label>
 
-            <input type="text" placeholder="Enter your area">
+            <input type="text" id="location" placeholder="Enter your area">
 
             <label>Your Feedback</label>
 
-            <textarea placeholder="Describe the issue, suggestion or complaint..."></textarea>
+            <textarea id="feedback" placeholder="Describe the issue, suggestion or complaint..."></textarea>
 
             <button type="submit">Submit Feedback</button>
 
@@ -155,7 +155,7 @@
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
 
-  const form = document.getElementById("feedbackForm");alert("Firebase script is running");
+  const form = document.getElementById("feedbackForm");
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
