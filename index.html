@@ -121,6 +121,21 @@ button{
     font-weight:bold;
 }
 
+.status-pending{
+    color:#b26a00;
+    font-weight:bold;
+}
+
+.status-progress{
+    color:#1565c0;
+    font-weight:bold;
+}
+
+.status-resolved{
+    color:green;
+    font-weight:bold;
+}
+
 footer{
     text-align:center;
     padding:20px;
@@ -320,8 +335,8 @@ collection,
 addDoc,
 serverTimestamp,
 getDocs,
-query,
-orderBy
+doc,
+updateDoc
 }
 from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
@@ -462,9 +477,22 @@ return;
 
 feedbackList.innerHTML="";
 
-snapshot.forEach((doc)=>{
+snapshot.forEach((docSnap)=>{
 
-const data=doc.data();
+const data=docSnap.data();
+
+const status =
+data.status || "Pending";
+
+let statusClass="status-pending";
+
+if(status==="In Progress"){
+statusClass="status-progress";
+}
+
+if(status==="Resolved"){
+statusClass="status-resolved";
+}
 
 const item =
 document.createElement("div");
@@ -487,11 +515,85 @@ ${data.location || "Not provided"}
 <br>
 ${data.feedback || "No feedback"}
 
+<br><br>
+
+<strong>Status:</strong>
+
+<span class="${statusClass}">
+${status}
+</span>
+
+<br>
+
+<select class="statusSelect">
+
+<option ${status==="Pending" ? "selected" : ""}>
+Pending
+</option>
+
+<option ${status==="In Progress" ? "selected" : ""}>
+In Progress
+</option>
+
+<option ${status==="Resolved" ? "selected" : ""}>
+Resolved
+</option>
+
+</select>
+
+<button class="updateStatusBtn">
+Update Status
+</button>
+
 <p class="small">
-Feedback ID: ${doc.id}
+Feedback ID: ${docSnap.id}
 </p>
 
 `;
+
+const statusSelect =
+item.querySelector(".statusSelect");
+
+const updateButton =
+item.querySelector(".updateStatusBtn");
+
+updateButton.addEventListener(
+"click",
+async()=>{
+
+const newStatus =
+statusSelect.value;
+
+updateButton.textContent=
+"Updating...";
+
+try{
+
+await updateDoc(
+doc(db,"feedback",docSnap.id),
+{
+status:newStatus
+}
+);
+
+alert("Feedback status updated successfully!");
+
+loadFeedback();
+
+}catch(error){
+
+console.error(error);
+
+alert(
+"Failed to update status. Please try again."
+);
+
+updateButton.textContent=
+"Update Status";
+
+}
+
+});
 
 feedbackList.appendChild(item);
 
@@ -545,9 +647,7 @@ id:doc.id,
 
 });
 
-
 announcements.reverse();
-
 
 announcements.forEach((data)=>{
 
@@ -734,6 +834,8 @@ category:category,
 location:location,
 
 feedback:feedback,
+
+status:"Pending",
 
 createdAt:
 serverTimestamp()
