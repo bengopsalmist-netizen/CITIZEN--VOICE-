@@ -136,10 +136,65 @@ button{
     font-weight:bold;
 }
 
+/* ISSUE SUMMARY */
+
+.summary-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+    margin-top:15px;
+}
+
+.summary-box{
+    background:#f4f6f8;
+    border:1px solid #ddd;
+    border-radius:10px;
+    padding:18px;
+    text-align:center;
+}
+
+.summary-box h3{
+    margin:0 0 10px 0;
+    color:#123c69;
+    font-size:16px;
+}
+
+.summary-number{
+    font-size:30px;
+    font-weight:bold;
+    color:#123c69;
+}
+
+.total-box{
+    background:#123c69;
+    color:white;
+    border-radius:10px;
+    padding:18px;
+    text-align:center;
+    margin-bottom:15px;
+}
+
+.total-box h3{
+    margin:0 0 8px 0;
+}
+
+.total-number{
+    font-size:32px;
+    font-weight:bold;
+}
+
 footer{
     text-align:center;
     padding:20px;
     color:#666;
+}
+
+@media(max-width:500px){
+
+.summary-grid{
+    grid-template-columns:1fr 1fr;
+}
+
 }
 </style>
 </head>
@@ -214,6 +269,64 @@ required
 <p id="userStatus"></p>
 
 <button id="logoutBtn">Logout</button>
+
+
+<!-- ISSUE SUMMARY -->
+
+<h2>Issue Summary</h2>
+
+<p>
+See how many citizens have reported each type of issue.
+</p>
+
+<div class="total-box">
+
+<h3>Total Feedback</h3>
+
+<div class="total-number" id="totalFeedback">
+0
+</div>
+
+</div>
+
+<div class="summary-grid">
+
+<div class="summary-box">
+<h3>🛣️ Roads</h3>
+<div class="summary-number" id="roadsCount">0</div>
+</div>
+
+<div class="summary-box">
+<h3>🚰 Water</h3>
+<div class="summary-number" id="waterCount">0</div>
+</div>
+
+<div class="summary-box">
+<h3>🏥 Health</h3>
+<div class="summary-number" id="healthCount">0</div>
+</div>
+
+<div class="summary-box">
+<h3>🏫 Education</h3>
+<div class="summary-number" id="educationCount">0</div>
+</div>
+
+<div class="summary-box">
+<h3>🛡️ Security</h3>
+<div class="summary-number" id="securityCount">0</div>
+</div>
+
+<div class="summary-box">
+<h3>🌱 Environment</h3>
+<div class="summary-number" id="environmentCount">0</div>
+</div>
+
+<div class="summary-box">
+<h3>📌 Other</h3>
+<div class="summary-number" id="otherCount">0</div>
+</div>
+
+</div>
 
 
 <!-- OFFICE ANNOUNCEMENT -->
@@ -416,6 +529,33 @@ const announcementMessageStatus =
 document.getElementById("announcementMessageStatus");
 
 
+/* SUMMARY ELEMENTS */
+
+const totalFeedback =
+document.getElementById("totalFeedback");
+
+const roadsCount =
+document.getElementById("roadsCount");
+
+const waterCount =
+document.getElementById("waterCount");
+
+const healthCount =
+document.getElementById("healthCount");
+
+const educationCount =
+document.getElementById("educationCount");
+
+const securityCount =
+document.getElementById("securityCount");
+
+const environmentCount =
+document.getElementById("environmentCount");
+
+const otherCount =
+document.getElementById("otherCount");
+
+
 /* LOGIN */
 
 loginForm.addEventListener("submit",async(e)=>{
@@ -452,12 +592,37 @@ loginMessage.textContent=
 });
 
 
+/* RESET SUMMARY */
+
+function resetSummary(){
+
+roadsCount.textContent="0";
+
+waterCount.textContent="0";
+
+healthCount.textContent="0";
+
+educationCount.textContent="0";
+
+securityCount.textContent="0";
+
+environmentCount.textContent="0";
+
+otherCount.textContent="0";
+
+totalFeedback.textContent="0";
+
+}
+
+
 /* LOAD FEEDBACK */
 
 async function loadFeedback(){
 
 feedbackList.innerHTML=
 "<p>Loading feedback...</p>";
+
+resetSummary();
 
 try{
 
@@ -474,6 +639,76 @@ feedbackList.innerHTML=
 return;
 
 }
+
+
+/* COUNT CATEGORIES */
+
+let roads=0;
+let water=0;
+let health=0;
+let education=0;
+let security=0;
+let environment=0;
+let other=0;
+
+snapshot.forEach((docSnap)=>{
+
+const data=docSnap.data();
+
+const category =
+data.category || "Other";
+
+if(category==="Roads"){
+roads++;
+}
+
+else if(category==="Water"){
+water++;
+}
+
+else if(category==="Health"){
+health++;
+}
+
+else if(category==="Education"){
+education++;
+}
+
+else if(category==="Security"){
+security++;
+}
+
+else if(category==="Environment"){
+environment++;
+}
+
+else{
+other++;
+}
+
+});
+
+
+/* SHOW SUMMARY */
+
+roadsCount.textContent=roads;
+
+waterCount.textContent=water;
+
+healthCount.textContent=health;
+
+educationCount.textContent=education;
+
+securityCount.textContent=security;
+
+environmentCount.textContent=environment;
+
+otherCount.textContent=other;
+
+totalFeedback.textContent=snapshot.size;
+
+
+/* SHOW FEEDBACK */
 
 feedbackList.innerHTML="";
 
@@ -848,8 +1083,6 @@ alert(
 );
 
 form.reset();
-
-loadFeedback();
 
 }catch(error){
 
