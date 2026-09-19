@@ -133,5 +133,52 @@
     © 2026 Citizen Voice
 </footer>
 
-</body>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+  import {
+    getFirestore,
+    collection,
+    addDoc,
+    serverTimestamp
+  } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBBNkfxFr3lovnanrZOzOldIs4lAglyjis",
+    authDomain: "citizen-voice-f4b90.firebaseapp.com",
+    projectId: "citizen-voice-f4b90",
+    storageBucket: "citizen-voice-f4b90.firebasestorage.app",
+    messagingSenderId: "784289518285",
+    appId: "1:784289518285:web:5d089c6bdf23a43b5fcf84",
+    measurementId: "G-C4L9Y55JGG"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  const form = document.getElementById("feedbackForm");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const category = document.getElementById("category").value;
+    const location = document.getElementById("location").value;
+    const feedback = document.getElementById("feedback").value;
+
+    try {
+      await addDoc(collection(db, "feedback"), {
+        category: category,
+        location: location,
+        feedback: feedback,
+        createdAt: serverTimestamp()
+      });
+
+      alert("Feedback submitted successfully!");
+      form.reset();
+
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Failed to submit feedback. Please try again.");
+    }
+  });
+    </script></body>
     </html>
