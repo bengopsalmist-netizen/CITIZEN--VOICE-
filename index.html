@@ -12,18 +12,25 @@ body{
     background:#f4f6f8;
     color:#222;
 }
+
 header{
     background:#123c69;
     color:white;
     padding:25px 15px;
     text-align:center;
 }
-header h1{margin:0;font-size:32px}
+
+header h1{
+    margin:0;
+    font-size:32px;
+}
+
 .container{
     max-width:700px;
     margin:30px auto;
     padding:20px;
 }
+
 .card{
     background:white;
     padding:25px;
@@ -31,13 +38,18 @@ header h1{margin:0;font-size:32px}
     box-shadow:0 3px 10px rgba(0,0,0,.1);
     margin-bottom:20px;
 }
-h2{color:#123c69}
+
+h2{
+    color:#123c69;
+}
+
 label{
     display:block;
     margin-top:15px;
     margin-bottom:6px;
     font-weight:bold;
 }
+
 input,select,textarea{
     width:100%;
     padding:12px;
@@ -46,7 +58,11 @@ input,select,textarea{
     box-sizing:border-box;
     font-size:15px;
 }
-textarea{height:120px}
+
+textarea{
+    height:120px;
+}
+
 button{
     width:100%;
     margin-top:20px;
@@ -57,26 +73,54 @@ button{
     border-radius:7px;
     font-size:16px;
 }
-#logoutBtn{background:#b3261e}
-.hidden{display:none}
+
+#logoutBtn{
+    background:#b3261e;
+}
+
+.hidden{
+    display:none;
+}
+
 #loginMessage{
     margin-top:15px;
     font-weight:bold;
 }
-.feedback-item{
+
+.feedback-item,
+.announcement-item{
     border:1px solid #ddd;
     border-radius:8px;
     padding:15px;
     margin-top:15px;
     background:#fafafa;
 }
-.feedback-item strong{
+
+.feedback-item strong,
+.announcement-item strong{
     color:#123c69;
 }
+
+.announcement-item h3{
+    margin-top:0;
+    color:#123c69;
+}
+
 .small{
     color:#666;
     font-size:13px;
 }
+
+.success{
+    color:green;
+    font-weight:bold;
+}
+
+.error{
+    color:#b3261e;
+    font-weight:bold;
+}
+
 footer{
     text-align:center;
     padding:20px;
@@ -94,19 +138,48 @@ footer{
 
 <div class="container">
 
+<!-- PUBLIC ANNOUNCEMENTS -->
+
+<div class="card">
+
+<h2>Office Announcements</h2>
+
+<p>Important messages from the public office will appear here.</p>
+
+<div id="announcementList">
+<p>Loading announcements...</p>
+</div>
+
+</div>
+
+
 <!-- LOGIN -->
+
 <div class="card" id="loginCard">
 
 <h2>Office Login</h2>
+
 <p>Authorized office users can log in here.</p>
 
 <form id="loginForm">
 
 <label>Email</label>
-<input type="email" id="loginEmail" placeholder="Enter email" required>
+
+<input
+type="email"
+id="loginEmail"
+placeholder="Enter email"
+required
+>
 
 <label>Password</label>
-<input type="password" id="loginPassword" placeholder="Enter password" required>
+
+<input
+type="password"
+id="loginPassword"
+placeholder="Enter password"
+required
+>
 
 <button type="submit">Login</button>
 
@@ -118,6 +191,7 @@ footer{
 
 
 <!-- DASHBOARD -->
+
 <div class="card hidden" id="officeCard">
 
 <h2>Office Dashboard</h2>
@@ -125,6 +199,45 @@ footer{
 <p id="userStatus"></p>
 
 <button id="logoutBtn">Logout</button>
+
+
+<!-- OFFICE ANNOUNCEMENT -->
+
+<h2>Post Office Announcement</h2>
+
+<p>
+Write an important message that citizens should see.
+</p>
+
+<form id="announcementForm">
+
+<label>Announcement Title</label>
+
+<input
+type="text"
+id="announcementTitle"
+placeholder="Example: Road Repairs Update"
+required
+>
+
+<label>Announcement Message</label>
+
+<textarea
+id="announcementMessage"
+placeholder="Write the message for citizens..."
+required
+></textarea>
+
+<button type="submit">
+Post Announcement
+</button>
+
+</form>
+
+<p id="announcementMessageStatus"></p>
+
+
+<!-- CITIZEN FEEDBACK -->
 
 <h2>Citizen Feedback</h2>
 
@@ -136,6 +249,7 @@ footer{
 
 
 <!-- PUBLIC FEEDBACK -->
+
 <div class="card">
 
 <h2>Submit Feedback</h2>
@@ -149,7 +263,9 @@ Share a complaint, suggestion, idea, or issue affecting your community.
 <label>Category</label>
 
 <select id="category" required>
+
 <option value="">Select category</option>
+
 <option>Roads</option>
 <option>Water</option>
 <option>Health</option>
@@ -157,6 +273,7 @@ Share a complaint, suggestion, idea, or issue affecting your community.
 <option>Security</option>
 <option>Environment</option>
 <option>Other</option>
+
 </select>
 
 <label>Area / Location</label>
@@ -176,13 +293,16 @@ placeholder="Describe the issue, suggestion or complaint..."
 required
 ></textarea>
 
-<button type="submit">Submit Feedback</button>
+<button type="submit">
+Submit Feedback
+</button>
 
 </form>
 
 </div>
 
 </div>
+
 
 <footer>
 © 2026 Citizen Voice
@@ -199,7 +319,9 @@ getFirestore,
 collection,
 addDoc,
 serverTimestamp,
-getDocs
+getDocs,
+query,
+orderBy
 }
 from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
@@ -211,6 +333,8 @@ signOut
 }
 from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
+
+/* FIREBASE CONFIG */
 
 const firebaseConfig = {
 
@@ -238,30 +362,56 @@ const db = getFirestore(app);
 const auth = getAuth(app);
 
 
+/* ELEMENTS */
+
+const loginForm =
+document.getElementById("loginForm");
+
+const loginCard =
+document.getElementById("loginCard");
+
+const officeCard =
+document.getElementById("officeCard");
+
+const loginMessage =
+document.getElementById("loginMessage");
+
+const userStatus =
+document.getElementById("userStatus");
+
+const logoutBtn =
+document.getElementById("logoutBtn");
+
+const feedbackList =
+document.getElementById("feedbackList");
+
+const announcementList =
+document.getElementById("announcementList");
+
+const announcementForm =
+document.getElementById("announcementForm");
+
+const announcementTitle =
+document.getElementById("announcementTitle");
+
+const announcementMessage =
+document.getElementById("announcementMessage");
+
+const announcementMessageStatus =
+document.getElementById("announcementMessageStatus");
+
+
 /* LOGIN */
-
-const loginForm=document.getElementById("loginForm");
-
-const loginCard=document.getElementById("loginCard");
-
-const officeCard=document.getElementById("officeCard");
-
-const loginMessage=document.getElementById("loginMessage");
-
-const userStatus=document.getElementById("userStatus");
-
-const logoutBtn=document.getElementById("logoutBtn");
-
-const feedbackList=document.getElementById("feedbackList");
-
 
 loginForm.addEventListener("submit",async(e)=>{
 
 e.preventDefault();
 
-const email=document.getElementById("loginEmail").value;
+const email =
+document.getElementById("loginEmail").value;
 
-const password=document.getElementById("loginPassword").value;
+const password =
+document.getElementById("loginPassword").value;
 
 loginMessage.textContent="Logging in...";
 
@@ -291,17 +441,20 @@ loginMessage.textContent=
 
 async function loadFeedback(){
 
-feedbackList.innerHTML="<p>Loading feedback...</p>";
+feedbackList.innerHTML=
+"<p>Loading feedback...</p>";
 
 try{
 
-const snapshot=await getDocs(
+const snapshot =
+await getDocs(
 collection(db,"feedback")
 );
 
 if(snapshot.empty){
 
-feedbackList.innerHTML="<p>No feedback submitted yet.</p>";
+feedbackList.innerHTML=
+"<p>No feedback submitted yet.</p>";
 
 return;
 
@@ -313,20 +466,30 @@ snapshot.forEach((doc)=>{
 
 const data=doc.data();
 
-const item=document.createElement("div");
+const item =
+document.createElement("div");
 
 item.className="feedback-item";
 
 item.innerHTML=`
 
-<strong>Category:</strong> ${data.category || "Not provided"}<br><br>
+<strong>Category:</strong>
+${data.category || "Not provided"}
 
-<strong>Location:</strong> ${data.location || "Not provided"}<br><br>
+<br><br>
 
-<strong>Feedback:</strong><br>
+<strong>Location:</strong>
+${data.location || "Not provided"}
+
+<br><br>
+
+<strong>Feedback:</strong>
+<br>
 ${data.feedback || "No feedback"}
 
-<p class="small">Feedback ID: ${doc.id}</p>
+<p class="small">
+Feedback ID: ${doc.id}
+</p>
 
 `;
 
@@ -340,6 +503,85 @@ console.error(error);
 
 feedbackList.innerHTML=
 "<p>Unable to load feedback. Check Firebase permissions.</p>";
+
+}
+
+}
+
+
+/* LOAD ANNOUNCEMENTS */
+
+async function loadAnnouncements(){
+
+announcementList.innerHTML=
+"<p>Loading announcements...</p>";
+
+try{
+
+const snapshot =
+await getDocs(
+collection(db,"announcements")
+);
+
+if(snapshot.empty){
+
+announcementList.innerHTML=
+"<p>No announcements yet.</p>";
+
+return;
+
+}
+
+announcementList.innerHTML="";
+
+const announcements=[];
+
+snapshot.forEach((doc)=>{
+
+announcements.push({
+id:doc.id,
+...doc.data()
+});
+
+});
+
+
+announcements.reverse();
+
+
+announcements.forEach((data)=>{
+
+const item =
+document.createElement("div");
+
+item.className="announcement-item";
+
+item.innerHTML=`
+
+<h3>
+${data.title || "Office Announcement"}
+</h3>
+
+<p>
+${data.message || ""}
+</p>
+
+<p class="small">
+Posted by: ${data.createdBy || "Public Office"}
+</p>
+
+`;
+
+announcementList.appendChild(item);
+
+});
+
+}catch(error){
+
+console.error(error);
+
+announcementList.innerHTML=
+"<p>No announcements available yet.</p>";
 
 }
 
@@ -376,42 +618,136 @@ userStatus.textContent="";
 
 /* LOGOUT */
 
-logoutBtn.addEventListener("click",async()=>{
+logoutBtn.addEventListener(
+"click",
+async()=>{
 
 await signOut(auth);
+
+}
+);
+
+
+/* POST ANNOUNCEMENT */
+
+announcementForm.addEventListener(
+"submit",
+async(e)=>{
+
+e.preventDefault();
+
+const title =
+announcementTitle.value.trim();
+
+const message =
+announcementMessage.value.trim();
+
+if(!title || !message){
+
+announcementMessageStatus.textContent=
+"Please fill in both fields.";
+
+announcementMessageStatus.className="error";
+
+return;
+
+}
+
+announcementMessageStatus.textContent=
+"Posting announcement...";
+
+announcementMessageStatus.className="";
+
+
+try{
+
+const user=auth.currentUser;
+
+await addDoc(
+collection(db,"announcements"),
+{
+
+title:title,
+
+message:message,
+
+createdBy:
+user ? user.email : "Public Office",
+
+createdAt:
+serverTimestamp()
+
+}
+);
+
+announcementMessageStatus.textContent=
+"Announcement posted successfully!";
+
+announcementMessageStatus.className="success";
+
+announcementForm.reset();
+
+loadAnnouncements();
+
+}catch(error){
+
+console.error(error);
+
+announcementMessageStatus.textContent=
+"Failed to post announcement. Check Firebase permissions.";
+
+announcementMessageStatus.className="error";
+
+}
 
 });
 
 
 /* PUBLIC FEEDBACK */
 
-const form=document.getElementById("feedbackForm");
+const form =
+document.getElementById("feedbackForm");
 
-form.addEventListener("submit",async(e)=>{
+form.addEventListener(
+"submit",
+async(e)=>{
 
 e.preventDefault();
 
-const category=document.getElementById("category").value;
+const category =
+document.getElementById("category").value;
 
-const location=document.getElementById("location").value;
+const location =
+document.getElementById("location").value;
 
-const feedback=document.getElementById("feedback").value;
+const feedback =
+document.getElementById("feedback").value;
 
 try{
 
 await addDoc(
 collection(db,"feedback"),
 {
+
 category:category,
+
 location:location,
+
 feedback:feedback,
-createdAt:serverTimestamp()
+
+createdAt:
+serverTimestamp()
+
 }
 );
 
-alert("Feedback submitted successfully!");
+alert(
+"Feedback submitted successfully!"
+);
 
 form.reset();
+
+loadFeedback();
 
 }catch(error){
 
@@ -424,6 +760,11 @@ alert(
 }
 
 });
+
+
+/* START */
+
+loadAnnouncements();
 
 </script>
 
