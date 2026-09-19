@@ -1,402 +1,431 @@
 here<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Citizen Voice</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Citizen Voice</title>
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            background: #f4f6f8;
-            color: #222;
-        }
-
-        header {
-            background: #123c69;
-            color: white;
-            padding: 25px 15px;
-            text-align: center;
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 32px;
-        }
-
-        .container {
-            max-width: 600px;
-            margin: 30px auto;
-            padding: 20px;
-        }
-
-        .card {
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-        }
-
-        h2 {
-            color: #123c69;
-        }
-
-        label {
-            display: block;
-            margin-top: 15px;
-            margin-bottom: 6px;
-            font-weight: bold;
-        }
-
-        input, select, textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 7px;
-            box-sizing: border-box;
-            font-size: 15px;
-        }
-
-        textarea {
-            height: 120px;
-        }
-
-        button {
-            width: 100%;
-            margin-top: 20px;
-            padding: 14px;
-            background: #123c69;
-            color: white;
-            border: none;
-            border-radius: 7px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            opacity: 0.9;
-        }
-
-        #logoutBtn {
-            background: #b3261e;
-        }
-
-        #loginMessage {
-            margin-top: 15px;
-            font-weight: bold;
-        }
-
-        #userStatus {
-            margin-top: 10px;
-            font-size: 14px;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: #666;
-        }
-    </style>
+<style>
+body{
+    font-family:Arial,sans-serif;
+    margin:0;
+    background:#f4f6f8;
+    color:#222;
+}
+header{
+    background:#123c69;
+    color:white;
+    padding:25px 15px;
+    text-align:center;
+}
+header h1{margin:0;font-size:32px}
+.container{
+    max-width:700px;
+    margin:30px auto;
+    padding:20px;
+}
+.card{
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 3px 10px rgba(0,0,0,.1);
+    margin-bottom:20px;
+}
+h2{color:#123c69}
+label{
+    display:block;
+    margin-top:15px;
+    margin-bottom:6px;
+    font-weight:bold;
+}
+input,select,textarea{
+    width:100%;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:7px;
+    box-sizing:border-box;
+    font-size:15px;
+}
+textarea{height:120px}
+button{
+    width:100%;
+    margin-top:20px;
+    padding:14px;
+    background:#123c69;
+    color:white;
+    border:none;
+    border-radius:7px;
+    font-size:16px;
+}
+#logoutBtn{background:#b3261e}
+.hidden{display:none}
+#loginMessage{
+    margin-top:15px;
+    font-weight:bold;
+}
+.feedback-item{
+    border:1px solid #ddd;
+    border-radius:8px;
+    padding:15px;
+    margin-top:15px;
+    background:#fafafa;
+}
+.feedback-item strong{
+    color:#123c69;
+}
+.small{
+    color:#666;
+    font-size:13px;
+}
+footer{
+    text-align:center;
+    padding:20px;
+    color:#666;
+}
+</style>
 </head>
 
 <body>
 
 <header>
-    <h1>Citizen Voice</h1>
-    <p>Your voice matters. Help improve public services.</p>
+<h1>Citizen Voice</h1>
+<p>Your voice matters. Help improve public services.</p>
 </header>
 
 <div class="container">
 
-    <!-- LOGIN CARD -->
-    <div class="card" id="loginCard">
+<!-- LOGIN -->
+<div class="card" id="loginCard">
 
-        <h2>Office Login</h2>
+<h2>Office Login</h2>
+<p>Authorized office users can log in here.</p>
 
-        <p>Authorized office users can log in here.</p>
+<form id="loginForm">
 
-        <form id="loginForm">
+<label>Email</label>
+<input type="email" id="loginEmail" placeholder="Enter email" required>
 
-            <label>Email</label>
+<label>Password</label>
+<input type="password" id="loginPassword" placeholder="Enter password" required>
 
-            <input
-                type="email"
-                id="loginEmail"
-                placeholder="Enter email"
-                required
-            >
+<button type="submit">Login</button>
 
-            <label>Password</label>
+</form>
 
-            <input
-                type="password"
-                id="loginPassword"
-                placeholder="Enter password"
-                required
-            >
+<p id="loginMessage"></p>
 
-            <button type="submit">Login</button>
-
-        </form>
-
-        <p id="loginMessage"></p>
-
-    </div>
+</div>
 
 
-    <!-- OFFICE AREA -->
-    <div class="card hidden" id="officeCard">
+<!-- DASHBOARD -->
+<div class="card hidden" id="officeCard">
 
-        <h2>Office Dashboard</h2>
+<h2>Office Dashboard</h2>
 
-        <p id="userStatus"></p>
+<p id="userStatus"></p>
 
-        <button id="logoutBtn">Logout</button>
+<button id="logoutBtn">Logout</button>
 
-    </div>
+<h2>Citizen Feedback</h2>
+
+<div id="feedbackList">
+<p>Loading feedback...</p>
+</div>
+
+</div>
 
 
-    <!-- FEEDBACK FORM -->
-    <div class="card">
+<!-- PUBLIC FEEDBACK -->
+<div class="card">
 
-        <h2>Submit Feedback</h2>
+<h2>Submit Feedback</h2>
 
-        <p>
-            Share a complaint, suggestion, idea, or issue affecting your community.
-        </p>
+<p>
+Share a complaint, suggestion, idea, or issue affecting your community.
+</p>
 
-        <form id="feedbackForm">
+<form id="feedbackForm">
 
-            <label>Category</label>
+<label>Category</label>
 
-            <select id="category" required>
-                <option value="">Select category</option>
-                <option>Roads</option>
-                <option>Water</option>
-                <option>Health</option>
-                <option>Education</option>
-                <option>Security</option>
-                <option>Environment</option>
-                <option>Other</option>
-            </select>
+<select id="category" required>
+<option value="">Select category</option>
+<option>Roads</option>
+<option>Water</option>
+<option>Health</option>
+<option>Education</option>
+<option>Security</option>
+<option>Environment</option>
+<option>Other</option>
+</select>
 
-            <label>Area / Location</label>
+<label>Area / Location</label>
 
-            <input
-                type="text"
-                id="location"
-                placeholder="Enter your area"
-                required
-            >
+<input
+type="text"
+id="location"
+placeholder="Enter your area"
+required
+>
 
-            <label>Your Feedback</label>
+<label>Your Feedback</label>
 
-            <textarea
-                id="feedback"
-                placeholder="Describe the issue, suggestion or complaint..."
-                required
-            ></textarea>
+<textarea
+id="feedback"
+placeholder="Describe the issue, suggestion or complaint..."
+required
+></textarea>
 
-            <button type="submit">Submit Feedback</button>
+<button type="submit">Submit Feedback</button>
 
-        </form>
+</form>
 
-    </div>
+</div>
 
 </div>
 
 <footer>
-    © 2026 Citizen Voice
+© 2026 Citizen Voice
 </footer>
 
 
 <script type="module">
 
-    import { initializeApp }
-    from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 
-    import {
-        getFirestore,
-        collection,
-        addDoc,
-        serverTimestamp
-    }
-    from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+import {
+getFirestore,
+collection,
+addDoc,
+serverTimestamp,
+getDocs
+}
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
-    import {
-        getAuth,
-        signInWithEmailAndPassword,
-        onAuthStateChanged,
-        signOut
-    }
-    from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+import {
+getAuth,
+signInWithEmailAndPassword,
+onAuthStateChanged,
+signOut
+}
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
 
-    const firebaseConfig = {
-        apiKey: "AIzaSyBBNkfxFr3lovnanrZOzOldIs4lAglyjis",
-        authDomain: "citizen-voice-f4b90.firebaseapp.com",
-        projectId: "citizen-voice-f4b90",
-        storageBucket: "citizen-voice-f4b90.firebasestorage.app",
-        messagingSenderId: "784289518285",
-        appId: "1:784289518285:web:5d089c6bdf23a43b5fcf84",
-        measurementId: "G-C4L9Y55JGG"
-    };
+const firebaseConfig = {
 
+apiKey:"AIzaSyBBNkfxFr3lovnanrZOzOldIs4lAglyjis",
 
-    const app = initializeApp(firebaseConfig);
+authDomain:"citizen-voice-f4b90.firebaseapp.com",
 
-    const db = getFirestore(app);
+projectId:"citizen-voice-f4b90",
 
-    const auth = getAuth(app);
+storageBucket:"citizen-voice-f4b90.firebasestorage.app",
 
+messagingSenderId:"784289518285",
 
-    /* LOGIN */
+appId:"1:784289518285:web:5d089c6bdf23a43b5fcf84",
 
-    const loginForm = document.getElementById("loginForm");
+measurementId:"G-C4L9Y55JGG"
 
-    const loginCard = document.getElementById("loginCard");
+};
 
-    const officeCard = document.getElementById("officeCard");
 
-    const loginMessage = document.getElementById("loginMessage");
+const app = initializeApp(firebaseConfig);
 
-    const userStatus = document.getElementById("userStatus");
+const db = getFirestore(app);
 
-    const logoutBtn = document.getElementById("logoutBtn");
+const auth = getAuth(app);
 
 
-    loginForm.addEventListener("submit", async (e) => {
+/* LOGIN */
 
-        e.preventDefault();
+const loginForm=document.getElementById("loginForm");
 
-        const email =
-            document.getElementById("loginEmail").value;
+const loginCard=document.getElementById("loginCard");
 
-        const password =
-            document.getElementById("loginPassword").value;
+const officeCard=document.getElementById("officeCard");
 
-        loginMessage.textContent = "Logging in...";
+const loginMessage=document.getElementById("loginMessage");
 
-        try {
+const userStatus=document.getElementById("userStatus");
 
-            await signInWithEmailAndPassword(
-                auth,
-                email,
-                password
-            );
+const logoutBtn=document.getElementById("logoutBtn");
 
-            loginMessage.textContent = "";
+const feedbackList=document.getElementById("feedbackList");
 
-        } catch (error) {
 
-            console.error(error);
+loginForm.addEventListener("submit",async(e)=>{
 
-            loginMessage.textContent =
-                "Login failed. Check your email and password.";
+e.preventDefault();
 
-        }
+const email=document.getElementById("loginEmail").value;
 
-    });
+const password=document.getElementById("loginPassword").value;
 
+loginMessage.textContent="Logging in...";
 
-    /* CHECK LOGIN STATUS */
+try{
 
-    onAuthStateChanged(auth, (user) => {
+await signInWithEmailAndPassword(
+auth,
+email,
+password
+);
 
-        if (user) {
+loginMessage.textContent="";
 
-            loginCard.classList.add("hidden");
+}catch(error){
 
-            officeCard.classList.remove("hidden");
+console.error(error);
 
-            userStatus.textContent =
-                "Logged in as: " + user.email;
+loginMessage.textContent=
+"Login failed. Check your email and password.";
 
-        } else {
+}
 
-            loginCard.classList.remove("hidden");
+});
 
-            officeCard.classList.add("hidden");
 
-            userStatus.textContent = "";
+/* LOAD FEEDBACK */
 
-        }
+async function loadFeedback(){
 
-    });
+feedbackList.innerHTML="<p>Loading feedback...</p>";
 
+try{
 
-    /* LOGOUT */
+const snapshot=await getDocs(
+collection(db,"feedback")
+);
 
-    logoutBtn.addEventListener("click", async () => {
+if(snapshot.empty){
 
-        try {
+feedbackList.innerHTML="<p>No feedback submitted yet.</p>";
 
-            await signOut(auth);
+return;
 
-        } catch (error) {
+}
 
-            console.error(error);
+feedbackList.innerHTML="";
 
-        }
+snapshot.forEach((doc)=>{
 
-    });
+const data=doc.data();
 
+const item=document.createElement("div");
 
-    /* FEEDBACK */
+item.className="feedback-item";
 
-    const form =
-        document.getElementById("feedbackForm");
+item.innerHTML=`
 
+<strong>Category:</strong> ${data.category || "Not provided"}<br><br>
 
-    form.addEventListener("submit", async (e) => {
+<strong>Location:</strong> ${data.location || "Not provided"}<br><br>
 
-        e.preventDefault();
+<strong>Feedback:</strong><br>
+${data.feedback || "No feedback"}
 
-        const category =
-            document.getElementById("category").value;
+<p class="small">Feedback ID: ${doc.id}</p>
 
-        const location =
-            document.getElementById("location").value;
+`;
 
-        const feedback =
-            document.getElementById("feedback").value;
+feedbackList.appendChild(item);
 
+});
 
-        try {
+}catch(error){
 
-            await addDoc(
-                collection(db, "feedback"),
-                {
-                    category: category,
-                    location: location,
-                    feedback: feedback,
-                    createdAt: serverTimestamp()
-                }
-            );
+console.error(error);
 
-            alert("Feedback submitted successfully!");
+feedbackList.innerHTML=
+"<p>Unable to load feedback. Check Firebase permissions.</p>";
 
-            form.reset();
+}
 
-        } catch (error) {
+}
 
-            console.error("Error:", error);
 
-            alert(
-                "Failed to submit feedback. Please try again."
-            );
+/* LOGIN STATUS */
 
-        }
+onAuthStateChanged(auth,(user)=>{
 
-    });
+if(user){
+
+loginCard.classList.add("hidden");
+
+officeCard.classList.remove("hidden");
+
+userStatus.textContent=
+"Logged in as: "+user.email;
+
+loadFeedback();
+
+}else{
+
+loginCard.classList.remove("hidden");
+
+officeCard.classList.add("hidden");
+
+userStatus.textContent="";
+
+}
+
+});
+
+
+/* LOGOUT */
+
+logoutBtn.addEventListener("click",async()=>{
+
+await signOut(auth);
+
+});
+
+
+/* PUBLIC FEEDBACK */
+
+const form=document.getElementById("feedbackForm");
+
+form.addEventListener("submit",async(e)=>{
+
+e.preventDefault();
+
+const category=document.getElementById("category").value;
+
+const location=document.getElementById("location").value;
+
+const feedback=document.getElementById("feedback").value;
+
+try{
+
+await addDoc(
+collection(db,"feedback"),
+{
+category:category,
+location:location,
+feedback:feedback,
+createdAt:serverTimestamp()
+}
+);
+
+alert("Feedback submitted successfully!");
+
+form.reset();
+
+}catch(error){
+
+console.error(error);
+
+alert(
+"Failed to submit feedback. Please try again."
+);
+
+}
+
+});
 
 </script>
 
 </body>
-            </html>
+    </html>
