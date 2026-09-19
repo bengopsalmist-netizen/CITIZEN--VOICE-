@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+here<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -36,6 +36,7 @@
             padding: 25px;
             border-radius: 12px;
             box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
         }
 
         h2 {
@@ -71,6 +72,29 @@
             border: none;
             border-radius: 7px;
             font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        #logoutBtn {
+            background: #b3261e;
+        }
+
+        #loginMessage {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        #userStatus {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        .hidden {
+            display: none;
         }
 
         footer {
@@ -90,6 +114,55 @@
 
 <div class="container">
 
+    <!-- LOGIN CARD -->
+    <div class="card" id="loginCard">
+
+        <h2>Office Login</h2>
+
+        <p>Authorized office users can log in here.</p>
+
+        <form id="loginForm">
+
+            <label>Email</label>
+
+            <input
+                type="email"
+                id="loginEmail"
+                placeholder="Enter email"
+                required
+            >
+
+            <label>Password</label>
+
+            <input
+                type="password"
+                id="loginPassword"
+                placeholder="Enter password"
+                required
+            >
+
+            <button type="submit">Login</button>
+
+        </form>
+
+        <p id="loginMessage"></p>
+
+    </div>
+
+
+    <!-- OFFICE AREA -->
+    <div class="card hidden" id="officeCard">
+
+        <h2>Office Dashboard</h2>
+
+        <p id="userStatus"></p>
+
+        <button id="logoutBtn">Logout</button>
+
+    </div>
+
+
+    <!-- FEEDBACK FORM -->
     <div class="card">
 
         <h2>Submit Feedback</h2>
@@ -102,8 +175,8 @@
 
             <label>Category</label>
 
-            <select id="category">
-                <option>Select category</option>
+            <select id="category" required>
+                <option value="">Select category</option>
                 <option>Roads</option>
                 <option>Water</option>
                 <option>Health</option>
@@ -115,11 +188,20 @@
 
             <label>Area / Location</label>
 
-            <input type="text" id="location" placeholder="Enter your area">
+            <input
+                type="text"
+                id="location"
+                placeholder="Enter your area"
+                required
+            >
 
             <label>Your Feedback</label>
 
-            <textarea id="feedback" placeholder="Describe the issue, suggestion or complaint..."></textarea>
+            <textarea
+                id="feedback"
+                placeholder="Describe the issue, suggestion or complaint..."
+                required
+            ></textarea>
 
             <button type="submit">Submit Feedback</button>
 
@@ -133,52 +215,188 @@
     © 2026 Citizen Voice
 </footer>
 
+
 <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
-  import {
-    getFirestore,
-    collection,
-    addDoc,
-    serverTimestamp
-  } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyBBNkfxFr3lovnanrZOzOldIs4lAglyjis",
-    authDomain: "citizen-voice-f4b90.firebaseapp.com",
-    projectId: "citizen-voice-f4b90",
-    storageBucket: "citizen-voice-f4b90.firebasestorage.app",
-    messagingSenderId: "784289518285",
-    appId: "1:784289518285:web:5d089c6bdf23a43b5fcf84",
-    measurementId: "G-C4L9Y55JGG"
-  };
+    import { initializeApp }
+    from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-
-  const form = document.getElementById("feedbackForm");
-
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const category = document.getElementById("category").value;
-    const location = document.getElementById("location").value;
-    const feedback = document.getElementById("feedback").value;
-
-    try {
-      await addDoc(collection(db, "feedback"), {
-        category: category,
-        location: location,
-        feedback: feedback,
-        createdAt: serverTimestamp()
-      });
-
-      alert("Feedback submitted successfully!");
-      form.reset();
-
-    } catch (error) {
-      console.error("Error:", error);
-      alert("Failed to submit feedback. Please try again.");
+    import {
+        getFirestore,
+        collection,
+        addDoc,
+        serverTimestamp
     }
-  });
-    </script></body>
-    </html>
+    from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+    import {
+        getAuth,
+        signInWithEmailAndPassword,
+        onAuthStateChanged,
+        signOut
+    }
+    from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyBBNkfxFr3lovnanrZOzOldIs4lAglyjis",
+        authDomain: "citizen-voice-f4b90.firebaseapp.com",
+        projectId: "citizen-voice-f4b90",
+        storageBucket: "citizen-voice-f4b90.firebasestorage.app",
+        messagingSenderId: "784289518285",
+        appId: "1:784289518285:web:5d089c6bdf23a43b5fcf84",
+        measurementId: "G-C4L9Y55JGG"
+    };
+
+
+    const app = initializeApp(firebaseConfig);
+
+    const db = getFirestore(app);
+
+    const auth = getAuth(app);
+
+
+    /* LOGIN */
+
+    const loginForm = document.getElementById("loginForm");
+
+    const loginCard = document.getElementById("loginCard");
+
+    const officeCard = document.getElementById("officeCard");
+
+    const loginMessage = document.getElementById("loginMessage");
+
+    const userStatus = document.getElementById("userStatus");
+
+    const logoutBtn = document.getElementById("logoutBtn");
+
+
+    loginForm.addEventListener("submit", async (e) => {
+
+        e.preventDefault();
+
+        const email =
+            document.getElementById("loginEmail").value;
+
+        const password =
+            document.getElementById("loginPassword").value;
+
+        loginMessage.textContent = "Logging in...";
+
+        try {
+
+            await signInWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+
+            loginMessage.textContent = "";
+
+        } catch (error) {
+
+            console.error(error);
+
+            loginMessage.textContent =
+                "Login failed. Check your email and password.";
+
+        }
+
+    });
+
+
+    /* CHECK LOGIN STATUS */
+
+    onAuthStateChanged(auth, (user) => {
+
+        if (user) {
+
+            loginCard.classList.add("hidden");
+
+            officeCard.classList.remove("hidden");
+
+            userStatus.textContent =
+                "Logged in as: " + user.email;
+
+        } else {
+
+            loginCard.classList.remove("hidden");
+
+            officeCard.classList.add("hidden");
+
+            userStatus.textContent = "";
+
+        }
+
+    });
+
+
+    /* LOGOUT */
+
+    logoutBtn.addEventListener("click", async () => {
+
+        try {
+
+            await signOut(auth);
+
+        } catch (error) {
+
+            console.error(error);
+
+        }
+
+    });
+
+
+    /* FEEDBACK */
+
+    const form =
+        document.getElementById("feedbackForm");
+
+
+    form.addEventListener("submit", async (e) => {
+
+        e.preventDefault();
+
+        const category =
+            document.getElementById("category").value;
+
+        const location =
+            document.getElementById("location").value;
+
+        const feedback =
+            document.getElementById("feedback").value;
+
+
+        try {
+
+            await addDoc(
+                collection(db, "feedback"),
+                {
+                    category: category,
+                    location: location,
+                    feedback: feedback,
+                    createdAt: serverTimestamp()
+                }
+            );
+
+            alert("Feedback submitted successfully!");
+
+            form.reset();
+
+        } catch (error) {
+
+            console.error("Error:", error);
+
+            alert(
+                "Failed to submit feedback. Please try again."
+            );
+
+        }
+
+    });
+
+</script>
+
+</body>
+            </html>
