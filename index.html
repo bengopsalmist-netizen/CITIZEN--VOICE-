@@ -4,19 +4,134 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Citizen Voice</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #f4f6f8;
+            color: #222;
+        }
+
+        header {
+            background: #123c69;
+            color: white;
+            padding: 25px 15px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 32px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #123c69;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 6px;
+            font-weight: bold;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 7px;
+            box-sizing: border-box;
+            font-size: 15px;
+        }
+
+        textarea {
+            height: 120px;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 20px;
+            padding: 14px;
+            background: #123c69;
+            color: white;
+            border: none;
+            border-radius: 7px;
+            font-size: 16px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+        }
+    </style>
 </head>
 
 <body>
 
+<header>
     <h1>Citizen Voice</h1>
+    <p>Your voice matters. Help improve public services.</p>
+</header>
 
-    <p>A platform for citizens to submit feedback and connect with public offices.</p>
+<div class="container">
 
-    <h2>Welcome to Citizen Voice</h2>
+    <div class="card">
 
-    <p>Your voice matters. Share your feedback, ideas, complaints, or suggestions.</p>
+        <h2>Submit Feedback</h2>
 
-    <button>Submit Feedback</button>
+        <p>
+            Share a complaint, suggestion, idea, or issue affecting your community.
+        </p>
+
+        <form>
+
+            <label>Category</label>
+
+            <select>
+                <option>Select category</option>
+                <option>Roads</option>
+                <option>Water</option>
+                <option>Health</option>
+                <option>Education</option>
+                <option>Security</option>
+                <option>Environment</option>
+                <option>Other</option>
+            </select>
+
+            <label>Area / Location</label>
+
+            <input type="text" placeholder="Enter your area">
+
+            <label>Your Feedback</label>
+
+            <textarea placeholder="Describe the issue, suggestion or complaint..."></textarea>
+
+            <button type="submit">Submit Feedback</button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<footer>
+    © 2026 Citizen Voice
+</footer>
 
 </body>
-</html>
+    </html>
