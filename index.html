@@ -155,7 +155,7 @@
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
 
-  const form = document.getElementById("feedbackForm");
+  const form = document.getElementById("feedbackForm");alert("Firebase script is running");
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
