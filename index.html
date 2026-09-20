@@ -1,1105 +1,824 @@
 here<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Citizen Voice</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Citizen Voice</title>
 
-<style>
-body{
-    font-family:Arial,sans-serif;
-    margin:0;
-    background:#f4f6f8;
-    color:#222;
-}
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f4f6f8;
+      color: #222;
+    }
 
-header{
-    background:#123c69;
-    color:white;
-    padding:25px 15px;
-    text-align:center;
-}
+    header {
+      background: #17365d;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
 
-header h1{
-    margin:0;
-    font-size:32px;
-}
+    .container {
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 15px;
+    }
 
-.container{
-    max-width:700px;
-    margin:30px auto;
-    padding:20px;
-}
+    .card {
+      background: white;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
 
-.card{
-    background:white;
-    padding:25px;
-    border-radius:12px;
-    box-shadow:0 3px 10px rgba(0,0,0,.1);
-    margin-bottom:20px;
-}
+    h2 {
+      color: #17365d;
+    }
 
-h2{
-    color:#123c69;
-}
+    input, select, textarea, button {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      box-sizing: border-box;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+    }
 
-label{
-    display:block;
-    margin-top:15px;
-    margin-bottom:6px;
-    font-weight:bold;
-}
+    textarea {
+      min-height: 120px;
+    }
 
-input,select,textarea{
-    width:100%;
-    padding:12px;
-    border:1px solid #ccc;
-    border-radius:7px;
-    box-sizing:border-box;
-    font-size:15px;
-}
+    button {
+      background: #17365d;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
 
-textarea{
-    height:120px;
-}
+    button:hover {
+      opacity: 0.9;
+    }
 
-button{
-    width:100%;
-    margin-top:20px;
-    padding:14px;
-    background:#123c69;
-    color:white;
-    border:none;
-    border-radius:7px;
-    font-size:16px;
-}
+    .logout {
+      background: #b00020;
+    }
 
-#logoutBtn{
-    background:#b3261e;
-}
+    .hidden {
+      display: none;
+    }
 
-.hidden{
-    display:none;
-}
+    .feedback-item,
+    .announcement-item {
+      border: 1px solid #ddd;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 8px;
+    }
 
-#loginMessage{
-    margin-top:15px;
-    font-weight:bold;
-}
+    .status {
+      font-weight: bold;
+    }
 
-.feedback-item,
-.announcement-item{
-    border:1px solid #ddd;
-    border-radius:8px;
-    padding:15px;
-    margin-top:15px;
-    background:#fafafa;
-}
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
 
-.feedback-item strong,
-.announcement-item strong{
-    color:#123c69;
-}
+    .stat {
+      background: #eef3f8;
+      padding: 15px;
+      text-align: center;
+      border-radius: 8px;
+    }
 
-.announcement-item h3{
-    margin-top:0;
-    color:#123c69;
-}
-
-.small{
-    color:#666;
-    font-size:13px;
-}
-
-.success{
-    color:green;
-    font-weight:bold;
-}
-
-.error{
-    color:#b3261e;
-    font-weight:bold;
-}
-
-.status-pending{
-    color:#b26a00;
-    font-weight:bold;
-}
-
-.status-progress{
-    color:#1565c0;
-    font-weight:bold;
-}
-
-.status-resolved{
-    color:green;
-    font-weight:bold;
-}
-
-/* ISSUE SUMMARY */
-
-.summary-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:12px;
-    margin-top:15px;
-}
-
-.summary-box{
-    background:#f4f6f8;
-    border:1px solid #ddd;
-    border-radius:10px;
-    padding:18px;
-    text-align:center;
-}
-
-.summary-box h3{
-    margin:0 0 10px 0;
-    color:#123c69;
-    font-size:16px;
-}
-
-.summary-number{
-    font-size:30px;
-    font-weight:bold;
-    color:#123c69;
-}
-
-.total-box{
-    background:#123c69;
-    color:white;
-    border-radius:10px;
-    padding:18px;
-    text-align:center;
-    margin-bottom:15px;
-}
-
-.total-box h3{
-    margin:0 0 8px 0;
-}
-
-.total-number{
-    font-size:32px;
-    font-weight:bold;
-}
-
-footer{
-    text-align:center;
-    padding:20px;
-    color:#666;
-}
-
-@media(max-width:500px){
-
-.summary-grid{
-    grid-template-columns:1fr 1fr;
-}
-
-}
-</style>
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #666;
+    }
+  </style>
 </head>
 
 <body>
 
 <header>
-<h1>Citizen Voice</h1>
-<p>Your voice matters. Help improve public services.</p>
+  <h1>Citizen Voice</h1>
+  <p>Your voice matters. Help improve public services.</p>
 </header>
 
 <div class="container">
 
-<!-- PUBLIC ANNOUNCEMENTS -->
+  <!-- PUBLIC ANNOUNCEMENTS -->
+  <div class="card">
+    <h2>Office Announcements</h2>
+    <div id="announcementList">
+      Loading announcements...
+    </div>
+  </div>
 
-<div class="card">
+  <!-- LOGIN -->
+  <div class="card" id="loginCard">
+    <h2>Official Login</h2>
 
-<h2>Office Announcements</h2>
+    <form id="loginForm">
+      <input type="email" id="email" placeholder="Email address" required>
+      <input type="password" id="password" placeholder="Password" required>
 
-<p>Important messages from the public office will appear here.</p>
+      <button type="submit">Login</button>
+    </form>
 
-<div id="announcementList">
-<p>Loading announcements...</p>
-</div>
+    <p id="loginMessage"></p>
+  </div>
 
-</div>
+  <!-- OFFICE DASHBOARD -->
+  <div class="card hidden" id="officeCard">
 
+    <h2>Office Dashboard</h2>
 
-<!-- LOGIN -->
+    <p>
+      Logged in as:
+      <strong id="loggedInEmail"></strong>
+    </p>
 
-<div class="card" id="loginCard">
+    <p id="userRole"></p>
 
-<h2>Office Login</h2>
+    <button class="logout" id="logoutBtn">Logout</button>
 
-<p>Authorized office users can log in here.</p>
+    <h2>Feedback Summary</h2>
 
-<form id="loginForm">
+    <div class="stats">
+      <div class="stat">
+        <strong id="totalCount">0</strong>
+        <br>Total Feedback
+      </div>
 
-<label>Email</label>
+      <div class="stat">
+        <strong id="roadsCount">0</strong>
+        <br>Roads
+      </div>
 
-<input
-type="email"
-id="loginEmail"
-placeholder="Enter email"
-required
->
+      <div class="stat">
+        <strong id="waterCount">0</strong>
+        <br>Water
+      </div>
 
-<label>Password</label>
+      <div class="stat">
+        <strong id="healthCount">0</strong>
+        <br>Health
+      </div>
 
-<input
-type="password"
-id="loginPassword"
-placeholder="Enter password"
-required
->
+      <div class="stat">
+        <strong id="educationCount">0</strong>
+        <br>Education
+      </div>
 
-<button type="submit">Login</button>
+      <div class="stat">
+        <strong id="securityCount">0</strong>
+        <br>Security
+      </div>
 
-</form>
+      <div class="stat">
+        <strong id="environmentCount">0</strong>
+        <br>Environment
+      </div>
 
-<p id="loginMessage"></p>
+      <div class="stat">
+        <strong id="otherCount">0</strong>
+        <br>Other
+      </div>
+    </div>
 
-</div>
+    <!-- POST ANNOUNCEMENT -->
+    <div id="announcementFormSection">
+      <h2>Post Office Announcement</h2>
 
+      <form id="announcementForm">
+        <input
+          type="text"
+          id="announcementTitle"
+          placeholder="Announcement title"
+          required
+        >
 
-<!-- DASHBOARD -->
+        <textarea
+          id="announcementMessage"
+          placeholder="Write announcement..."
+          required
+        ></textarea>
 
-<div class="card hidden" id="officeCard">
+        <button type="submit">Post Announcement</button>
+      </form>
 
-<h2>Office Dashboard</h2>
+      <p id="announcementMessageStatus"></p>
+    </div>
 
-<p id="userStatus"></p>
+    <!-- FEEDBACK -->
+    <h2>Citizen Feedback</h2>
 
-<button id="logoutBtn">Logout</button>
+    <div id="feedbackList">
+      Loading feedback...
+    </div>
 
+  </div>
 
-<!-- ISSUE SUMMARY -->
+  <!-- PUBLIC FEEDBACK -->
+  <div class="card" id="publicFeedbackCard">
 
-<h2>Issue Summary</h2>
+    <h2>Submit a Question or Concern</h2>
 
-<p>
-See how many citizens have reported each type of issue.
-</p>
+    <form id="feedbackForm">
 
-<div class="total-box">
+      <select id="category" required>
+        <option value="">Select Category</option>
+        <option value="Roads">Roads</option>
+        <option value="Water">Water</option>
+        <option value="Health">Health</option>
+        <option value="Education">Education</option>
+        <option value="Security">Security</option>
+        <option value="Environment">Environment</option>
+        <option value="Other">Other</option>
+      </select>
 
-<h3>Total Feedback</h3>
+      <input
+        type="text"
+        id="location"
+        placeholder="Area / Location"
+        required
+      >
 
-<div class="total-number" id="totalFeedback">
-0
-</div>
+      <textarea
+        id="feedback"
+        placeholder="Describe your question or concern..."
+        required
+      ></textarea>
 
-</div>
+      <button type="submit">Submit Feedback</button>
 
-<div class="summary-grid">
+    </form>
 
-<div class="summary-box">
-<h3>🛣️ Roads</h3>
-<div class="summary-number" id="roadsCount">0</div>
-</div>
+    <p id="feedbackMessage"></p>
 
-<div class="summary-box">
-<h3>🚰 Water</h3>
-<div class="summary-number" id="waterCount">0</div>
-</div>
-
-<div class="summary-box">
-<h3>🏥 Health</h3>
-<div class="summary-number" id="healthCount">0</div>
-</div>
-
-<div class="summary-box">
-<h3>🏫 Education</h3>
-<div class="summary-number" id="educationCount">0</div>
-</div>
-
-<div class="summary-box">
-<h3>🛡️ Security</h3>
-<div class="summary-number" id="securityCount">0</div>
-</div>
-
-<div class="summary-box">
-<h3>🌱 Environment</h3>
-<div class="summary-number" id="environmentCount">0</div>
-</div>
-
-<div class="summary-box">
-<h3>📌 Other</h3>
-<div class="summary-number" id="otherCount">0</div>
-</div>
-
-</div>
-
-
-<!-- OFFICE ANNOUNCEMENT -->
-
-<h2>Post Office Announcement</h2>
-
-<p>
-Write an important message that citizens should see.
-</p>
-
-<form id="announcementForm">
-
-<label>Announcement Title</label>
-
-<input
-type="text"
-id="announcementTitle"
-placeholder="Example: Road Repairs Update"
-required
->
-
-<label>Announcement Message</label>
-
-<textarea
-id="announcementMessage"
-placeholder="Write the message for citizens..."
-required
-></textarea>
-
-<button type="submit">
-Post Announcement
-</button>
-
-</form>
-
-<p id="announcementMessageStatus"></p>
-
-
-<!-- CITIZEN FEEDBACK -->
-
-<h2>Citizen Feedback</h2>
-
-<div id="feedbackList">
-<p>Loading feedback...</p>
-</div>
+  </div>
 
 </div>
-
-
-<!-- PUBLIC FEEDBACK -->
-
-<div class="card">
-
-<h2>Submit Feedback</h2>
-
-<p>
-Share a complaint, suggestion, idea, or issue affecting your community.
-</p>
-
-<form id="feedbackForm">
-
-<label>Category</label>
-
-<select id="category" required>
-
-<option value="">Select category</option>
-
-<option>Roads</option>
-<option>Water</option>
-<option>Health</option>
-<option>Education</option>
-<option>Security</option>
-<option>Environment</option>
-<option>Other</option>
-
-</select>
-
-<label>Area / Location</label>
-
-<input
-type="text"
-id="location"
-placeholder="Enter your area"
-required
->
-
-<label>Your Feedback</label>
-
-<textarea
-id="feedback"
-placeholder="Describe the issue, suggestion or complaint..."
-required
-></textarea>
-
-<button type="submit">
-Submit Feedback
-</button>
-
-</form>
-
-</div>
-
-</div>
-
 
 <footer>
-© 2026 Citizen Voice
+  Citizen Voice
 </footer>
-
 
 <script type="module">
 
-import { initializeApp }
-from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+  import { initializeApp }
+    from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 
-import {
-getFirestore,
-collection,
-addDoc,
-serverTimestamp,
-getDocs,
-doc,
-updateDoc
-}
-from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+  import {
+    getFirestore,
+    collection,
+    addDoc,
+    serverTimestamp,
+    getDocs,
+    doc,
+    getDoc,
+    updateDoc
+  }
+  from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
-import {
-getAuth,
-signInWithEmailAndPassword,
-onAuthStateChanged,
-signOut
-}
-from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+  import {
+    getAuth,
+    signInWithEmailAndPassword,
+    onAuthStateChanged,
+    signOut
+  }
+  from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
 
-/* FIREBASE CONFIG */
+  const firebaseConfig = {
+    apiKey: "AIzaSyBBNkfxFr3lovnanrZOzOldIs4lAglyjis",
+    authDomain: "citizen-voice-f4b90.firebaseapp.com",
+    projectId: "citizen-voice-f4b90",
+    storageBucket: "citizen-voice-f4b90.firebasestorage.app",
+    messagingSenderId: "784289518285",
+    appId: "1:784289518285:web:5d089c6bdf23a43b5fcf84",
+    measurementId: "G-C4L9Y55JGG"
+  };
 
-const firebaseConfig = {
 
-apiKey:"AIzaSyBBNkfxFr3lovnanrZOzOldIs4lAglyjis",
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+  const auth = getAuth(app);
 
-authDomain:"citizen-voice-f4b90.firebaseapp.com",
 
-projectId:"citizen-voice-f4b90",
+  const loginCard = document.getElementById("loginCard");
+  const officeCard = document.getElementById("officeCard");
+  const publicFeedbackCard =
+    document.getElementById("publicFeedbackCard");
 
-storageBucket:"citizen-voice-f4b90.firebasestorage.app",
+  const loggedInEmail =
+    document.getElementById("loggedInEmail");
 
-messagingSenderId:"784289518285",
+  const userRole =
+    document.getElementById("userRole");
 
-appId:"1:784289518285:web:5d089c6bdf23a43b5fcf84",
 
-measurementId:"G-C4L9Y55JGG"
+  // ================================
+  // LOAD PUBLIC ANNOUNCEMENTS
+  // ================================
 
-};
+  async function loadAnnouncements() {
 
+    const announcementList =
+      document.getElementById("announcementList");
 
-const app = initializeApp(firebaseConfig);
+    announcementList.innerHTML =
+      "Loading announcements...";
 
-const db = getFirestore(app);
+    try {
 
-const auth = getAuth(app);
+      const snapshot =
+        await getDocs(collection(db, "Announcement"));
 
+      announcementList.innerHTML = "";
 
-/* ELEMENTS */
+      if (snapshot.empty) {
 
-const loginForm =
-document.getElementById("loginForm");
+        announcementList.innerHTML =
+          "<p>No announcements yet.</p>";
 
-const loginCard =
-document.getElementById("loginCard");
+        return;
+      }
 
-const officeCard =
-document.getElementById("officeCard");
+      const announcements = [];
 
-const loginMessage =
-document.getElementById("loginMessage");
+      snapshot.forEach((docSnap) => {
 
-const userStatus =
-document.getElementById("userStatus");
+        announcements.push({
+          id: docSnap.id,
+          ...docSnap.data()
+        });
 
-const logoutBtn =
-document.getElementById("logoutBtn");
+      });
 
-const feedbackList =
-document.getElementById("feedbackList");
+      announcements.reverse();
 
-const announcementList =
-document.getElementById("announcementList");
+      announcements.forEach((item) => {
 
-const announcementForm =
-document.getElementById("announcementForm");
+        const div =
+          document.createElement("div");
 
-const announcementTitle =
-document.getElementById("announcementTitle");
+        div.className =
+          "announcement-item";
 
-const announcementMessage =
-document.getElementById("announcementMessage");
+        div.innerHTML = `
+          <h3>${item.Title || item.title || "Announcement"}</h3>
+          <p>${item.Message || item.message || ""}</p>
+          <small>
+            Posted by:
+            ${item["Created by"] || item.createdBy || "Public Office"}
+          </small>
+        `;
 
-const announcementMessageStatus =
-document.getElementById("announcementMessageStatus");
+        announcementList.appendChild(div);
 
+      });
 
-/* SUMMARY ELEMENTS */
+    } catch (error) {
 
-const totalFeedback =
-document.getElementById("totalFeedback");
+      console.error(error);
 
-const roadsCount =
-document.getElementById("roadsCount");
+      announcementList.innerHTML =
+        "<p>Unable to load announcements.</p>";
+    }
+  }
 
-const waterCount =
-document.getElementById("waterCount");
 
-const healthCount =
-document.getElementById("healthCount");
+  // ================================
+  // CHECK USER AUTHORIZATION
+  // ================================
 
-const educationCount =
-document.getElementById("educationCount");
+  async function checkUserAccess(user) {
 
-const securityCount =
-document.getElementById("securityCount");
+    try {
 
-const environmentCount =
-document.getElementById("environmentCount");
+      const userRef =
+        doc(db, "users", user.uid);
 
-const otherCount =
-document.getElementById("otherCount");
+      const userSnap =
+        await getDoc(userRef);
 
+      if (!userSnap.exists()) {
 
-/* LOGIN */
+        await signOut(auth);
 
-loginForm.addEventListener("submit",async(e)=>{
+        loginCard.classList.remove("hidden");
+        officeCard.classList.add("hidden");
 
-e.preventDefault();
+        document.getElementById("loginMessage").textContent =
+          "This account is not authorized.";
 
-const email =
-document.getElementById("loginEmail").value;
+        return false;
+      }
 
-const password =
-document.getElementById("loginPassword").value;
+      const userData =
+        userSnap.data();
 
-loginMessage.textContent="Logging in...";
+      const role =
+        userData.role;
 
-try{
+      const active =
+        userData.active === true;
 
-await signInWithEmailAndPassword(
-auth,
-email,
-password
-);
+      const allowedRoles =
+        ["official", "pa", "superadmin"];
 
-loginMessage.textContent="";
+      if (!active || !allowedRoles.includes(role)) {
 
-}catch(error){
+        await signOut(auth);
 
-console.error(error);
+        loginCard.classList.remove("hidden");
+        officeCard.classList.add("hidden");
 
-loginMessage.textContent=
-"Login failed. Check your email and password.";
+        document.getElementById("loginMessage").textContent =
+          "This account is not authorized to access the office dashboard.";
 
-}
+        return false;
+      }
 
-});
 
+      // AUTHORIZED USER
 
-/* RESET SUMMARY */
+      loginCard.classList.add("hidden");
+      officeCard.classList.remove("hidden");
 
-function resetSummary(){
+      loggedInEmail.textContent =
+        user.email || "";
 
-roadsCount.textContent="0";
+      userRole.textContent =
+        "Role: " + role;
 
-waterCount.textContent="0";
+      await loadFeedback();
 
-healthCount.textContent="0";
+      return true;
 
-educationCount.textContent="0";
+    } catch (error) {
 
-securityCount.textContent="0";
+      console.error(error);
 
-environmentCount.textContent="0";
+      document.getElementById("loginMessage").textContent =
+        "Unable to verify account access.";
 
-otherCount.textContent="0";
+      return false;
+    }
+  }
 
-totalFeedback.textContent="0";
 
-}
+  // ================================
+  // LOAD FEEDBACK
+  // ================================
 
+  async function loadFeedback() {
 
-/* LOAD FEEDBACK */
+    const feedbackList =
+      document.getElementById("feedbackList");
 
-async function loadFeedback(){
+    feedbackList.innerHTML =
+      "Loading feedback...";
 
-feedbackList.innerHTML=
-"<p>Loading feedback...</p>";
+    try {
 
-resetSummary();
+      const snapshot =
+        await getDocs(collection(db, "feedback"));
 
-try{
+      let total = 0;
 
-const snapshot =
-await getDocs(
-collection(db,"feedback")
-);
+      const counts = {
+        Roads: 0,
+        Water: 0,
+        Health: 0,
+        Education: 0,
+        Security: 0,
+        Environment: 0,
+        Other: 0
+      };
 
-if(snapshot.empty){
+      feedbackList.innerHTML = "";
 
-feedbackList.innerHTML=
-"<p>No feedback submitted yet.</p>";
+      snapshot.forEach((docSnap) => {
 
-return;
+        const item =
+          docSnap.data();
 
-}
+        total++;
 
+        if (counts[item.category] !== undefined) {
+          counts[item.category]++;
+        }
 
-/* COUNT CATEGORIES */
+        const div =
+          document.createElement("div");
 
-let roads=0;
-let water=0;
-let health=0;
-let education=0;
-let security=0;
-let environment=0;
-let other=0;
+        div.className =
+          "feedback-item";
 
-snapshot.forEach((docSnap)=>{
+        div.innerHTML = `
+          <strong>Category:</strong>
+          ${item.category || "Other"}<br>
 
-const data=docSnap.data();
+          <strong>Location:</strong>
+          ${item.location || "Not provided"}<br>
 
-const category =
-data.category || "Other";
+          <strong>Concern:</strong>
+          ${item.feedback || ""}<br>
 
-if(category==="Roads"){
-roads++;
-}
+          <strong>Status:</strong>
+          <span class="status">
+            ${item.status || "Pending"}
+          </span>
 
-else if(category==="Water"){
-water++;
-}
+          <br><br>
 
-else if(category==="Health"){
-health++;
-}
+          <select id="status-${docSnap.id}">
+            <option value="Pending">Pending</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Resolved">Resolved</option>
+          </select>
 
-else if(category==="Education"){
-education++;
-}
+          <button onclick="changeStatus('${docSnap.id}')">
+            Update Status
+          </button>
+        `;
 
-else if(category==="Security"){
-security++;
-}
+        feedbackList.appendChild(div);
+      });
 
-else if(category==="Environment"){
-environment++;
-}
 
-else{
-other++;
-}
+      document.getElementById("totalCount").textContent =
+        total;
 
-});
+      document.getElementById("roadsCount").textContent =
+        counts.Roads;
 
+      document.getElementById("waterCount").textContent =
+        counts.Water;
 
-/* SHOW SUMMARY */
+      document.getElementById("healthCount").textContent =
+        counts.Health;
 
-roadsCount.textContent=roads;
+      document.getElementById("educationCount").textContent =
+        counts.Education;
 
-waterCount.textContent=water;
+      document.getElementById("securityCount").textContent =
+        counts.Security;
 
-healthCount.textContent=health;
+      document.getElementById("environmentCount").textContent =
+        counts.Environment;
 
-educationCount.textContent=education;
+      document.getElementById("otherCount").textContent =
+        counts.Other;
 
-securityCount.textContent=security;
 
-environmentCount.textContent=environment;
+      if (snapshot.empty) {
 
-otherCount.textContent=other;
+        feedbackList.innerHTML =
+          "<p>No citizen feedback yet.</p>";
+      }
 
-totalFeedback.textContent=snapshot.size;
+    } catch (error) {
 
+      console.error(error);
 
-/* SHOW FEEDBACK */
+      feedbackList.innerHTML =
+        "<p>Unable to load feedback.</p>";
+    }
+  }
 
-feedbackList.innerHTML="";
 
-snapshot.forEach((docSnap)=>{
+  // ================================
+  // UPDATE FEEDBACK STATUS
+  // ================================
 
-const data=docSnap.data();
+  window.changeStatus = async function(id) {
 
-const status =
-data.status || "Pending";
+    const select =
+      document.getElementById("status-" + id);
 
-let statusClass="status-pending";
+    const newStatus =
+      select.value;
 
-if(status==="In Progress"){
-statusClass="status-progress";
-}
+    try {
 
-if(status==="Resolved"){
-statusClass="status-resolved";
-}
+      await updateDoc(
+        doc(db, "feedback", id),
+        {
+          status: newStatus
+        }
+      );
 
-const item =
-document.createElement("div");
+      await loadFeedback();
 
-item.className="feedback-item";
+    } catch (error) {
 
-item.innerHTML=`
+      console.error(error);
 
-<strong>Category:</strong>
-${data.category || "Not provided"}
+      alert("Unable to update status.");
+    }
+  };
 
-<br><br>
 
-<strong>Location:</strong>
-${data.location || "Not provided"}
+  // ================================
+  // LOGIN
+  // ================================
 
-<br><br>
+  document
+    .getElementById("loginForm")
+    .addEventListener("submit", async (e) => {
 
-<strong>Feedback:</strong>
-<br>
-${data.feedback || "No feedback"}
+      e.preventDefault();
 
-<br><br>
+      const email =
+        document.getElementById("email").value;
 
-<strong>Status:</strong>
+      const password =
+        document.getElementById("password").value;
 
-<span class="${statusClass}">
-${status}
-</span>
+      const message =
+        document.getElementById("loginMessage");
 
-<br>
+      message.textContent =
+        "Checking account...";
 
-<select class="statusSelect">
+      try {
 
-<option ${status==="Pending" ? "selected" : ""}>
-Pending
-</option>
+        const result =
+          await signInWithEmailAndPassword(
+            auth,
+            email,
+            password
+          );
 
-<option ${status==="In Progress" ? "selected" : ""}>
-In Progress
-</option>
+        await checkUserAccess(result.user);
 
-<option ${status==="Resolved" ? "selected" : ""}>
-Resolved
-</option>
+      } catch (error) {
 
-</select>
+        console.error(error);
 
-<button class="updateStatusBtn">
-Update Status
-</button>
+        message.textContent =
+          "Login failed. Check your email and password.";
+      }
 
-<p class="small">
-Feedback ID: ${docSnap.id}
-</p>
+    });
 
-`;
 
-const statusSelect =
-item.querySelector(".statusSelect");
+  // ================================
+  // LOGOUT
+  // ================================
 
-const updateButton =
-item.querySelector(".updateStatusBtn");
+  document
+    .getElementById("logoutBtn")
+    .addEventListener("click", async () => {
 
-updateButton.addEventListener(
-"click",
-async()=>{
+      await signOut(auth);
 
-const newStatus =
-statusSelect.value;
+    });
 
-updateButton.textContent=
-"Updating...";
 
-try{
+  // ================================
+  // POST ANNOUNCEMENT
+  // ================================
 
-await updateDoc(
-doc(db,"feedback",docSnap.id),
-{
-status:newStatus
-}
-);
+  document
+    .getElementById("announcementForm")
+    .addEventListener("submit", async (e) => {
 
-alert("Feedback status updated successfully!");
+      e.preventDefault();
 
-loadFeedback();
+      const user =
+        auth.currentUser;
 
-}catch(error){
+      if (!user) {
+        return;
+      }
 
-console.error(error);
+      const title =
+        document.getElementById("announcementTitle").value;
 
-alert(
-"Failed to update status. Please try again."
-);
+      const message =
+        document.getElementById("announcementMessage").value;
 
-updateButton.textContent=
-"Update Status";
+      const status =
+        document.getElementById("announcementMessageStatus");
 
-}
+      try {
 
-});
+        await addDoc(
+          collection(db, "Announcement"),
+          {
+            Title: title,
+            Message: message,
+            "Created by": user.email,
+            "Created at": serverTimestamp()
+          }
+        );
 
-feedbackList.appendChild(item);
+        status.textContent =
+          "Announcement posted successfully.";
 
-});
+        document
+          .getElementById("announcementForm")
+          .reset();
 
-}catch(error){
+        await loadAnnouncements();
 
-console.error(error);
+      } catch (error) {
 
-feedbackList.innerHTML=
-"<p>Unable to load feedback. Check Firebase permissions.</p>";
+        console.error(error);
 
-}
+        status.textContent =
+          "Unable to post announcement.";
+      }
 
-}
+    });
 
 
-/* LOAD ANNOUNCEMENTS */
+  // ================================
+  // PUBLIC FEEDBACK
+  // ================================
 
-async function loadAnnouncements(){
+  document
+    .getElementById("feedbackForm")
+    .addEventListener("submit", async (e) => {
 
-announcementList.innerHTML=
-"<p>Loading announcements...</p>";
+      e.preventDefault();
 
-try{
+      const category =
+        document.getElementById("category").value;
 
-const snapshot =
-await getDocs(
-collection(db,"announcements")
-);
+      const location =
+        document.getElementById("location").value;
 
-if(snapshot.empty){
+      const feedback =
+        document.getElementById("feedback").value;
 
-announcementList.innerHTML=
-"<p>No announcements yet.</p>";
+      const message =
+        document.getElementById("feedbackMessage");
 
-return;
+      try {
 
-}
+        await addDoc(
+          collection(db, "feedback"),
+          {
+            category: category,
+            location: location,
+            feedback: feedback,
+            status: "Pending",
+            createdAt: serverTimestamp()
+          }
+        );
 
-announcementList.innerHTML="";
+        message.textContent =
+          "Your feedback has been submitted successfully.";
 
-const announcements=[];
+        document
+          .getElementById("feedbackForm")
+          .reset();
 
-snapshot.forEach((doc)=>{
+      } catch (error) {
 
-announcements.push({
-id:doc.id,
-...doc.data()
-});
+        console.error(error);
 
-});
+        message.textContent =
+          "Unable to submit feedback.";
+      }
 
-announcements.reverse();
+    });
 
-announcements.forEach((data)=>{
 
-const item =
-document.createElement("div");
+  // ================================
+  // AUTH STATE
+  // ================================
 
-item.className="announcement-item";
+  onAuthStateChanged(auth, async (user) => {
 
-item.innerHTML=`
+    if (user) {
 
-<h3>
-${data.title || "Office Announcement"}
-</h3>
+      await checkUserAccess(user);
 
-<p>
-${data.message || ""}
-</p>
+    } else {
 
-<p class="small">
-Posted by: ${data.createdBy || "Public Office"}
-</p>
+      loginCard.classList.remove("hidden");
+      officeCard.classList.add("hidden");
 
-`;
+    }
 
-announcementList.appendChild(item);
+  });
 
-});
 
-}catch(error){
-
-console.error(error);
-
-announcementList.innerHTML=
-"<p>No announcements available yet.</p>";
-
-}
-
-}
-
-
-/* LOGIN STATUS */
-
-onAuthStateChanged(auth,(user)=>{
-
-if(user){
-
-loginCard.classList.add("hidden");
-
-officeCard.classList.remove("hidden");
-
-userStatus.textContent=
-"Logged in as: "+user.email;
-
-loadFeedback();
-
-}else{
-
-loginCard.classList.remove("hidden");
-
-officeCard.classList.add("hidden");
-
-userStatus.textContent="";
-
-}
-
-});
-
-
-/* LOGOUT */
-
-logoutBtn.addEventListener(
-"click",
-async()=>{
-
-await signOut(auth);
-
-}
-);
-
-
-/* POST ANNOUNCEMENT */
-
-announcementForm.addEventListener(
-"submit",
-async(e)=>{
-
-e.preventDefault();
-
-const title =
-announcementTitle.value.trim();
-
-const message =
-announcementMessage.value.trim();
-
-if(!title || !message){
-
-announcementMessageStatus.textContent=
-"Please fill in both fields.";
-
-announcementMessageStatus.className="error";
-
-return;
-
-}
-
-announcementMessageStatus.textContent=
-"Posting announcement...";
-
-announcementMessageStatus.className="";
-
-
-try{
-
-const user=auth.currentUser;
-
-await addDoc(
-collection(db,"announcements"),
-{
-
-title:title,
-
-message:message,
-
-createdBy:
-user ? user.email : "Public Office",
-
-createdAt:
-serverTimestamp()
-
-}
-);
-
-announcementMessageStatus.textContent=
-"Announcement posted successfully!";
-
-announcementMessageStatus.className="success";
-
-announcementForm.reset();
-
-loadAnnouncements();
-
-}catch(error){
-
-console.error(error);
-
-announcementMessageStatus.textContent=
-"Failed to post announcement. Check Firebase permissions.";
-
-announcementMessageStatus.className="error";
-
-}
-
-});
-
-
-/* PUBLIC FEEDBACK */
-
-const form =
-document.getElementById("feedbackForm");
-
-form.addEventListener(
-"submit",
-async(e)=>{
-
-e.preventDefault();
-
-const category =
-document.getElementById("category").value;
-
-const location =
-document.getElementById("location").value;
-
-const feedback =
-document.getElementById("feedback").value;
-
-try{
-
-await addDoc(
-collection(db,"feedback"),
-{
-
-category:category,
-
-location:location,
-
-feedback:feedback,
-
-status:"Pending",
-
-createdAt:
-serverTimestamp()
-
-}
-);
-
-alert(
-"Feedback submitted successfully!"
-);
-
-form.reset();
-
-}catch(error){
-
-console.error(error);
-
-alert(
-"Failed to submit feedback. Please try again."
-);
-
-}
-
-});
-
-
-/* START */
-
-loadAnnouncements();
+  // Load public announcements
+  loadAnnouncements();
 
 </script>
 
