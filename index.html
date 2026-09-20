@@ -101,6 +101,16 @@ here<!DOCTYPE html>
       padding: 20px;
       color: #666;
     }
+
+    .debug {
+      background: #fff3cd;
+      border: 1px solid #ffeeba;
+      padding: 10px;
+      border-radius: 6px;
+      font-size: 13px;
+      word-break: break-word;
+      margin-top: 10px;
+    }
   </style>
 </head>
 
@@ -133,6 +143,8 @@ here<!DOCTYPE html>
     </form>
 
     <p id="loginMessage"></p>
+
+    <div id="debugMessage" class="debug hidden"></div>
   </div>
 
   <!-- OFFICE DASHBOARD -->
@@ -315,14 +327,18 @@ here<!DOCTYPE html>
 
   const loginCard = document.getElementById("loginCard");
   const officeCard = document.getElementById("officeCard");
-  const publicFeedbackCard =
-    document.getElementById("publicFeedbackCard");
 
   const loggedInEmail =
     document.getElementById("loggedInEmail");
 
   const userRole =
     document.getElementById("userRole");
+
+  const loginMessage =
+    document.getElementById("loginMessage");
+
+  const debugMessage =
+    document.getElementById("debugMessage");
 
 
   // ================================
@@ -388,7 +404,7 @@ here<!DOCTYPE html>
 
     } catch (error) {
 
-      console.error(error);
+      console.error("Announcement error:", error);
 
       announcementList.innerHTML =
         "<p>Unable to load announcements.</p>";
@@ -404,55 +420,93 @@ here<!DOCTYPE html>
 
     try {
 
+      loginMessage.textContent =
+        "Checking account authorization...";
+
+      const userId = user.uid;
+
+      console.log("Logged in UID:", userId);
+      console.log("Logged in Email:", user.email);
+
       const userRef =
-        doc(db, "users", user.uid);
+        doc(db, "users", userId);
 
       const userSnap =
         await getDoc(userRef);
 
+
+      // USER DOCUMENT DOES NOT EXIST
       if (!userSnap.exists()) {
+
+        loginMessage.textContent =
+          "This account is not authorized.";
+
+        debugMessage.classList.remove("hidden");
+
+        debugMessage.innerHTML =
+          "<strong>Debug:</strong><br>" +
+          "The signed-in account does not have a matching document in the users collection.<br><br>" +
+          "Signed-in email: " + (user.email || "Unknown") + "<br>" +
+          "Signed-in UID: " + userId;
 
         await signOut(auth);
 
-        loginCard.classList.remove("hidden");
-        officeCard.classList.add("hidden");
-
-        document.getElementById("loginMessage").textContent =
-          "This account is not authorized.";
-
         return false;
       }
+
 
       const userData =
         userSnap.data();
 
+      console.log("User document:", userData);
+
+
       const role =
-        userData.role;
+        typeof userData.role === "string"
+          ? userData.role.trim().toLowerCase()
+          : "";
 
       const active =
         userData.active === true;
 
+
       const allowedRoles =
         ["official", "pa", "superadmin"];
 
+
+      console.log("Role:", role);
+      console.log("Active:", active);
+
+
+      // WRONG ROLE OR INACTIVE
       if (!active || !allowedRoles.includes(role)) {
 
-        await signOut(auth);
-
-        loginCard.classList.remove("hidden");
-        officeCard.classList.add("hidden");
-
-        document.getElementById("loginMessage").textContent =
+        loginMessage.textContent =
           "This account is not authorized to access the office dashboard.";
+
+        debugMessage.classList.remove("hidden");
+
+        debugMessage.innerHTML =
+          "<strong>Debug:</strong><br>" +
+          "Firebase found your users document, but the access values are not correct.<br><br>" +
+          "Signed-in UID: " + userId + "<br>" +
+          "Role found: " + (userData.role || "missing") + "<br>" +
+          "Active found: " + String(userData.active);
+
+        await signOut(auth);
 
         return false;
       }
 
 
+      // ================================
       // AUTHORIZED USER
+      // ================================
 
       loginCard.classList.add("hidden");
       officeCard.classList.remove("hidden");
+
+      debugMessage.classList.add("hidden");
 
       loggedInEmail.textContent =
         user.email || "";
@@ -460,16 +514,25 @@ here<!DOCTYPE html>
       userRole.textContent =
         "Role: " + role;
 
+      loginMessage.textContent = "";
+
       await loadFeedback();
 
       return true;
 
+
     } catch (error) {
 
-      console.error(error);
+      console.error("Authorization error:", error);
 
-      document.getElementById("loginMessage").textContent =
+      loginMessage.textContent =
         "Unable to verify account access.";
+
+      debugMessage.classList.remove("hidden");
+
+      debugMessage.innerHTML =
+        "<strong>Firebase error:</strong><br>" +
+        (error.message || "Unknown Firebase error");
 
       return false;
     }
@@ -589,7 +652,7 @@ here<!DOCTYPE html>
 
     } catch (error) {
 
-      console.error(error);
+      console.error("Feedback error:", error);
 
       feedbackList.innerHTML =
         "<p>Unable to load feedback.</p>";
@@ -640,34 +703,41 @@ here<!DOCTYPE html>
       e.preventDefault();
 
       const email =
-        document.getElementById("email").value;
+        document.getElementById("email").value.trim();
 
       const password =
         document.getElementById("password").value;
 
-      const message =
-        document.getElementById("loginMessage");
+      loginMessage.textContent =
+        "Signing in...";
 
-      message.textContent =
-        "Checking account...";
+      debugMessage.classList.add("hidden");
+
 
       try {
 
-        const result =
-          await signInWithEmailAndPassword(
-            auth,
-            email,
-            password
-          );
+        await signInWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
 
-        await checkUserAccess(result.user);
+        // onAuthStateChanged will handle authorization.
+        loginMessage.textContent =
+          "Signed in. Checking authorization...";
 
       } catch (error) {
 
-        console.error(error);
+        console.error("Login error:", error);
 
-        message.textContent =
+        loginMessage.textContent =
           "Login failed. Check your email and password.";
+
+        debugMessage.classList.remove("hidden");
+
+        debugMessage.innerHTML =
+          "<strong>Firebase login error:</strong><br>" +
+          (error.message || "Unknown error");
       }
 
     });
@@ -682,6 +752,12 @@ here<!DOCTYPE html>
     .addEventListener("click", async () => {
 
       await signOut(auth);
+
+      officeCard.classList.add("hidden");
+      loginCard.classList.remove("hidden");
+
+      loginMessage.textContent =
+        "You have logged out.";
 
     });
 
@@ -735,7 +811,7 @@ here<!DOCTYPE html>
 
       } catch (error) {
 
-        console.error(error);
+        console.error("Announcement post error:", error);
 
         status.textContent =
           "Unable to post announcement.";
@@ -788,7 +864,7 @@ here<!DOCTYPE html>
 
       } catch (error) {
 
-        console.error(error);
+        console.error("Feedback submit error:", error);
 
         message.textContent =
           "Unable to submit feedback.";
@@ -817,10 +893,13 @@ here<!DOCTYPE html>
   });
 
 
-  // Load public announcements
+  // ================================
+  // START APP
+  // ================================
+
   loadAnnouncements();
 
 </script>
 
 </body>
-    </html>
+  </html>
