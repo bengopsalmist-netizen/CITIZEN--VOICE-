@@ -3,8 +3,7 @@ here<!DOCTYPE html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Citizen Voice</title>
+  <title>Citizen Voice - Login Test</title>
 
   <style>
     body {
@@ -27,10 +26,33 @@ here<!DOCTYPE html>
       text-align: center;
     }
 
+    input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 12px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 8px;
+      background: #1976d2;
+      color: white;
+      font-size: 16px;
+    }
+
+    button:disabled {
+      background: #999;
+    }
+
     .status {
       margin-top: 20px;
       padding: 15px;
-      background: #eeeeee;
       border-radius: 8px;
       white-space: pre-wrap;
     }
@@ -44,6 +66,11 @@ here<!DOCTYPE html>
       background: #ffebee;
       color: #b71c1c;
     }
+
+    .info {
+      background: #eeeeee;
+      color: #333;
+    }
   </style>
 </head>
 
@@ -53,101 +80,185 @@ here<!DOCTYPE html>
 
   <h1>Citizen Voice</h1>
 
-  <p>
-    Welcome to Citizen Voice.
-  </p>
+  <p>Official Login Test</p>
 
-  <div id="status" class="status">
-    Starting Firebase...
+  <input
+    type="email"
+    id="email"
+    placeholder="Email address"
+  >
+
+  <input
+    type="password"
+    id="password"
+    placeholder="Password"
+  >
+
+  <button id="loginButton">
+    LOGIN
+  </button>
+
+  <button id="logoutButton" style="display:none;">
+    LOGOUT
+  </button>
+
+  <div id="status" class="status info">
+    Firebase is ready.
   </div>
 
 </div>
-
 
 <script type="module">
 
   import { initializeApp }
     from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 
+  import {
+    getAuth,
+    signInWithEmailAndPassword,
+    onAuthStateChanged,
+    signOut
+  }
+    from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
-  // =====================================
-  // FIREBASE CONFIGURATION
-  // =====================================
 
   const firebaseConfig = {
 
-    apiKey:
-      "AIzaSyBBNkfxFr3lovnanrZOzOldIs4lAglyjis",
+    apiKey: "AIzaSyBBNkfxFr3lovnanrZOzOldIs4lAglyjis",
 
-    authDomain:
-      "citizen-voice-f4b90.firebaseapp.com",
+    authDomain: "citizen-voice-f4b90.firebaseapp.com",
 
-    projectId:
-      "citizen-voice-f4b90",
+    projectId: "citizen-voice-f4b90",
 
-    storageBucket:
-      "citizen-voice-f4b90.firebasestorage.app",
+    storageBucket: "citizen-voice-f4b90.firebasestorage.app",
 
-    messagingSenderId:
-      "784289518285",
+    messagingSenderId: "784289518285",
 
-    appId:
-      "1:784289518285:web:5d089c6bdf23a43b5fcf84",
+    appId: "1:784289518285:web:5d089c6bdf23a43b5fcf84",
 
-    measurementId:
-      "G-C4L9Y55JGG"
+    measurementId: "G-C4L9Y55JGG"
 
   };
 
 
-  // =====================================
-  // START FIREBASE
-  // =====================================
+  const app = initializeApp(firebaseConfig);
 
-  const status =
-    document.getElementById("status");
+  const auth = getAuth(app);
 
 
-  try {
+  const emailInput = document.getElementById("email");
 
-    const app =
-      initializeApp(firebaseConfig);
+  const passwordInput = document.getElementById("password");
+
+  const loginButton = document.getElementById("loginButton");
+
+  const logoutButton = document.getElementById("logoutButton");
+
+  const status = document.getElementById("status");
 
 
-    status.className =
-      "status success";
+  loginButton.addEventListener("click", async () => {
 
+    const email = emailInput.value.trim();
+
+    const password = passwordInput.value;
+
+
+    if (!email || !password) {
+
+      status.className = "status error";
+
+      status.textContent =
+        "Please enter your email and password.";
+
+      return;
+    }
+
+
+    loginButton.disabled = true;
+
+    loginButton.textContent = "SIGNING IN...";
+
+    status.className = "status info";
+
+    status.textContent = "Signing in...";
+
+
+    try {
+
+      const userCredential =
+        await signInWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+
+
+      const user = userCredential.user;
+
+
+      status.className = "status success";
+
+      status.textContent =
+        "LOGIN SUCCESSFUL! ✅\n\n" +
+        "Email:\n" +
+        user.email +
+        "\n\n" +
+        "User ID:\n" +
+        user.uid +
+        "\n\n" +
+        "Firebase Authentication is working correctly.";
+
+    }
+
+    catch (error) {
+
+      status.className = "status error";
+
+      status.textContent =
+        "LOGIN FAILED\n\n" +
+        "Code:\n" +
+        error.code +
+        "\n\n" +
+        "Message:\n" +
+        error.message;
+
+    }
+
+    finally {
+
+      loginButton.disabled = false;
+
+      loginButton.textContent = "LOGIN";
+
+    }
+
+  });
+
+
+  logoutButton.addEventListener("click", async () => {
+
+    await signOut(auth);
+
+    status.className = "status info";
 
     status.textContent =
-      "FIREBASE CONNECTED SUCCESSFULLY! ✅\n\n" +
+      "Logged out successfully.";
 
-      "Project ID:\n" +
-      firebaseConfig.projectId +
-      "\n\n" +
+    logoutButton.style.display = "none";
 
-      "Firebase is ready.\n\n" +
-
-      "No login has been added yet.";
-
-  }
-
-  catch (error) {
-
-    status.className =
-      "status error";
+  });
 
 
-    status.textContent =
-      "FIREBASE ERROR\n\n" +
+  onAuthStateChanged(auth, (user) => {
 
-      "Code:\n" +
-      error.code +
-      "\n\n" +
+    if (user) {
 
-      "Message:\n" +
-      error.message;
+      logoutButton.style.display = "block";
 
-  }
+    }
+
+  });
 
 </script>
 
