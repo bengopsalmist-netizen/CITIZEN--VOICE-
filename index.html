@@ -3,7 +3,7 @@ here<!DOCTYPE html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Citizen Voice - Official Authorization</title>
+  <title>Citizen Voice - Firebase Diagnosis</title>
 
   <style>
     body {
@@ -14,8 +14,8 @@ here<!DOCTYPE html>
     }
 
     .box {
-      max-width: 500px;
-      margin: 40px auto;
+      max-width: 550px;
+      margin: 30px auto;
       background: white;
       padding: 25px;
       border-radius: 12px;
@@ -37,7 +37,7 @@ here<!DOCTYPE html>
 
     button {
       width: 100%;
-      padding: 12px;
+      padding: 13px;
       margin-top: 10px;
       border: none;
       border-radius: 8px;
@@ -55,6 +55,13 @@ here<!DOCTYPE html>
       padding: 15px;
       border-radius: 8px;
       white-space: pre-wrap;
+      word-break: break-word;
+      line-height: 1.5;
+    }
+
+    .info {
+      background: #eeeeee;
+      color: #333;
     }
 
     .success {
@@ -66,11 +73,6 @@ here<!DOCTYPE html>
       background: #ffebee;
       color: #b71c1c;
     }
-
-    .info {
-      background: #eeeeee;
-      color: #333;
-    }
   </style>
 </head>
 
@@ -80,7 +82,7 @@ here<!DOCTYPE html>
 
   <h1>Citizen Voice</h1>
 
-  <p>Official Authorization Test</p>
+  <p><strong>Firebase Diagnosis Test</strong></p>
 
   <input
     type="email"
@@ -95,57 +97,64 @@ here<!DOCTYPE html>
   >
 
   <button id="loginButton">
-    LOGIN
-  </button>
-
-  <button id="logoutButton" style="display:none;">
-    LOGOUT
+    RUN DIAGNOSIS
   </button>
 
   <div id="status" class="status info">
-    Ready to login.
+    Ready for diagnosis.
   </div>
 
 </div>
 
 <script type="module">
 
-  import { initializeApp }
-    from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+  import {
+    initializeApp
+  } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 
   import {
     getAuth,
-    signInWithEmailAndPassword,
-    signOut
-  }
-    from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+    signInWithEmailAndPassword
+  } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
   import {
     getFirestore,
     doc,
     getDoc
-  }
-    from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+  } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
+
+  // =========================
+  // FIREBASE CONFIG
+  // =========================
 
   const firebaseConfig = {
 
     apiKey: "AIzaSyBBNkfxFr3lovnanrZOzOldIs4lAglyjis",
 
-    authDomain: "citizen-voice-f4b90.firebaseapp.com",
+    authDomain:
+      "citizen-voice-f4b90.firebaseapp.com",
 
-    projectId: "citizen-voice-f4b90",
+    projectId:
+      "citizen-voice-f4b90",
 
-    storageBucket: "citizen-voice-f4b90.firebasestorage.app",
+    storageBucket:
+      "citizen-voice-f4b90.firebasestorage.app",
 
-    messagingSenderId: "784289518285",
+    messagingSenderId:
+      "784289518285",
 
-    appId: "1:784289518285:web:5d089c6bdf23a43b5fcf84",
+    appId:
+      "1:784289518285:web:5d089c6bdf23a43b5fcf84",
 
-    measurementId: "G-C4L9Y55JGG"
-
+    measurementId:
+      "G-C4L9Y55JGG"
   };
 
+
+  // =========================
+  // START FIREBASE
+  // =========================
 
   const app = initializeApp(firebaseConfig);
 
@@ -153,6 +162,10 @@ here<!DOCTYPE html>
 
   const db = getFirestore(app);
 
+
+  // =========================
+  // PAGE ELEMENTS
+  // =========================
 
   const emailInput =
     document.getElementById("email");
@@ -163,23 +176,27 @@ here<!DOCTYPE html>
   const loginButton =
     document.getElementById("loginButton");
 
-  const logoutButton =
-    document.getElementById("logoutButton");
-
   const status =
     document.getElementById("status");
 
 
+  // =========================
+  // DIAGNOSIS
+  // =========================
+
   loginButton.addEventListener("click", async () => {
 
-    const email = emailInput.value.trim();
+    const email =
+      emailInput.value.trim();
 
-    const password = passwordInput.value;
+    const password =
+      passwordInput.value;
 
 
     if (!email || !password) {
 
-      status.className = "status error";
+      status.className =
+        "status error";
 
       status.textContent =
         "Please enter your email and password.";
@@ -190,17 +207,22 @@ here<!DOCTYPE html>
 
     loginButton.disabled = true;
 
-    loginButton.textContent = "CHECKING...";
+    loginButton.textContent =
+      "CHECKING...";
 
-    status.className = "status info";
+
+    status.className =
+      "status info";
 
     status.textContent =
-      "Signing in and checking authorization...";
+      "Running Firebase diagnosis...\n\nPlease wait.";
 
 
     try {
 
-      /* STEP 1: LOGIN */
+      // =========================
+      // STEP 1 - LOGIN
+      // =========================
 
       const userCredential =
         await signInWithEmailAndPassword(
@@ -210,120 +232,287 @@ here<!DOCTYPE html>
         );
 
 
-      const user = userCredential.user;
+      const user =
+        userCredential.user;
 
 
-      /* STEP 2: FIND USER DOCUMENT */
+      let report = "";
+
+
+      report +=
+        "1. FIREBASE PROJECT\n";
+
+      report +=
+        "Project ID: " +
+        app.options.projectId +
+        "\n\n";
+
+
+      report +=
+        "2. AUTHENTICATION\n";
+
+      report +=
+        "Login: SUCCESS ✅\n";
+
+      report +=
+        "Email: " +
+        user.email +
+        "\n";
+
+      report +=
+        "UID: " +
+        user.uid +
+        "\n\n";
+
+
+      // =========================
+      // STEP 2 - USERS DOCUMENT
+      // =========================
 
       const userRef =
-        doc(db, "Users", user.uid);
+        doc(
+          db,
+          "Users",
+          user.uid
+        );
 
-      const userSnapshot =
-        await getDoc(userRef);
+
+      report +=
+        "3. FIRESTORE PATH\n";
+
+      report +=
+        "Collection: Users\n";
+
+      report +=
+        "Document ID: " +
+        user.uid +
+        "\n\n";
 
 
-      /* STEP 3: CHECK DOCUMENT */
+      let userSnapshot;
 
-      if (!userSnapshot.exists()) {
 
-        status.className = "status error";
+      try {
+
+        userSnapshot =
+          await getDoc(userRef);
+
+      } catch (firestoreError) {
+
+        report +=
+          "FIRESTORE READ: FAILED ❌\n\n";
+
+        report +=
+          "Error code:\n" +
+          firestoreError.code +
+          "\n\n";
+
+        report +=
+          "Error message:\n" +
+          firestoreError.message +
+          "\n\n";
+
+        report +=
+          "THIS IS MOST LIKELY A FIRESTORE RULES/PERMISSION PROBLEM.";
+
+        status.className =
+          "status error";
 
         status.textContent =
-          "LOGIN SUCCESSFUL, BUT ACCESS DENIED.\n\n" +
-          "Your Firebase Authentication account exists,\n" +
-          "but your authorization record was not found\n" +
-          "inside Users.";
+          report;
 
         return;
       }
 
 
-      /* STEP 4: READ USER DATA */
+      // =========================
+      // STEP 3 - DOCUMENT EXISTS
+      // =========================
 
-      const userData =
+      if (!userSnapshot.exists()) {
+
+        report +=
+          "Firestore read: SUCCESS ✅\n";
+
+        report +=
+          "Document exists: NO ❌\n\n";
+
+        report +=
+          "The app can reach Firestore,\n";
+
+        report +=
+          "but Users/" +
+          user.uid +
+          " was not found.\n\n";
+
+        report +=
+          "CHECK THE COLLECTION NAME AND DOCUMENT ID.";
+
+        status.className =
+          "status error";
+
+        status.textContent =
+          report;
+
+        return;
+      }
+
+
+      report +=
+        "Firestore read: SUCCESS ✅\n";
+
+      report +=
+        "Document exists: YES ✅\n\n";
+
+
+      // =========================
+      // STEP 4 - READ RAW DATA
+      // =========================
+
+      const data =
         userSnapshot.data();
 
 
-      const role =
-        userData.Role;
-
-      const active =
-        userData.Active;
+      report +=
+        "4. FIRESTORE DATA\n\n";
 
 
-      /* STEP 5: CHECK ACTIVE + ROLE */
+      const fieldNames =
+        Object.keys(data);
 
-      if (role === "Official" && active === true) {
 
-        status.className = "status success";
+      if (fieldNames.length === 0) {
 
-        status.textContent =
-          "AUTHORIZED OFFICIAL! ✅\n\n" +
-          "Email:\n" +
-          user.email +
-          "\n\n" +
-          "User ID:\n" +
-          user.uid +
-          "\n\n" +
-          "Role:\n" +
-          role +
-          "\n\n" +
-          "Active:\n" +
-          active +
-          "\n\n" +
+        report +=
+          "Document has NO fields ❌\n\n";
+
+      } else {
+
+        fieldNames.forEach(
+          (fieldName) => {
+
+            const value =
+              data[fieldName];
+
+            report +=
+              fieldName +
+              " = " +
+              JSON.stringify(value) +
+              "\n";
+
+            report +=
+              "Type: " +
+              typeof value +
+              "\n\n";
+          }
+        );
+      }
+
+
+      // =========================
+      // STEP 5 - CHECK BOTH VERSIONS
+      // =========================
+
+      const roleUpper =
+        data.Role;
+
+      const roleLower =
+        data.role;
+
+      const activeUpper =
+        data.Active;
+
+      const activeLower =
+        data.active;
+
+
+      report +=
+        "5. AUTHORIZATION CHECK\n\n";
+
+
+      report +=
+        "Role: " +
+        JSON.stringify(roleUpper) +
+        "\n";
+
+      report +=
+        "Active: " +
+        JSON.stringify(activeUpper) +
+        "\n\n";
+
+
+      report +=
+        "Lowercase role found: " +
+        JSON.stringify(roleLower) +
+        "\n";
+
+      report +=
+        "Lowercase active found: " +
+        JSON.stringify(activeLower) +
+        "\n\n";
+
+
+      // =========================
+      // FINAL DIAGNOSIS
+      // =========================
+
+      if (
+        roleUpper === "Official" &&
+        activeUpper === true
+      ) {
+
+        report +=
+          "FINAL RESULT:\n";
+
+        report +=
+          "AUTHORIZED OFFICIAL ✅\n\n";
+
+        report +=
           "Firestore authorization is working correctly.";
 
-        logoutButton.style.display = "block";
+        status.className =
+          "status success";
 
+      } else {
+
+        report +=
+          "FINAL RESULT:\n";
+
+        report +=
+          "AUTHORIZATION DATA DOES NOT MATCH ❌\n\n";
+
+        report +=
+          "The diagnosis above shows the exact field names and values.";
+
+        status.className =
+          "status error";
       }
 
-      else {
-
-        status.className = "status error";
-
-        status.textContent =
-          "ACCESS DENIED.\n\n" +
-          "Your account is not authorized as an active Official.";
-
-      }
-
-    }
-
-    catch (error) {
-
-      status.className = "status error";
 
       status.textContent =
-        "AUTHORIZATION ERROR\n\n" +
+        report;
+
+
+    } catch (error) {
+
+      status.className =
+        "status error";
+
+      status.textContent =
+        "DIAGNOSIS ERROR ❌\n\n" +
         "Code:\n" +
         error.code +
         "\n\n" +
         "Message:\n" +
         error.message;
 
-    }
-
-    finally {
+    } finally {
 
       loginButton.disabled = false;
 
-      loginButton.textContent = "LOGIN";
-
+      loginButton.textContent =
+        "RUN DIAGNOSIS";
     }
-
-  });
-
-
-  logoutButton.addEventListener("click", async () => {
-
-    await signOut(auth);
-
-    logoutButton.style.display = "none";
-
-    status.className = "status info";
-
-    status.textContent =
-      "Logged out successfully.";
 
   });
 
