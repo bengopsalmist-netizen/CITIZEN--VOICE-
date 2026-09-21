@@ -3,6 +3,7 @@ here<!DOCTYPE html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Citizen Voice</title>
 
   <style>
@@ -45,7 +46,6 @@ here<!DOCTYPE html>
       background: #222;
       color: white;
       font-size: 16px;
-      cursor: pointer;
     }
 
     #debug {
@@ -58,18 +58,18 @@ here<!DOCTYPE html>
       font-size: 14px;
     }
 
-    .hidden {
-      display: none;
-    }
-
     .success {
-      background: #e8f5e9;
+      background: #e8f5e9 !important;
       color: #1b5e20;
     }
 
     .error {
-      background: #ffebee;
+      background: #ffebee !important;
       color: #b71c1c;
+    }
+
+    .hidden {
+      display: none;
     }
 
     .logout {
@@ -84,8 +84,7 @@ here<!DOCTYPE html>
 
   <h1>Citizen Voice</h1>
 
-  <!-- OFFICIAL LOGIN -->
-
+  <!-- LOGIN -->
   <div id="loginSection">
 
     <h3>Official Login</h3>
@@ -94,12 +93,14 @@ here<!DOCTYPE html>
       type="email"
       id="email"
       placeholder="Email"
+      autocomplete="email"
     >
 
     <input
       type="password"
       id="password"
       placeholder="Password"
+      autocomplete="current-password"
     >
 
     <button id="loginBtn">
@@ -109,8 +110,7 @@ here<!DOCTYPE html>
   </div>
 
 
-  <!-- OFFICIAL DASHBOARD -->
-
+  <!-- DASHBOARD -->
   <div id="dashboard" class="hidden">
 
     <h2>Official Dashboard</h2>
@@ -128,20 +128,15 @@ here<!DOCTYPE html>
   </div>
 
 
-  <!-- DEBUG -->
-
+  <!-- STATUS -->
   <div id="debug">
-    Waiting for Firebase...
+    Starting Citizen Voice...
   </div>
 
 </div>
 
 
 <script type="module">
-
-  // ==============================
-  // FIREBASE IMPORTS
-  // ==============================
 
   import { initializeApp }
     from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
@@ -162,13 +157,14 @@ here<!DOCTYPE html>
     from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
 
-  // ==============================
+  // ==========================================
   // FIREBASE CONFIG
-  // ==============================
+  // ==========================================
 
   const firebaseConfig = {
 
-    apiKey: "AIzaSyBBNkfxFr3lovnanrZOzOldIs4lAglyjis",
+    apiKey:
+      "AIzaSyBBNkfxFr3lovnanrZOzOldIs4lAglyjis",
 
     authDomain:
       "citizen-voice-f4b90.firebaseapp.com",
@@ -187,27 +183,23 @@ here<!DOCTYPE html>
 
     measurementId:
       "G-C4L9Y55JGG"
-
   };
 
 
-  // ==============================
+  // ==========================================
   // START FIREBASE
-  // ==============================
+  // ==========================================
 
-  const app =
-    initializeApp(firebaseConfig);
+  const app = initializeApp(firebaseConfig);
 
-  const auth =
-    getAuth(app);
+  const auth = getAuth(app);
 
-  const db =
-    getFirestore(app);
+  const db = getFirestore(app);
 
 
-  // ==============================
-  // ELEMENTS
-  // ==============================
+  // ==========================================
+  // PAGE ELEMENTS
+  // ==========================================
 
   const debug =
     document.getElementById("debug");
@@ -228,21 +220,31 @@ here<!DOCTYPE html>
     document.getElementById("welcome");
 
 
-  // ==============================
-  // FIREBASE TEST
-  // ==============================
+  // ==========================================
+  // HELPER
+  // ==========================================
 
-  debug.textContent =
-    "Firebase script is running.\n\n" +
-    "Project ID: " +
-    firebaseConfig.projectId +
-    "\n\n" +
-    "Waiting for login...";
+  function showStatus(message, type = "") {
+
+    debug.className = type;
+
+    debug.textContent = message;
+
+  }
 
 
-  // ==============================
+  // ==========================================
+  // START MESSAGE
+  // ==========================================
+
+  showStatus(
+    "Firebase connected.\n\nWaiting for login..."
+  );
+
+
+  // ==========================================
   // LOGIN
-  // ==============================
+  // ==========================================
 
   loginBtn.addEventListener("click", async () => {
 
@@ -255,55 +257,75 @@ here<!DOCTYPE html>
 
     if (!email || !password) {
 
-      debug.textContent =
-        "Please enter email and password.";
-
-      debug.className = "error";
+      showStatus(
+        "Please enter your email and password.",
+        "error"
+      );
 
       return;
     }
 
 
-    debug.className = "";
+    loginBtn.disabled = true;
 
-    debug.textContent =
-      "Signing in...";
+    loginBtn.textContent = "Signing in...";
+
+
+    showStatus(
+      "Signing in...\n\nPlease wait."
+    );
 
 
     try {
 
-      await signInWithEmailAndPassword(
-        auth,
-        email,
-        password
+      const result =
+        await signInWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+
+
+      showStatus(
+        "Login successful.\n\n" +
+        "Checking authorization..."
+      );
+
+
+      console.log(
+        "LOGIN SUCCESS:",
+        result.user.uid
       );
 
     }
 
     catch (error) {
 
-      debug.className = "error";
+      loginBtn.disabled = false;
 
-      debug.textContent =
-        "LOGIN ERROR\n\n" +
+      loginBtn.textContent = "Login";
+
+
+      showStatus(
+        "LOGIN FAILED\n\n" +
+        "Code:\n" +
         error.code +
         "\n\n" +
-        error.message;
+        "Message:\n" +
+        error.message,
+        "error"
+      );
 
     }
 
   });
 
 
-  // ==============================
+  // ==========================================
   // AUTH STATE
-  // ==============================
+  // ==========================================
 
   onAuthStateChanged(auth, async (user) => {
-
-    // ==============================
-    // NO USER
-    // ==============================
 
     if (!user) {
 
@@ -311,88 +333,88 @@ here<!DOCTYPE html>
 
       dashboard.classList.add("hidden");
 
-      debug.className = "";
+      loginBtn.disabled = false;
 
-      debug.textContent =
+      loginBtn.textContent = "Login";
+
+      showStatus(
         "Firebase connected.\n\n" +
-        "No user is signed in.";
+        "No user is signed in."
+      );
 
       return;
     }
 
 
-    // ==============================
+    // ========================================
     // USER FOUND
-    // ==============================
+    // ========================================
 
-    debug.className = "";
-
-    debug.textContent =
-      "USER FOUND\n\n" +
+    showStatus(
+      "AUTHENTICATION SUCCESSFUL\n\n" +
       "Email:\n" +
       user.email +
       "\n\n" +
       "UID:\n" +
       user.uid +
       "\n\n" +
-      "Checking official authorization...";
+      "Now checking Firestore..."
+    );
 
-
-    // ==============================
-    // CHECK FIRESTORE
-    // IMPORTANT:
-    // COLLECTION = Users
-    // ==============================
 
     try {
 
+      // ======================================
+      // EXACT FIRESTORE LOCATION
+      // Users / UID
+      // ======================================
+
       const userRef =
-        doc(db, "Users", user.uid);
+        doc(
+          db,
+          "Users",
+          user.uid
+        );
+
 
       const userSnap =
         await getDoc(userRef);
 
 
-      // ==============================
+      // ======================================
       // DOCUMENT NOT FOUND
-      // ==============================
+      // ======================================
 
       if (!userSnap.exists()) {
 
-        debug.className = "error";
+        showStatus(
+          "AUTHENTICATION WORKS\n\n" +
 
-        debug.textContent =
-          "NOT AUTHORIZED\n\n" +
+          "BUT FIRESTORE DOCUMENT WAS NOT FOUND.\n\n" +
 
-          "Your account exists in Firebase Authentication,\n" +
+          "Collection:\n" +
+          "Users\n\n" +
 
-          "but your authorization record was not found.\n\n" +
+          "Document ID:\n" +
+          user.uid +
+          "\n\n" +
 
-          "Collection: Users\n\n" +
-
-          "UID:\n" +
-          user.uid;
-
-        loginSection.classList.remove("hidden");
-
-        dashboard.classList.add("hidden");
+          "This means Firebase can login the account,\n" +
+          "but this exact Users/UID document cannot be read.",
+          "error"
+        );
 
         return;
       }
 
 
-      // ==============================
-      // GET DATA
-      // ==============================
+      // ======================================
+      // DOCUMENT FOUND
+      // ======================================
 
       const data =
         userSnap.data();
 
-
-      // IMPORTANT:
-      // FIRESTORE FIELDS ARE:
-      // Role
-      // Active
 
       const role =
         data.Role;
@@ -401,47 +423,71 @@ here<!DOCTYPE html>
         data.Active;
 
 
-      // ==============================
-      // CHECK ACTIVE + ROLE
-      // ==============================
+      // ======================================
+      // SHOW WHAT FIRESTORE RETURNED
+      // ======================================
+
+      showStatus(
+        "FIRESTORE DOCUMENT FOUND!\n\n" +
+
+        "Collection:\n" +
+        "Users\n\n" +
+
+        "Document ID:\n" +
+        user.uid +
+        "\n\n" +
+
+        "Role:\n" +
+        String(role) +
+        "\n\n" +
+
+        "Active:\n" +
+        String(active) +
+        "\n\n" +
+
+        "Checking authorization..."
+      );
+
+
+      // ======================================
+      // AUTHORIZATION CHECK
+      // ======================================
 
       if (
         role !== "Official" ||
         active !== true
       ) {
 
-        debug.className = "error";
-
-        debug.textContent =
+        showStatus(
           "NOT AUTHORIZED\n\n" +
 
-          "Your account was found,\n" +
+          "The Firestore document was found,\n" +
+          "but the authorization values are not correct.\n\n" +
 
-          "but it is not currently authorized.\n\n" +
-
-          "Role: " +
+          "Role:\n" +
           String(role) +
           "\n\n" +
 
-          "Active: " +
-          String(active);
+          "Active:\n" +
+          String(active) +
+          "\n\n" +
 
-        loginSection.classList.remove("hidden");
-
-        dashboard.classList.add("hidden");
+          "Required:\n" +
+          "Role = Official\n" +
+          "Active = true",
+          "error"
+        );
 
         return;
       }
 
 
-      // ==============================
-      // AUTHORIZED OFFICIAL
-      // ==============================
+      // ======================================
+      // SUCCESS
+      // ======================================
 
-      debug.className = "success";
-
-      debug.textContent =
-        "AUTHORIZED SUCCESSFULLY!\n\n" +
+      showStatus(
+        "AUTHORIZED SUCCESSFULLY! ✅\n\n" +
 
         "Email:\n" +
         user.email +
@@ -456,12 +502,14 @@ here<!DOCTYPE html>
         "\n\n" +
 
         "Active:\n" +
-        active;
+        String(active),
+        "success"
+      );
 
 
-      // ==============================
+      // ======================================
       // SHOW DASHBOARD
-      // ==============================
+      // ======================================
 
       loginSection.classList.add("hidden");
 
@@ -471,14 +519,11 @@ here<!DOCTYPE html>
         "Welcome " +
         (user.email || "Official");
 
-
     }
 
     catch (error) {
 
-      debug.className = "error";
-
-      debug.textContent =
+      showStatus(
         "FIRESTORE ERROR\n\n" +
 
         "Code:\n" +
@@ -489,17 +534,22 @@ here<!DOCTYPE html>
         error.message +
         "\n\n" +
 
-        "Project ID:\n" +
-        firebaseConfig.projectId;
+        "Collection tested:\n" +
+        "Users\n\n" +
+
+        "UID:\n" +
+        user.uid,
+        "error"
+      );
 
     }
 
   });
 
 
-  // ==============================
+  // ==========================================
   // LOGOUT
-  // ==============================
+  // ==========================================
 
   logoutBtn.addEventListener("click", async () => {
 
@@ -511,11 +561,11 @@ here<!DOCTYPE html>
 
     catch (error) {
 
-      debug.className = "error";
-
-      debug.textContent =
+      showStatus(
         "LOGOUT ERROR\n\n" +
-        error.message;
+        error.message,
+        "error"
+      );
 
     }
 
