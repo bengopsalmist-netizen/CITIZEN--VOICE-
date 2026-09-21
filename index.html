@@ -3,172 +3,138 @@ here<!DOCTYPE html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Citizen Voice - Firestore Scan</title>
+  <title>Citizen Voice - Firestore Test</title>
 </head>
 
-<body style="font-family:Arial;padding:20px;">
-  <h1>Citizen Voice</h1>
-  <h2>Firestore Scan Test</h2>
+<body style="font-family: Arial; padding: 20px;">
 
-  <input id="email" type="email"
-    value="bengopsalmist@gmail.com"
-    style="width:100%;padding:12px;margin-bottom:10px;">
+  <h2>Citizen Voice</h2>
+  <h3>Firestore Direct Test</h3>
 
-  <input id="password" type="password"
-    placeholder="Enter your password"
-    style="width:100%;padding:12px;margin-bottom:10px;">
+  <p>Email: <b>bengopsalmist@gmail.com</b></p>
 
-  <button onclick="runScan()"
-    style="padding:12px 20px;font-size:16px;">
-    RUN FIRESTORE SCAN
+  <button id="testBtn" style="padding:12px 20px;">
+    TEST FIRESTORE
   </button>
 
-  <div id="result"
-    style="margin-top:20px;white-space:pre-wrap;font-size:16px;">
-  </div>
+  <div id="result" style="margin-top:20px; white-space:pre-wrap;"></div>
 
-<script type="module">
+  <script type="module">
 
-import { initializeApp }
-from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+    import { initializeApp }
+      from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 
-import {
-  getAuth,
-  signInWithEmailAndPassword
-}
-from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
-
-import {
-  getFirestore,
-  collection,
-  getDocs
-}
-from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
-
-
-const firebaseConfig = {
-  apiKey: "AIzaSyBBNkfxFr3lovnanrZOzOldIs4lAglyjis",
-  authDomain: "citizen-voice-f4b90.firebaseapp.com",
-  projectId: "citizen-voice-f4b90",
-  storageBucket: "citizen-voice-f4b90.firebasestorage.app",
-  messagingSenderId: "784289518285",
-  appId: "1:784289518285:web:5d089c6bdf23a43b5fcf84",
-  measurementId: "G-C4L9Y55JGG"
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
-
-
-async function runScan() {
-
-  const result = document.getElementById("result");
-
-  result.innerText = "Running scan...\n\n";
-
-  try {
-
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-
-    // LOGIN
-    const login = await signInWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
-
-    const user = login.user;
-
-    result.innerText +=
-      "1. AUTHENTICATION\n" +
-      "Login: SUCCESS ✅\n" +
-      "Email: " + user.email + "\n" +
-      "UID: " + user.uid + "\n\n";
-
-
-    // FIRESTORE COLLECTION SCAN
-    result.innerText +=
-      "2. SCANNING COLLECTION\n" +
-      "Collection: Users\n\n";
-
-    const snapshot = await getDocs(
-      collection(db, "Users")
-    );
-
-
-    result.innerText +=
-      "Firestore scan: SUCCESS ✅\n" +
-      "Documents found: " + snapshot.size + "\n\n";
-
-
-    if (snapshot.empty) {
-
-      result.innerText +=
-        "❌ USERS COLLECTION APPEARS EMPTY TO THE APP.\n";
-
-      return;
+    import {
+      getAuth,
+      signInWithEmailAndPassword
     }
+      from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+    import {
+      getFirestore,
+      doc,
+      getDoc
+    }
+      from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
 
-    result.innerText +=
-      "3. DOCUMENTS FOUND\n\n";
+    const firebaseConfig = {
+      apiKey: "AIzaSyBBNkfxFr3lovnanrZOzOldIs4lAglyjis",
+      authDomain: "citizen-voice-f4b90.firebaseapp.com",
+      projectId: "citizen-voice-f4b90",
+      storageBucket: "citizen-voice-f4b90.firebasestorage.app",
+      messagingSenderId: "784289518285",
+      appId: "1:784289518285:web:5d089c6bdf23a43b5fcf84",
+      measurementId: "G-C4L9Y55JGG"
+    };
 
 
-    let foundUID = false;
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
 
-    snapshot.forEach((doc) => {
 
-      const data = doc.data();
+    const result = document.getElementById("result");
+    const button = document.getElementById("testBtn");
 
-      result.innerText +=
-        "Document ID:\n" +
-        doc.id + "\n";
 
-      result.innerText +=
-        "Fields:\n" +
-        JSON.stringify(data, null, 2) +
-        "\n\n";
+    button.addEventListener("click", async () => {
 
-      if (doc.id === user.uid) {
-        foundUID = true;
+      result.innerText = "Connecting to Firebase...\n";
+
+      try {
+
+        const email = "bengopsalmist@gmail.com";
+
+        const password = prompt("Enter your Firebase login password:");
+
+        if (!password) {
+          result.innerText = "Password was not entered.";
+          return;
+        }
+
+
+        result.innerText += "Signing in...\n";
+
+
+        const login = await signInWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+
+
+        const user = login.user;
+
+        result.innerText +=
+          "LOGIN SUCCESSFUL ✅\n\n" +
+          "Email: " + user.email + "\n" +
+          "UID: " + user.uid + "\n\n";
+
+
+        result.innerText +=
+          "Reading Users/" + user.uid + " ...\n";
+
+
+        const userRef = doc(
+          db,
+          "Users",
+          user.uid
+        );
+
+
+        const userSnap = await getDoc(userRef);
+
+
+        if (userSnap.exists()) {
+
+          const data = userSnap.data();
+
+          result.innerText +=
+            "\nDOCUMENT FOUND ✅\n\n" +
+            JSON.stringify(data, null, 2);
+
+        } else {
+
+          result.innerText +=
+            "\nDOCUMENT NOT FOUND ❌\n\n" +
+            "Firebase can read Firestore, but it cannot find:\n" +
+            "Users/" + user.uid;
+
+        }
+
+      } catch (error) {
+
+        result.innerText =
+          "\nTEST FAILED ❌\n\n" +
+          "Error: " + error.code + "\n\n" +
+          error.message;
+
       }
 
     });
 
-
-    result.innerText +=
-      "4. UID MATCH TEST\n\n";
-
-    if (foundUID) {
-
-      result.innerText +=
-        "✅ MATCH FOUND!\n\n" +
-        "The Users collection contains your Firebase UID:\n" +
-        user.uid + "\n\n" +
-        "This means the document exists and the next step will be checking its fields.";
-
-    } else {
-
-      result.innerText +=
-        "❌ NO MATCH FOUND.\n\n" +
-        "The app can read Users, but none of the document IDs matches your UID:\n" +
-        user.uid;
-    }
-
-
-  } catch (error) {
-
-    result.innerText +=
-      "\n❌ ERROR\n\n" +
-      "Code: " + error.code + "\n" +
-      "Message: " + error.message;
-  }
-
-}
-
-</script>
+  </script>
 
 </body>
 </html>
