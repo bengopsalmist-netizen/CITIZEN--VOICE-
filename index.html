@@ -3,138 +3,1297 @@ here<!DOCTYPE html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Citizen Voice - Firestore Test</title>
+  <title>Citizen Voice</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f7f6;
+      color: #17221d;
+      line-height: 1.5;
+    }
+
+    header {
+      background: linear-gradient(135deg, #006b3c, #111, #bb0000);
+      color: white;
+      padding: 28px 18px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 32px;
+      margin-bottom: 6px;
+    }
+
+    header p {
+      font-size: 15px;
+      opacity: 0.95;
+    }
+
+    .container {
+      width: 94%;
+      max-width: 850px;
+      margin: 25px auto;
+    }
+
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 22px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+
+    h2 {
+      margin-bottom: 14px;
+      color: #075c38;
+    }
+
+    h3 {
+      margin-bottom: 8px;
+    }
+
+    label {
+      display: block;
+      margin-top: 14px;
+      margin-bottom: 6px;
+      font-weight: bold;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #ccd5d1;
+      border-radius: 9px;
+      font-size: 16px;
+      background: white;
+    }
+
+    textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+
+    button {
+      border: none;
+      border-radius: 9px;
+      padding: 13px 18px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+
+    .primary {
+      background: #087f4d;
+      color: white;
+      width: 100%;
+    }
+
+    .secondary {
+      background: #e8efec;
+      color: #123d2b;
+    }
+
+    .danger {
+      background: #b00020;
+      color: white;
+    }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .announcement {
+      border-left: 5px solid #087f4d;
+      background: #f3faf6;
+      padding: 15px;
+      margin-bottom: 12px;
+      border-radius: 8px;
+    }
+
+    .announcement small {
+      color: #66736d;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .message {
+      margin-top: 14px;
+      padding: 12px;
+      border-radius: 8px;
+      display: none;
+    }
+
+    .success {
+      display: block;
+      background: #e1f6e9;
+      color: #075c38;
+    }
+
+    .error {
+      display: block;
+      background: #ffe6e6;
+      color: #9d0000;
+    }
+
+    .info {
+      display: block;
+      background: #e8f0ff;
+      color: #164a9c;
+    }
+
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .stat {
+      background: #f3f7f5;
+      padding: 18px;
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 28px;
+      color: #087f4d;
+    }
+
+    .issue {
+      background: #f8faf9;
+      border: 1px solid #dce5e0;
+      border-radius: 10px;
+      padding: 15px;
+      margin-top: 12px;
+    }
+
+    .issue span {
+      display: inline-block;
+      background: #e1eee8;
+      padding: 4px 8px;
+      border-radius: 5px;
+      margin: 3px;
+      font-size: 13px;
+    }
+
+    .top-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px 15px;
+      color: #66736d;
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 27px;
+      }
+
+      .card {
+        padding: 17px;
+      }
+    }
+  </style>
 </head>
 
-<body style="font-family: Arial; padding: 20px;">
+<body>
 
-  <h2>Citizen Voice</h2>
-  <h3>Firestore Direct Test</h3>
+<header>
+  <h1>🇰🇪 Citizen Voice</h1>
+  <p>Your Question • Your Suggestion • Your Concern • Your Issue</p>
+</header>
 
-  <p>Email: <b>bengopsalmist@gmail.com</b></p>
+<div class="container">
 
-  <button id="testBtn" style="padding:12px 20px;">
-    TEST FIRESTORE
-  </button>
+  <!-- PUBLIC CITIZEN AREA -->
+  <section id="citizenPage">
 
-  <div id="result" style="margin-top:20px; white-space:pre-wrap;"></div>
+    <div class="card">
+      <h2>Official Announcements</h2>
+      <div id="announcementsList">
+        Loading announcements...
+      </div>
+    </div>
 
-  <script type="module">
+    <div class="card">
+      <h2>Share Your Voice</h2>
 
-    import { initializeApp }
-      from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+      <p>
+        Send a question, suggestion, concern, or issue concerning your
+        community.
+      </p>
 
-    import {
-      getAuth,
-      signInWithEmailAndPassword
+      <form id="issueForm">
+
+        <label for="category">Category</label>
+        <select id="category" required>
+          <option value="">Select category</option>
+          <option>Roads</option>
+          <option>Water</option>
+          <option>Healthcare</option>
+          <option>Education</option>
+          <option>Security</option>
+          <option>Agriculture</option>
+          <option>Environment</option>
+          <option>Infrastructure</option>
+          <option>Government Services</option>
+          <option>Development</option>
+          <option>Employment</option>
+          <option>Other</option>
+        </select>
+
+        <label for="county">County</label>
+        <select id="county" required>
+          <option value="">Select county</option>
+          <option>Meru</option>
+          <option>Nairobi</option>
+          <option>Nakuru</option>
+          <option>Kiambu</option>
+          <option>Embu</option>
+          <option>Isiolo</option>
+          <option>Laikipia</option>
+          <option>Nyeri</option>
+          <option>Kirinyaga</option>
+          <option>Tharaka Nithi</option>
+          <option>Machakos</option>
+          <option>Mombasa</option>
+          <option>Kisumu</option>
+          <option>Uasin Gishu</option>
+          <option>Other</option>
+        </select>
+
+        <label for="constituency">Constituency</label>
+        <input
+          id="constituency"
+          type="text"
+          placeholder="Enter constituency"
+          required
+        >
+
+        <label for="ward">Ward</label>
+        <input
+          id="ward"
+          type="text"
+          placeholder="Enter ward"
+          required
+        >
+
+        <label for="location">Location</label>
+        <input
+          id="location"
+          type="text"
+          placeholder="Enter location"
+          required
+        >
+
+        <label for="subLocation">Sub-location</label>
+        <input
+          id="subLocation"
+          type="text"
+          placeholder="Enter sub-location"
+          required
+        >
+
+        <label for="targetOffice">Office Concerned</label>
+        <select id="targetOffice" required>
+          <option value="">Select office</option>
+          <option value="MCA">MCA</option>
+          <option value="MP">MP</option>
+          <option value="Woman Representative">Woman Representative</option>
+          <option value="Senator">Senator</option>
+          <option value="Governor">Governor</option>
+          <option value="President">President</option>
+          <option value="Other Government Office">Other Government Office</option>
+        </select>
+
+        <label for="description">Describe Your Question / Suggestion / Concern / Issue</label>
+        <textarea
+          id="description"
+          placeholder="Write your question, suggestion, concern, or issue here..."
+          required
+        ></textarea>
+
+        <button class="primary" id="submitIssue" type="submit">
+          Submit
+        </button>
+
+        <div id="issueMessage" class="message"></div>
+
+      </form>
+    </div>
+
+  </section>
+
+
+  <!-- OFFICIAL / ADMIN LOGIN -->
+  <section id="loginPage" class="card hidden">
+
+    <h2>Authorized Access</h2>
+
+    <p>
+      This area is for authorized officials and administrators only.
+    </p>
+
+    <label for="loginEmail">Email</label>
+    <input
+      id="loginEmail"
+      type="email"
+      placeholder="Enter authorized email"
+    >
+
+    <label for="loginPassword">Password</label>
+    <input
+      id="loginPassword"
+      type="password"
+      placeholder="Enter password"
+    >
+
+    <button class="primary" id="loginButton">
+      Login
+    </button>
+
+    <button class="secondary" id="backCitizen">
+      Back to Citizen Voice
+    </button>
+
+    <div id="loginMessage" class="message"></div>
+
+  </section>
+
+
+  <!-- OFFICIAL DASHBOARD -->
+  <section id="dashboardPage" class="hidden">
+
+    <div class="card">
+
+      <h2>Official Dashboard</h2>
+
+      <p id="loggedUser"></p>
+
+      <div class="top-actions">
+        <button class="secondary" id="refreshIssues">
+          Refresh Issues
+        </button>
+
+        <button class="secondary" id="showAnnouncementForm">
+          Post Announcement
+        </button>
+
+        <button class="danger" id="logoutButton">
+          Logout
+        </button>
+      </div>
+
+    </div>
+
+
+    <div class="card">
+
+      <h2>Issue Overview</h2>
+
+      <div class="dashboard-grid">
+
+        <div class="stat">
+          <strong id="totalIssues">0</strong>
+          Total Issues
+        </div>
+
+        <div class="stat">
+          <strong id="roadsCount">0</strong>
+          Roads
+        </div>
+
+        <div class="stat">
+          <strong id="waterCount">0</strong>
+          Water
+        </div>
+
+        <div class="stat">
+          <strong id="healthCount">0</strong>
+          Healthcare
+        </div>
+
+        <div class="stat">
+          <strong id="educationCount">0</strong>
+          Education
+        </div>
+
+        <div class="stat">
+          <strong id="securityCount">0</strong>
+          Security
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div id="announcementCard" class="card hidden">
+
+      <h2>Post Official Announcement</h2>
+
+      <label for="announcementOffice">
+        Office Type
+      </label>
+
+      <select id="announcementOffice">
+        <option value="MCA">MCA</option>
+        <option value="MP">MP</option>
+        <option value="Woman Representative">Woman Representative</option>
+        <option value="Senator">Senator</option>
+        <option value="Governor">Governor</option>
+        <option value="President">President</option>
+        <option value="Other Government Office">Other Government Office</option>
+      </select>
+
+      <label for="announcementName">
+        Official Name
+      </label>
+
+      <input
+        id="announcementName"
+        type="text"
+        placeholder="Official name"
+      >
+
+      <label for="announcementMessage">
+        Announcement
+      </label>
+
+      <textarea
+        id="announcementMessage"
+        placeholder="Write official announcement..."
+      ></textarea>
+
+      <button class="primary" id="publishAnnouncement">
+        Publish Announcement
+      </button>
+
+      <div id="announcementMessageBox" class="message"></div>
+
+    </div>
+
+
+    <div class="card">
+
+      <h2>Community Issues</h2>
+
+      <div id="issuesList">
+        Loading issues...
+      </div>
+
+    </div>
+
+  </section>
+
+</div>
+
+
+<footer>
+  Citizen Voice • Connecting citizens with public leadership
+</footer>
+
+
+<script type="module">
+
+  import {
+    initializeApp
+  } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+  import {
+    getAuth,
+    signInWithEmailAndPassword,
+    onAuthStateChanged,
+    signOut
+  } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+  import {
+    getFirestore,
+    collection,
+    addDoc,
+    getDocs,
+    getDoc,
+    doc,
+    query,
+    where,
+    orderBy,
+    limit,
+    serverTimestamp
+  } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+
+  // ==============================
+  // FIREBASE CONFIGURATION
+  // VOICE CONNECT
+  // ==============================
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBIJZJW392I97YZLx__9dNNk1DeAQNHgFI",
+    authDomain: "voice-connect-ded08.firebaseapp.com",
+    projectId: "voice-connect-ded08",
+    storageBucket: "voice-connect-ded08.firebasestorage.app",
+    messagingSenderId: "277049759508",
+    appId: "1:277049759508:web:0eb0ab57c3b455a0591401"
+  };
+
+
+  // ==============================
+  // INITIALIZE FIREBASE
+  // ==============================
+
+  const app = initializeApp(firebaseConfig);
+
+  const auth = getAuth(app);
+
+  const db = getFirestore(app);
+
+
+  // ==============================
+  // ELEMENTS
+  // ==============================
+
+  const citizenPage =
+    document.getElementById("citizenPage");
+
+  const loginPage =
+    document.getElementById("loginPage");
+
+  const dashboardPage =
+    document.getElementById("dashboardPage");
+
+  const issueForm =
+    document.getElementById("issueForm");
+
+  const issueMessage =
+    document.getElementById("issueMessage");
+
+  const loginMessage =
+    document.getElementById("loginMessage");
+
+  const announcementsList =
+    document.getElementById("announcementsList");
+
+  const issuesList =
+    document.getElementById("issuesList");
+
+
+  // ==============================
+  // SMALL MESSAGE HELPER
+  // ==============================
+
+  function showMessage(element, text, type) {
+
+    element.textContent = text;
+
+    element.className =
+      "message " + type;
+
+  }
+
+
+  // ==============================
+  // PUBLIC ANNOUNCEMENTS
+  // ==============================
+
+  async function loadAnnouncements() {
+
+    announcementsList.textContent =
+      "Loading announcements...";
+
+    try {
+
+      const announcementsRef =
+        collection(db, "announcements");
+
+      const q = query(
+        announcementsRef,
+        where("status", "==", "published"),
+        limit(20)
+      );
+
+      const snapshot =
+        await getDocs(q);
+
+      announcementsList.innerHTML = "";
+
+      if (snapshot.empty) {
+
+        announcementsList.textContent =
+          "No official announcements yet.";
+
+        return;
+      }
+
+      snapshot.forEach((item) => {
+
+        const data = item.data();
+
+        const box =
+          document.createElement("div");
+
+        box.className =
+          "announcement";
+
+        const name =
+          data.officialName || "Official Office";
+
+        const office =
+          data.officeType || "Public Office";
+
+        const message =
+          data.message || "";
+
+        box.innerHTML = `
+          <h3>Official Announcement From ${escapeHtml(name)}</h3>
+          <small>${escapeHtml(office)}</small>
+          <p style="margin-top:8px;">
+            ${escapeHtml(message)}
+          </p>
+        `;
+
+        announcementsList.appendChild(box);
+
+      });
+
+    } catch (error) {
+
+      console.error(error);
+
+      announcementsList.textContent =
+        "Unable to load announcements right now.";
+
     }
-      from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
-    import {
-      getFirestore,
-      doc,
-      getDoc
-    }
-      from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+  }
 
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyBBNkfxFr3lovnanrZOzOldIs4lAglyjis",
-      authDomain: "citizen-voice-f4b90.firebaseapp.com",
-      projectId: "citizen-voice-f4b90",
-      storageBucket: "citizen-voice-f4b90.firebasestorage.app",
-      messagingSenderId: "784289518285",
-      appId: "1:784289518285:web:5d089c6bdf23a43b5fcf84",
-      measurementId: "G-C4L9Y55JGG"
-    };
+  // ==============================
+  // ESCAPE HTML
+  // ==============================
+
+  function escapeHtml(value) {
+
+    return String(value)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+
+  }
 
 
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const db = getFirestore(app);
+  // ==============================
+  // SUBMIT CITIZEN ISSUE
+  // ==============================
 
+  issueForm.addEventListener(
+    "submit",
+    async (event) => {
 
-    const result = document.getElementById("result");
-    const button = document.getElementById("testBtn");
+      event.preventDefault();
 
+      const button =
+        document.getElementById("submitIssue");
 
-    button.addEventListener("click", async () => {
+      button.disabled = true;
 
-      result.innerText = "Connecting to Firebase...\n";
+      button.textContent =
+        "Submitting...";
+
+      showMessage(
+        issueMessage,
+        "Submitting your voice...",
+        "info"
+      );
 
       try {
 
-        const email = "bengopsalmist@gmail.com";
+        const category =
+          document.getElementById("category").value.trim();
 
-        const password = prompt("Enter your Firebase login password:");
+        const county =
+          document.getElementById("county").value.trim();
 
-        if (!password) {
-          result.innerText = "Password was not entered.";
+        const constituency =
+          document.getElementById("constituency").value.trim();
+
+        const ward =
+          document.getElementById("ward").value.trim();
+
+        const location =
+          document.getElementById("location").value.trim();
+
+        const subLocation =
+          document.getElementById("subLocation").value.trim();
+
+        const targetOffice =
+          document.getElementById("targetOffice").value.trim();
+
+        const description =
+          document.getElementById("description").value.trim();
+
+
+        if (
+          !category ||
+          !county ||
+          !constituency ||
+          !ward ||
+          !location ||
+          !subLocation ||
+          !targetOffice ||
+          !description
+        ) {
+
+          throw new Error(
+            "Please complete all required fields."
+          );
+
+        }
+
+
+        await addDoc(
+          collection(db, "issues"),
+          {
+            category: category,
+            county: county,
+            constituency: constituency,
+            ward: ward,
+            location: location,
+            subLocation: subLocation,
+            description: description,
+            targetOffice: targetOffice,
+            status: "submitted",
+            createdAt: serverTimestamp()
+          }
+        );
+
+
+        showMessage(
+          issueMessage,
+          "Your question, suggestion, concern, or issue has been submitted successfully.",
+          "success"
+        );
+
+        issueForm.reset();
+
+
+      } catch (error) {
+
+        console.error(error);
+
+        showMessage(
+          issueMessage,
+          "Submission failed. Please try again.",
+          "error"
+        );
+
+      } finally {
+
+        button.disabled = false;
+
+        button.textContent =
+          "Submit";
+
+      }
+
+    }
+  );
+
+
+  // ==============================
+  // AUTHORIZED LOGIN
+  // ==============================
+
+  document
+    .getElementById("loginButton")
+    .addEventListener(
+      "click",
+      async () => {
+
+        const email =
+          document.getElementById("loginEmail")
+            .value.trim();
+
+        const password =
+          document.getElementById("loginPassword")
+            .value;
+
+        if (!email || !password) {
+
+          showMessage(
+            loginMessage,
+            "Enter your email and password.",
+            "error"
+          );
+
           return;
         }
 
 
-        result.innerText += "Signing in...\n";
+        try {
+
+          showMessage(
+            loginMessage,
+            "Signing in...",
+            "info"
+          );
+
+          await signInWithEmailAndPassword(
+            auth,
+            email,
+            password
+          );
 
 
-        const login = await signInWithEmailAndPassword(
-          auth,
-          email,
-          password
-        );
+        } catch (error) {
 
+          console.error(error);
 
-        const user = login.user;
-
-        result.innerText +=
-          "LOGIN SUCCESSFUL ✅\n\n" +
-          "Email: " + user.email + "\n" +
-          "UID: " + user.uid + "\n\n";
-
-
-        result.innerText +=
-          "Reading Users/" + user.uid + " ...\n";
-
-
-        const userRef = doc(
-          db,
-          "Users",
-          user.uid
-        );
-
-
-        const userSnap = await getDoc(userRef);
-
-
-        if (userSnap.exists()) {
-
-          const data = userSnap.data();
-
-          result.innerText +=
-            "\nDOCUMENT FOUND ✅\n\n" +
-            JSON.stringify(data, null, 2);
-
-        } else {
-
-          result.innerText +=
-            "\nDOCUMENT NOT FOUND ❌\n\n" +
-            "Firebase can read Firestore, but it cannot find:\n" +
-            "Users/" + user.uid;
+          showMessage(
+            loginMessage,
+            "Login failed. Check your authorized account details.",
+            "error"
+          );
 
         }
 
-      } catch (error) {
+      }
+    );
 
-        result.innerText =
-          "\nTEST FAILED ❌\n\n" +
-          "Error: " + error.code + "\n\n" +
-          error.message;
+
+  // ==============================
+  // AUTH STATE
+  // ==============================
+
+  onAuthStateChanged(
+    auth,
+    async (user) => {
+
+      if (!user) {
+
+        return;
 
       }
 
-    });
+      try {
 
-  </script>
+        const userRef =
+          doc(db, "users", user.uid);
+
+        const userSnap =
+          await getDoc(userRef);
+
+
+        if (!userSnap.exists()) {
+
+          await signOut(auth);
+
+          showMessage(
+            loginMessage,
+            "This account is not authorized.",
+            "error"
+          );
+
+          return;
+        }
+
+
+        const userData =
+          userSnap.data();
+
+        const role =
+          userData.role;
+
+
+        if (
+          role !== "Official" &&
+          role !== "Admin" &&
+          role !== "Super Admin"
+        ) {
+
+          await signOut(auth);
+
+          showMessage(
+            loginMessage,
+            "This account does not have authorized access.",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        citizenPage.classList.add("hidden");
+
+        loginPage.classList.add("hidden");
+
+        dashboardPage.classList.remove("hidden");
+
+
+        document.getElementById(
+          "loggedUser"
+        ).textContent =
+          "Signed in as: " +
+          (userData.name || user.email) +
+          " • Role: " +
+          role;
+
+
+        loadDashboardIssues();
+
+
+      } catch (error) {
+
+        console.error(error);
+
+        await signOut(auth);
+
+      }
+
+    }
+  );
+
+
+  // ==============================
+  // LOAD DASHBOARD ISSUES
+  // ==============================
+
+  async function loadDashboardIssues() {
+
+    issuesList.textContent =
+      "Loading community issues...";
+
+    try {
+
+      const snapshot =
+        await getDocs(
+          collection(db, "issues")
+        );
+
+
+      let total = 0;
+
+      let roads = 0;
+      let water = 0;
+      let health = 0;
+      let education = 0;
+      let security = 0;
+
+
+      issuesList.innerHTML = "";
+
+
+      snapshot.forEach((item) => {
+
+        const data =
+          item.data();
+
+        total++;
+
+
+        if (data.category === "Roads")
+          roads++;
+
+        if (data.category === "Water")
+          water++;
+
+        if (data.category === "Healthcare")
+          health++;
+
+        if (data.category === "Education")
+          education++;
+
+        if (data.category === "Security")
+          security++;
+
+
+        const issue =
+          document.createElement("div");
+
+        issue.className =
+          "issue";
+
+
+        issue.innerHTML = `
+          <strong>${escapeHtml(data.category || "Other")}</strong>
+
+          <div>
+            <span>${escapeHtml(data.county || "")}</span>
+            <span>${escapeHtml(data.constituency || "")}</span>
+            <span>${escapeHtml(data.ward || "")}</span>
+            <span>${escapeHtml(data.location || "")}</span>
+          </div>
+
+          <p style="margin-top:10px;">
+            ${escapeHtml(data.description || "")}
+          </p>
+
+          <small>
+            Office: ${escapeHtml(data.targetOffice || "")}
+            • Status: ${escapeHtml(data.status || "")}
+          </small>
+        `;
+
+
+        issuesList.appendChild(issue);
+
+      });
+
+
+      if (total === 0) {
+
+        issuesList.textContent =
+          "No community issues found.";
+
+      }
+
+
+      document.getElementById(
+        "totalIssues"
+      ).textContent = total;
+
+      document.getElementById(
+        "roadsCount"
+      ).textContent = roads;
+
+      document.getElementById(
+        "waterCount"
+      ).textContent = water;
+
+      document.getElementById(
+        "healthCount"
+      ).textContent = health;
+
+      document.getElementById(
+        "educationCount"
+      ).textContent = education;
+
+      document.getElementById(
+        "securityCount"
+      ).textContent = security;
+
+
+    } catch (error) {
+
+      console.error(error);
+
+      issuesList.textContent =
+        "Issues could not be loaded. The Firebase security rules will be connected to the official dashboard in the next step.";
+
+    }
+
+  }
+
+
+  // ==============================
+  // REFRESH ISSUES
+  // ==============================
+
+  document
+    .getElementById("refreshIssues")
+    .addEventListener(
+      "click",
+      loadDashboardIssues
+    );
+
+
+  // ==============================
+  // SHOW ANNOUNCEMENT FORM
+  // ==============================
+
+  document
+    .getElementById("showAnnouncementForm")
+    .addEventListener(
+      "click",
+      () => {
+
+        document
+          .getElementById("announcementCard")
+          .classList.toggle("hidden");
+
+      }
+    );
+
+
+  // ==============================
+  // PUBLISH ANNOUNCEMENT
+  // ==============================
+
+  document
+    .getElementById("publishAnnouncement")
+    .addEventListener(
+      "click",
+      async () => {
+
+        const office =
+          document.getElementById(
+            "announcementOffice"
+          ).value;
+
+        const name =
+          document.getElementById(
+            "announcementName"
+          ).value.trim();
+
+        const message =
+          document.getElementById(
+            "announcementMessage"
+          ).value.trim();
+
+        const box =
+          document.getElementById(
+            "announcementMessageBox"
+          );
+
+
+        if (!name || !message) {
+
+          showMessage(
+            box,
+            "Enter the official name and announcement.",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        try {
+
+          await addDoc(
+            collection(db, "announcements"),
+            {
+              officialName: name,
+              officeType: office,
+              message: message,
+              status: "published",
+              publishedAt: serverTimestamp()
+            }
+          );
+
+
+          showMessage(
+            box,
+            "Announcement published successfully.",
+            "success"
+          );
+
+
+          document.getElementById(
+            "announcementName"
+          ).value = "";
+
+          document.getElementById(
+            "announcementMessage"
+          ).value = "";
+
+
+          loadAnnouncements();
+
+
+        } catch (error) {
+
+          console.error(error);
+
+          showMessage(
+            box,
+            "Announcement could not be published.",
+            "error"
+          );
+
+        }
+
+      }
+    );
+
+
+  // ==============================
+  // LOGOUT
+  // ==============================
+
+  document
+    .getElementById("logoutButton")
+    .addEventListener(
+      "click",
+      async () => {
+
+        await signOut(auth);
+
+        dashboardPage.classList.add("hidden");
+
+        citizenPage.classList.remove("hidden");
+
+      }
+    );
+
+
+  // ==============================
+  // BACK TO CITIZEN PAGE
+  // ==============================
+
+  document
+    .getElementById("backCitizen")
+    .addEventListener(
+      "click",
+      () => {
+
+        loginPage.classList.add("hidden");
+
+        citizenPage.classList.remove("hidden");
+
+      }
+    );
+
+
+  // ==============================
+  // INITIAL LOAD
+  // ==============================
+
+  loadAnnouncements();
+
+
+  // ==============================
+  // OPTIONAL AUTHORIZED LOGIN LINK
+  // ==============================
+  // The citizen page does not display
+  // an official dashboard button.
+  // Authorized access can be opened by
+  // using #official in the address.
+
+  if (
+    window.location.hash === "#official"
+  ) {
+
+    citizenPage.classList.add("hidden");
+
+    loginPage.classList.remove("hidden");
+
+  }
+
+</script>
 
 </body>
-</html>
+  </html>
