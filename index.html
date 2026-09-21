@@ -1,1584 +1,1057 @@
 here<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Citizen Voice</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Citizen Voice</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  color:#17202a;
+  background:#f4f7f5;
+}
+.hero{
+  min-height:220px;
+  padding:28px 18px;
+  color:white;
+  text-align:center;
+  background:
+    linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
+    linear-gradient(#111 0 20%,#c00 20% 40%,#fff 40% 60%,#08783e 60% 80%,#111 80%);
+  border-bottom:6px solid #d4af37;
+}
+.logo{
+  width:82px;height:82px;
+  margin:auto;
+  border:4px solid white;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:38px;
+  background:rgba(0,0,0,.35);
+}
+.hero h1{margin:12px 0 5px;font-size:34px}
+.hero p{margin:0;font-size:15px}
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f4f6f8;
-      color: #222;
-    }
-
-    header {
-      background: #111827;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
-
-    header h1 {
-      margin: 0 0 8px;
-    }
-
-    main {
-      max-width: 850px;
-      margin: auto;
-      padding: 20px;
-    }
-
-    .card {
-      background: white;
-      padding: 20px;
-      margin-bottom: 20px;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    }
-
-    h2 {
-      margin-top: 0;
-    }
-
-    label {
-      display: block;
-      font-weight: bold;
-      margin-top: 14px;
-      margin-bottom: 6px;
-    }
-
-    select,
-    textarea,
-    input,
-    button {
-      width: 100%;
-      padding: 12px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      font-size: 16px;
-    }
-
-    textarea {
-      min-height: 140px;
-      resize: vertical;
-    }
-
-    button {
-      margin-top: 18px;
-      background: #111827;
-      color: white;
-      border: none;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    button:hover {
-      opacity: 0.9;
-    }
-
-    .announcement {
-      border-left: 4px solid #111827;
-      padding: 12px;
-      margin-bottom: 12px;
-      background: #f9fafb;
-    }
-
-    .announcement strong {
-      display: block;
-      margin-bottom: 6px;
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    .success {
-      color: green;
-      font-weight: bold;
-      margin-top: 12px;
-    }
-
-    .error {
-      color: red;
-      font-weight: bold;
-      margin-top: 12px;
-    }
-
-    .issue {
-      background: #f9fafb;
-      padding: 15px;
-      margin-bottom: 12px;
-      border-radius: 8px;
-      border: 1px solid #ddd;
-    }
-
-    .issue p {
-      margin: 6px 0;
-    }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 10px;
-    }
-
-    .stat {
-      background: #eef2ff;
-      padding: 15px;
-      border-radius: 8px;
-      text-align: center;
-    }
-
-    .stat strong {
-      display: block;
-      font-size: 25px;
-    }
-
-    .small {
-      font-size: 13px;
-      color: #666;
-    }
-  </style>
+.container{
+  max-width:850px;
+  margin:25px auto;
+  padding:0 15px;
+}
+.card{
+  background:white;
+  padding:22px;
+  margin-bottom:20px;
+  border-radius:16px;
+  box-shadow:0 4px 18px rgba(0,0,0,.08);
+}
+h2{margin-top:0;color:#075b35}
+label{
+  display:block;
+  margin-top:14px;
+  margin-bottom:6px;
+  font-weight:bold;
+}
+input,select,textarea{
+  width:100%;
+  padding:13px;
+  border:1px solid #ccd5cf;
+  border-radius:9px;
+  font-size:16px;
+}
+textarea{min-height:130px;resize:vertical}
+button{
+  width:100%;
+  padding:14px;
+  margin-top:18px;
+  border:0;
+  border-radius:9px;
+  background:#08783e;
+  color:white;
+  font-size:17px;
+  font-weight:bold;
+}
+button:hover{opacity:.9}
+.secondary{background:#555}
+.danger{background:#b00020}
+.announcement{
+  border-left:5px solid #08783e;
+  padding:12px;
+  margin:12px 0;
+  background:#f3f8f5;
+  border-radius:8px;
+}
+.hidden{display:none!important}
+.message{
+  margin-top:14px;
+  padding:12px;
+  border-radius:8px;
+  background:#e8f5e9;
+  color:#155724;
+}
+.error{
+  background:#fdecea;
+  color:#8a1c1c;
+}
+.stats{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
+  gap:10px;
+}
+.stat{
+  padding:15px;
+  background:#f2f6f3;
+  border-radius:10px;
+  text-align:center;
+}
+.stat strong{
+  display:block;
+  font-size:27px;
+  color:#08783e;
+}
+.issue{
+  border:1px solid #ddd;
+  border-radius:10px;
+  padding:14px;
+  margin:10px 0;
+}
+.small{font-size:13px;color:#666}
+.back{
+  background:#444;
+  margin-bottom:10px;
+}
+footer{
+  text-align:center;
+  padding:25px;
+  color:#666;
+  font-size:13px;
+}
+</style>
 </head>
 
 <body>
 
-<header>
+<!-- ================= CITIZEN PAGE ================= -->
+
+<div id="citizenPage">
+
+<section class="hero">
+  <div class="logo">🎙️</div>
   <h1>Citizen Voice</h1>
-  <p>Your Question • Your Suggestion • Your Concern • Your Issue</p>
-</header>
-
-<main>
-
-  <!-- CITIZEN PAGE -->
-  <section id="citizenPage">
-
-    <div class="card">
-      <h2>Official Announcements</h2>
-      <div id="announcements">
-        Loading announcements...
-      </div>
-    </div>
-
-    <div class="card">
-      <h2>Share Your Voice</h2>
+  <p>Your Voice • Your Community • Your Future</p>
+</section>
+
+<div class="container">
+
+<div class="card">
+<h2>Official Announcements</h2>
+<div id="announcements">
+<p class="small">Loading announcements...</p>
+</div>
+</div>
+
+<div class="card">
+<h2>Share Your Voice</h2>
+
+<form id="issueForm">
 
-      <form id="issueForm">
+<label>Category</label>
+<select id="category" required>
+<option value="">Select category</option>
+<option>Roads</option>
+<option>Water</option>
+<option>Healthcare</option>
+<option>Education</option>
+<option>Security</option>
+<option>Agriculture</option>
+<option>Environment</option>
+<option>Infrastructure</option>
+<option>Government Services</option>
+<option>Development</option>
+<option>Employment</option>
+<option>Other</option>
+</select>
 
-        <label for="category">Category</label>
-        <select id="category" required>
-          <option value="">Select category</option>
-          <option value="Roads">Roads</option>
-          <option value="Water">Water</option>
-          <option value="Healthcare">Healthcare</option>
-          <option value="Education">Education</option>
-          <option value="Security">Security</option>
-          <option value="Agriculture">Agriculture</option>
-          <option value="Environment">Environment</option>
-          <option value="Infrastructure">Infrastructure</option>
-          <option value="Government Services">Government Services</option>
-          <option value="Development">Development</option>
-          <option value="Employment">Employment</option>
-          <option value="Other">Other</option>
-        </select>
+<label>County</label>
+<select id="county" required>
+<option value="">Select county</option>
+</select>
 
-        <label for="county">County</label>
-        <select id="county" required>
-          <option value="">Select county</option>
-        </select>
+<label>Constituency</label>
+<select id="constituency" required>
+<option value="">Select constituency</option>
+</select>
 
-        <label for="constituency">Constituency</label>
-        <select id="constituency" required disabled>
-          <option value="">Select constituency</option>
-        </select>
+<label>Ward</label>
+<select id="ward" required>
+<option value="">Select ward</option>
+</select>
 
-        <label for="ward">Ward</label>
-        <select id="ward" required disabled>
-          <option value="">Select ward</option>
-        </select>
+<label>Location</label>
+<select id="location" required>
+<option value="">Select location</option>
+</select>
 
-        <label for="location">Location</label>
-        <select id="location" required disabled>
-          <option value="">Select location</option>
-        </select>
+<label>Sub-location</label>
+<select id="subLocation" required>
+<option value="">Select sub-location</option>
+</select>
 
-        <label for="subLocation">Sub-location</label>
-        <select id="subLocation" required disabled>
-          <option value="">Select sub-location</option>
-        </select>
+<label>Office Concerned</label>
+<select id="targetOffice" required>
+<option value="">Select office</option>
+<option>MCA</option>
+<option>MP</option>
+<option>Woman Representative</option>
+<option>Senator</option>
+<option>Governor</option>
+<option>President</option>
+<option>Other Government Office</option>
+</select>
 
-        <label for="office">Office Concerned</label>
-        <select id="office" required>
-          <option value="">Select office</option>
-          <option value="MCA">MCA</option>
-          <option value="MP">MP</option>
-          <option value="Woman Representative">Woman Representative</option>
-          <option value="Senator">Senator</option>
-          <option value="Governor">Governor</option>
-          <option value="President">President</option>
-          <option value="Other Government Office">Other Government Office</option>
-        </select>
+<label>Your Question / Suggestion / Concern / Issue</label>
+<textarea id="description"
+placeholder="Describe your question, suggestion, concern or issue..."
+required></textarea>
 
-        <label for="description">
-          Your Question / Suggestion / Concern / Issue
-        </label>
+<button type="submit">Submit</button>
 
-        <textarea
-          id="description"
-          required
-          placeholder="Describe your question, suggestion, concern or issue..."
-        ></textarea>
+<div id="submitMessage"></div>
 
-        <button type="submit">Submit</button>
+</form>
+</div>
 
-        <div id="formMessage"></div>
+</div>
+</div>
 
-      </form>
-    </div>
 
-  </section>
+<!-- ================= OFFICIAL LOGIN ================= -->
 
+<div id="loginPage" class="hidden">
 
-  <!-- OFFICIAL LOGIN -->
-  <section id="loginPage" class="card hidden">
+<section class="hero">
+  <div class="logo">🔐</div>
+  <h1>Official Access</h1>
+  <p>Authorized Officials Only</p>
+</section>
 
-    <h2>Official Login</h2>
+<div class="container">
+<div class="card">
 
-    <label for="loginEmail">Email</label>
-    <input type="email" id="loginEmail" required>
+<button class="back" id="backCitizen">← Back to Citizen Voice</button>
 
-    <label for="loginPassword">Password</label>
-    <input type="password" id="loginPassword" required>
+<h2>Official Login</h2>
 
-    <button id="loginButton">Login</button>
+<form id="loginForm">
 
-    <div id="loginMessage"></div>
+<label>Email</label>
+<input type="email" id="loginEmail" required>
 
-  </section>
+<label>Password</label>
+<input type="password" id="loginPassword" required>
 
+<button type="submit">Login</button>
 
-  <!-- OFFICIAL DASHBOARD -->
-  <section id="dashboardPage" class="hidden">
+<div id="loginMessage"></div>
 
-    <div class="card">
+</form>
+</div>
+</div>
+</div>
 
-      <h2>Official Dashboard</h2>
 
-      <p>
-        Signed in as:
-        <strong id="signedInEmail"></strong>
-        • Role:
-        <strong id="signedInRole"></strong>
-      </p>
+<!-- ================= OFFICIAL DASHBOARD ================= -->
 
-      <button id="refreshIssues">Refresh Issues</button>
-      <button id="showAnnouncementForm">Post Announcement</button>
-      <button id="logoutButton">Logout</button>
+<div id="officialPage" class="hidden">
 
-    </div>
+<section class="hero">
+  <div class="logo">📊</div>
+  <h1>Official Dashboard</h1>
+  <p>Citizen Voice</p>
+</section>
 
+<div class="container">
 
-    <div class="card">
+<div class="card">
 
-      <h2>Issue Overview</h2>
+<button class="danger" id="logoutBtn">Logout</button>
 
-      <div class="stats">
+<h2>Dashboard</h2>
 
-        <div class="stat">
-          <strong id="totalIssues">0</strong>
-          Total Issues
-        </div>
+<p id="officialName" class="small"></p>
 
-        <div class="stat">
-          <strong id="roadsCount">0</strong>
-          Roads
-        </div>
+<div class="stats">
+<div class="stat">
+<strong id="totalIssues">0</strong>
+Total Issues
+</div>
 
-        <div class="stat">
-          <strong id="waterCount">0</strong>
-          Water
-        </div>
+<div class="stat">
+<strong id="roadCount">0</strong>
+Roads
+</div>
 
-        <div class="stat">
-          <strong id="healthcareCount">0</strong>
-          Healthcare
-        </div>
+<div class="stat">
+<strong id="waterCount">0</strong>
+Water
+</div>
 
-        <div class="stat">
-          <strong id="educationCount">0</strong>
-          Education
-        </div>
+<div class="stat">
+<strong id="healthCount">0</strong>
+Healthcare
+</div>
 
-        <div class="stat">
-          <strong id="securityCount">0</strong>
-          Security
-        </div>
+<div class="stat">
+<strong id="educationCount">0</strong>
+Education
+</div>
 
-      </div>
+<div class="stat">
+<strong id="securityCount">0</strong>
+Security
+</div>
+</div>
 
-    </div>
+</div>
 
+<div class="card">
+<h2>Citizen Issues</h2>
+<div id="issuesList">
+<p class="small">Loading issues...</p>
+</div>
+</div>
 
-    <div class="card hidden" id="announcementFormCard">
+<div class="card">
+<h2>Publish Official Announcement</h2>
 
-      <h2>Post Announcement</h2>
+<form id="announcementForm">
 
-      <label for="announcementOfficeType">
-        Official Type
-      </label>
+<label>Message</label>
+<textarea id="announcementMessage"
+placeholder="Write your official announcement..."
+required></textarea>
 
-      <select id="announcementOfficeType">
-        <option value="">Select office</option>
-        <option value="MCA">MCA</option>
-        <option value="MP">MP</option>
-        <option value="Woman Representative">Woman Representative</option>
-        <option value="Senator">Senator</option>
-        <option value="Governor">Governor</option>
-        <option value="President">President</option>
-        <option value="Other Government Office">Other Government Office</option>
-      </select>
+<button type="submit">Publish Announcement</button>
 
-      <label for="announcementOfficialName">
-        Official Name
-      </label>
+<div id="announcementMessageBox"></div>
 
-      <input id="announcementOfficialName" type="text">
+</form>
+</div>
 
-      <label for="announcementMessage">
-        Announcement
-      </label>
+</div>
+</div>
 
-      <textarea id="announcementMessage"></textarea>
 
-      <button id="publishAnnouncement">
-        Publish Announcement
-      </button>
+<footer>
+Citizen Voice — Connecting Citizens With Public Offices
+</footer>
 
-      <div id="announcementMessageResult"></div>
 
-    </div>
-
-
-    <div class="card">
-
-      <h2>Issues</h2>
-
-      <div id="issuesList">
-        Loading issues...
-      </div>
-
-    </div>
-
-  </section>
-
-</main>
-
+<!-- ================= FIREBASE ================= -->
 
 <script type="module">
 
-  import {
-    initializeApp
-  } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 
-  import {
-    getAuth,
-    signInWithEmailAndPassword,
-    signOut,
-    onAuthStateChanged
-  } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+import {
+  getAuth,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signOut
+}
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
-  import {
-    getFirestore,
-    collection,
-    addDoc,
-    getDocs,
-    query,
-    where,
-    orderBy,
-    serverTimestamp
-  } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
-
-
-  /* =========================
-     FIREBASE CONFIG
-  ========================= */
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyBIJZJW392I97YZLx__9dNNk1DeAQNHgFI",
-    authDomain: "voice-connect-ded08.firebaseapp.com",
-    projectId: "voice-connect-ded08",
-    storageBucket: "voice-connect-ded08.firebasestorage.app",
-    messagingSenderId: "277049759508",
-    appId: "1:277049759508:web:0eb0ab57c3b455a0591401"
-  };
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs,
+  query,
+  where,
+  orderBy,
+  serverTimestamp
+}
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
 
-  const app = initializeApp(firebaseConfig);
+/* ================= FIREBASE VOICE CONNECT ================= */
 
-  const auth = getAuth(app);
+const firebaseConfig = {
+  apiKey: "AIzaSyBIJZJW392I97YZLx__9dNNk1DeAQNHgFI",
+  authDomain: "voice-connect-ded08.firebaseapp.com",
+  projectId: "voice-connect-ded08",
+  storageBucket: "voice-connect-ded08.firebasestorage.app",
+  messagingSenderId: "277049759508",
+  appId: "1:277049759508:web:0eb0ab57c3b455a0591401"
+};
 
-  const db = getFirestore(app);
-
-
-  /* =========================
-     PAGE ELEMENTS
-  ========================= */
-
-  const citizenPage =
-    document.getElementById("citizenPage");
-
-  const loginPage =
-    document.getElementById("loginPage");
-
-  const dashboardPage =
-    document.getElementById("dashboardPage");
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
 
 
-  /* =========================
-     LOCATION DATA
-  ========================= */
+/* ================= PAGES ================= */
 
-  let locationData = [];
+const citizenPage = document.getElementById("citizenPage");
+const loginPage = document.getElementById("loginPage");
+const officialPage = document.getElementById("officialPage");
+
+function showCitizen(){
+  citizenPage.classList.remove("hidden");
+  loginPage.classList.add("hidden");
+  officialPage.classList.add("hidden");
+}
+
+function showLogin(){
+  citizenPage.classList.add("hidden");
+  loginPage.classList.remove("hidden");
+  officialPage.classList.add("hidden");
+}
+
+function showOfficial(){
+  citizenPage.classList.add("hidden");
+  loginPage.classList.add("hidden");
+  officialPage.classList.remove("hidden");
+}
 
 
-  const countySelect =
-    document.getElementById("county");
+/* ================= HASH ROUTING ================= */
 
-  const constituencySelect =
-    document.getElementById("constituency");
+function route(){
 
-  const wardSelect =
-    document.getElementById("ward");
+  const hash = window.location.hash;
 
-  const locationSelect =
-    document.getElementById("location");
-
-  const subLocationSelect =
-    document.getElementById("subLocation");
-
-
-  function cleanValue(value) {
-
-    if (value === undefined || value === null) {
-      return "";
+  if(hash === "#official"){
+    showLogin();
+  }else if(hash === "#dashboard"){
+    if(auth.currentUser){
+      showOfficial();
+      loadDashboard();
+    }else{
+      showLogin();
     }
+  }else{
+    showCitizen();
+  }
+}
 
-    return String(value).trim();
+window.addEventListener("hashchange", route);
+
+document.getElementById("backCitizen").onclick = function(){
+  window.location.hash = "";
+  showCitizen();
+};
+
+
+/* ================= KENYA COUNTIES ================= */
+
+const counties = [
+"BARINGO",
+"BOMET",
+"BUNGOMA",
+"BUSIA",
+"ELGEYO-MARAKWET",
+"EMBU",
+"GARISSA",
+"HOMA BAY",
+"ISIOLO",
+"KAJIADO",
+"KAKAMEGA",
+"KIAMBU",
+"KILIFI",
+"KIRINYAGA",
+"KISII",
+"KISUMU",
+"KITUI",
+"MACHAKOS",
+"MAKUENI",
+"MANDERA",
+"MERU",
+"MIGORI",
+"MARSABIT",
+"MOYale",
+"NAIROBI",
+"NAKURU",
+"NANDI",
+"NAROK",
+"NYAMIRA",
+"NYANDARUA",
+"NYERI",
+"SAMBURU",
+"SIAYA",
+"TAITA-TAVETA",
+"TANA RIVER",
+"THARAKA-NITHI",
+"TRANS NZOIA",
+"TURKANA",
+"UASIN GISHU",
+"VIHIGA",
+"WAJIR",
+"WEST POKOT"
+];
+
+const countySelect = document.getElementById("county");
+
+counties.forEach(county=>{
+  const option=document.createElement("option");
+  option.value=county;
+  option.textContent=county;
+  countySelect.appendChild(option);
+});
+
+
+/* ================= FIRESTORE LOCATIONS ================= */
+
+let locationData=[];
+
+async function loadLocations(){
+
+  try{
+
+    const snapshot=await getDocs(collection(db,"locations"));
+
+    locationData=[];
+
+    snapshot.forEach(doc=>{
+      const data=doc.data();
+
+      locationData.push({
+        county:String(data.county || "").trim(),
+        constituency:String(data.constituency || "").trim(),
+        ward:String(data.ward || "").trim(),
+        location:String(data.location || "").trim(),
+        subLocation:String(
+          data.subLocation ||
+          data.sublocation ||
+          data["sub-location"] ||
+          ""
+        ).trim()
+      });
+    });
+
+  }catch(error){
+
+    console.error("Location error:",error);
 
   }
+}
 
 
-  function uniqueValues(values) {
+/* ================= DEPENDENT DROPDOWNS ================= */
 
-    return [...new Set(
-      values
-        .map(cleanValue)
-        .filter(value => value !== "")
-    )].sort();
+function resetSelect(id,text){
 
-  }
+  const select=document.getElementById(id);
+
+  select.innerHTML="";
+
+  const option=document.createElement("option");
+  option.value="";
+  option.textContent=text;
+
+  select.appendChild(option);
+}
 
 
-  function fillSelect(select, values, placeholder) {
+function addUnique(selectId,values){
 
-    select.innerHTML = "";
+  const select=document.getElementById(selectId);
 
-    const option =
-      document.createElement("option");
+  const unique=[...new Set(values.filter(v=>v))];
 
-    option.value = "";
-    option.textContent = placeholder;
+  unique.sort();
+
+  unique.forEach(value=>{
+
+    const option=document.createElement("option");
+
+    option.value=value;
+    option.textContent=value;
 
     select.appendChild(option);
 
-    uniqueValues(values).forEach(value => {
+  });
+}
 
-      const option =
-        document.createElement("option");
 
-      option.value = value;
-      option.textContent = value;
+countySelect.addEventListener("change",()=>{
 
-      select.appendChild(option);
+  const county=countySelect.value;
+
+  resetSelect("constituency","Select constituency");
+  resetSelect("ward","Select ward");
+  resetSelect("location","Select location");
+  resetSelect("subLocation","Select sub-location");
+
+  if(!county)return;
+
+  const rows=locationData.filter(x=>
+    x.county.toLowerCase()===county.toLowerCase()
+  );
+
+  addUnique(
+    "constituency",
+    rows.map(x=>x.constituency)
+  );
+
+});
+
+
+document.getElementById("constituency")
+.addEventListener("change",()=>{
+
+  const county=countySelect.value;
+  const constituency=document.getElementById("constituency").value;
+
+  resetSelect("ward","Select ward");
+  resetSelect("location","Select location");
+  resetSelect("subLocation","Select sub-location");
+
+  if(!county || !constituency)return;
+
+  const rows=locationData.filter(x=>
+    x.county.toLowerCase()===county.toLowerCase() &&
+    x.constituency.toLowerCase()===constituency.toLowerCase()
+  );
+
+  addUnique("ward",rows.map(x=>x.ward));
+
+});
+
+
+document.getElementById("ward")
+.addEventListener("change",()=>{
+
+  const county=countySelect.value;
+  const constituency=document.getElementById("constituency").value;
+  const ward=document.getElementById("ward").value;
+
+  resetSelect("location","Select location");
+  resetSelect("subLocation","Select sub-location");
+
+  if(!county || !constituency || !ward)return;
+
+  const rows=locationData.filter(x=>
+    x.county.toLowerCase()===county.toLowerCase() &&
+    x.constituency.toLowerCase()===constituency.toLowerCase() &&
+    x.ward.toLowerCase()===ward.toLowerCase()
+  );
+
+  addUnique("location",rows.map(x=>x.location));
+
+});
+
+
+document.getElementById("location")
+.addEventListener("change",()=>{
+
+  const county=countySelect.value;
+  const constituency=document.getElementById("constituency").value;
+  const ward=document.getElementById("ward").value;
+  const location=document.getElementById("location").value;
+
+  resetSelect("subLocation","Select sub-location");
+
+  if(!county || !constituency || !ward || !location)return;
+
+  const rows=locationData.filter(x=>
+    x.county.toLowerCase()===county.toLowerCase() &&
+    x.constituency.toLowerCase()===constituency.toLowerCase() &&
+    x.ward.toLowerCase()===ward.toLowerCase() &&
+    x.location.toLowerCase()===location.toLowerCase()
+  );
+
+  addUnique("subLocation",rows.map(x=>x.subLocation));
+
+});
+
+
+/* ================= CITIZEN SUBMISSION ================= */
+
+document.getElementById("issueForm")
+.addEventListener("submit",async(e)=>{
+
+  e.preventDefault();
+
+  const box=document.getElementById("submitMessage");
+
+  box.className="";
+  box.textContent="Submitting...";
+
+  try{
+
+    await addDoc(collection(db,"issues"),{
+
+      category:document.getElementById("category").value,
+      county:countySelect.value,
+      constituency:document.getElementById("constituency").value,
+      ward:document.getElementById("ward").value,
+      location:document.getElementById("location").value,
+      subLocation:document.getElementById("subLocation").value,
+      targetOffice:document.getElementById("targetOffice").value,
+      description:document.getElementById("description").value,
+      status:"submitted",
+      createdAt:serverTimestamp()
 
     });
 
-    select.disabled = false;
+    box.className="message";
+    box.textContent="Your submission is submitted successfully.";
+
+    document.getElementById("issueForm").reset();
+
+    resetSelect("constituency","Select constituency");
+    resetSelect("ward","Select ward");
+    resetSelect("location","Select location");
+    resetSelect("subLocation","Select sub-location");
+
+  }catch(error){
+
+    console.error(error);
+
+    box.className="message error";
+    box.textContent="Submission failed. Please try again.";
 
   }
 
+});
 
-  function resetSelect(select, placeholder) {
 
-    select.innerHTML = "";
+/* ================= ANNOUNCEMENTS ================= */
 
-    const option =
-      document.createElement("option");
+async function loadAnnouncements(){
 
-    option.value = "";
-    option.textContent = placeholder;
+  const box=document.getElementById("announcements");
 
-    select.appendChild(option);
+  try{
 
-    select.disabled = true;
-
-  }
-
-
-  async function loadLocations() {
-
-    try {
-
-      console.log("Loading locations from Firestore...");
-
-      const snapshot =
-        await getDocs(
-          collection(db, "locations")
-        );
-
-      locationData = [];
-
-      snapshot.forEach(doc => {
-
-        const data = doc.data();
-
-        locationData.push({
-
-          county:
-            cleanValue(data.county),
-
-          constituency:
-            cleanValue(data.constituency),
-
-          ward:
-            cleanValue(data.ward),
-
-          location:
-            cleanValue(data.location),
-
-          subLocation:
-            cleanValue(
-              data.subLocation ||
-              data.sublocation ||
-              data["sub-location"]
-            )
-
-        });
-
-      });
-
-
-      console.log(
-        "Locations loaded:",
-        locationData
-      );
-
-
-      if (locationData.length === 0) {
-
-        console.error(
-          "No locations found in Firestore."
-        );
-
-        countySelect.innerHTML =
-          '<option value="">No counties found</option>';
-
-        return;
-
-      }
-
-
-      fillSelect(
-
-        countySelect,
-
-        locationData.map(item => item.county),
-
-        "Select county"
-
-      );
-
-
-    } catch (error) {
-
-      console.error(
-        "Location loading error:",
-        error
-      );
-
-      countySelect.innerHTML =
-        '<option value="">Error loading counties</option>';
-
-    }
-
-  }
-
-
-  countySelect.addEventListener(
-    "change",
-    () => {
-
-      const county =
-        countySelect.value;
-
-      resetSelect(
-        constituencySelect,
-        "Select constituency"
-      );
-
-      resetSelect(
-        wardSelect,
-        "Select ward"
-      );
-
-      resetSelect(
-        locationSelect,
-        "Select location"
-      );
-
-      resetSelect(
-        subLocationSelect,
-        "Select sub-location"
-      );
-
-
-      if (!county) {
-        return;
-      }
-
-
-      const filtered =
-        locationData.filter(
-          item => item.county === county
-        );
-
-
-      fillSelect(
-
-        constituencySelect,
-
-        filtered.map(
-          item => item.constituency
-        ),
-
-        "Select constituency"
-
-      );
-
-    }
-  );
-
-
-  constituencySelect.addEventListener(
-    "change",
-    () => {
-
-      const county =
-        countySelect.value;
-
-      const constituency =
-        constituencySelect.value;
-
-
-      resetSelect(
-        wardSelect,
-        "Select ward"
-      );
-
-      resetSelect(
-        locationSelect,
-        "Select location"
-      );
-
-      resetSelect(
-        subLocationSelect,
-        "Select sub-location"
-      );
-
-
-      if (!county || !constituency) {
-        return;
-      }
-
-
-      const filtered =
-        locationData.filter(
-          item =>
-            item.county === county &&
-            item.constituency === constituency
-        );
-
-
-      fillSelect(
-
-        wardSelect,
-
-        filtered.map(
-          item => item.ward
-        ),
-
-        "Select ward"
-
-      );
-
-    }
-  );
-
-
-  wardSelect.addEventListener(
-    "change",
-    () => {
-
-      const county =
-        countySelect.value;
-
-      const constituency =
-        constituencySelect.value;
-
-      const ward =
-        wardSelect.value;
-
-
-      resetSelect(
-        locationSelect,
-        "Select location"
-      );
-
-      resetSelect(
-        subLocationSelect,
-        "Select sub-location"
-      );
-
-
-      if (!county || !constituency || !ward) {
-        return;
-      }
-
-
-      const filtered =
-        locationData.filter(
-          item =>
-            item.county === county &&
-            item.constituency === constituency &&
-            item.ward === ward
-        );
-
-
-      fillSelect(
-
-        locationSelect,
-
-        filtered.map(
-          item => item.location
-        ),
-
-        "Select location"
-
-      );
-
-    }
-  );
-
-
-  locationSelect.addEventListener(
-    "change",
-    () => {
-
-      const county =
-        countySelect.value;
-
-      const constituency =
-        constituencySelect.value;
-
-      const ward =
-        wardSelect.value;
-
-      const location =
-        locationSelect.value;
-
-
-      resetSelect(
-        subLocationSelect,
-        "Select sub-location"
-      );
-
-
-      if (
-        !county ||
-        !constituency ||
-        !ward ||
-        !location
-      ) {
-        return;
-      }
-
-
-      const filtered =
-        locationData.filter(
-          item =>
-            item.county === county &&
-            item.constituency === constituency &&
-            item.ward === ward &&
-            item.location === location
-        );
-
-
-      fillSelect(
-
-        subLocationSelect,
-
-        filtered.map(
-          item => item.subLocation
-        ),
-
-        "Select sub-location"
-
-      );
-
-    }
-  );
-
-
-  /* =========================
-     ANNOUNCEMENTS
-  ========================= */
-
-  async function loadAnnouncements() {
-
-    const container =
-      document.getElementById(
-        "announcements"
-      );
-
-    try {
-
-      const q =
-        query(
-          collection(db, "announcements"),
-          where("status", "==", "published")
-        );
-
-      const snapshot =
-        await getDocs(q);
-
-
-      if (snapshot.empty) {
-
-        container.innerHTML =
-          "<p>No official announcements yet.</p>";
-
-        return;
-
-      }
-
-
-      container.innerHTML = "";
-
-
-      snapshot.forEach(doc => {
-
-        const data = doc.data();
-
-        const div =
-          document.createElement("div");
-
-        div.className =
-          "announcement";
-
-
-        const strong =
-          document.createElement("strong");
-
-        strong.textContent =
-          `${cleanValue(data.officeType)} — ${cleanValue(data.officialName)}`;
-
-
-        const message =
-          document.createElement("div");
-
-        message.textContent =
-          cleanValue(data.message);
-
-
-        div.appendChild(strong);
-        div.appendChild(message);
-
-        container.appendChild(div);
-
-      });
-
-
-    } catch (error) {
-
-      console.error(
-        "Announcements error:",
-        error
-      );
-
-      container.innerHTML =
-        "<p>Unable to load announcements.</p>";
-
-    }
-
-  }
-
-
-  /* =========================
-     CITIZEN ISSUE SUBMISSION
-  ========================= */
-
-  const issueForm =
-    document.getElementById(
-      "issueForm"
+    const q=query(
+      collection(db,"announcements"),
+      where("status","==","published")
     );
 
+    const snapshot=await getDocs(q);
 
-  issueForm.addEventListener(
-    "submit",
-    async event => {
+    box.innerHTML="";
 
-      event.preventDefault();
+    if(snapshot.empty){
 
-
-      const message =
-        document.getElementById(
-          "formMessage"
-        );
-
-
-      message.innerHTML = "";
-
-
-      try {
-
-        await addDoc(
-          collection(db, "issues"),
-          {
-
-            category:
-              document.getElementById(
-                "category"
-              ).value,
-
-            county:
-              countySelect.value,
-
-            constituency:
-              constituencySelect.value,
-
-            ward:
-              wardSelect.value,
-
-            location:
-              locationSelect.value,
-
-            subLocation:
-              subLocationSelect.value,
-
-            targetOffice:
-              document.getElementById(
-                "office"
-              ).value,
-
-            description:
-              document.getElementById(
-                "description"
-              ).value.trim(),
-
-            status:
-              "submitted",
-
-            createdAt:
-              serverTimestamp()
-
-          }
-        );
-
-
-        message.innerHTML =
-          '<div class="success">Your submission has been received successfully.</div>';
-
-
-        issueForm.reset();
-
-
-        resetSelect(
-          constituencySelect,
-          "Select constituency"
-        );
-
-        resetSelect(
-          wardSelect,
-          "Select ward"
-        );
-
-        resetSelect(
-          locationSelect,
-          "Select location"
-        );
-
-        resetSelect(
-          subLocationSelect,
-          "Select sub-location"
-        );
-
-
-        setTimeout(
-          () => {
-            message.innerHTML = "";
-          },
-          4000
-        );
-
-
-      } catch (error) {
-
-        console.error(
-          "Issue submission error:",
-          error
-        );
-
-        message.innerHTML =
-          '<div class="error">Unable to submit. Please try again.</div>';
-
-      }
+      box.innerHTML="<p class='small'>No official announcements yet.</p>";
+      return;
 
     }
-  );
+
+    snapshot.forEach(doc=>{
+
+      const data=doc.data();
+
+      const div=document.createElement("div");
+      div.className="announcement";
+
+      div.innerHTML=
+        "<strong>Official Announcement From "+
+        (data.officeType || "Public Office")+
+        " — "+
+        (data.officialName || "")+
+        "</strong><br><br>"+
+        (data.message || "");
+
+      box.appendChild(div);
+
+    });
+
+  }catch(error){
+
+    console.error(error);
+    box.innerHTML="<p class='small'>Unable to load announcements.</p>";
+
+  }
+}
 
 
-  /* =========================
-     LOGIN
-  ========================= */
+/* ================= LOGIN ================= */
 
-  document
-    .getElementById("loginButton")
-    .addEventListener(
-      "click",
-      async () => {
+document.getElementById("loginForm")
+.addEventListener("submit",async(e)=>{
 
-        const email =
-          document.getElementById(
-            "loginEmail"
-          ).value.trim();
+  e.preventDefault();
 
-        const password =
-          document.getElementById(
-            "loginPassword"
-          ).value;
+  const box=document.getElementById("loginMessage");
 
+  box.className="";
+  box.textContent="Signing in...";
 
-        const message =
-          document.getElementById(
-            "loginMessage"
-          );
+  const email=document.getElementById("loginEmail").value.trim();
+  const password=document.getElementById("loginPassword").value;
 
+  try{
 
-        message.innerHTML = "";
-
-
-        try {
-
-          await signInWithEmailAndPassword(
-            auth,
-            email,
-            password
-          );
-
-
-        } catch (error) {
-
-          console.error(
-            "Login error:",
-            error
-          );
-
-          message.innerHTML =
-            '<div class="error">Login failed. Check your email and password.</div>';
-
-        }
-
-      }
+    const result=await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
     );
 
+    const uid=result.user.uid;
 
-  /* =========================
-     AUTH STATE
-  ========================= */
+    const userDoc=await getDocs(
+      query(
+        collection(db,"users"),
+        where("__name__","==",uid)
+      )
+    );
 
-  onAuthStateChanged(
-    auth,
-    async user => {
+    if(userDoc.empty){
 
-      if (!user) {
+      await signOut(auth);
 
-        dashboardPage.classList.add(
-          "hidden"
-        );
-
-        loginPage.classList.add(
-          "hidden"
-        );
-
-        citizenPage.classList.remove(
-          "hidden"
-        );
-
-        return;
-
-      }
-
-
-      try {
-
-        const userSnapshot =
-          await getDocs(
-            query(
-              collection(db, "users"),
-              where("__name__", "==", user.uid)
-            )
-          );
-
-
-        let role = "";
-
-
-        userSnapshot.forEach(
-          doc => {
-
-            role =
-              cleanValue(
-                doc.data().role
-              );
-
-          }
-        );
-
-
-        if (
-          role === "Official" ||
-          role === "Admin" ||
-          role === "Super Admin"
-        ) {
-
-          citizenPage.classList.add(
-            "hidden"
-          );
-
-          loginPage.classList.add(
-            "hidden"
-          );
-
-          dashboardPage.classList.remove(
-            "hidden"
-          );
-
-
-          document.getElementById(
-            "signedInEmail"
-          ).textContent =
-            user.email || "";
-
-
-          document.getElementById(
-            "signedInRole"
-          ).textContent =
-            role;
-
-
-          loadIssues();
-
-        } else {
-
-          await signOut(auth);
-
-        }
-
-
-      } catch (error) {
-
-        console.error(
-          "User role error:",
-          error
-        );
-
-        await signOut(auth);
-
-      }
+      throw new Error("No authorized user profile found.");
 
     }
-  );
+
+    const data=userDoc.docs[0].data();
+
+    const allowed=[
+      "Official",
+      "Admin",
+      "Super Admin"
+    ];
+
+    if(!allowed.includes(data.role)){
+
+      await signOut(auth);
+
+      throw new Error("This account is not authorized for official access.");
+
+    }
+
+    window.location.hash="#dashboard";
+
+    showOfficial();
+
+    loadDashboard();
+
+  }catch(error){
+
+    console.error(error);
+
+    box.className="message error";
+    box.textContent=error.message || "Login failed.";
+
+  }
+
+});
 
 
-  /* =========================
-     ISSUES DASHBOARD
-  ========================= */
+/* ================= DASHBOARD ================= */
 
-  async function loadIssues() {
+async function loadDashboard(){
 
-    const list =
-      document.getElementById(
-        "issuesList"
-      );
+  if(!auth.currentUser)return;
 
-    try {
+  const uid=auth.currentUser.uid;
 
-      const snapshot =
-        await getDocs(
-          collection(db, "issues")
-        );
+  try{
 
+    const userSnap=await getDocs(
+      query(
+        collection(db,"users"),
+        where("__name__","==",uid)
+      )
+    );
 
-      let total = 0;
+    if(!userSnap.empty){
 
-      const counts = {
+      const userData=userSnap.docs[0].data();
 
-        Roads: 0,
-        Water: 0,
-        Healthcare: 0,
-        Education: 0,
-        Security: 0
+      document.getElementById("officialName").textContent=
+        "Logged in as: "+
+        (userData.name || auth.currentUser.email)+
+        " — Role: "+
+        (userData.role || "");
 
-      };
+    }
 
+    const snapshot=await getDocs(
+      collection(db,"issues")
+    );
 
-      list.innerHTML = "";
+    const issues=[];
 
+    snapshot.forEach(doc=>{
+      issues.push({
+        id:doc.id,
+        ...doc.data()
+      });
+    });
 
-      snapshot.forEach(doc => {
+    document.getElementById("totalIssues").textContent=issues.length;
 
-        const data =
-          doc.data();
+    document.getElementById("roadCount").textContent=
+      issues.filter(x=>
+        String(x.category||"").toLowerCase()==="roads"
+      ).length;
 
+    document.getElementById("waterCount").textContent=
+      issues.filter(x=>
+        String(x.category||"").toLowerCase()==="water"
+      ).length;
 
-        total++;
+    document.getElementById("healthCount").textContent=
+      issues.filter(x=>
+        String(x.category||"").toLowerCase()==="healthcare"
+      ).length;
 
+    document.getElementById("educationCount").textContent=
+      issues.filter(x=>
+        String(x.category||"").toLowerCase()==="education"
+      ).length;
 
-        const category =
-          cleanValue(
-            data.category
-          );
+    document.getElementById("securityCount").textContent=
+      issues.filter(x=>
+        String(x.category||"").toLowerCase()==="security"
+      ).length;
 
+    const list=document.getElementById("issuesList");
 
-        if (
-          Object.prototype.hasOwnProperty.call(
-            counts,
-            category
-          )
-        ) {
+    list.innerHTML="";
 
-          counts[category]++;
+    if(issues.length===0){
 
-        }
+      list.innerHTML="<p class='small'>No issues found.</p>";
 
+    }else{
 
-        const div =
-          document.createElement("div");
+      issues.forEach(issue=>{
 
-        div.className =
-          "issue";
+        const div=document.createElement("div");
+        div.className="issue";
 
-
-        div.innerHTML = `
-
-          <p><strong>Category:</strong> ${cleanValue(data.category)}</p>
-
-          <p><strong>County:</strong> ${cleanValue(data.county)}</p>
-
-          <p><strong>Constituency:</strong> ${cleanValue(data.constituency)}</p>
-
-          <p><strong>Ward:</strong> ${cleanValue(data.ward)}</p>
-
-          <p><strong>Location:</strong> ${cleanValue(data.location)}</p>
-
-          <p><strong>Sub-location:</strong> ${cleanValue(
-            data.subLocation ||
-            data.sublocation ||
-            data["sub-location"]
-          )}</p>
-
-          <p><strong>Office:</strong> ${cleanValue(data.targetOffice)}</p>
-
-          <p><strong>Description:</strong> ${cleanValue(data.description)}</p>
-
-          <p><strong>Status:</strong> ${cleanValue(data.status)}</p>
-
-        `;
-
+        div.innerHTML=
+          "<strong>"+(issue.category||"")+"</strong><br>"+
+          (issue.description||"")+"<br><br>"+
+          "<span class='small'>"+
+          (issue.county||"")+" • "+
+          (issue.constituency||"")+" • "+
+          (issue.ward||"")+
+          "</span>";
 
         list.appendChild(div);
 
       });
 
-
-      document.getElementById(
-        "totalIssues"
-      ).textContent = total;
-
-
-      document.getElementById(
-        "roadsCount"
-      ).textContent = counts.Roads;
-
-
-      document.getElementById(
-        "waterCount"
-      ).textContent = counts.Water;
-
-
-      document.getElementById(
-        "healthcareCount"
-      ).textContent = counts.Healthcare;
-
-
-      document.getElementById(
-        "educationCount"
-      ).textContent = counts.Education;
-
-
-      document.getElementById(
-        "securityCount"
-      ).textContent = counts.Security;
-
-
-      if (total === 0) {
-
-        list.innerHTML =
-          "<p>No issues found.</p>";
-
-      }
-
-
-    } catch (error) {
-
-      console.error(
-        "Issues loading error:",
-        error
-      );
-
-      list.innerHTML =
-        "<p>Unable to load issues.</p>";
-
     }
+
+  }catch(error){
+
+    console.error(error);
+
+    document.getElementById("issuesList").innerHTML=
+      "<p class='message error'>Unable to load dashboard data. Your security rules may need the official read permission.</p>";
 
   }
 
+}
 
-  document
-    .getElementById("refreshIssues")
-    .addEventListener(
-      "click",
-      loadIssues
+
+/* ================= POST ANNOUNCEMENT ================= */
+
+document.getElementById("announcementForm")
+.addEventListener("submit",async(e)=>{
+
+  e.preventDefault();
+
+  const box=document.getElementById("announcementMessageBox");
+
+  try{
+
+    const uid=auth.currentUser.uid;
+
+    const userSnap=await getDocs(
+      query(
+        collection(db,"users"),
+        where("__name__","==",uid)
+      )
     );
 
+    let userData={};
 
-  /* =========================
-     ANNOUNCEMENT POSTING
-  ========================= */
-
-  document
-    .getElementById(
-      "showAnnouncementForm"
-    )
-    .addEventListener(
-      "click",
-      () => {
-
-        document
-          .getElementById(
-            "announcementFormCard"
-          )
-          .classList.toggle("hidden");
-
-      }
-    );
-
-
-  document
-    .getElementById(
-      "publishAnnouncement"
-    )
-    .addEventListener(
-      "click",
-      async () => {
-
-        const result =
-          document.getElementById(
-            "announcementMessageResult"
-          );
-
-
-        const officeType =
-          document.getElementById(
-            "announcementOfficeType"
-          ).value;
-
-
-        const officialName =
-          document.getElementById(
-            "announcementOfficialName"
-          ).value.trim();
-
-
-        const message =
-          document.getElementById(
-            "announcementMessage"
-          ).value.trim();
-
-
-        if (
-          !officeType ||
-          !officialName ||
-          !message
-        ) {
-
-          result.innerHTML =
-            '<div class="error">Please fill all announcement fields.</div>';
-
-          return;
-
-        }
-
-
-        try {
-
-          await addDoc(
-            collection(
-              db,
-              "announcements"
-            ),
-            {
-
-              officeType:
-                officeType,
-
-              officialName:
-                officialName,
-
-              message:
-                message,
-
-              status:
-                "published",
-
-              createdAt:
-                serverTimestamp()
-
-            }
-          );
-
-
-          result.innerHTML =
-            '<div class="success">Announcement published successfully.</div>';
-
-
-          document.getElementById(
-            "announcementOfficeType"
-          ).value = "";
-
-
-          document.getElementById(
-            "announcementOfficialName"
-          ).value = "";
-
-
-          document.getElementById(
-            "announcementMessage"
-          ).value = "";
-
-
-          loadAnnouncements();
-
-
-        } catch (error) {
-
-          console.error(
-            "Announcement error:",
-            error
-          );
-
-          result.innerHTML =
-            '<div class="error">Unable to publish announcement.</div>';
-
-        }
-
-      }
-    );
-
-
-  /* =========================
-     LOGOUT
-  ========================= */
-
-  document
-    .getElementById("logoutButton")
-    .addEventListener(
-      "click",
-      async () => {
-
-        await signOut(auth);
-
-      }
-    );
-
-
-  /* =========================
-     HIDDEN OFFICIAL LOGIN
-     #official
-  ========================= */
-
-  function checkOfficialHash() {
-
-    if (
-      window.location.hash === "#official"
-    ) {
-
-      citizenPage.classList.add(
-        "hidden"
-      );
-
-      dashboardPage.classList.add(
-        "hidden"
-      );
-
-      loginPage.classList.remove(
-        "hidden"
-      );
-
-    } else {
-
-      loginPage.classList.add(
-        "hidden"
-      );
-
+    if(!userSnap.empty){
+      userData=userSnap.docs[0].data();
     }
+
+    await addDoc(collection(db,"announcements"),{
+
+      message:document.getElementById("announcementMessage").value,
+
+      officeType:userData.officeType || "Public Office",
+
+      officialName:userData.name ||
+        auth.currentUser.email,
+
+      status:"published",
+
+      createdAt:serverTimestamp()
+
+    });
+
+    box.className="message";
+    box.textContent="Announcement published successfully.";
+
+    document.getElementById("announcementForm").reset();
+
+    loadAnnouncements();
+
+  }catch(error){
+
+    console.error(error);
+
+    box.className="message error";
+    box.textContent=
+      "Announcement could not be published.";
 
   }
 
-
-  window.addEventListener(
-    "hashchange",
-    checkOfficialHash
-  );
+});
 
 
-  /* =========================
-     START APP
-  ========================= */
+/* ================= LOGOUT ================= */
 
-  checkOfficialHash();
+document.getElementById("logoutBtn")
+.addEventListener("click",async()=>{
 
-  loadLocations();
+  await signOut(auth);
 
-  loadAnnouncements();
+  window.location.hash="";
+
+  showCitizen();
+
+});
+
+
+/* ================= AUTH STATE ================= */
+
+onAuthStateChanged(auth,user=>{
+
+  if(!user && window.location.hash==="#dashboard"){
+    window.location.hash="#official";
+  }
+
+});
+
+
+/* ================= START ================= */
+
+await loadLocations();
+await loadAnnouncements();
+route();
 
 </script>
 
 </body>
-            </html>
+               </html>
