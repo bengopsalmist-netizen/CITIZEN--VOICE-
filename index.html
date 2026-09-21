@@ -45,6 +45,7 @@ here<!DOCTYPE html>
       background: #222;
       color: white;
       font-size: 16px;
+      cursor: pointer;
     }
 
     #debug {
@@ -60,6 +61,20 @@ here<!DOCTYPE html>
     .hidden {
       display: none;
     }
+
+    .success {
+      background: #e8f5e9;
+      color: #1b5e20;
+    }
+
+    .error {
+      background: #ffebee;
+      color: #b71c1c;
+    }
+
+    .logout {
+      background: #c62828;
+    }
   </style>
 </head>
 
@@ -69,7 +84,10 @@ here<!DOCTYPE html>
 
   <h1>Citizen Voice</h1>
 
+  <!-- OFFICIAL LOGIN -->
+
   <div id="loginSection">
+
     <h3>Official Login</h3>
 
     <input
@@ -87,12 +105,30 @@ here<!DOCTYPE html>
     <button id="loginBtn">
       Login
     </button>
+
   </div>
 
+
+  <!-- OFFICIAL DASHBOARD -->
+
   <div id="dashboard" class="hidden">
+
     <h2>Official Dashboard</h2>
+
     <p id="welcome"></p>
+
+    <p>
+      You are an authorized Citizen Voice official.
+    </p>
+
+    <button id="logoutBtn" class="logout">
+      Logout
+    </button>
+
   </div>
+
+
+  <!-- DEBUG -->
 
   <div id="debug">
     Waiting for Firebase...
@@ -100,7 +136,12 @@ here<!DOCTYPE html>
 
 </div>
 
+
 <script type="module">
+
+  // ==============================
+  // FIREBASE IMPORTS
+  // ==============================
 
   import { initializeApp }
     from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
@@ -108,7 +149,8 @@ here<!DOCTYPE html>
   import {
     getAuth,
     signInWithEmailAndPassword,
-    onAuthStateChanged
+    onAuthStateChanged,
+    signOut
   }
     from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
@@ -145,6 +187,7 @@ here<!DOCTYPE html>
 
     measurementId:
       "G-C4L9Y55JGG"
+
   };
 
 
@@ -152,11 +195,14 @@ here<!DOCTYPE html>
   // START FIREBASE
   // ==============================
 
-  const app = initializeApp(firebaseConfig);
+  const app =
+    initializeApp(firebaseConfig);
 
-  const auth = getAuth(app);
+  const auth =
+    getAuth(app);
 
-  const db = getFirestore(app);
+  const db =
+    getFirestore(app);
 
 
   // ==============================
@@ -169,6 +215,9 @@ here<!DOCTYPE html>
   const loginBtn =
     document.getElementById("loginBtn");
 
+  const logoutBtn =
+    document.getElementById("logoutBtn");
+
   const loginSection =
     document.getElementById("loginSection");
 
@@ -180,7 +229,7 @@ here<!DOCTYPE html>
 
 
   // ==============================
-  // FIREBASE START TEST
+  // FIREBASE TEST
   // ==============================
 
   debug.textContent =
@@ -209,9 +258,13 @@ here<!DOCTYPE html>
       debug.textContent =
         "Please enter email and password.";
 
+      debug.className = "error";
+
       return;
     }
 
+
+    debug.className = "";
 
     debug.textContent =
       "Signing in...";
@@ -225,13 +278,18 @@ here<!DOCTYPE html>
         password
       );
 
-    } catch (error) {
+    }
+
+    catch (error) {
+
+      debug.className = "error";
 
       debug.textContent =
         "LOGIN ERROR\n\n" +
         error.code +
         "\n\n" +
         error.message;
+
     }
 
   });
@@ -243,7 +301,17 @@ here<!DOCTYPE html>
 
   onAuthStateChanged(auth, async (user) => {
 
+    // ==============================
+    // NO USER
+    // ==============================
+
     if (!user) {
+
+      loginSection.classList.remove("hidden");
+
+      dashboard.classList.add("hidden");
+
+      debug.className = "";
 
       debug.textContent =
         "Firebase connected.\n\n" +
@@ -253,6 +321,12 @@ here<!DOCTYPE html>
     }
 
 
+    // ==============================
+    // USER FOUND
+    // ==============================
+
+    debug.className = "";
+
     debug.textContent =
       "USER FOUND\n\n" +
       "Email:\n" +
@@ -261,70 +335,133 @@ here<!DOCTYPE html>
       "UID:\n" +
       user.uid +
       "\n\n" +
-      "Now testing Firestore...";
+      "Checking official authorization...";
 
 
     // ==============================
-    // TEST EXACT USERS DOCUMENT
+    // CHECK FIRESTORE
+    // IMPORTANT:
+    // COLLECTION = Users
     // ==============================
 
     try {
 
       const userRef =
-        doc(db, "users", user.uid);
+        doc(db, "Users", user.uid);
 
       const userSnap =
         await getDoc(userRef);
 
 
+      // ==============================
+      // DOCUMENT NOT FOUND
+      // ==============================
+
       if (!userSnap.exists()) {
 
+        debug.className = "error";
+
         debug.textContent =
-          "FIRESTORE TEST RESULT\n\n" +
+          "NOT AUTHORIZED\n\n" +
 
-          "The Firebase connection is working,\n" +
+          "Your account exists in Firebase Authentication,\n" +
 
-          "BUT this document was NOT found:\n\n" +
+          "but your authorization record was not found.\n\n" +
 
-          "Collection: users\n" +
+          "Collection: Users\n\n" +
 
-          "Document ID:\n" +
-          user.uid +
-          "\n\n" +
+          "UID:\n" +
+          user.uid;
 
-          "Project ID:\n" +
-          firebaseConfig.projectId;
+        loginSection.classList.remove("hidden");
+
+        dashboard.classList.add("hidden");
 
         return;
       }
 
 
+      // ==============================
+      // GET DATA
+      // ==============================
+
       const data =
         userSnap.data();
 
 
+      // IMPORTANT:
+      // FIRESTORE FIELDS ARE:
+      // Role
+      // Active
+
+      const role =
+        data.Role;
+
+      const active =
+        data.Active;
+
+
+      // ==============================
+      // CHECK ACTIVE + ROLE
+      // ==============================
+
+      if (
+        role !== "Official" ||
+        active !== true
+      ) {
+
+        debug.className = "error";
+
+        debug.textContent =
+          "NOT AUTHORIZED\n\n" +
+
+          "Your account was found,\n" +
+
+          "but it is not currently authorized.\n\n" +
+
+          "Role: " +
+          String(role) +
+          "\n\n" +
+
+          "Active: " +
+          String(active);
+
+        loginSection.classList.remove("hidden");
+
+        dashboard.classList.add("hidden");
+
+        return;
+      }
+
+
+      // ==============================
+      // AUTHORIZED OFFICIAL
+      // ==============================
+
+      debug.className = "success";
+
       debug.textContent =
-        "SUCCESS! FIRESTORE DOCUMENT FOUND.\n\n" +
+        "AUTHORIZED SUCCESSFULLY!\n\n" +
 
-        "Collection: users\n\n" +
+        "Email:\n" +
+        user.email +
+        "\n\n" +
 
-        "Document ID:\n" +
+        "UID:\n" +
         user.uid +
         "\n\n" +
 
         "Role:\n" +
-        String(data.role) +
+        role +
         "\n\n" +
 
         "Active:\n" +
-        String(data.active) +
-        "\n\n" +
-
-        "Project ID:\n" +
-        firebaseConfig.projectId;
+        active;
 
 
-      // Show dashboard
+      // ==============================
+      // SHOW DASHBOARD
+      // ==============================
 
       loginSection.classList.add("hidden");
 
@@ -335,7 +472,11 @@ here<!DOCTYPE html>
         (user.email || "Official");
 
 
-    } catch (error) {
+    }
+
+    catch (error) {
+
+      debug.className = "error";
 
       debug.textContent =
         "FIRESTORE ERROR\n\n" +
@@ -350,6 +491,32 @@ here<!DOCTYPE html>
 
         "Project ID:\n" +
         firebaseConfig.projectId;
+
+    }
+
+  });
+
+
+  // ==============================
+  // LOGOUT
+  // ==============================
+
+  logoutBtn.addEventListener("click", async () => {
+
+    try {
+
+      await signOut(auth);
+
+    }
+
+    catch (error) {
+
+      debug.className = "error";
+
+      debug.textContent =
+        "LOGOUT ERROR\n\n" +
+        error.message;
+
     }
 
   });
