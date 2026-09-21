@@ -1,4 +1,4 @@
-here<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -8,55 +8,49 @@ here<!DOCTYPE html>
   <style>
     * {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
     }
 
     body {
+      margin: 0;
       font-family: Arial, sans-serif;
-      background: #f4f7f6;
-      color: #17221d;
-      line-height: 1.5;
+      background: #f4f7f9;
+      color: #17202a;
     }
 
     header {
       background: linear-gradient(135deg, #006b3c, #111, #bb0000);
       color: white;
-      padding: 28px 18px;
+      padding: 25px 15px;
       text-align: center;
     }
 
     header h1 {
-      font-size: 32px;
-      margin-bottom: 6px;
+      margin: 0 0 8px;
+      font-size: 30px;
     }
 
     header p {
-      font-size: 15px;
-      opacity: 0.95;
+      margin: 0;
+      font-size: 14px;
     }
 
-    .container {
-      width: 94%;
+    main {
       max-width: 850px;
-      margin: 25px auto;
+      margin: 20px auto;
+      padding: 0 15px;
     }
 
     .card {
       background: white;
-      border-radius: 16px;
-      padding: 22px;
+      border-radius: 14px;
+      padding: 20px;
       margin-bottom: 20px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      box-shadow: 0 3px 12px rgba(0,0,0,.08);
     }
 
     h2 {
-      margin-bottom: 14px;
-      color: #075c38;
-    }
-
-    h3 {
-      margin-bottom: 8px;
+      margin-top: 0;
+      color: #006b3c;
     }
 
     label {
@@ -68,12 +62,18 @@ here<!DOCTYPE html>
 
     input,
     select,
-    textarea {
+    textarea,
+    button {
       width: 100%;
       padding: 13px;
-      border: 1px solid #ccd5d1;
-      border-radius: 9px;
+      border-radius: 8px;
       font-size: 16px;
+    }
+
+    input,
+    select,
+    textarea {
+      border: 1px solid #ccc;
       background: white;
     }
 
@@ -83,135 +83,87 @@ here<!DOCTYPE html>
     }
 
     button {
+      margin-top: 18px;
       border: none;
-      border-radius: 9px;
-      padding: 13px 18px;
-      font-size: 16px;
-      cursor: pointer;
-      margin-top: 15px;
-    }
-
-    .primary {
-      background: #087f4d;
+      background: #006b3c;
       color: white;
-      width: 100%;
+      font-weight: bold;
+      cursor: pointer;
     }
 
-    .secondary {
-      background: #e8efec;
-      color: #123d2b;
+    button:hover {
+      opacity: .9;
     }
 
     .danger {
       background: #b00020;
-      color: white;
     }
 
-    button:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
+    .secondary {
+      background: #333;
+    }
+
+    .success {
+      color: #006b3c;
+      font-weight: bold;
+      margin-top: 12px;
+    }
+
+    .error {
+      color: #b00020;
+      font-weight: bold;
+      margin-top: 12px;
     }
 
     .announcement {
-      border-left: 5px solid #087f4d;
-      background: #f3faf6;
-      padding: 15px;
+      border-left: 5px solid #006b3c;
+      padding: 12px;
+      background: #f7faf8;
       margin-bottom: 12px;
-      border-radius: 8px;
+      border-radius: 6px;
     }
 
-    .announcement small {
-      color: #66736d;
+    .announcement strong {
+      color: #006b3c;
+    }
+
+    .issue {
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 15px;
+      margin-top: 12px;
+      background: #fafafa;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .stat {
+      background: #f0f5f2;
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 25px;
+      color: #006b3c;
     }
 
     .hidden {
       display: none !important;
     }
 
-    .message {
-      margin-top: 14px;
-      padding: 12px;
-      border-radius: 8px;
-      display: none;
-    }
-
-    .success {
-      display: block;
-      background: #e1f6e9;
-      color: #075c38;
-    }
-
-    .error {
-      display: block;
-      background: #ffe6e6;
-      color: #9d0000;
-    }
-
-    .info {
-      display: block;
-      background: #e8f0ff;
-      color: #164a9c;
-    }
-
-    .dashboard-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 12px;
-      margin-top: 18px;
-    }
-
-    .stat {
-      background: #f3f7f5;
-      padding: 18px;
-      border-radius: 12px;
-      text-align: center;
-    }
-
-    .stat strong {
-      display: block;
-      font-size: 28px;
-      color: #087f4d;
-    }
-
-    .issue {
-      background: #f8faf9;
-      border: 1px solid #dce5e0;
-      border-radius: 10px;
-      padding: 15px;
-      margin-top: 12px;
-    }
-
-    .issue span {
-      display: inline-block;
-      background: #e1eee8;
-      padding: 4px 8px;
-      border-radius: 5px;
-      margin: 3px;
-      font-size: 13px;
-    }
-
-    .top-actions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 18px;
-    }
-
     footer {
       text-align: center;
-      padding: 25px 15px;
-      color: #66736d;
-      font-size: 14px;
-    }
-
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 27px;
-      }
-
-      .card {
-        padding: 17px;
-      }
+      padding: 25px;
+      color: #777;
+      font-size: 13px;
     }
   </style>
 </head>
@@ -223,14 +175,15 @@ here<!DOCTYPE html>
   <p>Your Question • Your Suggestion • Your Concern • Your Issue</p>
 </header>
 
-<div class="container">
+<main>
 
-  <!-- PUBLIC CITIZEN AREA -->
+  <!-- ================= CITIZEN PAGE ================= -->
+
   <section id="citizenPage">
 
     <div class="card">
       <h2>Official Announcements</h2>
-      <div id="announcementsList">
+      <div id="announcements">
         Loading announcements...
       </div>
     </div>
@@ -238,81 +191,49 @@ here<!DOCTYPE html>
     <div class="card">
       <h2>Share Your Voice</h2>
 
-      <p>
-        Send a question, suggestion, concern, or issue concerning your
-        community.
-      </p>
-
       <form id="issueForm">
 
         <label for="category">Category</label>
         <select id="category" required>
           <option value="">Select category</option>
-          <option>Roads</option>
-          <option>Water</option>
-          <option>Healthcare</option>
-          <option>Education</option>
-          <option>Security</option>
-          <option>Agriculture</option>
-          <option>Environment</option>
-          <option>Infrastructure</option>
-          <option>Government Services</option>
-          <option>Development</option>
-          <option>Employment</option>
-          <option>Other</option>
+          <option value="Roads">Roads</option>
+          <option value="Water">Water</option>
+          <option value="Healthcare">Healthcare</option>
+          <option value="Education">Education</option>
+          <option value="Security">Security</option>
+          <option value="Agriculture">Agriculture</option>
+          <option value="Environment">Environment</option>
+          <option value="Infrastructure">Infrastructure</option>
+          <option value="Government Services">Government Services</option>
+          <option value="Development">Development</option>
+          <option value="Employment">Employment</option>
+          <option value="Other">Other</option>
         </select>
 
         <label for="county">County</label>
         <select id="county" required>
           <option value="">Select county</option>
-          <option>Meru</option>
-          <option>Nairobi</option>
-          <option>Nakuru</option>
-          <option>Kiambu</option>
-          <option>Embu</option>
-          <option>Isiolo</option>
-          <option>Laikipia</option>
-          <option>Nyeri</option>
-          <option>Kirinyaga</option>
-          <option>Tharaka Nithi</option>
-          <option>Machakos</option>
-          <option>Mombasa</option>
-          <option>Kisumu</option>
-          <option>Uasin Gishu</option>
-          <option>Other</option>
         </select>
 
         <label for="constituency">Constituency</label>
-        <input
-          id="constituency"
-          type="text"
-          placeholder="Enter constituency"
-          required
-        >
+        <select id="constituency" required disabled>
+          <option value="">Select constituency</option>
+        </select>
 
         <label for="ward">Ward</label>
-        <input
-          id="ward"
-          type="text"
-          placeholder="Enter ward"
-          required
-        >
+        <select id="ward" required disabled>
+          <option value="">Select ward</option>
+        </select>
 
         <label for="location">Location</label>
-        <input
-          id="location"
-          type="text"
-          placeholder="Enter location"
-          required
-        >
+        <select id="location" required disabled>
+          <option value="">Select location</option>
+        </select>
 
         <label for="subLocation">Sub-location</label>
-        <input
-          id="subLocation"
-          type="text"
-          placeholder="Enter sub-location"
-          required
-        >
+        <select id="subLocation" required disabled>
+          <option value="">Select sub-location</option>
+        </select>
 
         <label for="targetOffice">Office Concerned</label>
         <select id="targetOffice" required>
@@ -326,18 +247,18 @@ here<!DOCTYPE html>
           <option value="Other Government Office">Other Government Office</option>
         </select>
 
-        <label for="description">Describe Your Question / Suggestion / Concern / Issue</label>
+        <label for="description">
+          Your Question / Suggestion / Concern / Issue
+        </label>
+
         <textarea
           id="description"
-          placeholder="Write your question, suggestion, concern, or issue here..."
-          required
-        ></textarea>
+          placeholder="Describe your question, suggestion, concern or issue..."
+          required></textarea>
 
-        <button class="primary" id="submitIssue" type="submit">
-          Submit
-        </button>
+        <button type="submit">Submit</button>
 
-        <div id="issueMessage" class="message"></div>
+        <div id="issueMessage"></div>
 
       </form>
     </div>
@@ -345,64 +266,61 @@ here<!DOCTYPE html>
   </section>
 
 
-  <!-- OFFICIAL / ADMIN LOGIN -->
+  <!-- ================= OFFICIAL LOGIN ================= -->
+
   <section id="loginPage" class="card hidden">
 
-    <h2>Authorized Access</h2>
-
-    <p>
-      This area is for authorized officials and administrators only.
-    </p>
+    <h2>Official Login</h2>
 
     <label for="loginEmail">Email</label>
     <input
-      id="loginEmail"
       type="email"
-      placeholder="Enter authorized email"
-    >
+      id="loginEmail"
+      placeholder="Email"
+      required>
 
     <label for="loginPassword">Password</label>
     <input
-      id="loginPassword"
       type="password"
-      placeholder="Enter password"
-    >
+      id="loginPassword"
+      placeholder="Password"
+      required>
 
-    <button class="primary" id="loginButton">
-      Login
-    </button>
+    <button id="loginButton">Login</button>
 
-    <button class="secondary" id="backCitizen">
+    <button
+      type="button"
+      class="secondary"
+      id="backCitizen">
       Back to Citizen Voice
     </button>
 
-    <div id="loginMessage" class="message"></div>
+    <div id="loginMessage"></div>
 
   </section>
 
 
-  <!-- OFFICIAL DASHBOARD -->
+  <!-- ================= OFFICIAL DASHBOARD ================= -->
+
   <section id="dashboardPage" class="hidden">
 
     <div class="card">
 
-      <h2>Official Dashboard</h2>
+      <h2>Citizen Voice</h2>
 
-      <p id="loggedUser"></p>
+      <p>
+        <strong>Official Dashboard</strong>
+      </p>
 
-      <div class="top-actions">
-        <button class="secondary" id="refreshIssues">
-          Refresh Issues
-        </button>
+      <p id="signedInInfo"></p>
 
-        <button class="secondary" id="showAnnouncementForm">
-          Post Announcement
-        </button>
+      <button id="refreshIssues">
+        Refresh Issues
+      </button>
 
-        <button class="danger" id="logoutButton">
-          Logout
-        </button>
-      </div>
+      <button id="logoutButton" class="danger">
+        Logout
+      </button>
 
     </div>
 
@@ -411,7 +329,7 @@ here<!DOCTYPE html>
 
       <h2>Issue Overview</h2>
 
-      <div class="dashboard-grid">
+      <div class="stats">
 
         <div class="stat">
           <strong id="totalIssues">0</strong>
@@ -448,52 +366,6 @@ here<!DOCTYPE html>
     </div>
 
 
-    <div id="announcementCard" class="card hidden">
-
-      <h2>Post Official Announcement</h2>
-
-      <label for="announcementOffice">
-        Office Type
-      </label>
-
-      <select id="announcementOffice">
-        <option value="MCA">MCA</option>
-        <option value="MP">MP</option>
-        <option value="Woman Representative">Woman Representative</option>
-        <option value="Senator">Senator</option>
-        <option value="Governor">Governor</option>
-        <option value="President">President</option>
-        <option value="Other Government Office">Other Government Office</option>
-      </select>
-
-      <label for="announcementName">
-        Official Name
-      </label>
-
-      <input
-        id="announcementName"
-        type="text"
-        placeholder="Official name"
-      >
-
-      <label for="announcementMessage">
-        Announcement
-      </label>
-
-      <textarea
-        id="announcementMessage"
-        placeholder="Write official announcement..."
-      ></textarea>
-
-      <button class="primary" id="publishAnnouncement">
-        Publish Announcement
-      </button>
-
-      <div id="announcementMessageBox" class="message"></div>
-
-    </div>
-
-
     <div class="card">
 
       <h2>Community Issues</h2>
@@ -504,13 +376,65 @@ here<!DOCTYPE html>
 
     </div>
 
+
+    <div class="card">
+
+      <h2>Post Announcement</h2>
+
+      <label for="officialType">
+        Official Type
+      </label>
+
+      <select id="officialType">
+        <option value="">Select type</option>
+        <option value="MCA">MCA</option>
+        <option value="MP">MP</option>
+        <option value="Woman Representative">
+          Woman Representative
+        </option>
+        <option value="Senator">Senator</option>
+        <option value="Governor">Governor</option>
+        <option value="President">President</option>
+        <option value="Other Government Office">
+          Other Government Office
+        </option>
+      </select>
+
+
+      <label for="officialName">
+        Official Name
+      </label>
+
+      <input
+        type="text"
+        id="officialName"
+        placeholder="Official name">
+
+
+      <label for="announcementMessage">
+        Announcement
+      </label>
+
+      <textarea
+        id="announcementMessage"
+        placeholder="Write announcement..."></textarea>
+
+
+      <button id="postAnnouncement">
+        Post Announcement
+      </button>
+
+      <div id="announcementMessageResult"></div>
+
+    </div>
+
   </section>
 
-</div>
+</main>
 
 
 <footer>
-  Citizen Voice • Connecting citizens with public leadership
+  Citizen Voice — Public Civic Feedback Platform
 </footer>
 
 
@@ -532,20 +456,16 @@ here<!DOCTYPE html>
     collection,
     addDoc,
     getDocs,
-    getDoc,
-    doc,
     query,
     where,
     orderBy,
-    limit,
     serverTimestamp
   } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
 
-  // ==============================
-  // FIREBASE CONFIGURATION
-  // VOICE CONNECT
-  // ==============================
+  // =========================
+  // FIREBASE CONFIG
+  // =========================
 
   const firebaseConfig = {
     apiKey: "AIzaSyBIJZJW392I97YZLx__9dNNk1DeAQNHgFI",
@@ -557,20 +477,14 @@ here<!DOCTYPE html>
   };
 
 
-  // ==============================
-  // INITIALIZE FIREBASE
-  // ==============================
-
   const app = initializeApp(firebaseConfig);
-
   const auth = getAuth(app);
-
   const db = getFirestore(app);
 
 
-  // ==============================
-  // ELEMENTS
-  // ==============================
+  // =========================
+  // PAGE ELEMENTS
+  // =========================
 
   const citizenPage =
     document.getElementById("citizenPage");
@@ -581,97 +495,468 @@ here<!DOCTYPE html>
   const dashboardPage =
     document.getElementById("dashboardPage");
 
-  const issueForm =
-    document.getElementById("issueForm");
+  const countySelect =
+    document.getElementById("county");
 
-  const issueMessage =
-    document.getElementById("issueMessage");
+  const constituencySelect =
+    document.getElementById("constituency");
 
-  const loginMessage =
-    document.getElementById("loginMessage");
+  const wardSelect =
+    document.getElementById("ward");
 
-  const announcementsList =
-    document.getElementById("announcementsList");
+  const locationSelect =
+    document.getElementById("location");
 
-  const issuesList =
-    document.getElementById("issuesList");
+  const subLocationSelect =
+    document.getElementById("subLocation");
 
 
-  // ==============================
-  // SMALL MESSAGE HELPER
-  // ==============================
+  let locationData = [];
+
+
+  // =========================
+  // BASIC HELPERS
+  // =========================
 
   function showMessage(element, text, type) {
 
     element.textContent = text;
-
-    element.className =
-      "message " + type;
+    element.className = type;
 
   }
 
 
-  // ==============================
-  // PUBLIC ANNOUNCEMENTS
-  // ==============================
+  function resetSelect(select, text) {
 
-  async function loadAnnouncements() {
+    select.innerHTML =
+      `<option value="">${text}</option>`;
 
-    announcementsList.textContent =
-      "Loading announcements...";
+    select.disabled = true;
+
+  }
+
+
+  function addOptions(select, values) {
+
+    values.forEach(value => {
+
+      const option =
+        document.createElement("option");
+
+      option.value = value;
+      option.textContent = value;
+
+      select.appendChild(option);
+
+    });
+
+  }
+
+
+  function uniqueValues(values) {
+
+    return [...new Set(
+      values.filter(value =>
+        value &&
+        String(value).trim() !== ""
+      )
+    )].sort();
+
+  }
+
+
+  // =========================
+  // LOAD LOCATIONS
+  // =========================
+
+  async function loadLocations() {
 
     try {
 
-      const announcementsRef =
-        collection(db, "announcements");
+      const snapshot =
+        await getDocs(collection(db, "locations"));
 
-      const q = query(
-        announcementsRef,
-        where("status", "==", "published"),
-        limit(20)
+      locationData = [];
+
+      snapshot.forEach(doc => {
+
+        const data = doc.data();
+
+        if (
+          data.county &&
+          data.constituency &&
+          data.ward &&
+          data.location &&
+          data.subLocation
+        ) {
+
+          locationData.push({
+
+            county: String(data.county).trim(),
+
+            constituency:
+              String(data.constituency).trim(),
+
+            ward:
+              String(data.ward).trim(),
+
+            location:
+              String(data.location).trim(),
+
+            subLocation:
+              String(data.subLocation).trim()
+
+          });
+
+        }
+
+      });
+
+
+      const counties =
+        uniqueValues(
+          locationData.map(item => item.county)
+        );
+
+
+      resetSelect(
+        countySelect,
+        "Select county"
       );
+
+      countySelect.disabled = false;
+
+      addOptions(
+        countySelect,
+        counties
+      );
+
+
+    } catch (error) {
+
+      console.error(error);
+
+      countySelect.innerHTML =
+        `<option value="">Unable to load counties</option>`;
+
+      countySelect.disabled = true;
+
+    }
+
+  }
+
+
+  // =========================
+  // COUNTY → CONSTITUENCY
+  // =========================
+
+  countySelect.addEventListener(
+    "change",
+    () => {
+
+      resetSelect(
+        constituencySelect,
+        "Select constituency"
+      );
+
+      resetSelect(
+        wardSelect,
+        "Select ward"
+      );
+
+      resetSelect(
+        locationSelect,
+        "Select location"
+      );
+
+      resetSelect(
+        subLocationSelect,
+        "Select sub-location"
+      );
+
+
+      const county =
+        countySelect.value;
+
+      if (!county) return;
+
+
+      const constituencies =
+        uniqueValues(
+
+          locationData
+            .filter(item =>
+              item.county === county
+            )
+            .map(item =>
+              item.constituency
+            )
+
+        );
+
+
+      constituencySelect.disabled = false;
+
+      addOptions(
+        constituencySelect,
+        constituencies
+      );
+
+    }
+  );
+
+
+  // =========================
+  // CONSTITUENCY → WARD
+  // =========================
+
+  constituencySelect.addEventListener(
+    "change",
+    () => {
+
+      resetSelect(
+        wardSelect,
+        "Select ward"
+      );
+
+      resetSelect(
+        locationSelect,
+        "Select location"
+      );
+
+      resetSelect(
+        subLocationSelect,
+        "Select sub-location"
+      );
+
+
+      const county =
+        countySelect.value;
+
+      const constituency =
+        constituencySelect.value;
+
+      if (!county || !constituency) return;
+
+
+      const wards =
+        uniqueValues(
+
+          locationData
+            .filter(item =>
+              item.county === county &&
+              item.constituency === constituency
+            )
+            .map(item =>
+              item.ward
+            )
+
+        );
+
+
+      wardSelect.disabled = false;
+
+      addOptions(
+        wardSelect,
+        wards
+      );
+
+    }
+  );
+
+
+  // =========================
+  // WARD → LOCATION
+  // =========================
+
+  wardSelect.addEventListener(
+    "change",
+    () => {
+
+      resetSelect(
+        locationSelect,
+        "Select location"
+      );
+
+      resetSelect(
+        subLocationSelect,
+        "Select sub-location"
+      );
+
+
+      const county =
+        countySelect.value;
+
+      const constituency =
+        constituencySelect.value;
+
+      const ward =
+        wardSelect.value;
+
+      if (!county || !constituency || !ward)
+        return;
+
+
+      const locations =
+        uniqueValues(
+
+          locationData
+            .filter(item =>
+              item.county === county &&
+              item.constituency === constituency &&
+              item.ward === ward
+            )
+            .map(item =>
+              item.location
+            )
+
+        );
+
+
+      locationSelect.disabled = false;
+
+      addOptions(
+        locationSelect,
+        locations
+      );
+
+    }
+  );
+
+
+  // =========================
+  // LOCATION → SUB-LOCATION
+  // =========================
+
+  locationSelect.addEventListener(
+    "change",
+    () => {
+
+      resetSelect(
+        subLocationSelect,
+        "Select sub-location"
+      );
+
+
+      const county =
+        countySelect.value;
+
+      const constituency =
+        constituencySelect.value;
+
+      const ward =
+        wardSelect.value;
+
+      const location =
+        locationSelect.value;
+
+      if (
+        !county ||
+        !constituency ||
+        !ward ||
+        !location
+      ) return;
+
+
+      const subLocations =
+        uniqueValues(
+
+          locationData
+            .filter(item =>
+              item.county === county &&
+              item.constituency === constituency &&
+              item.ward === ward &&
+              item.location === location
+            )
+            .map(item =>
+              item.subLocation
+            )
+
+        );
+
+
+      subLocationSelect.disabled = false;
+
+      addOptions(
+        subLocationSelect,
+        subLocations
+      );
+
+    }
+  );
+
+
+  // =========================
+  // LOAD ANNOUNCEMENTS
+  // =========================
+
+  async function loadAnnouncements() {
+
+    const container =
+      document.getElementById("announcements");
+
+    try {
+
+      const q =
+        query(
+          collection(db, "announcements"),
+          where("status", "==", "published")
+        );
 
       const snapshot =
         await getDocs(q);
 
-      announcementsList.innerHTML = "";
 
       if (snapshot.empty) {
 
-        announcementsList.textContent =
-          "No official announcements yet.";
+        container.innerHTML =
+          "<p>No announcements yet.</p>";
 
         return;
+
       }
 
-      snapshot.forEach((item) => {
 
-        const data = item.data();
+      container.innerHTML = "";
+
+
+      snapshot.forEach(doc => {
+
+        const data = doc.data();
 
         const box =
           document.createElement("div");
 
-        box.className =
-          "announcement";
+        box.className = "announcement";
 
         const name =
-          data.officialName || "Official Office";
+          data.officialName || "Official";
 
-        const office =
-          data.officeType || "Public Office";
+        const type =
+          data.officeType || "";
 
         const message =
           data.message || "";
 
-        box.innerHTML = `
-          <h3>Official Announcement From ${escapeHtml(name)}</h3>
-          <small>${escapeHtml(office)}</small>
-          <p style="margin-top:8px;">
-            ${escapeHtml(message)}
-          </p>
-        `;
 
-        announcementsList.appendChild(box);
+        const strong =
+          document.createElement("strong");
+
+        strong.textContent =
+          `${type} — ${name}`;
+
+
+        const paragraph =
+          document.createElement("p");
+
+        paragraph.textContent =
+          message;
+
+
+        box.appendChild(strong);
+        box.appendChild(paragraph);
+
+        container.appendChild(box);
 
       });
 
@@ -679,151 +964,131 @@ here<!DOCTYPE html>
 
       console.error(error);
 
-      announcementsList.textContent =
-        "Unable to load announcements right now.";
+      container.innerHTML =
+        "<p>Unable to load announcements.</p>";
 
     }
 
   }
 
 
-  // ==============================
-  // ESCAPE HTML
-  // ==============================
-
-  function escapeHtml(value) {
-
-    return String(value)
-      .replaceAll("&", "&amp;")
-      .replaceAll("<", "&lt;")
-      .replaceAll(">", "&gt;")
-      .replaceAll('"', "&quot;")
-      .replaceAll("'", "&#039;");
-
-  }
-
-
-  // ==============================
+  // =========================
   // SUBMIT CITIZEN ISSUE
-  // ==============================
+  // =========================
 
-  issueForm.addEventListener(
-    "submit",
-    async (event) => {
+  document
+    .getElementById("issueForm")
+    .addEventListener(
+      "submit",
+      async event => {
 
-      event.preventDefault();
-
-      const button =
-        document.getElementById("submitIssue");
-
-      button.disabled = true;
-
-      button.textContent =
-        "Submitting...";
-
-      showMessage(
-        issueMessage,
-        "Submitting your voice...",
-        "info"
-      );
-
-      try {
-
-        const category =
-          document.getElementById("category").value.trim();
-
-        const county =
-          document.getElementById("county").value.trim();
-
-        const constituency =
-          document.getElementById("constituency").value.trim();
-
-        const ward =
-          document.getElementById("ward").value.trim();
-
-        const location =
-          document.getElementById("location").value.trim();
-
-        const subLocation =
-          document.getElementById("subLocation").value.trim();
-
-        const targetOffice =
-          document.getElementById("targetOffice").value.trim();
-
-        const description =
-          document.getElementById("description").value.trim();
+        event.preventDefault();
 
 
-        if (
-          !category ||
-          !county ||
-          !constituency ||
-          !ward ||
-          !location ||
-          !subLocation ||
-          !targetOffice ||
-          !description
-        ) {
+        const messageBox =
+          document.getElementById(
+            "issueMessage"
+          );
 
-          throw new Error(
-            "Please complete all required fields."
+
+        try {
+
+          const data = {
+
+            category:
+              document.getElementById(
+                "category"
+              ).value,
+
+            county:
+              countySelect.value,
+
+            constituency:
+              constituencySelect.value,
+
+            ward:
+              wardSelect.value,
+
+            location:
+              locationSelect.value,
+
+            subLocation:
+              subLocationSelect.value,
+
+            description:
+              document.getElementById(
+                "description"
+              ).value.trim(),
+
+            targetOffice:
+              document.getElementById(
+                "targetOffice"
+              ).value,
+
+            status: "submitted",
+
+            createdAt:
+              serverTimestamp()
+
+          };
+
+
+          await addDoc(
+            collection(db, "issues"),
+            data
+          );
+
+
+          showMessage(
+            messageBox,
+            "Your question, suggestion, concern or issue has been submitted successfully.",
+            "success"
+          );
+
+
+          event.target.reset();
+
+
+          resetSelect(
+            constituencySelect,
+            "Select constituency"
+          );
+
+          resetSelect(
+            wardSelect,
+            "Select ward"
+          );
+
+          resetSelect(
+            locationSelect,
+            "Select location"
+          );
+
+          resetSelect(
+            subLocationSelect,
+            "Select sub-location"
+          );
+
+
+        } catch (error) {
+
+          console.error(error);
+
+          showMessage(
+            messageBox,
+            "Unable to submit. Please try again.",
+            "error"
           );
 
         }
 
-
-        await addDoc(
-          collection(db, "issues"),
-          {
-            category: category,
-            county: county,
-            constituency: constituency,
-            ward: ward,
-            location: location,
-            subLocation: subLocation,
-            description: description,
-            targetOffice: targetOffice,
-            status: "submitted",
-            createdAt: serverTimestamp()
-          }
-        );
-
-
-        showMessage(
-          issueMessage,
-          "Your question, suggestion, concern, or issue has been submitted successfully.",
-          "success"
-        );
-
-        issueForm.reset();
-
-
-      } catch (error) {
-
-        console.error(error);
-
-        showMessage(
-          issueMessage,
-          "Submission failed. Please try again.",
-          "error"
-        );
-
-      } finally {
-
-        button.disabled = false;
-
-        button.textContent =
-          "Submit";
-
       }
-
-    }
-  );
+    );
 
 
-  // ==============================
-  // AUTHORIZED LOGIN
-  // ==============================
+  // =========================
+  // LOGIN
+  // =========================
 
   document
     .getElementById("loginButton")
@@ -832,32 +1097,36 @@ here<!DOCTYPE html>
       async () => {
 
         const email =
-          document.getElementById("loginEmail")
-            .value.trim();
+          document.getElementById(
+            "loginEmail"
+          ).value.trim();
 
         const password =
-          document.getElementById("loginPassword")
-            .value;
+          document.getElementById(
+            "loginPassword"
+          ).value;
+
+
+        const messageBox =
+          document.getElementById(
+            "loginMessage"
+          );
+
 
         if (!email || !password) {
 
           showMessage(
-            loginMessage,
-            "Enter your email and password.",
+            messageBox,
+            "Enter email and password.",
             "error"
           );
 
           return;
+
         }
 
 
         try {
-
-          showMessage(
-            loginMessage,
-            "Signing in...",
-            "info"
-          );
 
           await signInWithEmailAndPassword(
             auth,
@@ -871,8 +1140,8 @@ here<!DOCTYPE html>
           console.error(error);
 
           showMessage(
-            loginMessage,
-            "Login failed. Check your authorized account details.",
+            messageBox,
+            "Login failed. Check your email and password.",
             "error"
           );
 
@@ -882,48 +1151,77 @@ here<!DOCTYPE html>
     );
 
 
-  // ==============================
+  // =========================
   // AUTH STATE
-  // ==============================
+  // =========================
 
   onAuthStateChanged(
     auth,
-    async (user) => {
+    async user => {
 
       if (!user) {
+
+        if (
+          window.location.hash ===
+          "#official"
+        ) {
+
+          citizenPage.classList.add(
+            "hidden"
+          );
+
+          loginPage.classList.remove(
+            "hidden"
+          );
+
+          dashboardPage.classList.add(
+            "hidden"
+          );
+
+        } else {
+
+          citizenPage.classList.remove(
+            "hidden"
+          );
+
+          loginPage.classList.add(
+            "hidden"
+          );
+
+          dashboardPage.classList.add(
+            "hidden"
+          );
+
+        }
 
         return;
 
       }
 
+
       try {
 
-        const userRef =
-          doc(db, "users", user.uid);
-
-        const userSnap =
-          await getDoc(userRef);
-
-
-        if (!userSnap.exists()) {
-
-          await signOut(auth);
-
-          showMessage(
-            loginMessage,
-            "This account is not authorized.",
-            "error"
+        const userDocs =
+          await getDocs(
+            query(
+              collection(db, "users")
+            )
           );
 
-          return;
-        }
+
+        let role = null;
 
 
-        const userData =
-          userSnap.data();
+        userDocs.forEach(doc => {
 
-        const role =
-          userData.role;
+          if (doc.id === user.uid) {
+
+            role =
+              doc.data().role;
+
+          }
+
+        });
 
 
         if (
@@ -934,10 +1232,8 @@ here<!DOCTYPE html>
 
           await signOut(auth);
 
-          showMessage(
-            loginMessage,
-            "This account does not have authorized access.",
-            "error"
+          alert(
+            "This account is not authorized for the official dashboard."
           );
 
           return;
@@ -945,23 +1241,26 @@ here<!DOCTYPE html>
         }
 
 
-        citizenPage.classList.add("hidden");
+        citizenPage.classList.add(
+          "hidden"
+        );
 
-        loginPage.classList.add("hidden");
+        loginPage.classList.add(
+          "hidden"
+        );
 
-        dashboardPage.classList.remove("hidden");
+        dashboardPage.classList.remove(
+          "hidden"
+        );
 
 
         document.getElementById(
-          "loggedUser"
+          "signedInInfo"
         ).textContent =
-          "Signed in as: " +
-          (userData.name || user.email) +
-          " • Role: " +
-          role;
+          `Signed in as: ${user.email} • Role: ${role}`;
 
 
-        loadDashboardIssues();
+        loadIssues();
 
 
       } catch (error) {
@@ -976,14 +1275,17 @@ here<!DOCTYPE html>
   );
 
 
-  // ==============================
-  // LOAD DASHBOARD ISSUES
-  // ==============================
+  // =========================
+  // LOAD ISSUES
+  // =========================
 
-  async function loadDashboardIssues() {
+  async function loadIssues() {
 
-    issuesList.textContent =
-      "Loading community issues...";
+    const list =
+      document.getElementById(
+        "issuesList"
+      );
+
 
     try {
 
@@ -994,7 +1296,6 @@ here<!DOCTYPE html>
 
 
       let total = 0;
-
       let roads = 0;
       let water = 0;
       let health = 0;
@@ -1002,72 +1303,114 @@ here<!DOCTYPE html>
       let security = 0;
 
 
-      issuesList.innerHTML = "";
+      list.innerHTML = "";
 
 
-      snapshot.forEach((item) => {
+      snapshot.forEach(doc => {
 
         const data =
-          item.data();
+          doc.data();
 
         total++;
 
 
-        if (data.category === "Roads")
+        const category =
+          String(
+            data.category || ""
+          ).toLowerCase();
+
+
+        if (category === "roads" ||
+            category === "road") {
           roads++;
+        }
 
-        if (data.category === "Water")
+        if (category === "water") {
           water++;
+        }
 
-        if (data.category === "Healthcare")
+        if (
+          category === "healthcare" ||
+          category === "health"
+        ) {
           health++;
+        }
 
-        if (data.category === "Education")
+        if (category === "education") {
           education++;
+        }
 
-        if (data.category === "Security")
+        if (category === "security") {
           security++;
+        }
 
 
         const issue =
-          document.createElement("div");
+          document.createElement(
+            "div"
+          );
 
         issue.className =
           "issue";
 
 
-        issue.innerHTML = `
-          <strong>${escapeHtml(data.category || "Other")}</strong>
+        const title =
+          document.createElement(
+            "strong"
+          );
 
-          <div>
-            <span>${escapeHtml(data.county || "")}</span>
-            <span>${escapeHtml(data.constituency || "")}</span>
-            <span>${escapeHtml(data.ward || "")}</span>
-            <span>${escapeHtml(data.location || "")}</span>
-          </div>
-
-          <p style="margin-top:10px;">
-            ${escapeHtml(data.description || "")}
-          </p>
-
-          <small>
-            Office: ${escapeHtml(data.targetOffice || "")}
-            • Status: ${escapeHtml(data.status || "")}
-          </small>
-        `;
+        title.textContent =
+          data.category ||
+          "Issue";
 
 
-        issuesList.appendChild(issue);
+        const details =
+          document.createElement(
+            "p"
+          );
+
+        details.textContent =
+          `${data.county || ""} ${
+            data.constituency || ""
+          } ${
+            data.ward || ""
+          } ${
+            data.location || ""
+          } ${
+            data.subLocation || ""
+          }`;
+
+
+        const description =
+          document.createElement(
+            "p"
+          );
+
+        description.textContent =
+          data.description || "";
+
+
+        const office =
+          document.createElement(
+            "small"
+          );
+
+        office.textContent =
+          `Office: ${
+            data.targetOffice || ""
+          } • Status: ${
+            data.status || ""
+          }`;
+
+
+        issue.appendChild(title);
+        issue.appendChild(details);
+        issue.appendChild(description);
+        issue.appendChild(office);
+
+        list.appendChild(issue);
 
       });
-
-
-      if (total === 0) {
-
-        issuesList.textContent =
-          "No community issues found.";
-
-      }
 
 
       document.getElementById(
@@ -1095,66 +1438,56 @@ here<!DOCTYPE html>
       ).textContent = security;
 
 
+      if (total === 0) {
+
+        list.innerHTML =
+          "<p>No issues yet.</p>";
+
+      }
+
+
     } catch (error) {
 
       console.error(error);
 
-      issuesList.textContent =
-        "Issues could not be loaded. The Firebase security rules will be connected to the official dashboard in the next step.";
+      list.innerHTML =
+        "<p>Unable to load issues.</p>";
 
     }
 
   }
 
 
-  // ==============================
+  // =========================
   // REFRESH ISSUES
-  // ==============================
+  // =========================
 
   document
     .getElementById("refreshIssues")
     .addEventListener(
       "click",
-      loadDashboardIssues
+      loadIssues
     );
 
 
-  // ==============================
-  // SHOW ANNOUNCEMENT FORM
-  // ==============================
+  // =========================
+  // POST ANNOUNCEMENT
+  // =========================
 
   document
-    .getElementById("showAnnouncementForm")
-    .addEventListener(
-      "click",
-      () => {
-
-        document
-          .getElementById("announcementCard")
-          .classList.toggle("hidden");
-
-      }
-    );
-
-
-  // ==============================
-  // PUBLISH ANNOUNCEMENT
-  // ==============================
-
-  document
-    .getElementById("publishAnnouncement")
+    .getElementById("postAnnouncement")
     .addEventListener(
       "click",
       async () => {
 
-        const office =
+        const type =
           document.getElementById(
-            "announcementOffice"
+            "officialType"
           ).value;
 
         const name =
           document.getElementById(
-            "announcementName"
+            "officialName"
           ).value.trim();
 
         const message =
@@ -1162,17 +1495,17 @@ here<!DOCTYPE html>
             "announcementMessage"
           ).value.trim();
 
-        const box =
+        const result =
           document.getElementById(
-            "announcementMessageBox"
+            "announcementMessageResult"
           );
 
 
-        if (!name || !message) {
+        if (!type || !name || !message) {
 
           showMessage(
-            box,
-            "Enter the official name and announcement.",
+            result,
+            "Fill all announcement fields.",
             "error"
           );
 
@@ -1186,24 +1519,35 @@ here<!DOCTYPE html>
           await addDoc(
             collection(db, "announcements"),
             {
+
+              officeType: type,
+
               officialName: name,
-              officeType: office,
+
               message: message,
+
               status: "published",
-              publishedAt: serverTimestamp()
+
+              createdAt:
+                serverTimestamp()
+
             }
           );
 
 
           showMessage(
-            box,
-            "Announcement published successfully.",
+            result,
+            "Announcement posted successfully.",
             "success"
           );
 
 
           document.getElementById(
-            "announcementName"
+            "officialType"
+          ).value = "";
+
+          document.getElementById(
+            "officialName"
           ).value = "";
 
           document.getElementById(
@@ -1211,16 +1555,13 @@ here<!DOCTYPE html>
           ).value = "";
 
 
-          loadAnnouncements();
-
-
         } catch (error) {
 
           console.error(error);
 
           showMessage(
-            box,
-            "Announcement could not be published.",
+            result,
+            "Unable to post announcement.",
             "error"
           );
 
@@ -1230,9 +1571,9 @@ here<!DOCTYPE html>
     );
 
 
-  // ==============================
+  // =========================
   // LOGOUT
-  // ==============================
+  // =========================
 
   document
     .getElementById("logoutButton")
@@ -1242,17 +1583,17 @@ here<!DOCTYPE html>
 
         await signOut(auth);
 
-        dashboardPage.classList.add("hidden");
+        window.location.hash = "";
 
-        citizenPage.classList.remove("hidden");
+        window.location.reload();
 
       }
     );
 
 
-  // ==============================
+  // =========================
   // BACK TO CITIZEN PAGE
-  // ==============================
+  // =========================
 
   document
     .getElementById("backCitizen")
@@ -1260,40 +1601,22 @@ here<!DOCTYPE html>
       "click",
       () => {
 
-        loginPage.classList.add("hidden");
+        window.location.hash = "";
 
-        citizenPage.classList.remove("hidden");
+        window.location.reload();
 
       }
     );
 
 
-  // ==============================
-  // INITIAL LOAD
-  // ==============================
+  // =========================
+  // START
+  // =========================
 
+  loadLocations();
   loadAnnouncements();
-
-
-  // ==============================
-  // OPTIONAL AUTHORIZED LOGIN LINK
-  // ==============================
-  // The citizen page does not display
-  // an official dashboard button.
-  // Authorized access can be opened by
-  // using #official in the address.
-
-  if (
-    window.location.hash === "#official"
-  ) {
-
-    citizenPage.classList.add("hidden");
-
-    loginPage.classList.remove("hidden");
-
-  }
 
 </script>
 
 </body>
-  </html>
+      </html>
