@@ -3,6 +3,7 @@ here<!DOCTYPE html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Citizen Voice</title>
 
   <style>
@@ -26,41 +27,129 @@ here<!DOCTYPE html>
       text-align: center;
     }
 
-    p {
-      line-height: 1.6;
-    }
-
     .status {
       margin-top: 20px;
       padding: 15px;
       background: #eeeeee;
       border-radius: 8px;
+      white-space: pre-wrap;
+    }
+
+    .success {
+      background: #e8f5e9;
+      color: #1b5e20;
+    }
+
+    .error {
+      background: #ffebee;
+      color: #b71c1c;
     }
   </style>
 </head>
 
 <body>
 
-  <div class="box">
+<div class="box">
 
-    <h1>Citizen Voice</h1>
+  <h1>Citizen Voice</h1>
 
-    <p>
-      Welcome to Citizen Voice.
-    </p>
+  <p>
+    Welcome to Citizen Voice.
+  </p>
 
-    <p>
-      A simple platform for citizens to share
-      questions and concerns with their office.
-    </p>
-
-    <div class="status">
-      <strong>System Status:</strong>
-      <br><br>
-      Citizen Voice is starting successfully.
-    </div>
-
+  <div id="status" class="status">
+    Starting Firebase...
   </div>
+
+</div>
+
+
+<script type="module">
+
+  import { initializeApp }
+    from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+
+  // =====================================
+  // FIREBASE CONFIGURATION
+  // =====================================
+
+  const firebaseConfig = {
+
+    apiKey:
+      "AIzaSyBBNkfxFr3lovnanrZOzOldIs4lAglyjis",
+
+    authDomain:
+      "citizen-voice-f4b90.firebaseapp.com",
+
+    projectId:
+      "citizen-voice-f4b90",
+
+    storageBucket:
+      "citizen-voice-f4b90.firebasestorage.app",
+
+    messagingSenderId:
+      "784289518285",
+
+    appId:
+      "1:784289518285:web:5d089c6bdf23a43b5fcf84",
+
+    measurementId:
+      "G-C4L9Y55JGG"
+
+  };
+
+
+  // =====================================
+  // START FIREBASE
+  // =====================================
+
+  const status =
+    document.getElementById("status");
+
+
+  try {
+
+    const app =
+      initializeApp(firebaseConfig);
+
+
+    status.className =
+      "status success";
+
+
+    status.textContent =
+      "FIREBASE CONNECTED SUCCESSFULLY! ✅\n\n" +
+
+      "Project ID:\n" +
+      firebaseConfig.projectId +
+      "\n\n" +
+
+      "Firebase is ready.\n\n" +
+
+      "No login has been added yet.";
+
+  }
+
+  catch (error) {
+
+    status.className =
+      "status error";
+
+
+    status.textContent =
+      "FIREBASE ERROR\n\n" +
+
+      "Code:\n" +
+      error.code +
+      "\n\n" +
+
+      "Message:\n" +
+      error.message;
+
+  }
+
+</script>
 
 </body>
 </html>
