@@ -3,7 +3,7 @@ here<!DOCTYPE html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Citizen Voice - Login Test</title>
+  <title>Citizen Voice - Official Authorization</title>
 
   <style>
     body {
@@ -80,7 +80,7 @@ here<!DOCTYPE html>
 
   <h1>Citizen Voice</h1>
 
-  <p>Official Login Test</p>
+  <p>Official Authorization Test</p>
 
   <input
     type="email"
@@ -103,7 +103,7 @@ here<!DOCTYPE html>
   </button>
 
   <div id="status" class="status info">
-    Firebase is ready.
+    Ready to login.
   </div>
 
 </div>
@@ -116,10 +116,16 @@ here<!DOCTYPE html>
   import {
     getAuth,
     signInWithEmailAndPassword,
-    onAuthStateChanged,
     signOut
   }
     from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+  import {
+    getFirestore,
+    doc,
+    getDoc
+  }
+    from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
 
   const firebaseConfig = {
@@ -145,16 +151,23 @@ here<!DOCTYPE html>
 
   const auth = getAuth(app);
 
+  const db = getFirestore(app);
 
-  const emailInput = document.getElementById("email");
 
-  const passwordInput = document.getElementById("password");
+  const emailInput =
+    document.getElementById("email");
 
-  const loginButton = document.getElementById("loginButton");
+  const passwordInput =
+    document.getElementById("password");
 
-  const logoutButton = document.getElementById("logoutButton");
+  const loginButton =
+    document.getElementById("loginButton");
 
-  const status = document.getElementById("status");
+  const logoutButton =
+    document.getElementById("logoutButton");
+
+  const status =
+    document.getElementById("status");
 
 
   loginButton.addEventListener("click", async () => {
@@ -177,14 +190,17 @@ here<!DOCTYPE html>
 
     loginButton.disabled = true;
 
-    loginButton.textContent = "SIGNING IN...";
+    loginButton.textContent = "CHECKING...";
 
     status.className = "status info";
 
-    status.textContent = "Signing in...";
+    status.textContent =
+      "Signing in and checking authorization...";
 
 
     try {
+
+      /* STEP 1: LOGIN */
 
       const userCredential =
         await signInWithEmailAndPassword(
@@ -197,17 +213,79 @@ here<!DOCTYPE html>
       const user = userCredential.user;
 
 
-      status.className = "status success";
+      /* STEP 2: FIND USER DOCUMENT */
 
-      status.textContent =
-        "LOGIN SUCCESSFUL! ✅\n\n" +
-        "Email:\n" +
-        user.email +
-        "\n\n" +
-        "User ID:\n" +
-        user.uid +
-        "\n\n" +
-        "Firebase Authentication is working correctly.";
+      const userRef =
+        doc(db, "Users", user.uid);
+
+      const userSnapshot =
+        await getDoc(userRef);
+
+
+      /* STEP 3: CHECK DOCUMENT */
+
+      if (!userSnapshot.exists()) {
+
+        status.className = "status error";
+
+        status.textContent =
+          "LOGIN SUCCESSFUL, BUT ACCESS DENIED.\n\n" +
+          "Your Firebase Authentication account exists,\n" +
+          "but your authorization record was not found\n" +
+          "inside Users.";
+
+        return;
+      }
+
+
+      /* STEP 4: READ USER DATA */
+
+      const userData =
+        userSnapshot.data();
+
+
+      const role =
+        userData.Role;
+
+      const active =
+        userData.Active;
+
+
+      /* STEP 5: CHECK ACTIVE + ROLE */
+
+      if (role === "Official" && active === true) {
+
+        status.className = "status success";
+
+        status.textContent =
+          "AUTHORIZED OFFICIAL! ✅\n\n" +
+          "Email:\n" +
+          user.email +
+          "\n\n" +
+          "User ID:\n" +
+          user.uid +
+          "\n\n" +
+          "Role:\n" +
+          role +
+          "\n\n" +
+          "Active:\n" +
+          active +
+          "\n\n" +
+          "Firestore authorization is working correctly.";
+
+        logoutButton.style.display = "block";
+
+      }
+
+      else {
+
+        status.className = "status error";
+
+        status.textContent =
+          "ACCESS DENIED.\n\n" +
+          "Your account is not authorized as an active Official.";
+
+      }
 
     }
 
@@ -216,7 +294,7 @@ here<!DOCTYPE html>
       status.className = "status error";
 
       status.textContent =
-        "LOGIN FAILED\n\n" +
+        "AUTHORIZATION ERROR\n\n" +
         "Code:\n" +
         error.code +
         "\n\n" +
@@ -240,27 +318,16 @@ here<!DOCTYPE html>
 
     await signOut(auth);
 
+    logoutButton.style.display = "none";
+
     status.className = "status info";
 
     status.textContent =
       "Logged out successfully.";
-
-    logoutButton.style.display = "none";
-
-  });
-
-
-  onAuthStateChanged(auth, (user) => {
-
-    if (user) {
-
-      logoutButton.style.display = "block";
-
-    }
 
   });
 
 </script>
 
 </body>
-</html>
+  </html>
