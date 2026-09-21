@@ -3,520 +3,172 @@ here<!DOCTYPE html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Citizen Voice - Firebase Diagnosis</title>
-
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4f4f4;
-      margin: 0;
-      padding: 20px;
-    }
-
-    .box {
-      max-width: 550px;
-      margin: 30px auto;
-      background: white;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-
-    h1 {
-      text-align: center;
-    }
-
-    input {
-      width: 100%;
-      box-sizing: border-box;
-      padding: 12px;
-      margin: 8px 0;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-    }
-
-    button {
-      width: 100%;
-      padding: 13px;
-      margin-top: 10px;
-      border: none;
-      border-radius: 8px;
-      background: #1976d2;
-      color: white;
-      font-size: 16px;
-    }
-
-    button:disabled {
-      background: #999;
-    }
-
-    .status {
-      margin-top: 20px;
-      padding: 15px;
-      border-radius: 8px;
-      white-space: pre-wrap;
-      word-break: break-word;
-      line-height: 1.5;
-    }
-
-    .info {
-      background: #eeeeee;
-      color: #333;
-    }
-
-    .success {
-      background: #e8f5e9;
-      color: #1b5e20;
-    }
-
-    .error {
-      background: #ffebee;
-      color: #b71c1c;
-    }
-  </style>
+  <title>Citizen Voice - Firestore Scan</title>
 </head>
 
-<body>
-
-<div class="box">
-
+<body style="font-family:Arial;padding:20px;">
   <h1>Citizen Voice</h1>
+  <h2>Firestore Scan Test</h2>
 
-  <p><strong>Firebase Diagnosis Test</strong></p>
+  <input id="email" type="email"
+    value="bengopsalmist@gmail.com"
+    style="width:100%;padding:12px;margin-bottom:10px;">
 
-  <input
-    type="email"
-    id="email"
-    placeholder="Email address"
-  >
+  <input id="password" type="password"
+    placeholder="Enter your password"
+    style="width:100%;padding:12px;margin-bottom:10px;">
 
-  <input
-    type="password"
-    id="password"
-    placeholder="Password"
-  >
-
-  <button id="loginButton">
-    RUN DIAGNOSIS
+  <button onclick="runScan()"
+    style="padding:12px 20px;font-size:16px;">
+    RUN FIRESTORE SCAN
   </button>
 
-  <div id="status" class="status info">
-    Ready for diagnosis.
+  <div id="result"
+    style="margin-top:20px;white-space:pre-wrap;font-size:16px;">
   </div>
-
-</div>
 
 <script type="module">
 
-  import {
-    initializeApp
-  } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 
-  import {
-    getAuth,
-    signInWithEmailAndPassword
-  } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+import {
+  getAuth,
+  signInWithEmailAndPassword
+}
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
-  import {
-    getFirestore,
-    doc,
-    getDoc
-  } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
-
-
-  // =========================
-  // FIREBASE CONFIG
-  // =========================
-
-  const firebaseConfig = {
-
-    apiKey: "AIzaSyBBNkfxFr3lovnanrZOzOldIs4lAglyjis",
-
-    authDomain:
-      "citizen-voice-f4b90.firebaseapp.com",
-
-    projectId:
-      "citizen-voice-f4b90",
-
-    storageBucket:
-      "citizen-voice-f4b90.firebasestorage.app",
-
-    messagingSenderId:
-      "784289518285",
-
-    appId:
-      "1:784289518285:web:5d089c6bdf23a43b5fcf84",
-
-    measurementId:
-      "G-C4L9Y55JGG"
-  };
+import {
+  getFirestore,
+  collection,
+  getDocs
+}
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
 
-  // =========================
-  // START FIREBASE
-  // =========================
+const firebaseConfig = {
+  apiKey: "AIzaSyBBNkfxFr3lovnanrZOzOldIs4lAglyjis",
+  authDomain: "citizen-voice-f4b90.firebaseapp.com",
+  projectId: "citizen-voice-f4b90",
+  storageBucket: "citizen-voice-f4b90.firebasestorage.app",
+  messagingSenderId: "784289518285",
+  appId: "1:784289518285:web:5d089c6bdf23a43b5fcf84",
+  measurementId: "G-C4L9Y55JGG"
+};
 
-  const app = initializeApp(firebaseConfig);
-
-  const auth = getAuth(app);
-
-  const db = getFirestore(app);
-
-
-  // =========================
-  // PAGE ELEMENTS
-  // =========================
-
-  const emailInput =
-    document.getElementById("email");
-
-  const passwordInput =
-    document.getElementById("password");
-
-  const loginButton =
-    document.getElementById("loginButton");
-
-  const status =
-    document.getElementById("status");
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
 
 
-  // =========================
-  // DIAGNOSIS
-  // =========================
+async function runScan() {
 
-  loginButton.addEventListener("click", async () => {
+  const result = document.getElementById("result");
 
-    const email =
-      emailInput.value.trim();
+  result.innerText = "Running scan...\n\n";
 
-    const password =
-      passwordInput.value;
+  try {
+
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    // LOGIN
+    const login = await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+
+    const user = login.user;
+
+    result.innerText +=
+      "1. AUTHENTICATION\n" +
+      "Login: SUCCESS ✅\n" +
+      "Email: " + user.email + "\n" +
+      "UID: " + user.uid + "\n\n";
 
 
-    if (!email || !password) {
+    // FIRESTORE COLLECTION SCAN
+    result.innerText +=
+      "2. SCANNING COLLECTION\n" +
+      "Collection: Users\n\n";
 
-      status.className =
-        "status error";
+    const snapshot = await getDocs(
+      collection(db, "Users")
+    );
 
-      status.textContent =
-        "Please enter your email and password.";
+
+    result.innerText +=
+      "Firestore scan: SUCCESS ✅\n" +
+      "Documents found: " + snapshot.size + "\n\n";
+
+
+    if (snapshot.empty) {
+
+      result.innerText +=
+        "❌ USERS COLLECTION APPEARS EMPTY TO THE APP.\n";
 
       return;
     }
 
 
-    loginButton.disabled = true;
-
-    loginButton.textContent =
-      "CHECKING...";
+    result.innerText +=
+      "3. DOCUMENTS FOUND\n\n";
 
 
-    status.className =
-      "status info";
+    let foundUID = false;
 
-    status.textContent =
-      "Running Firebase diagnosis...\n\nPlease wait.";
+    snapshot.forEach((doc) => {
 
+      const data = doc.data();
 
-    try {
+      result.innerText +=
+        "Document ID:\n" +
+        doc.id + "\n";
 
-      // =========================
-      // STEP 1 - LOGIN
-      // =========================
-
-      const userCredential =
-        await signInWithEmailAndPassword(
-          auth,
-          email,
-          password
-        );
-
-
-      const user =
-        userCredential.user;
-
-
-      let report = "";
-
-
-      report +=
-        "1. FIREBASE PROJECT\n";
-
-      report +=
-        "Project ID: " +
-        app.options.projectId +
+      result.innerText +=
+        "Fields:\n" +
+        JSON.stringify(data, null, 2) +
         "\n\n";
 
-
-      report +=
-        "2. AUTHENTICATION\n";
-
-      report +=
-        "Login: SUCCESS ✅\n";
-
-      report +=
-        "Email: " +
-        user.email +
-        "\n";
-
-      report +=
-        "UID: " +
-        user.uid +
-        "\n\n";
-
-
-      // =========================
-      // STEP 2 - USERS DOCUMENT
-      // =========================
-
-      const userRef =
-        doc(
-          db,
-          "Users",
-          user.uid
-        );
-
-
-      report +=
-        "3. FIRESTORE PATH\n";
-
-      report +=
-        "Collection: Users\n";
-
-      report +=
-        "Document ID: " +
-        user.uid +
-        "\n\n";
-
-
-      let userSnapshot;
-
-
-      try {
-
-        userSnapshot =
-          await getDoc(userRef);
-
-      } catch (firestoreError) {
-
-        report +=
-          "FIRESTORE READ: FAILED ❌\n\n";
-
-        report +=
-          "Error code:\n" +
-          firestoreError.code +
-          "\n\n";
-
-        report +=
-          "Error message:\n" +
-          firestoreError.message +
-          "\n\n";
-
-        report +=
-          "THIS IS MOST LIKELY A FIRESTORE RULES/PERMISSION PROBLEM.";
-
-        status.className =
-          "status error";
-
-        status.textContent =
-          report;
-
-        return;
+      if (doc.id === user.uid) {
+        foundUID = true;
       }
 
-
-      // =========================
-      // STEP 3 - DOCUMENT EXISTS
-      // =========================
-
-      if (!userSnapshot.exists()) {
-
-        report +=
-          "Firestore read: SUCCESS ✅\n";
-
-        report +=
-          "Document exists: NO ❌\n\n";
-
-        report +=
-          "The app can reach Firestore,\n";
-
-        report +=
-          "but Users/" +
-          user.uid +
-          " was not found.\n\n";
-
-        report +=
-          "CHECK THE COLLECTION NAME AND DOCUMENT ID.";
-
-        status.className =
-          "status error";
-
-        status.textContent =
-          report;
-
-        return;
-      }
+    });
 
 
-      report +=
-        "Firestore read: SUCCESS ✅\n";
+    result.innerText +=
+      "4. UID MATCH TEST\n\n";
 
-      report +=
-        "Document exists: YES ✅\n\n";
+    if (foundUID) {
 
+      result.innerText +=
+        "✅ MATCH FOUND!\n\n" +
+        "The Users collection contains your Firebase UID:\n" +
+        user.uid + "\n\n" +
+        "This means the document exists and the next step will be checking its fields.";
 
-      // =========================
-      // STEP 4 - READ RAW DATA
-      // =========================
+    } else {
 
-      const data =
-        userSnapshot.data();
-
-
-      report +=
-        "4. FIRESTORE DATA\n\n";
-
-
-      const fieldNames =
-        Object.keys(data);
-
-
-      if (fieldNames.length === 0) {
-
-        report +=
-          "Document has NO fields ❌\n\n";
-
-      } else {
-
-        fieldNames.forEach(
-          (fieldName) => {
-
-            const value =
-              data[fieldName];
-
-            report +=
-              fieldName +
-              " = " +
-              JSON.stringify(value) +
-              "\n";
-
-            report +=
-              "Type: " +
-              typeof value +
-              "\n\n";
-          }
-        );
-      }
-
-
-      // =========================
-      // STEP 5 - CHECK BOTH VERSIONS
-      // =========================
-
-      const roleUpper =
-        data.Role;
-
-      const roleLower =
-        data.role;
-
-      const activeUpper =
-        data.Active;
-
-      const activeLower =
-        data.active;
-
-
-      report +=
-        "5. AUTHORIZATION CHECK\n\n";
-
-
-      report +=
-        "Role: " +
-        JSON.stringify(roleUpper) +
-        "\n";
-
-      report +=
-        "Active: " +
-        JSON.stringify(activeUpper) +
-        "\n\n";
-
-
-      report +=
-        "Lowercase role found: " +
-        JSON.stringify(roleLower) +
-        "\n";
-
-      report +=
-        "Lowercase active found: " +
-        JSON.stringify(activeLower) +
-        "\n\n";
-
-
-      // =========================
-      // FINAL DIAGNOSIS
-      // =========================
-
-      if (
-        roleUpper === "Official" &&
-        activeUpper === true
-      ) {
-
-        report +=
-          "FINAL RESULT:\n";
-
-        report +=
-          "AUTHORIZED OFFICIAL ✅\n\n";
-
-        report +=
-          "Firestore authorization is working correctly.";
-
-        status.className =
-          "status success";
-
-      } else {
-
-        report +=
-          "FINAL RESULT:\n";
-
-        report +=
-          "AUTHORIZATION DATA DOES NOT MATCH ❌\n\n";
-
-        report +=
-          "The diagnosis above shows the exact field names and values.";
-
-        status.className =
-          "status error";
-      }
-
-
-      status.textContent =
-        report;
-
-
-    } catch (error) {
-
-      status.className =
-        "status error";
-
-      status.textContent =
-        "DIAGNOSIS ERROR ❌\n\n" +
-        "Code:\n" +
-        error.code +
-        "\n\n" +
-        "Message:\n" +
-        error.message;
-
-    } finally {
-
-      loginButton.disabled = false;
-
-      loginButton.textContent =
-        "RUN DIAGNOSIS";
+      result.innerText +=
+        "❌ NO MATCH FOUND.\n\n" +
+        "The app can read Users, but none of the document IDs matches your UID:\n" +
+        user.uid;
     }
 
-  });
+
+  } catch (error) {
+
+    result.innerText +=
+      "\n❌ ERROR\n\n" +
+      "Code: " + error.code + "\n" +
+      "Message: " + error.message;
+  }
+
+}
 
 </script>
 
 </body>
-  </html>
+</html>
