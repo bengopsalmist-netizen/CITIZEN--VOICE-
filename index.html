@@ -8,280 +8,97 @@ here<!DOCTYPE html>
   <style>
     body {
       font-family: Arial, sans-serif;
+      background: #f4f4f4;
       margin: 0;
-      background: #f4f6f8;
+      padding: 20px;
+    }
+
+    .box {
+      max-width: 500px;
+      margin: 30px auto;
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      text-align: center;
       color: #222;
     }
 
-    header {
-      background: #17365d;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
-
-    .container {
-      max-width: 900px;
-      margin: 20px auto;
-      padding: 15px;
-    }
-
-    .card {
-      background: white;
-      padding: 20px;
-      margin-bottom: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    }
-
-    h2 {
-      color: #17365d;
-    }
-
-    input, select, textarea, button {
+    input {
       width: 100%;
       padding: 12px;
       margin: 8px 0;
       box-sizing: border-box;
-      border-radius: 6px;
       border: 1px solid #ccc;
-      font-size: 15px;
-    }
-
-    textarea {
-      min-height: 120px;
+      border-radius: 7px;
     }
 
     button {
-      background: #17365d;
-      color: white;
+      width: 100%;
+      padding: 13px;
+      margin-top: 10px;
       border: none;
-      cursor: pointer;
+      border-radius: 7px;
+      background: #222;
+      color: white;
+      font-size: 16px;
     }
 
-    button:hover {
-      opacity: 0.9;
-    }
-
-    .logout {
-      background: #b00020;
+    #debug {
+      margin-top: 20px;
+      padding: 15px;
+      background: #eee;
+      border-radius: 7px;
+      white-space: pre-wrap;
+      word-break: break-word;
+      font-size: 14px;
     }
 
     .hidden {
       display: none;
-    }
-
-    .feedback-item,
-    .announcement-item {
-      border: 1px solid #ddd;
-      padding: 12px;
-      margin: 10px 0;
-      border-radius: 8px;
-    }
-
-    .status {
-      font-weight: bold;
-    }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-    }
-
-    .stat {
-      background: #eef3f8;
-      padding: 15px;
-      text-align: center;
-      border-radius: 8px;
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      color: #666;
-    }
-
-    .debug {
-      background: #fff3cd;
-      border: 1px solid #ffeeba;
-      padding: 10px;
-      border-radius: 6px;
-      font-size: 13px;
-      word-break: break-word;
-      margin-top: 10px;
     }
   </style>
 </head>
 
 <body>
 
-<header>
+<div class="box">
+
   <h1>Citizen Voice</h1>
-  <p>Your voice matters. Help improve public services.</p>
-</header>
 
-<div class="container">
+  <div id="loginSection">
+    <h3>Official Login</h3>
 
-  <!-- PUBLIC ANNOUNCEMENTS -->
-  <div class="card">
-    <h2>Office Announcements</h2>
-    <div id="announcementList">
-      Loading announcements...
-    </div>
+    <input
+      type="email"
+      id="email"
+      placeholder="Email"
+    >
+
+    <input
+      type="password"
+      id="password"
+      placeholder="Password"
+    >
+
+    <button id="loginBtn">
+      Login
+    </button>
   </div>
 
-  <!-- LOGIN -->
-  <div class="card" id="loginCard">
-    <h2>Official Login</h2>
-
-    <form id="loginForm">
-      <input type="email" id="email" placeholder="Email address" required>
-      <input type="password" id="password" placeholder="Password" required>
-
-      <button type="submit">Login</button>
-    </form>
-
-    <p id="loginMessage"></p>
-
-    <div id="debugMessage" class="debug hidden"></div>
+  <div id="dashboard" class="hidden">
+    <h2>Official Dashboard</h2>
+    <p id="welcome"></p>
   </div>
 
-  <!-- OFFICE DASHBOARD -->
-  <div class="card hidden" id="officeCard">
-
-    <h2>Office Dashboard</h2>
-
-    <p>
-      Logged in as:
-      <strong id="loggedInEmail"></strong>
-    </p>
-
-    <p id="userRole"></p>
-
-    <button class="logout" id="logoutBtn">Logout</button>
-
-    <h2>Feedback Summary</h2>
-
-    <div class="stats">
-      <div class="stat">
-        <strong id="totalCount">0</strong>
-        <br>Total Feedback
-      </div>
-
-      <div class="stat">
-        <strong id="roadsCount">0</strong>
-        <br>Roads
-      </div>
-
-      <div class="stat">
-        <strong id="waterCount">0</strong>
-        <br>Water
-      </div>
-
-      <div class="stat">
-        <strong id="healthCount">0</strong>
-        <br>Health
-      </div>
-
-      <div class="stat">
-        <strong id="educationCount">0</strong>
-        <br>Education
-      </div>
-
-      <div class="stat">
-        <strong id="securityCount">0</strong>
-        <br>Security
-      </div>
-
-      <div class="stat">
-        <strong id="environmentCount">0</strong>
-        <br>Environment
-      </div>
-
-      <div class="stat">
-        <strong id="otherCount">0</strong>
-        <br>Other
-      </div>
-    </div>
-
-    <!-- POST ANNOUNCEMENT -->
-    <div id="announcementFormSection">
-      <h2>Post Office Announcement</h2>
-
-      <form id="announcementForm">
-        <input
-          type="text"
-          id="announcementTitle"
-          placeholder="Announcement title"
-          required
-        >
-
-        <textarea
-          id="announcementMessage"
-          placeholder="Write announcement..."
-          required
-        ></textarea>
-
-        <button type="submit">Post Announcement</button>
-      </form>
-
-      <p id="announcementMessageStatus"></p>
-    </div>
-
-    <!-- FEEDBACK -->
-    <h2>Citizen Feedback</h2>
-
-    <div id="feedbackList">
-      Loading feedback...
-    </div>
-
-  </div>
-
-  <!-- PUBLIC FEEDBACK -->
-  <div class="card" id="publicFeedbackCard">
-
-    <h2>Submit a Question or Concern</h2>
-
-    <form id="feedbackForm">
-
-      <select id="category" required>
-        <option value="">Select Category</option>
-        <option value="Roads">Roads</option>
-        <option value="Water">Water</option>
-        <option value="Health">Health</option>
-        <option value="Education">Education</option>
-        <option value="Security">Security</option>
-        <option value="Environment">Environment</option>
-        <option value="Other">Other</option>
-      </select>
-
-      <input
-        type="text"
-        id="location"
-        placeholder="Area / Location"
-        required
-      >
-
-      <textarea
-        id="feedback"
-        placeholder="Describe your question or concern..."
-        required
-      ></textarea>
-
-      <button type="submit">Submit Feedback</button>
-
-    </form>
-
-    <p id="feedbackMessage"></p>
-
+  <div id="debug">
+    Waiting for Firebase...
   </div>
 
 </div>
-
-<footer>
-  Citizen Voice
-</footer>
 
 <script type="module">
 
@@ -289,615 +106,253 @@ here<!DOCTYPE html>
     from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 
   import {
-    getFirestore,
-    collection,
-    addDoc,
-    serverTimestamp,
-    getDocs,
-    doc,
-    getDoc,
-    updateDoc
-  }
-  from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
-
-  import {
     getAuth,
     signInWithEmailAndPassword,
-    onAuthStateChanged,
-    signOut
+    onAuthStateChanged
   }
-  from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+    from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
+  import {
+    getFirestore,
+    doc,
+    getDoc
+  }
+    from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+
+  // ==============================
+  // FIREBASE CONFIG
+  // ==============================
 
   const firebaseConfig = {
+
     apiKey: "AIzaSyBBNkfxFr3lovnanrZOzOldIs4lAglyjis",
-    authDomain: "citizen-voice-f4b90.firebaseapp.com",
-    projectId: "citizen-voice-f4b90",
-    storageBucket: "citizen-voice-f4b90.firebasestorage.app",
-    messagingSenderId: "784289518285",
-    appId: "1:784289518285:web:5d089c6bdf23a43b5fcf84",
-    measurementId: "G-C4L9Y55JGG"
+
+    authDomain:
+      "citizen-voice-f4b90.firebaseapp.com",
+
+    projectId:
+      "citizen-voice-f4b90",
+
+    storageBucket:
+      "citizen-voice-f4b90.firebasestorage.app",
+
+    messagingSenderId:
+      "784289518285",
+
+    appId:
+      "1:784289518285:web:5d089c6bdf23a43b5fcf84",
+
+    measurementId:
+      "G-C4L9Y55JGG"
   };
 
+
+  // ==============================
+  // START FIREBASE
+  // ==============================
 
   const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
+
   const auth = getAuth(app);
 
-
-  const loginCard = document.getElementById("loginCard");
-  const officeCard = document.getElementById("officeCard");
-
-  const loggedInEmail =
-    document.getElementById("loggedInEmail");
-
-  const userRole =
-    document.getElementById("userRole");
-
-  const loginMessage =
-    document.getElementById("loginMessage");
-
-  const debugMessage =
-    document.getElementById("debugMessage");
+  const db = getFirestore(app);
 
 
-  // ================================
-  // LOAD PUBLIC ANNOUNCEMENTS
-  // ================================
+  // ==============================
+  // ELEMENTS
+  // ==============================
 
-  async function loadAnnouncements() {
+  const debug =
+    document.getElementById("debug");
 
-    const announcementList =
-      document.getElementById("announcementList");
+  const loginBtn =
+    document.getElementById("loginBtn");
 
-    announcementList.innerHTML =
-      "Loading announcements...";
+  const loginSection =
+    document.getElementById("loginSection");
 
-    try {
+  const dashboard =
+    document.getElementById("dashboard");
 
-      const snapshot =
-        await getDocs(collection(db, "Announcement"));
+  const welcome =
+    document.getElementById("welcome");
 
-      announcementList.innerHTML = "";
 
-      if (snapshot.empty) {
+  // ==============================
+  // FIREBASE START TEST
+  // ==============================
 
-        announcementList.innerHTML =
-          "<p>No announcements yet.</p>";
+  debug.textContent =
+    "Firebase script is running.\n\n" +
+    "Project ID: " +
+    firebaseConfig.projectId +
+    "\n\n" +
+    "Waiting for login...";
 
-        return;
-      }
 
-      const announcements = [];
+  // ==============================
+  // LOGIN
+  // ==============================
 
-      snapshot.forEach((docSnap) => {
+  loginBtn.addEventListener("click", async () => {
 
-        announcements.push({
-          id: docSnap.id,
-          ...docSnap.data()
-        });
+    const email =
+      document.getElementById("email").value.trim();
 
-      });
+    const password =
+      document.getElementById("password").value;
 
-      announcements.reverse();
 
-      announcements.forEach((item) => {
+    if (!email || !password) {
 
-        const div =
-          document.createElement("div");
+      debug.textContent =
+        "Please enter email and password.";
 
-        div.className =
-          "announcement-item";
-
-        div.innerHTML = `
-          <h3>${item.Title || item.title || "Announcement"}</h3>
-          <p>${item.Message || item.message || ""}</p>
-          <small>
-            Posted by:
-            ${item["Created by"] || item.createdBy || "Public Office"}
-          </small>
-        `;
-
-        announcementList.appendChild(div);
-
-      });
-
-    } catch (error) {
-
-      console.error("Announcement error:", error);
-
-      announcementList.innerHTML =
-        "<p>Unable to load announcements.</p>";
+      return;
     }
-  }
 
 
-  // ================================
-  // CHECK USER AUTHORIZATION
-  // ================================
+    debug.textContent =
+      "Signing in...";
 
-  async function checkUserAccess(user) {
 
     try {
 
-      loginMessage.textContent =
-        "Checking account authorization...";
-
-      const userId = user.uid;
-
-      console.log("Logged in UID:", userId);
-      console.log("Logged in Email:", user.email);
-
-      const userRef =
-        doc(db, "users", userId);
-
-      const userSnap =
-        await getDoc(userRef);
-
-
-      // USER DOCUMENT DOES NOT EXIST
-      if (!userSnap.exists()) {
-
-        loginMessage.textContent =
-          "This account is not authorized.";
-
-        debugMessage.classList.remove("hidden");
-
-        debugMessage.innerHTML =
-          "<strong>Debug:</strong><br>" +
-          "The signed-in account does not have a matching document in the users collection.<br><br>" +
-          "Signed-in email: " + (user.email || "Unknown") + "<br>" +
-          "Signed-in UID: " + userId;
-
-        await signOut(auth);
-
-        return false;
-      }
-
-
-      const userData =
-        userSnap.data();
-
-      console.log("User document:", userData);
-
-
-      const role =
-        typeof userData.role === "string"
-          ? userData.role.trim().toLowerCase()
-          : "";
-
-      const active =
-        userData.active === true;
-
-
-      const allowedRoles =
-        ["official", "pa", "superadmin"];
-
-
-      console.log("Role:", role);
-      console.log("Active:", active);
-
-
-      // WRONG ROLE OR INACTIVE
-      if (!active || !allowedRoles.includes(role)) {
-
-        loginMessage.textContent =
-          "This account is not authorized to access the office dashboard.";
-
-        debugMessage.classList.remove("hidden");
-
-        debugMessage.innerHTML =
-          "<strong>Debug:</strong><br>" +
-          "Firebase found your users document, but the access values are not correct.<br><br>" +
-          "Signed-in UID: " + userId + "<br>" +
-          "Role found: " + (userData.role || "missing") + "<br>" +
-          "Active found: " + String(userData.active);
-
-        await signOut(auth);
-
-        return false;
-      }
-
-
-      // ================================
-      // AUTHORIZED USER
-      // ================================
-
-      loginCard.classList.add("hidden");
-      officeCard.classList.remove("hidden");
-
-      debugMessage.classList.add("hidden");
-
-      loggedInEmail.textContent =
-        user.email || "";
-
-      userRole.textContent =
-        "Role: " + role;
-
-      loginMessage.textContent = "";
-
-      await loadFeedback();
-
-      return true;
-
-
-    } catch (error) {
-
-      console.error("Authorization error:", error);
-
-      loginMessage.textContent =
-        "Unable to verify account access.";
-
-      debugMessage.classList.remove("hidden");
-
-      debugMessage.innerHTML =
-        "<strong>Firebase error:</strong><br>" +
-        (error.message || "Unknown Firebase error");
-
-      return false;
-    }
-  }
-
-
-  // ================================
-  // LOAD FEEDBACK
-  // ================================
-
-  async function loadFeedback() {
-
-    const feedbackList =
-      document.getElementById("feedbackList");
-
-    feedbackList.innerHTML =
-      "Loading feedback...";
-
-    try {
-
-      const snapshot =
-        await getDocs(collection(db, "feedback"));
-
-      let total = 0;
-
-      const counts = {
-        Roads: 0,
-        Water: 0,
-        Health: 0,
-        Education: 0,
-        Security: 0,
-        Environment: 0,
-        Other: 0
-      };
-
-      feedbackList.innerHTML = "";
-
-      snapshot.forEach((docSnap) => {
-
-        const item =
-          docSnap.data();
-
-        total++;
-
-        if (counts[item.category] !== undefined) {
-          counts[item.category]++;
-        }
-
-        const div =
-          document.createElement("div");
-
-        div.className =
-          "feedback-item";
-
-        div.innerHTML = `
-          <strong>Category:</strong>
-          ${item.category || "Other"}<br>
-
-          <strong>Location:</strong>
-          ${item.location || "Not provided"}<br>
-
-          <strong>Concern:</strong>
-          ${item.feedback || ""}<br>
-
-          <strong>Status:</strong>
-          <span class="status">
-            ${item.status || "Pending"}
-          </span>
-
-          <br><br>
-
-          <select id="status-${docSnap.id}">
-            <option value="Pending">Pending</option>
-            <option value="In Progress">In Progress</option>
-            <option value="Resolved">Resolved</option>
-          </select>
-
-          <button onclick="changeStatus('${docSnap.id}')">
-            Update Status
-          </button>
-        `;
-
-        feedbackList.appendChild(div);
-      });
-
-
-      document.getElementById("totalCount").textContent =
-        total;
-
-      document.getElementById("roadsCount").textContent =
-        counts.Roads;
-
-      document.getElementById("waterCount").textContent =
-        counts.Water;
-
-      document.getElementById("healthCount").textContent =
-        counts.Health;
-
-      document.getElementById("educationCount").textContent =
-        counts.Education;
-
-      document.getElementById("securityCount").textContent =
-        counts.Security;
-
-      document.getElementById("environmentCount").textContent =
-        counts.Environment;
-
-      document.getElementById("otherCount").textContent =
-        counts.Other;
-
-
-      if (snapshot.empty) {
-
-        feedbackList.innerHTML =
-          "<p>No citizen feedback yet.</p>";
-      }
-
-    } catch (error) {
-
-      console.error("Feedback error:", error);
-
-      feedbackList.innerHTML =
-        "<p>Unable to load feedback.</p>";
-    }
-  }
-
-
-  // ================================
-  // UPDATE FEEDBACK STATUS
-  // ================================
-
-  window.changeStatus = async function(id) {
-
-    const select =
-      document.getElementById("status-" + id);
-
-    const newStatus =
-      select.value;
-
-    try {
-
-      await updateDoc(
-        doc(db, "feedback", id),
-        {
-          status: newStatus
-        }
+      await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
       );
 
-      await loadFeedback();
-
     } catch (error) {
 
-      console.error(error);
-
-      alert("Unable to update status.");
-    }
-  };
-
-
-  // ================================
-  // LOGIN
-  // ================================
-
-  document
-    .getElementById("loginForm")
-    .addEventListener("submit", async (e) => {
-
-      e.preventDefault();
-
-      const email =
-        document.getElementById("email").value.trim();
-
-      const password =
-        document.getElementById("password").value;
-
-      loginMessage.textContent =
-        "Signing in...";
-
-      debugMessage.classList.add("hidden");
-
-
-      try {
-
-        await signInWithEmailAndPassword(
-          auth,
-          email,
-          password
-        );
-
-        // onAuthStateChanged will handle authorization.
-        loginMessage.textContent =
-          "Signed in. Checking authorization...";
-
-      } catch (error) {
-
-        console.error("Login error:", error);
-
-        loginMessage.textContent =
-          "Login failed. Check your email and password.";
-
-        debugMessage.classList.remove("hidden");
-
-        debugMessage.innerHTML =
-          "<strong>Firebase login error:</strong><br>" +
-          (error.message || "Unknown error");
-      }
-
-    });
-
-
-  // ================================
-  // LOGOUT
-  // ================================
-
-  document
-    .getElementById("logoutBtn")
-    .addEventListener("click", async () => {
-
-      await signOut(auth);
-
-      officeCard.classList.add("hidden");
-      loginCard.classList.remove("hidden");
-
-      loginMessage.textContent =
-        "You have logged out.";
-
-    });
-
-
-  // ================================
-  // POST ANNOUNCEMENT
-  // ================================
-
-  document
-    .getElementById("announcementForm")
-    .addEventListener("submit", async (e) => {
-
-      e.preventDefault();
-
-      const user =
-        auth.currentUser;
-
-      if (!user) {
-        return;
-      }
-
-      const title =
-        document.getElementById("announcementTitle").value;
-
-      const message =
-        document.getElementById("announcementMessage").value;
-
-      const status =
-        document.getElementById("announcementMessageStatus");
-
-      try {
-
-        await addDoc(
-          collection(db, "Announcement"),
-          {
-            Title: title,
-            Message: message,
-            "Created by": user.email,
-            "Created at": serverTimestamp()
-          }
-        );
-
-        status.textContent =
-          "Announcement posted successfully.";
-
-        document
-          .getElementById("announcementForm")
-          .reset();
-
-        await loadAnnouncements();
-
-      } catch (error) {
-
-        console.error("Announcement post error:", error);
-
-        status.textContent =
-          "Unable to post announcement.";
-      }
-
-    });
-
-
-  // ================================
-  // PUBLIC FEEDBACK
-  // ================================
-
-  document
-    .getElementById("feedbackForm")
-    .addEventListener("submit", async (e) => {
-
-      e.preventDefault();
-
-      const category =
-        document.getElementById("category").value;
-
-      const location =
-        document.getElementById("location").value;
-
-      const feedback =
-        document.getElementById("feedback").value;
-
-      const message =
-        document.getElementById("feedbackMessage");
-
-      try {
-
-        await addDoc(
-          collection(db, "feedback"),
-          {
-            category: category,
-            location: location,
-            feedback: feedback,
-            status: "Pending",
-            createdAt: serverTimestamp()
-          }
-        );
-
-        message.textContent =
-          "Your feedback has been submitted successfully.";
-
-        document
-          .getElementById("feedbackForm")
-          .reset();
-
-      } catch (error) {
-
-        console.error("Feedback submit error:", error);
-
-        message.textContent =
-          "Unable to submit feedback.";
-      }
-
-    });
-
-
-  // ================================
-  // AUTH STATE
-  // ================================
-
-  onAuthStateChanged(auth, async (user) => {
-
-    if (user) {
-
-      await checkUserAccess(user);
-
-    } else {
-
-      loginCard.classList.remove("hidden");
-      officeCard.classList.add("hidden");
-
+      debug.textContent =
+        "LOGIN ERROR\n\n" +
+        error.code +
+        "\n\n" +
+        error.message;
     }
 
   });
 
 
-  // ================================
-  // START APP
-  // ================================
+  // ==============================
+  // AUTH STATE
+  // ==============================
 
-  loadAnnouncements();
+  onAuthStateChanged(auth, async (user) => {
+
+    if (!user) {
+
+      debug.textContent =
+        "Firebase connected.\n\n" +
+        "No user is signed in.";
+
+      return;
+    }
+
+
+    debug.textContent =
+      "USER FOUND\n\n" +
+      "Email:\n" +
+      user.email +
+      "\n\n" +
+      "UID:\n" +
+      user.uid +
+      "\n\n" +
+      "Now testing Firestore...";
+
+
+    // ==============================
+    // TEST EXACT USERS DOCUMENT
+    // ==============================
+
+    try {
+
+      const userRef =
+        doc(db, "users", user.uid);
+
+      const userSnap =
+        await getDoc(userRef);
+
+
+      if (!userSnap.exists()) {
+
+        debug.textContent =
+          "FIRESTORE TEST RESULT\n\n" +
+
+          "The Firebase connection is working,\n" +
+
+          "BUT this document was NOT found:\n\n" +
+
+          "Collection: users\n" +
+
+          "Document ID:\n" +
+          user.uid +
+          "\n\n" +
+
+          "Project ID:\n" +
+          firebaseConfig.projectId;
+
+        return;
+      }
+
+
+      const data =
+        userSnap.data();
+
+
+      debug.textContent =
+        "SUCCESS! FIRESTORE DOCUMENT FOUND.\n\n" +
+
+        "Collection: users\n\n" +
+
+        "Document ID:\n" +
+        user.uid +
+        "\n\n" +
+
+        "Role:\n" +
+        String(data.role) +
+        "\n\n" +
+
+        "Active:\n" +
+        String(data.active) +
+        "\n\n" +
+
+        "Project ID:\n" +
+        firebaseConfig.projectId;
+
+
+      // Show dashboard
+
+      loginSection.classList.add("hidden");
+
+      dashboard.classList.remove("hidden");
+
+      welcome.textContent =
+        "Welcome " +
+        (user.email || "Official");
+
+
+    } catch (error) {
+
+      debug.textContent =
+        "FIRESTORE ERROR\n\n" +
+
+        "Code:\n" +
+        error.code +
+        "\n\n" +
+
+        "Message:\n" +
+        error.message +
+        "\n\n" +
+
+        "Project ID:\n" +
+        firebaseConfig.projectId;
+    }
+
+  });
 
 </script>
 
