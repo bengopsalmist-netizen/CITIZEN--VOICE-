@@ -1,13 +1,26 @@
 here{
-  "background_color": "#ffffff",
-  "dir": "ltr",
-  "display": "standalone",
   "name": "Citizen Voice",
-  "orientation": "any",
-  "scope": "/",
   "short_name": "Citizen Voice",
-  "start_url": "/",
+  "id": "./",
+  "description": "Connecting Citizens With Public Offices",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
   "theme_color": "#1a237e",
-  "id": "citizen-voice",
-  "description": "Connecting Citizens With Public Offices"
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "./icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
 }
