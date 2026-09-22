@@ -3,6 +3,11 @@ here<!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- PWA -->
+<link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#1a237e">
+
 <title>Citizen Voice</title>
 
 <style>
@@ -120,7 +125,6 @@ footer{text-align:center;padding:25px;color:#666;font-size:13px}
 </div>
 </div>
 
-
 <!-- OFFICIAL LOGIN -->
 <div id="loginPage" class="hidden">
 
@@ -157,7 +161,6 @@ Forgot Password?
 </div>
 </div>
 </div>
-
 
 <!-- OFFICIAL DASHBOARD -->
 <div id="officialPage" class="hidden">
@@ -217,7 +220,6 @@ Forgot Password?
 </div>
 </div>
 
-
 <!-- SUPER ADMIN DASHBOARD -->
 <div id="superAdminPage" class="hidden">
 
@@ -239,7 +241,6 @@ Forgot Password?
 
 </div>
 
-
 <div class="card">
 
 <h2>System Overview</h2>
@@ -253,7 +254,6 @@ Forgot Password?
 </div>
 </div>
 
-
 <div class="card">
 
 <h2>System Views</h2>
@@ -263,7 +263,6 @@ Forgot Password?
 <button class="adminButton" id="openOfficialBtn">🏢 Open Official Dashboard</button>
 
 </div>
-
 
 <!-- MANAGE OFFICIALS -->
 <div class="card">
@@ -329,7 +328,6 @@ Add and authorize officials who are allowed to use the Official Dashboard.
 </div>
 </div>
 
-
 <!-- AUTHORIZED USERS -->
 <div class="card">
 
@@ -340,7 +338,6 @@ Add and authorize officials who are allowed to use the Official Dashboard.
 </div>
 
 </div>
-
 
 <!-- ANNOUNCEMENT MANAGEMENT -->
 <div class="card">
@@ -356,7 +353,6 @@ Announcements can be deleted by Super Admin after they are at least 3 days old.
 </div>
 
 </div>
-
 
 <!-- ISSUE MANAGEMENT -->
 <div class="card">
@@ -376,11 +372,9 @@ Issues can be deleted by Super Admin after they are at least 3 days old.
 </div>
 </div>
 
-
 <footer>
 Citizen Voice — Connecting Citizens With Public Offices
 </footer>
-
 
 <script type="module">
 
@@ -413,7 +407,6 @@ updateDoc
 }
 from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
-
 /* FIREBASE CONFIG */
 
 const firebaseConfig = {
@@ -432,13 +425,11 @@ appId:"1:277049759508:web:0eb0ab57c3b455a0591401"
 
 };
 
-
 const app=initializeApp(firebaseConfig);
 
 const auth=getAuth(app);
 
 const db=getFirestore(app);
-
 
 /* SECONDARY APP */
 
@@ -447,7 +438,6 @@ initializeApp(firebaseConfig,"secondaryApp");
 
 const secondaryAuth=
 getAuth(secondaryApp);
-
 
 /* PAGE ELEMENTS */
 
@@ -463,7 +453,6 @@ document.getElementById("officialPage");
 const superAdminPage=
 document.getElementById("superAdminPage");
 
-
 /* PAGE FUNCTIONS */
 
 function showCitizen(){
@@ -475,7 +464,6 @@ superAdminPage.classList.add("hidden");
 
 }
 
-
 function showLogin(){
 
 citizenPage.classList.add("hidden");
@@ -484,7 +472,6 @@ officialPage.classList.add("hidden");
 superAdminPage.classList.add("hidden");
 
 }
-
 
 function showOfficial(){
 
@@ -495,7 +482,6 @@ superAdminPage.classList.add("hidden");
 
 }
 
-
 function showSuperAdmin(){
 
 citizenPage.classList.add("hidden");
@@ -504,7 +490,6 @@ officialPage.classList.add("hidden");
 superAdminPage.classList.remove("hidden");
 
 }
-
 
 /* CURRENT USER DATA */
 
@@ -531,7 +516,6 @@ return snap.data();
 
 }
 
-
 /* ROUTING */
 
 async function route(){
@@ -539,13 +523,11 @@ async function route(){
 const hash=
 window.location.hash;
 
-
 if(hash==="#official"){
 
 showLogin();
 
 }
-
 
 else if(hash==="#dashboard"){
 
@@ -587,7 +569,6 @@ showLogin();
 
 }
 
-
 else if(hash==="#superadmin"){
 
 if(auth.currentUser){
@@ -624,7 +605,6 @@ showLogin();
 
 }
 
-
 else{
 
 showCitizen();
@@ -633,9 +613,7 @@ showCitizen();
 
 }
 
-
 window.addEventListener("hashchange",route);
-
 
 /* BACK TO CITIZEN */
 
@@ -647,7 +625,6 @@ window.location.hash="";
 showCitizen();
 
 });
-
 
 /* CITIZEN SUBMISSION */
 
@@ -662,7 +639,6 @@ document.getElementById("submitMessage");
 
 box.className="";
 box.textContent="Submitting...";
-
 
 try{
 
@@ -701,14 +677,12 @@ createdAt:serverTimestamp()
 }
 );
 
-
 box.className="message";
 
 box.textContent=
 "Your submission is submitted successfully.";
 
 document.getElementById("issueForm").reset();
-
 
 }catch(error){
 
@@ -722,7 +696,6 @@ box.textContent=
 }
 
 });
-
 
 /* CITIZEN ANNOUNCEMENTS */
 
@@ -744,7 +717,6 @@ await getDocs(q);
 
 box.innerHTML="";
 
-
 if(snapshot.empty){
 
 box.innerHTML=
@@ -754,7 +726,6 @@ return;
 
 }
 
-
 snapshot.forEach(docSnap=>{
 
 const data=docSnap.data();
@@ -763,14 +734,12 @@ const div=document.createElement("div");
 
 div.className="announcement";
 
-
 const strong=document.createElement("strong");
 
 strong.textContent=
 (data.officialName||"Public Office")+
 " — "+
 (data.officeType||"Public Office");
-
 
 const officeDetails=document.createElement("div");
 
@@ -798,13 +767,11 @@ details+=details
 
 officeDetails.textContent=details;
 
-
 const message=document.createElement("div");
 
 message.style.marginTop="10px";
 
 message.textContent=data.message||"";
-
 
 div.appendChild(strong);
 
@@ -830,7 +797,6 @@ box.innerHTML=
 }
 
 }
-
 
 /* FORGOT PASSWORD */
 
@@ -884,7 +850,6 @@ box.textContent=
 
 });
 
-
 /* LOGIN */
 
 document
@@ -899,13 +864,11 @@ document.getElementById("loginMessage");
 box.className="";
 box.textContent="Signing in...";
 
-
 const email=
 document.getElementById("loginEmail").value.trim();
 
 const password=
 document.getElementById("loginPassword").value;
-
 
 try{
 
@@ -918,12 +881,10 @@ password
 
 const uid=result.user.uid;
 
-
 const userSnap=
 await getDoc(
 doc(db,"users",uid)
 );
-
 
 if(!userSnap.exists()){
 
@@ -935,16 +896,13 @@ throw new Error(
 
 }
 
-
 const data=userSnap.data();
-
 
 const allowed=[
 "Official",
 "Admin",
 "Super Admin"
 ];
-
 
 if(!allowed.includes(data.role)){
 
@@ -955,7 +913,6 @@ throw new Error(
 );
 
 }
-
 
 if(data.role==="Super Admin"){
 
@@ -975,7 +932,6 @@ loadDashboard();
 
 }
 
-
 }catch(error){
 
 console.error(error);
@@ -988,7 +944,6 @@ error.message||"Login failed.";
 }
 
 });
-
 
 /* OFFICIAL DASHBOARD */
 
@@ -1003,7 +958,6 @@ return;
 const uid=
 auth.currentUser.uid;
 
-
 try{
 
 const userSnap=
@@ -1011,27 +965,20 @@ await getDoc(
 doc(db,"users",uid)
 );
 
-
 if(!userSnap.exists()){
 
 throw new Error("User profile not found.");
 
 }
 
-
 const userData=userSnap.data();
 
-
-/*
- IMPORTANT FIX:
- Check the official profile using UID.
-*/
+/* IMPORTANT FIX */
 
 const profileSnap=
 await getDoc(
 doc(db,"officialprofile",uid)
 );
-
 
 if(
 userData.role==="Official" &&
@@ -1047,7 +994,6 @@ throw new Error(
 
 }
 
-
 document.getElementById("officialName").textContent=
 "Logged in as: "+
 (userData.name||auth.currentUser.email)+
@@ -1057,12 +1003,10 @@ document.getElementById("officialName").textContent=
 ?" — "+userData.constituency
 :"");
 
-
 const snapshot=
 await getDocs(
 collection(db,"issues")
 );
-
 
 const issues=[];
 
@@ -1074,7 +1018,6 @@ id:docSnap.id,
 });
 
 });
-
 
 document.getElementById("totalIssues").textContent=
 issues.length;
@@ -1104,12 +1047,10 @@ issues.filter(x=>
 String(x.category||"").toLowerCase()==="security"
 ).length;
 
-
 const list=
 document.getElementById("issuesList");
 
 list.innerHTML="";
-
 
 if(issues.length===0){
 
@@ -1124,11 +1065,9 @@ const div=document.createElement("div");
 
 div.className="issue";
 
-
 const title=document.createElement("strong");
 
 title.textContent=issue.category||"";
-
 
 const description=document.createElement("div");
 
@@ -1136,7 +1075,6 @@ description.style.marginTop="6px";
 
 description.textContent=
 issue.description||"";
-
 
 const place=document.createElement("div");
 
@@ -1151,7 +1089,6 @@ place.textContent=
 (issue.location||"")+" • "+
 (issue.subLocation||"");
 
-
 div.appendChild(title);
 div.appendChild(description);
 div.appendChild(place);
@@ -1161,7 +1098,6 @@ list.appendChild(div);
 });
 
 }
-
 
 }catch(error){
 
@@ -1174,7 +1110,6 @@ document.getElementById("issuesList").innerHTML=
 
 }
 
-
 /* PUBLISH ANNOUNCEMENT */
 
 document
@@ -1186,7 +1121,6 @@ e.preventDefault();
 const box=
 document.getElementById("announcementMessageBox");
 
-
 try{
 
 if(!auth.currentUser){
@@ -1195,15 +1129,12 @@ throw new Error("You are not logged in.");
 
 }
 
-
 const uid=auth.currentUser.uid;
-
 
 const userSnap=
 await getDoc(
 doc(db,"users",uid)
 );
-
 
 if(!userSnap.exists()){
 
@@ -1211,9 +1142,7 @@ throw new Error("Official profile not found.");
 
 }
 
-
 const userData=userSnap.data();
-
 
 if(
 userData.role==="Official"
@@ -1223,7 +1152,6 @@ const profileSnap=
 await getDoc(
 doc(db,"officialprofile",uid)
 );
-
 
 if(
 !profileSnap.exists() ||
@@ -1237,7 +1165,6 @@ throw new Error(
 }
 
 }
-
 
 await addDoc(
 collection(db,"announcements"),
@@ -1269,19 +1196,16 @@ createdAt:serverTimestamp()
 }
 );
 
-
 box.className="message";
 
 box.textContent=
 "Announcement published successfully.";
-
 
 document
 .getElementById("announcementForm")
 .reset();
 
 await loadAnnouncements();
-
 
 }catch(error){
 
@@ -1296,7 +1220,6 @@ error.message||
 }
 
 });
-
 
 /* DATE HELPERS */
 
@@ -1314,7 +1237,6 @@ return data.createdAt.toDate();
 return null;
 
 }
-
 
 function getAgeInDays(data){
 
@@ -1336,7 +1258,6 @@ difference/(1000*60*60*24)
 
 }
 
-
 function canDelete(data){
 
 const age=getAgeInDays(data);
@@ -1344,7 +1265,6 @@ const age=getAgeInDays(data);
 return age!==null&&age>=3;
 
 }
-
 
 /* SHOW ADD OFFICIAL */
 
@@ -1363,7 +1283,6 @@ behavior:"smooth"
 
 });
 
-
 /* CANCEL ADD OFFICIAL */
 
 document
@@ -1380,7 +1299,6 @@ document.getElementById("addOfficialMessage").innerHTML="";
 
 });
 
-
 /* ADD OFFICIAL */
 
 document
@@ -1389,14 +1307,12 @@ document
 
 e.preventDefault();
 
-
 const messageBox=
 document.getElementById("addOfficialMessage");
 
 messageBox.className="";
 messageBox.textContent=
 "Creating official account...";
-
 
 if(!auth.currentUser){
 
@@ -1409,14 +1325,12 @@ return;
 
 }
 
-
 try{
 
 const adminSnap=
 await getDoc(
 doc(db,"users",auth.currentUser.uid)
 );
-
 
 if(
 !adminSnap.exists() ||
@@ -1428,7 +1342,6 @@ throw new Error(
 );
 
 }
-
 
 const name=
 document.getElementById("newOfficialName")
@@ -1462,10 +1375,7 @@ const area=
 document.getElementById("newOfficialArea")
 .value.trim();
 
-
-/*
- CREATE AUTH ACCOUNT
- */
+/* CREATE AUTH ACCOUNT */
 
 const credential=
 await createUserWithEmailAndPassword(
@@ -1477,10 +1387,7 @@ password
 const newUid=
 credential.user.uid;
 
-
-/*
- CREATE USERS DOCUMENT
- */
+/* CREATE USERS DOCUMENT */
 
 await setDoc(
 doc(db,"users",newUid),
@@ -1500,12 +1407,7 @@ createdAt:serverTimestamp()
 }
 );
 
-
-/*
- IMPORTANT FIX:
- CREATE OFFICIAL PROFILE USING UID
- NOT AUTO-ID.
- */
+/* CREATE OFFICIAL PROFILE USING UID */
 
 await setDoc(
 doc(db,"officialprofile",newUid),
@@ -1525,31 +1427,24 @@ createdAt:serverTimestamp()
 }
 );
 
-
-/*
- LOG OUT ONLY SECONDARY ACCOUNT
- */
+/* LOG OUT SECONDARY ACCOUNT */
 
 await signOut(secondaryAuth);
-
 
 messageBox.className="message";
 
 messageBox.textContent=
 "Official created and authorized successfully.";
 
-
 document.getElementById("addOfficialForm").reset();
 
 await loadSuperAdmin();
-
 
 }catch(error){
 
 console.error(error);
 
 messageBox.className="message error";
-
 
 if(error.code==="auth/email-already-in-use"){
 
@@ -1573,7 +1468,6 @@ messageBox.textContent=
 
 });
 
-
 /* SUPER ADMIN DASHBOARD */
 
 async function loadSuperAdmin(){
@@ -1584,14 +1478,12 @@ return;
 
 }
 
-
 try{
 
 const userSnap=
 await getDoc(
 doc(db,"users",auth.currentUser.uid)
 );
-
 
 if(
 !userSnap.exists() ||
@@ -1606,15 +1498,12 @@ return;
 
 }
 
-
 const adminData=userSnap.data();
-
 
 document.getElementById("superAdminName").textContent=
 "Logged in as: "+
 (adminData.name||auth.currentUser.email)+
 " — Super Admin";
-
 
 /* ISSUES */
 
@@ -1634,7 +1523,6 @@ id:docSnap.id,
 
 });
 
-
 /* ANNOUNCEMENTS */
 
 const announcementSnapshot=
@@ -1652,7 +1540,6 @@ id:docSnap.id,
 });
 
 });
-
 
 /* USERS */
 
@@ -1672,7 +1559,6 @@ id:docSnap.id,
 
 });
 
-
 document.getElementById("adminIssueCount").textContent=
 issues.length;
 
@@ -1686,14 +1572,12 @@ u.role==="Admin"||
 u.role==="Super Admin"
 ).length;
 
-
 /* OFFICIAL LIST */
 
 const officialsList=
 document.getElementById("officialsList");
 
 officialsList.innerHTML="";
-
 
 if(users.length===0){
 
@@ -1708,18 +1592,15 @@ const div=document.createElement("div");
 
 div.className="office";
 
-
 const name=document.createElement("strong");
 
 name.textContent=user.name||"No name";
-
 
 const info=document.createElement("div");
 
 info.className="small";
 
 info.style.marginTop="7px";
-
 
 let locationText="";
 
@@ -1745,7 +1626,6 @@ locationText+=locationText
 
 }
 
-
 info.textContent=
 "Role: "+
 (user.role||"Not specified")+
@@ -1755,11 +1635,9 @@ info.textContent=
 (user.email||"Email not stored")+
 (locationText?" • "+locationText:"");
 
-
 const status=document.createElement("div");
 
 status.style.marginTop="8px";
-
 
 if(user.status==="active"){
 
@@ -1773,21 +1651,16 @@ status.innerHTML=
 
 }
 
-
 div.appendChild(name);
 div.appendChild(info);
 div.appendChild(status);
 
-
-/*
- ACTIVATE / DEACTIVATE
- */
+/* ACTIVATE / DEACTIVATE */
 
 if(user.role==="Official"){
 
 const actionButton=
 document.createElement("button");
-
 
 if(user.status==="active"){
 
@@ -1805,7 +1678,6 @@ actionButton.textContent=
 
 }
 
-
 actionButton.addEventListener(
 "click",
 async function(){
@@ -1817,11 +1689,6 @@ user.status==="active"
 ?"inactive"
 :"active";
 
-
-/*
- Update users/{uid}
- */
-
 await updateDoc(
 doc(db,"users",user.id),
 {
@@ -1829,19 +1696,11 @@ status:newStatus
 }
 );
 
-
-/*
- IMPORTANT FIX:
- Update officialprofile/{uid}
- directly.
- */
-
 const profileRef=
 doc(db,"officialprofile",user.id);
 
 const profileSnap=
 await getDoc(profileRef);
-
 
 if(profileSnap.exists()){
 
@@ -1854,16 +1713,13 @@ status:newStatus
 
 }
 
-
 alert(
 newStatus==="active"
 ?"Official activated successfully."
 :"Official deactivated successfully."
 );
 
-
 await loadSuperAdmin();
-
 
 }catch(error){
 
@@ -1878,18 +1734,15 @@ alert(
 }
 );
 
-
 div.appendChild(actionButton);
 
 }
-
 
 officialsList.appendChild(div);
 
 });
 
 }
-
 
 /* ANNOUNCEMENT MANAGEMENT */
 
@@ -1899,7 +1752,6 @@ document.getElementById(
 );
 
 announcementList.innerHTML="";
-
 
 if(announcements.length===0){
 
@@ -1914,14 +1766,12 @@ const div=document.createElement("div");
 
 div.className="managementItem";
 
-
 const title=document.createElement("strong");
 
 title.textContent=
 (announcement.officialName||"Public Office")+
 " — "+
 (announcement.officeType||"");
-
 
 const message=document.createElement("div");
 
@@ -1930,26 +1780,21 @@ message.style.marginTop="8px";
 message.textContent=
 announcement.message||"";
 
-
 const age=document.createElement("div");
 
 age.className="age";
 
-
 const ageDays=
 getAgeInDays(announcement);
-
 
 age.textContent=
 ageDays===null
 ?"Age: date unavailable"
 :"Age: "+ageDays+" day(s)";
 
-
 div.appendChild(title);
 div.appendChild(message);
 div.appendChild(age);
-
 
 if(canDelete(announcement)){
 
@@ -1960,7 +1805,6 @@ deleteButton.className="danger";
 
 deleteButton.textContent=
 "🗑️ Delete Announcement";
-
 
 deleteButton.addEventListener(
 "click",
@@ -1974,7 +1818,6 @@ return;
 
 }
 
-
 try{
 
 await deleteDoc(
@@ -1985,7 +1828,6 @@ announcement.id
 )
 );
 
-
 alert(
 "Announcement deleted successfully."
 );
@@ -1993,7 +1835,6 @@ alert(
 await loadSuperAdmin();
 
 await loadAnnouncements();
-
 
 }catch(error){
 
@@ -2008,7 +1849,6 @@ alert(
 }
 );
 
-
 div.appendChild(deleteButton);
 
 }else{
@@ -2027,13 +1867,11 @@ div.appendChild(note);
 
 }
 
-
 announcementList.appendChild(div);
 
 });
 
 }
-
 
 /* ISSUE MANAGEMENT */
 
@@ -2041,7 +1879,6 @@ const issueList=
 document.getElementById("adminIssuesList");
 
 issueList.innerHTML="";
-
 
 if(issues.length===0){
 
@@ -2056,12 +1893,10 @@ const div=document.createElement("div");
 
 div.className="managementItem";
 
-
 const title=document.createElement("strong");
 
 title.textContent=
 issue.category||"Citizen Issue";
-
 
 const description=document.createElement("div");
 
@@ -2069,7 +1904,6 @@ description.style.marginTop="8px";
 
 description.textContent=
 issue.description||"";
-
 
 const location=document.createElement("div");
 
@@ -2084,27 +1918,22 @@ location.textContent=
 (issue.location||"")+" • "+
 (issue.subLocation||"");
 
-
 const age=document.createElement("div");
 
 age.className="age";
 
-
 const ageDays=
 getAgeInDays(issue);
-
 
 age.textContent=
 ageDays===null
 ?"Age: date unavailable"
 :"Age: "+ageDays+" day(s)";
 
-
 div.appendChild(title);
 div.appendChild(description);
 div.appendChild(location);
 div.appendChild(age);
-
 
 if(canDelete(issue)){
 
@@ -2115,7 +1944,6 @@ deleteButton.className="danger";
 
 deleteButton.textContent=
 "🗑️ Delete Issue";
-
 
 deleteButton.addEventListener(
 "click",
@@ -2129,20 +1957,17 @@ return;
 
 }
 
-
 try{
 
 await deleteDoc(
 doc(db,"issues",issue.id)
 );
 
-
 alert(
 "Issue deleted successfully."
 );
 
 await loadSuperAdmin();
-
 
 }catch(error){
 
@@ -2156,7 +1981,6 @@ alert(
 
 }
 );
-
 
 div.appendChild(deleteButton);
 
@@ -2176,13 +2000,11 @@ div.appendChild(note);
 
 }
 
-
 issueList.appendChild(div);
 
 });
 
 }
-
 
 }catch(error){
 
@@ -2197,7 +2019,6 @@ document.getElementById(
 
 }
 
-
 /* SUPER ADMIN NAVIGATION */
 
 document
@@ -2210,7 +2031,6 @@ showCitizen();
 
 });
 
-
 document
 .getElementById("openOfficialBtn")
 .addEventListener("click",async function(){
@@ -2222,7 +2042,6 @@ showOfficial();
 await loadDashboard();
 
 });
-
 
 /* SUPER ADMIN LOGOUT */
 
@@ -2238,7 +2057,6 @@ showCitizen();
 
 });
 
-
 /* OFFICIAL LOGOUT */
 
 document
@@ -2252,7 +2070,6 @@ window.location.hash="";
 showCitizen();
 
 });
-
 
 /* AUTH STATE */
 
@@ -2275,7 +2092,6 @@ return;
 
 }
 
-
 if(window.location.hash==="#superadmin"){
 
 const data=
@@ -2296,13 +2112,27 @@ await loadSuperAdmin();
 
 });
 
-
 /* START */
 
 await loadAnnouncements();
 
 await route();
 
+</script>
+
+<!-- PWA SERVICE WORKER REGISTRATION -->
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", function() {
+    navigator.serviceWorker.register("./service-worker.js")
+      .then(function() {
+        console.log("Citizen Voice service worker registered.");
+      })
+      .catch(function(error) {
+        console.error("Service worker registration failed:", error);
+      });
+  });
+}
 </script>
 
 </body>
