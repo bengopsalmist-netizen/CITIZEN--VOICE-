@@ -213,6 +213,31 @@ button:hover{
   border-radius:8px;
 }
 
+.formTitle{
+  margin-top:0;
+  color:#075b35;
+}
+
+.statusActive{
+  display:inline-block;
+  padding:5px 9px;
+  border-radius:15px;
+  background:#dff3e5;
+  color:#146c2e;
+  font-size:12px;
+  font-weight:bold;
+}
+
+.statusInactive{
+  display:inline-block;
+  padding:5px 9px;
+  border-radius:15px;
+  background:#f5dddd;
+  color:#9b1c1c;
+  font-size:12px;
+  font-weight:bold;
+}
+
 footer{
   text-align:center;
   padding:25px;
@@ -231,29 +256,18 @@ footer{
 <div id="citizenPage">
 
 <section class="hero">
-
-  <div class="logo">🎙️</div>
-
-  <h1>Citizen Voice</h1>
-
-  <p>Your Voice • Your Community • Your Future</p>
-
+<div class="logo">🎙️</div>
+<h1>Citizen Voice</h1>
+<p>Your Voice • Your Community • Your Future</p>
 </section>
 
 <div class="container">
 
 <div class="card">
-
 <h2>Official Announcements</h2>
-
 <div id="announcements">
-
-<p class="small">
-Loading announcements...
-</p>
-
+<p class="small">Loading announcements...</p>
 </div>
-
 </div>
 
 <div class="card">
@@ -265,11 +279,7 @@ Loading announcements...
 <label>Category</label>
 
 <select id="category" required>
-
-<option value="">
-Select category
-</option>
-
+<option value="">Select category</option>
 <option>Roads</option>
 <option>Water</option>
 <option>Healthcare</option>
@@ -282,57 +292,27 @@ Select category
 <option>Development</option>
 <option>Employment</option>
 <option>Other</option>
-
 </select>
 
 <label>County</label>
-
-<input
-type="text"
-id="county"
-placeholder="Enter county"
-required>
+<input type="text" id="county" placeholder="Enter county" required>
 
 <label>Constituency</label>
-
-<input
-type="text"
-id="constituency"
-placeholder="Enter constituency"
-required>
+<input type="text" id="constituency" placeholder="Enter constituency" required>
 
 <label>Ward</label>
-
-<input
-type="text"
-id="ward"
-placeholder="Enter ward"
-required>
+<input type="text" id="ward" placeholder="Enter ward" required>
 
 <label>Location</label>
-
-<input
-type="text"
-id="location"
-placeholder="Enter location"
-required>
+<input type="text" id="location" placeholder="Enter location" required>
 
 <label>Sub-location</label>
-
-<input
-type="text"
-id="subLocation"
-placeholder="Enter sub-location"
-required>
+<input type="text" id="subLocation" placeholder="Enter sub-location" required>
 
 <label>Office Concerned</label>
 
 <select id="targetOffice" required>
-
-<option value="">
-Select office
-</option>
-
+<option value="">Select office</option>
 <option>MCA</option>
 <option>MP</option>
 <option>Woman Representative</option>
@@ -340,30 +320,22 @@ Select office
 <option>Governor</option>
 <option>President</option>
 <option>Other Government Office</option>
-
 </select>
 
-<label>
-Your Question / Suggestion / Concern / Issue
-</label>
+<label>Your Question / Suggestion / Concern / Issue</label>
 
 <textarea
 id="description"
 placeholder="Describe your question, suggestion, concern or issue..."
 required></textarea>
 
-<button type="submit">
-Submit
-</button>
+<button type="submit">Submit</button>
 
 <div id="submitMessage"></div>
 
 </form>
-
 </div>
-
 </div>
-
 </div>
 
 
@@ -374,25 +346,17 @@ Submit
 <div id="loginPage" class="hidden">
 
 <section class="hero">
-
 <div class="logo">🔐</div>
-
 <h1>Official Access</h1>
-
 <p>Authorized Officials Only</p>
-
 </section>
 
 <div class="container">
 
 <div class="card">
 
-<button
-class="back"
-id="backCitizen">
-
+<button class="back" id="backCitizen">
 ← Back to Citizen Voice
-
 </button>
 
 <h2>Official Login</h2>
@@ -400,31 +364,19 @@ id="backCitizen">
 <form id="loginForm">
 
 <label>Email</label>
-
-<input
-type="email"
-id="loginEmail"
-required>
+<input type="email" id="loginEmail" required>
 
 <label>Password</label>
+<input type="password" id="loginPassword" required>
 
-<input
-type="password"
-id="loginPassword"
-required>
-
-<button type="submit">
-Login
-</button>
+<button type="submit">Login</button>
 
 <div id="loginMessage"></div>
 
 </form>
 
 </div>
-
 </div>
-
 </div>
 
 
@@ -435,33 +387,22 @@ Login
 <div id="officialPage" class="hidden">
 
 <section class="hero">
-
 <div class="logo">📊</div>
-
 <h1>Official Dashboard</h1>
-
 <p>Citizen Voice</p>
-
 </section>
 
 <div class="container">
 
 <div class="card">
 
-<button
-class="danger"
-id="logoutBtn">
-
+<button class="danger" id="logoutBtn">
 Logout
-
 </button>
 
 <h2>Dashboard</h2>
 
-<p
-id="officialName"
-class="small">
-</p>
+<p id="officialName" class="small"></p>
 
 <div class="stats">
 
@@ -496,7 +437,6 @@ Security
 </div>
 
 </div>
-
 </div>
 
 <div class="card">
@@ -504,11 +444,7 @@ Security
 <h2>Citizen Issues</h2>
 
 <div id="issuesList">
-
-<p class="small">
-Loading issues...
-</p>
-
+<p class="small">Loading issues...</p>
 </div>
 
 </div>
@@ -533,11 +469,9 @@ Publish Announcement
 <div id="announcementMessageBox"></div>
 
 </form>
-
 </div>
 
 </div>
-
 </div>
 
 
@@ -561,25 +495,18 @@ Publish Announcement
 
 <div class="card">
 
-<button
-class="danger"
-id="superAdminLogoutBtn">
-
+<button class="danger" id="superAdminLogoutBtn">
 Logout
-
 </button>
 
 <h2>Super Admin Dashboard</h2>
 
-<p
-id="superAdminName"
-class="small">
-</p>
+<p id="superAdminName" class="small"></p>
 
 </div>
 
 
-<!-- ADMIN STATS -->
+<!-- SYSTEM OVERVIEW -->
 
 <div class="card">
 
@@ -607,32 +534,156 @@ Authorized Users
 </div>
 
 
-<!-- NAVIGATION -->
+<!-- SYSTEM VIEWS -->
 
 <div class="card">
 
 <h2>System Views</h2>
 
-<button
-class="adminButton"
-id="openCitizenBtn">
-
+<button class="adminButton" id="openCitizenBtn">
 👁️ Open Citizen View
-
 </button>
 
-<button
-class="adminButton"
-id="openOfficialBtn">
-
+<button class="adminButton" id="openOfficialBtn">
 🏢 Open Official Dashboard
-
 </button>
 
 </div>
 
 
-<!-- AUTHORIZED USERS -->
+<!-- =====================================================
+     MANAGE OFFICIALS
+     ===================================================== -->
+
+<div class="card">
+
+<h2>👥 Manage Officials</h2>
+
+<p class="small">
+Add and authorize officials who are allowed to use the Official Dashboard.
+</p>
+
+<button id="showAddOfficialBtn">
+➕ Add New Official
+</button>
+
+<div id="addOfficialArea" class="hidden">
+
+<hr style="margin-top:25px;margin-bottom:20px">
+
+<h3 class="formTitle">
+Create & Authorize Official
+</h3>
+
+<form id="addOfficialForm">
+
+<label>Official Full Name</label>
+
+<input
+type="text"
+id="newOfficialName"
+placeholder="Example: Hon. John Mwangi"
+required>
+
+
+<label>Email Address</label>
+
+<input
+type="email"
+id="newOfficialEmail"
+placeholder="official@example.com"
+required>
+
+
+<label>Temporary Password</label>
+
+<input
+type="password"
+id="newOfficialPassword"
+placeholder="Create temporary password"
+minlength="6"
+required>
+
+<p class="small">
+The official can use this password to log in. Keep it secure.
+</p>
+
+
+<label>Office Type</label>
+
+<select id="newOfficialOfficeType" required>
+
+<option value="">
+Select office type
+</option>
+
+<option>MCA</option>
+<option>MP</option>
+<option>Woman Representative</option>
+<option>Senator</option>
+<option>Governor</option>
+<option>President</option>
+<option>Other Government Office</option>
+
+</select>
+
+
+<label>County</label>
+
+<input
+type="text"
+id="newOfficialCounty"
+placeholder="Enter county"
+required>
+
+
+<label>Constituency</label>
+
+<input
+type="text"
+id="newOfficialConstituency"
+placeholder="Enter constituency">
+
+
+<label>Ward</label>
+
+<input
+type="text"
+id="newOfficialWard"
+placeholder="Enter ward">
+
+
+<label>Office / Area Description</label>
+
+<input
+type="text"
+id="newOfficialArea"
+placeholder="Example: Igembe North">
+
+
+<button type="submit">
+✅ Create & Authorize Official
+</button>
+
+<button
+type="button"
+class="secondary"
+id="cancelAddOfficialBtn">
+
+Cancel
+
+</button>
+
+<div id="addOfficialMessage"></div>
+
+</form>
+
+</div>
+
+</div>
+
+
+<!-- AUTHORIZED OFFICIALS -->
 
 <div class="card">
 
@@ -710,17 +761,15 @@ import { initializeApp }
 from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 
 import {
-
 getAuth,
 onAuthStateChanged,
 signInWithEmailAndPassword,
-signOut
-
+signOut,
+createUserWithEmailAndPassword
 }
 from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
 import {
-
 getFirestore,
 collection,
 addDoc,
@@ -730,8 +779,8 @@ query,
 where,
 getDocs,
 serverTimestamp,
-deleteDoc
-
+deleteDoc,
+updateDoc
 }
 from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
@@ -774,6 +823,22 @@ getFirestore(app);
 
 
 /* =====================================================
+   SECONDARY FIREBASE APP
+   Used to create official accounts without
+   logging out the Super Admin.
+   ===================================================== */
+
+const secondaryApp =
+initializeApp(
+firebaseConfig,
+"secondaryApp"
+);
+
+const secondaryAuth =
+getAuth(secondaryApp);
+
+
+/* =====================================================
    PAGE ELEMENTS
    ===================================================== */
 
@@ -797,11 +862,8 @@ document.getElementById("superAdminPage");
 function showCitizen(){
 
 citizenPage.classList.remove("hidden");
-
 loginPage.classList.add("hidden");
-
 officialPage.classList.add("hidden");
-
 superAdminPage.classList.add("hidden");
 
 }
@@ -814,11 +876,8 @@ superAdminPage.classList.add("hidden");
 function showLogin(){
 
 citizenPage.classList.add("hidden");
-
 loginPage.classList.remove("hidden");
-
 officialPage.classList.add("hidden");
-
 superAdminPage.classList.add("hidden");
 
 }
@@ -831,11 +890,8 @@ superAdminPage.classList.add("hidden");
 function showOfficial(){
 
 citizenPage.classList.add("hidden");
-
 loginPage.classList.add("hidden");
-
 officialPage.classList.remove("hidden");
-
 superAdminPage.classList.add("hidden");
 
 }
@@ -848,18 +904,15 @@ superAdminPage.classList.add("hidden");
 function showSuperAdmin(){
 
 citizenPage.classList.add("hidden");
-
 loginPage.classList.add("hidden");
-
 officialPage.classList.add("hidden");
-
 superAdminPage.classList.remove("hidden");
 
 }
 
 
 /* =====================================================
-   CHECK CURRENT USER ROLE
+   CURRENT USER DATA
    ===================================================== */
 
 async function getCurrentUserData(){
@@ -1006,13 +1059,15 @@ route
 
 document
 .getElementById("backCitizen")
-.addEventListener("click",function(){
+.addEventListener(
+"click",
+function(){
 
 window.location.hash="";
-
 showCitizen();
 
-});
+}
+);
 
 
 /* =====================================================
@@ -1028,14 +1083,10 @@ async function(e){
 e.preventDefault();
 
 const box =
-document.getElementById(
-"submitMessage"
-);
+document.getElementById("submitMessage");
 
 box.className="";
-
-box.textContent=
-"Submitting...";
+box.textContent="Submitting...";
 
 
 try{
@@ -1045,44 +1096,28 @@ collection(db,"issues"),
 {
 
 category:
-document.getElementById(
-"category"
-).value,
+document.getElementById("category").value,
 
 county:
-document.getElementById(
-"county"
-).value.trim(),
+document.getElementById("county").value.trim(),
 
 constituency:
-document.getElementById(
-"constituency"
-).value.trim(),
+document.getElementById("constituency").value.trim(),
 
 ward:
-document.getElementById(
-"ward"
-).value.trim(),
+document.getElementById("ward").value.trim(),
 
 location:
-document.getElementById(
-"location"
-).value.trim(),
+document.getElementById("location").value.trim(),
 
 subLocation:
-document.getElementById(
-"subLocation"
-).value.trim(),
+document.getElementById("subLocation").value.trim(),
 
 targetOffice:
-document.getElementById(
-"targetOffice"
-).value,
+document.getElementById("targetOffice").value,
 
 description:
-document.getElementById(
-"description"
-).value.trim(),
+document.getElementById("description").value.trim(),
 
 status:
 "submitted",
@@ -1109,8 +1144,7 @@ document
 
 console.error(error);
 
-box.className=
-"message error";
+box.className="message error";
 
 box.textContent=
 "Submission failed. Please try again.";
@@ -1128,23 +1162,14 @@ box.textContent=
 async function loadAnnouncements(){
 
 const box =
-document.getElementById(
-"announcements"
-);
+document.getElementById("announcements");
 
 try{
 
 const q =
 query(
-collection(
-db,
-"announcements"
-),
-where(
-"status",
-"==",
-"published"
-)
+collection(db,"announcements"),
+where("status","==","published")
 );
 
 const snapshot =
@@ -1168,42 +1193,64 @@ const data =
 docSnap.data();
 
 const div =
-document.createElement(
-"div"
-);
+document.createElement("div");
 
-div.className=
-"announcement";
+div.className="announcement";
+
 
 const strong =
-document.createElement(
-"strong"
-);
+document.createElement("strong");
 
 strong.textContent=
-"Official Announcement From " +
 (
-data.officeType ||
+data.officialName ||
 "Public Office"
 ) +
 " — " +
 (
-data.officialName ||
-""
+data.officeType ||
+"Public Office"
 );
+
+
+const officeDetails =
+document.createElement("div");
+
+officeDetails.className="small";
+
+officeDetails.style.marginTop="5px";
+
+let details="";
+
+if(data.county){
+details += data.county;
+}
+
+if(data.constituency){
+details += details ? " • " + data.constituency : data.constituency;
+}
+
+if(data.ward){
+details += details ? " • " + data.ward : data.ward;
+}
+
+officeDetails.textContent=details;
+
 
 const message =
-document.createElement(
-"div"
-);
+document.createElement("div");
 
-message.style.marginTop=
-"10px";
+message.style.marginTop="10px";
 
 message.textContent=
 data.message || "";
 
+
 div.appendChild(strong);
+
+if(details){
+div.appendChild(officeDetails);
+}
 
 div.appendChild(message);
 
@@ -1237,26 +1284,19 @@ async function(e){
 e.preventDefault();
 
 const box =
-document.getElementById(
-"loginMessage"
-);
+document.getElementById("loginMessage");
 
 box.className="";
+box.textContent="Signing in...";
 
-box.textContent=
-"Signing in...";
 
 const email =
-document.getElementById(
-"loginEmail"
-)
+document.getElementById("loginEmail")
 .value
 .trim();
 
 const password =
-document.getElementById(
-"loginPassword"
-)
+document.getElementById("loginPassword")
 .value;
 
 
@@ -1272,13 +1312,10 @@ password
 const uid =
 result.user.uid;
 
+
 const userSnap =
 await getDoc(
-doc(
-db,
-"users",
-uid
-)
+doc(db,"users",uid)
 );
 
 
@@ -1298,18 +1335,14 @@ userSnap.data();
 
 
 const allowed=[
-
 "Official",
 "Admin",
 "Super Admin"
-
 ];
 
 
 if(
-!allowed.includes(
-data.role
-)
+!allowed.includes(data.role)
 ){
 
 await signOut(auth);
@@ -1321,12 +1354,11 @@ throw new Error(
 }
 
 
-/* SUPER ADMIN ROUTE */
+/* SUPER ADMIN */
 
 if(data.role==="Super Admin"){
 
-window.location.hash=
-"#superadmin";
+window.location.hash="#superadmin";
 
 showSuperAdmin();
 
@@ -1339,8 +1371,7 @@ loadSuperAdmin();
 
 else{
 
-window.location.hash=
-"#dashboard";
+window.location.hash="#dashboard";
 
 showOfficial();
 
@@ -1353,8 +1384,7 @@ loadDashboard();
 
 console.error(error);
 
-box.className=
-"message error";
+box.className="message error";
 
 box.textContent=
 error.message ||
@@ -1381,21 +1411,20 @@ return;
 const uid =
 auth.currentUser.uid;
 
+
 try{
 
 const userSnap =
 await getDoc(
-doc(
-db,
-"users",
-uid
-)
+doc(db,"users",uid)
 );
+
 
 if(userSnap.exists()){
 
 const userData =
 userSnap.data();
+
 
 document.getElementById(
 "officialName"
@@ -1405,9 +1434,16 @@ document.getElementById(
 userData.name ||
 auth.currentUser.email
 ) +
-" — Role: " +
+" — " +
 (
-userData.role ||
+userData.officeType ||
+"Public Office"
+) +
+(
+userData.constituency
+?
+" — " + userData.constituency
+:
 ""
 );
 
@@ -1416,24 +1452,19 @@ userData.role ||
 
 const snapshot =
 await getDocs(
-collection(
-db,
-"issues"
-)
+collection(db,"issues")
 );
 
+
 const issues=[];
+
 
 snapshot.forEach(
 docSnap=>{
 
 issues.push({
-
-id:
-docSnap.id,
-
+id:docSnap.id,
 ...docSnap.data()
-
 });
 
 }
@@ -1450,10 +1481,8 @@ document.getElementById(
 "roadCount"
 ).textContent=
 issues.filter(
-x=>
-String(
-x.category || ""
-)
+x =>
+String(x.category || "")
 .toLowerCase()==="roads"
 ).length;
 
@@ -1462,10 +1491,8 @@ document.getElementById(
 "waterCount"
 ).textContent=
 issues.filter(
-x=>
-String(
-x.category || ""
-)
+x =>
+String(x.category || "")
 .toLowerCase()==="water"
 ).length;
 
@@ -1474,10 +1501,8 @@ document.getElementById(
 "healthCount"
 ).textContent=
 issues.filter(
-x=>
-String(
-x.category || ""
-)
+x =>
+String(x.category || "")
 .toLowerCase()==="healthcare"
 ).length;
 
@@ -1486,10 +1511,8 @@ document.getElementById(
 "educationCount"
 ).textContent=
 issues.filter(
-x=>
-String(
-x.category || ""
-)
+x =>
+String(x.category || "")
 .toLowerCase()==="education"
 ).length;
 
@@ -1498,18 +1521,14 @@ document.getElementById(
 "securityCount"
 ).textContent=
 issues.filter(
-x=>
-String(
-x.category || ""
-)
+x =>
+String(x.category || "")
 .toLowerCase()==="security"
 ).length;
 
 
 const list =
-document.getElementById(
-"issuesList"
-);
+document.getElementById("issuesList");
 
 list.innerHTML="";
 
@@ -1527,42 +1546,33 @@ issues.forEach(
 issue=>{
 
 const div =
-document.createElement(
-"div"
-);
+document.createElement("div");
 
-div.className=
-"issue";
+div.className="issue";
+
 
 const title =
-document.createElement(
-"strong"
-);
+document.createElement("strong");
 
 title.textContent=
 issue.category || "";
 
-const description =
-document.createElement(
-"div"
-);
 
-description.style.marginTop=
-"6px";
+const description =
+document.createElement("div");
+
+description.style.marginTop="6px";
 
 description.textContent=
 issue.description || "";
 
+
 const place =
-document.createElement(
-"div"
-);
+document.createElement("div");
 
-place.className=
-"small";
+place.className="small";
 
-place.style.marginTop=
-"10px";
+place.style.marginTop="10px";
 
 place.textContent=
 (issue.county || "") +
@@ -1575,10 +1585,9 @@ place.textContent=
 " • " +
 (issue.subLocation || "");
 
+
 div.appendChild(title);
-
 div.appendChild(description);
-
 div.appendChild(place);
 
 list.appendChild(div);
@@ -1595,7 +1604,7 @@ console.error(error);
 document.getElementById(
 "issuesList"
 ).innerHTML=
-"<p class='message error'>Unable to load dashboard data. Your security rules may need the official read permission.</p>";
+"<p class='message error'>Unable to load dashboard data.</p>";
 
 }
 
@@ -1614,10 +1623,12 @@ async function(e){
 
 e.preventDefault();
 
+
 const box =
 document.getElementById(
 "announcementMessageBox"
 );
+
 
 try{
 
@@ -1633,30 +1644,25 @@ throw new Error(
 const uid =
 auth.currentUser.uid;
 
+
 const userSnap =
 await getDoc(
-doc(
-db,
-"users",
-uid
-)
+doc(db,"users",uid)
 );
+
 
 let userData={};
 
+
 if(userSnap.exists()){
 
-userData=
-userSnap.data();
+userData=userSnap.data();
 
 }
 
 
 await addDoc(
-collection(
-db,
-"announcements"
-),
+collection(db,"announcements"),
 {
 
 message:
@@ -1672,6 +1678,18 @@ officialName:
 userData.name ||
 auth.currentUser.email,
 
+county:
+userData.county ||
+"",
+
+constituency:
+userData.constituency ||
+"",
+
+ward:
+userData.ward ||
+"",
+
 status:
 "published",
 
@@ -1682,8 +1700,7 @@ serverTimestamp()
 );
 
 
-box.className=
-"message";
+box.className="message";
 
 box.textContent=
 "Announcement published successfully.";
@@ -1703,8 +1720,7 @@ loadAnnouncements();
 
 console.error(error);
 
-box.className=
-"message error";
+box.className="message error";
 
 box.textContent=
 "Announcement could not be published.";
@@ -1716,7 +1732,7 @@ box.textContent=
 
 
 /* =====================================================
-   SUPER ADMIN - DATE HELPERS
+   DATE HELPERS
    ===================================================== */
 
 function getCreatedDate(data){
@@ -1772,6 +1788,398 @@ return age !== null && age >= 3;
 
 
 /* =====================================================
+   SHOW / HIDE ADD OFFICIAL
+   ===================================================== */
+
+document
+.getElementById("showAddOfficialBtn")
+.addEventListener(
+"click",
+function(){
+
+document
+.getElementById("addOfficialArea")
+.classList.remove("hidden");
+
+window.scrollTo({
+top:document
+.getElementById("addOfficialArea")
+.offsetTop,
+behavior:"smooth"
+});
+
+}
+);
+
+
+document
+.getElementById("cancelAddOfficialBtn")
+.addEventListener(
+"click",
+function(){
+
+document
+.getElementById("addOfficialArea")
+.classList.add("hidden");
+
+document
+.getElementById("addOfficialForm")
+.reset();
+
+document
+.getElementById("addOfficialMessage")
+.innerHTML="";
+
+}
+);
+
+
+/* =====================================================
+   ADD / AUTHORIZE OFFICIAL
+   ===================================================== */
+
+document
+.getElementById("addOfficialForm")
+.addEventListener(
+"submit",
+async function(e){
+
+e.preventDefault();
+
+
+const messageBox =
+document.getElementById(
+"addOfficialMessage"
+);
+
+
+messageBox.className="";
+messageBox.textContent=
+"Creating official account...";
+
+
+if(!auth.currentUser){
+
+messageBox.className="message error";
+
+messageBox.textContent=
+"Super Admin session not found.";
+
+return;
+
+}
+
+
+try{
+
+/*
+ First verify that current user
+ is still Super Admin.
+*/
+
+const adminSnap =
+await getDoc(
+doc(
+db,
+"users",
+auth.currentUser.uid
+)
+);
+
+
+if(
+!adminSnap.exists() ||
+adminSnap.data().role!=="Super Admin"
+){
+
+throw new Error(
+"Only Super Admin can create officials."
+);
+
+}
+
+
+const name =
+document
+.getElementById("newOfficialName")
+.value
+.trim();
+
+
+const email =
+document
+.getElementById("newOfficialEmail")
+.value
+.trim();
+
+
+const password =
+document
+.getElementById("newOfficialPassword")
+.value;
+
+
+const officeType =
+document
+.getElementById("newOfficialOfficeType")
+.value;
+
+
+const county =
+document
+.getElementById("newOfficialCounty")
+.value
+.trim();
+
+
+const constituency =
+document
+.getElementById("newOfficialConstituency")
+.value
+.trim();
+
+
+const ward =
+document
+.getElementById("newOfficialWard")
+.value
+.trim();
+
+
+const area =
+document
+.getElementById("newOfficialArea")
+.value
+.trim();
+
+
+/*
+ Create Firebase Authentication account
+ using the secondary Firebase app.
+ This keeps Super Admin logged in.
+*/
+
+const credential =
+await createUserWithEmailAndPassword(
+secondaryAuth,
+email,
+password
+);
+
+
+const newUid =
+credential.user.uid;
+
+
+/*
+ Create users profile.
+*/
+
+await updateOrCreateUser(
+newUid,
+{
+name:name,
+email:email,
+role:"Official",
+officeType:officeType,
+county:county,
+constituency:constituency,
+ward:ward,
+area:area,
+status:"active",
+createdAt:serverTimestamp()
+}
+);
+
+
+/*
+ Create official profile.
+*/
+
+await addDoc(
+collection(db,"officialprofile"),
+{
+userId:newUid,
+name:name,
+email:email,
+officeType:officeType,
+county:county,
+constituency:constituency,
+ward:ward,
+area:area,
+status:"active",
+createdAt:serverTimestamp()
+}
+);
+
+
+/*
+ Sign out only the secondary account.
+ Super Admin remains logged in.
+*/
+
+await signOut(secondaryAuth);
+
+
+messageBox.className="message";
+
+messageBox.textContent=
+"Official created and authorized successfully.";
+
+
+/*
+ Clear form.
+*/
+
+document
+.getElementById("addOfficialForm")
+.reset();
+
+
+/*
+ Reload Super Admin data.
+*/
+
+loadSuperAdmin();
+
+
+}catch(error){
+
+console.error(error);
+
+messageBox.className=
+"message error";
+
+
+if(error.code==="auth/email-already-in-use"){
+
+messageBox.textContent=
+"This email already has a Firebase account.";
+
+}
+
+else if(error.code==="auth/weak-password"){
+
+messageBox.textContent=
+"Password is too weak. Use at least 6 characters.";
+
+}
+
+else{
+
+messageBox.textContent=
+"Could not create official: " +
+(error.message || "Unknown error.");
+
+}
+
+}
+
+}
+);
+
+
+/* =====================================================
+   CREATE / UPDATE USER PROFILE
+   ===================================================== */
+
+async function updateOrCreateUser(
+uid,
+data
+){
+
+/*
+ Firestore rules allow Super Admin
+ to create the users document.
+*/
+
+await addDocToSpecificUser(
+uid,
+data
+);
+
+}
+
+
+async function addDocToSpecificUser(
+uid,
+data
+){
+
+/*
+ We use setDoc-like behavior through
+ updateDoc if the document already exists,
+ otherwise the normal users creation
+ is handled below.
+*/
+
+const existing =
+await getDoc(
+doc(db,"users",uid)
+);
+
+
+if(existing.exists()){
+
+await updateDoc(
+doc(db,"users",uid),
+data
+);
+
+return;
+
+}
+
+
+/*
+ Since the imported SDK above does not use
+ setDoc, create the document through
+ a temporary collection write is not appropriate.
+
+ This branch is replaced below by the direct
+ REST-free Firestore add helper.
+*/
+
+await createUserDocument(
+uid,
+data
+);
+
+}
+
+
+/*
+ Firestore document creation helper.
+*/
+
+async function createUserDocument(
+uid,
+data
+){
+
+/*
+ We need setDoc for a specific Firebase UID.
+ Load it dynamically from the Firebase SDK.
+*/
+
+const firestoreModule =
+await import(
+"https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js"
+);
+
+await firestoreModule.setDoc(
+firestoreModule.doc(
+db,
+"users",
+uid
+),
+data
+);
+
+}
+
+
+/* =====================================================
    SUPER ADMIN DASHBOARD
    ===================================================== */
 
@@ -1782,6 +2190,7 @@ if(!auth.currentUser){
 return;
 
 }
+
 
 try{
 
@@ -1802,8 +2211,7 @@ userSnap.data().role!=="Super Admin"
 
 await signOut(auth);
 
-window.location.hash=
-"#official";
+window.location.hash="#official";
 
 return;
 
@@ -1825,56 +2233,46 @@ auth.currentUser.email
 " — Super Admin";
 
 
-/* LOAD ALL ISSUES */
+/* LOAD ISSUES */
 
 const issueSnapshot =
 await getDocs(
-collection(
-db,
-"issues"
-)
+collection(db,"issues")
 );
 
+
 const issues=[];
+
 
 issueSnapshot.forEach(
 docSnap=>{
 
 issues.push({
-
-id:
-docSnap.id,
-
+id:docSnap.id,
 ...docSnap.data()
-
 });
 
 }
 );
 
 
-/* LOAD ALL ANNOUNCEMENTS */
+/* LOAD ANNOUNCEMENTS */
 
 const announcementSnapshot =
 await getDocs(
-collection(
-db,
-"announcements"
-)
+collection(db,"announcements")
 );
 
+
 const announcements=[];
+
 
 announcementSnapshot.forEach(
 docSnap=>{
 
 announcements.push({
-
-id:
-docSnap.id,
-
+id:docSnap.id,
 ...docSnap.data()
-
 });
 
 }
@@ -1885,24 +2283,19 @@ docSnap.id,
 
 const userSnapshot =
 await getDocs(
-collection(
-db,
-"users"
-)
+collection(db,"users")
 );
 
+
 const users=[];
+
 
 userSnapshot.forEach(
 docSnap=>{
 
 users.push({
-
-id:
-docSnap.id,
-
+id:docSnap.id,
 ...docSnap.data()
-
 });
 
 }
@@ -1924,17 +2317,23 @@ announcements.length;
 document.getElementById(
 "adminOfficialCount"
 ).textContent=
-users.length;
+users.filter(
+u =>
+u.role==="Official" ||
+u.role==="Admin" ||
+u.role==="Super Admin"
+).length;
 
 
 /* =====================================================
-   USERS LIST
+   USERS / OFFICIALS LIST
    ===================================================== */
 
 const officialsList =
 document.getElementById(
 "officialsList"
 );
+
 
 officialsList.innerHTML="";
 
@@ -1952,32 +2351,45 @@ users.forEach(
 user=>{
 
 const div =
-document.createElement(
-"div"
-);
+document.createElement("div");
 
-div.className=
-"office";
+div.className="office";
+
 
 const name =
-document.createElement(
-"strong"
-);
+document.createElement("strong");
 
 name.textContent=
 user.name ||
 "No name";
 
+
 const info =
-document.createElement(
-"div"
-);
+document.createElement("div");
 
-info.className=
-"small";
+info.className="small";
 
-info.style.marginTop=
-"6px";
+info.style.marginTop="7px";
+
+
+let locationText="";
+
+if(user.county){
+locationText += user.county;
+}
+
+if(user.constituency){
+locationText += locationText
+? " • " + user.constituency
+: user.constituency;
+}
+
+if(user.ward){
+locationText += locationText
+? " • " + user.ward
+: user.ward;
+}
+
 
 info.textContent=
 "Role: " +
@@ -1985,12 +2397,154 @@ info.textContent=
 " • " +
 (user.officeType || "Office not specified") +
 " • " +
-(user.email || "Email not stored");
+(user.email || "Email not stored") +
+(
+locationText
+? " • " + locationText
+: ""
+);
+
+
+const status =
+document.createElement("div");
+
+status.style.marginTop="8px";
+
+
+if(
+user.status==="active"
+){
+
+status.innerHTML=
+"<span class='statusActive'>ACTIVE</span>";
+
+}
+
+else{
+
+status.innerHTML=
+"<span class='statusInactive'>INACTIVE</span>";
+
+}
 
 
 div.appendChild(name);
-
 div.appendChild(info);
+div.appendChild(status);
+
+
+/*
+ Only Officials get activate/deactivate button.
+*/
+
+if(user.role==="Official"){
+
+const actionButton =
+document.createElement("button");
+
+
+if(user.status==="active"){
+
+actionButton.className="warning";
+
+actionButton.textContent=
+"⛔ Deactivate Official";
+
+}
+
+else{
+
+actionButton.className="adminButton";
+
+actionButton.textContent=
+"✅ Activate Official";
+
+}
+
+
+actionButton.addEventListener(
+"click",
+async function(){
+
+try{
+
+const newStatus =
+user.status==="active"
+? "inactive"
+: "active";
+
+
+await updateDoc(
+doc(db,"users",user.id),
+{
+status:newStatus
+}
+);
+
+
+/*
+ Also update official profile
+ when possible.
+*/
+
+const profileQuery =
+query(
+collection(db,"officialprofile"),
+where("userId","==",user.id)
+);
+
+
+const profileSnapshot =
+await getDocs(profileQuery);
+
+
+for(
+const profileDoc
+of profileSnapshot.docs
+){
+
+await updateDoc(
+doc(
+db,
+"officialprofile",
+profileDoc.id
+),
+{
+status:newStatus
+}
+);
+
+}
+
+
+alert(
+newStatus==="active"
+? "Official activated successfully."
+: "Official deactivated successfully."
+);
+
+
+loadSuperAdmin();
+
+
+}catch(error){
+
+console.error(error);
+
+alert(
+"Could not change official status."
+);
+
+}
+
+}
+);
+
+
+div.appendChild(actionButton);
+
+}
+
 
 officialsList.appendChild(div);
 
@@ -2001,13 +2555,14 @@ officialsList.appendChild(div);
 
 
 /* =====================================================
-   ANNOUNCEMENTS MANAGEMENT
+   ANNOUNCEMENT MANAGEMENT
    ===================================================== */
 
 const announcementList =
 document.getElementById(
 "adminAnnouncementsList"
 );
+
 
 announcementList.innerHTML="";
 
@@ -2025,18 +2580,13 @@ announcements.forEach(
 announcement=>{
 
 const div =
-document.createElement(
-"div"
-);
+document.createElement("div");
 
-div.className=
-"managementItem";
+div.className="managementItem";
 
 
 const title =
-document.createElement(
-"strong"
-);
+document.createElement("strong");
 
 title.textContent=
 (
@@ -2051,30 +2601,23 @@ announcement.officeType ||
 
 
 const message =
-document.createElement(
-"div"
-);
+document.createElement("div");
 
-message.style.marginTop=
-"8px";
+message.style.marginTop="8px";
 
 message.textContent=
-announcement.message ||
-"";
+announcement.message || "";
 
 
 const age =
-document.createElement(
-"div"
-);
+document.createElement("div");
 
-age.className=
-"age";
+age.className="age";
+
 
 const ageDays =
-getAgeInDays(
-announcement
-);
+getAgeInDays(announcement);
+
 
 if(ageDays===null){
 
@@ -2094,26 +2637,20 @@ ageDays +
 
 
 div.appendChild(title);
-
 div.appendChild(message);
-
 div.appendChild(age);
 
-
-/* DELETE BUTTON */
 
 if(canDelete(announcement)){
 
 const deleteButton =
-document.createElement(
-"button"
-);
+document.createElement("button");
 
-deleteButton.className=
-"danger";
+deleteButton.className="danger";
 
 deleteButton.textContent=
 "🗑️ Delete Announcement";
+
 
 deleteButton.addEventListener(
 "click",
@@ -2124,11 +2661,13 @@ confirm(
 "Delete this announcement permanently?"
 );
 
+
 if(!confirmDelete){
 
 return;
 
 }
+
 
 try{
 
@@ -2140,13 +2679,15 @@ announcement.id
 )
 );
 
+
 alert(
 "Announcement deleted successfully."
 );
 
-loadSuperAdmin();
 
+loadSuperAdmin();
 loadAnnouncements();
+
 
 }catch(error){
 
@@ -2161,24 +2702,19 @@ alert(
 }
 );
 
-div.appendChild(
-deleteButton
-);
+
+div.appendChild(deleteButton);
 
 }
 
 else{
 
 const note =
-document.createElement(
-"div"
-);
+document.createElement("div");
 
-note.className=
-"small";
+note.className="small";
 
-note.style.marginTop=
-"10px";
+note.style.marginTop="10px";
 
 note.textContent=
 "Delete available after 3 days.";
@@ -2188,9 +2724,7 @@ div.appendChild(note);
 }
 
 
-announcementList.appendChild(
-div
-);
+announcementList.appendChild(div);
 
 }
 );
@@ -2199,13 +2733,14 @@ div
 
 
 /* =====================================================
-   ISSUES MANAGEMENT
+   ISSUE MANAGEMENT
    ===================================================== */
 
 const issueList =
 document.getElementById(
 "adminIssuesList"
 );
+
 
 issueList.innerHTML="";
 
@@ -2223,18 +2758,13 @@ issues.forEach(
 issue=>{
 
 const div =
-document.createElement(
-"div"
-);
+document.createElement("div");
 
-div.className=
-"managementItem";
+div.className="managementItem";
 
 
 const title =
-document.createElement(
-"strong"
-);
+document.createElement("strong");
 
 title.textContent=
 issue.category ||
@@ -2242,12 +2772,9 @@ issue.category ||
 
 
 const description =
-document.createElement(
-"div"
-);
+document.createElement("div");
 
-description.style.marginTop=
-"8px";
+description.style.marginTop="8px";
 
 description.textContent=
 issue.description ||
@@ -2255,15 +2782,11 @@ issue.description ||
 
 
 const location =
-document.createElement(
-"div"
-);
+document.createElement("div");
 
-location.className=
-"small";
+location.className="small";
 
-location.style.marginTop=
-"8px";
+location.style.marginTop="8px";
 
 location.textContent=
 (issue.county || "") +
@@ -2278,17 +2801,14 @@ location.textContent=
 
 
 const age =
-document.createElement(
-"div"
-);
+document.createElement("div");
 
-age.className=
-"age";
+age.className="age";
+
 
 const ageDays =
-getAgeInDays(
-issue
-);
+getAgeInDays(issue);
+
 
 if(ageDays===null){
 
@@ -2308,28 +2828,21 @@ ageDays +
 
 
 div.appendChild(title);
-
 div.appendChild(description);
-
 div.appendChild(location);
-
 div.appendChild(age);
 
-
-/* DELETE BUTTON */
 
 if(canDelete(issue)){
 
 const deleteButton =
-document.createElement(
-"button"
-);
+document.createElement("button");
 
-deleteButton.className=
-"danger";
+deleteButton.className="danger";
 
 deleteButton.textContent=
 "🗑️ Delete Issue";
+
 
 deleteButton.addEventListener(
 "click",
@@ -2340,11 +2853,13 @@ confirm(
 "Delete this citizen issue permanently?"
 );
 
+
 if(!confirmDelete){
 
 return;
 
 }
+
 
 try{
 
@@ -2356,11 +2871,14 @@ issue.id
 )
 );
 
+
 alert(
 "Issue deleted successfully."
 );
 
+
 loadSuperAdmin();
+
 
 }catch(error){
 
@@ -2375,24 +2893,19 @@ alert(
 }
 );
 
-div.appendChild(
-deleteButton
-);
+
+div.appendChild(deleteButton);
 
 }
 
 else{
 
 const note =
-document.createElement(
-"div"
-);
+document.createElement("div");
 
-note.className=
-"small";
+note.className="small";
 
-note.style.marginTop=
-"10px";
+note.style.marginTop="10px";
 
 note.textContent=
 "Delete available after 3 days.";
@@ -2402,9 +2915,7 @@ div.appendChild(note);
 }
 
 
-issueList.appendChild(
-div
-);
+issueList.appendChild(div);
 
 }
 );
@@ -2415,6 +2926,7 @@ div
 }catch(error){
 
 console.error(error);
+
 
 document.getElementById(
 "adminIssuesList"
@@ -2437,7 +2949,6 @@ document
 function(){
 
 window.location.hash="";
-
 showCitizen();
 
 }
@@ -2450,11 +2961,8 @@ document
 "click",
 function(){
 
-window.location.hash=
-"#dashboard";
-
+window.location.hash="#dashboard";
 showOfficial();
-
 loadDashboard();
 
 }
@@ -2466,9 +2974,7 @@ loadDashboard();
    ===================================================== */
 
 document
-.getElementById(
-"superAdminLogoutBtn"
-)
+.getElementById("superAdminLogoutBtn")
 .addEventListener(
 "click",
 async function(){
@@ -2514,14 +3020,11 @@ async user=>{
 if(!user){
 
 if(
-window.location.hash===
-"#dashboard" ||
-window.location.hash===
-"#superadmin"
+window.location.hash==="#dashboard" ||
+window.location.hash==="#superadmin"
 ){
 
-window.location.hash=
-"#official";
+window.location.hash="#official";
 
 }
 
@@ -2529,13 +3032,14 @@ return;
 
 }
 
+
 if(
-window.location.hash===
-"#superadmin"
+window.location.hash==="#superadmin"
 ){
 
 const data =
 await getCurrentUserData();
+
 
 if(
 data &&
@@ -2543,7 +3047,6 @@ data.role==="Super Admin"
 ){
 
 showSuperAdmin();
-
 loadSuperAdmin();
 
 }
