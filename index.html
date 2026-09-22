@@ -7,252 +7,41 @@ here<!DOCTYPE html>
 
 <style>
 *{box-sizing:border-box}
-
-body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  color:#17202a;
-  background:#f4f7f5;
-}
-
-.hero{
-  min-height:220px;
-  padding:28px 18px;
-  color:white;
-  text-align:center;
-  background:
-    linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
-    linear-gradient(#111 0 20%,#c00 20% 40%,#fff 40% 60%,#08783e 60% 80%,#111 80%);
-  border-bottom:6px solid #d4af37;
-}
-
-.logo{
-  width:82px;
-  height:82px;
-  margin:auto;
-  border:4px solid white;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:38px;
-  background:rgba(0,0,0,.35);
-}
-
-.hero h1{
-  margin:12px 0 5px;
-  font-size:34px;
-}
-
-.hero p{
-  margin:0;
-  font-size:15px;
-}
-
-.container{
-  max-width:900px;
-  margin:25px auto;
-  padding:0 15px;
-}
-
-.card{
-  background:white;
-  padding:22px;
-  margin-bottom:20px;
-  border-radius:16px;
-  box-shadow:0 4px 18px rgba(0,0,0,.08);
-}
-
-h2{
-  margin-top:0;
-  color:#075b35;
-}
-
-h3{
-  color:#075b35;
-}
-
-label{
-  display:block;
-  margin-top:14px;
-  margin-bottom:6px;
-  font-weight:bold;
-}
-
-input,
-select,
-textarea{
-  width:100%;
-  padding:13px;
-  border:1px solid #ccd5cf;
-  border-radius:9px;
-  font-size:16px;
-}
-
-textarea{
-  min-height:130px;
-  resize:vertical;
-}
-
-button{
-  width:100%;
-  padding:14px;
-  margin-top:18px;
-  border:0;
-  border-radius:9px;
-  background:#08783e;
-  color:white;
-  font-size:17px;
-  font-weight:bold;
-}
-
-button:hover{
-  opacity:.9;
-}
-
-.secondary{
-  background:#555;
-}
-
-.danger{
-  background:#b00020;
-}
-
-.warning{
-  background:#b8860b;
-}
-
-.hidden{
-  display:none!important;
-}
-
-.message{
-  margin-top:14px;
-  padding:12px;
-  border-radius:8px;
-  background:#e8f5e9;
-  color:#155724;
-}
-
-.error{
-  background:#fdecea;
-  color:#8a1c1c;
-}
-
-.stats{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
-  gap:10px;
-}
-
-.stat{
-  padding:15px;
-  background:#f2f6f3;
-  border-radius:10px;
-  text-align:center;
-}
-
-.stat strong{
-  display:block;
-  font-size:27px;
-  color:#08783e;
-}
-
-.issue{
-  border:1px solid #ddd;
-  border-radius:10px;
-  padding:14px;
-  margin:10px 0;
-}
-
-.announcement{
-  border-left:5px solid #08783e;
-  padding:12px;
-  margin:12px 0;
-  background:#f3f8f5;
-  border-radius:8px;
-}
-
-.small{
-  font-size:13px;
-  color:#666;
-}
-
-.back{
-  background:#444;
-  margin-bottom:10px;
-}
-
-.adminButton{
-  margin-top:10px;
-}
-
-.managementItem{
-  border:1px solid #ddd;
-  border-radius:10px;
-  padding:15px;
-  margin:12px 0;
-  background:#fafafa;
-}
-
-.managementItem button{
-  margin-top:10px;
-}
-
-.age{
-  font-size:13px;
-  color:#666;
-  margin-top:8px;
-}
-
-.office{
-  border-left:5px solid #075b35;
-  padding:12px;
-  margin:10px 0;
-  background:#f5f8f6;
-  border-radius:8px;
-}
-
-.formTitle{
-  margin-top:0;
-  color:#075b35;
-}
-
-.statusActive{
-  display:inline-block;
-  padding:5px 9px;
-  border-radius:15px;
-  background:#dff3e5;
-  color:#146c2e;
-  font-size:12px;
-  font-weight:bold;
-}
-
-.statusInactive{
-  display:inline-block;
-  padding:5px 9px;
-  border-radius:15px;
-  background:#f5dddd;
-  color:#9b1c1c;
-  font-size:12px;
-  font-weight:bold;
-}
-
-footer{
-  text-align:center;
-  padding:25px;
-  color:#666;
-  font-size:13px;
-}
+body{margin:0;font-family:Arial,sans-serif;color:#17202a;background:#f4f7f5}
+.hero{min-height:220px;padding:28px 18px;color:white;text-align:center;background:linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),linear-gradient(#111 0 20%,#c00 20% 40%,#fff 40% 60%,#08783e 60% 80%,#111 80%);border-bottom:6px solid #d4af37}
+.logo{width:82px;height:82px;margin:auto;border:4px solid white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:38px;background:rgba(0,0,0,.35)}
+.hero h1{margin:12px 0 5px;font-size:34px}.hero p{margin:0;font-size:15px}
+.container{max-width:900px;margin:25px auto;padding:0 15px}
+.card{background:white;padding:22px;margin-bottom:20px;border-radius:16px;box-shadow:0 4px 18px rgba(0,0,0,.08)}
+h2{margin-top:0;color:#075b35}h3{color:#075b35}
+label{display:block;margin-top:14px;margin-bottom:6px;font-weight:bold}
+input,select,textarea{width:100%;padding:13px;border:1px solid #ccd5cf;border-radius:9px;font-size:16px}
+textarea{min-height:130px;resize:vertical}
+button{width:100%;padding:14px;margin-top:18px;border:0;border-radius:9px;background:#08783e;color:white;font-size:17px;font-weight:bold}
+button:hover{opacity:.9}
+.secondary{background:#555}.danger{background:#b00020}.warning{background:#b8860b}
+.hidden{display:none!important}
+.message{margin-top:14px;padding:12px;border-radius:8px;background:#e8f5e9;color:#155724}
+.error{background:#fdecea;color:#8a1c1c}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
+.stat{padding:15px;background:#f2f6f3;border-radius:10px;text-align:center}
+.stat strong{display:block;font-size:27px;color:#08783e}
+.issue{border:1px solid #ddd;border-radius:10px;padding:14px;margin:10px 0}
+.announcement{border-left:5px solid #08783e;padding:12px;margin:12px 0;background:#f3f8f5;border-radius:8px}
+.small{font-size:13px;color:#666}.back{background:#444;margin-bottom:10px}
+.adminButton{margin-top:10px}.managementItem{border:1px solid #ddd;border-radius:10px;padding:15px;margin:12px 0;background:#fafafa}
+.managementItem button{margin-top:10px}.age{font-size:13px;color:#666;margin-top:8px}
+.office{border-left:5px solid #075b35;padding:12px;margin:10px 0;background:#f5f8f6;border-radius:8px}
+.formTitle{margin-top:0;color:#075b35}
+.statusActive{display:inline-block;padding:5px 9px;border-radius:15px;background:#dff3e5;color:#146c2e;font-size:12px;font-weight:bold}
+.statusInactive{display:inline-block;padding:5px 9px;border-radius:15px;background:#f5dddd;color:#9b1c1c;font-size:12px;font-weight:bold}
+footer{text-align:center;padding:25px;color:#666;font-size:13px}
 </style>
 </head>
 
 <body>
 
-<!-- =====================================================
-     CITIZEN PAGE
-     ===================================================== -->
-
+<!-- CITIZEN PAGE -->
 <div id="citizenPage">
 
 <section class="hero">
@@ -271,13 +60,11 @@ footer{
 </div>
 
 <div class="card">
-
 <h2>Share Your Voice</h2>
 
 <form id="issueForm">
 
 <label>Category</label>
-
 <select id="category" required>
 <option value="">Select category</option>
 <option>Roads</option>
@@ -310,7 +97,6 @@ footer{
 <input type="text" id="subLocation" placeholder="Enter sub-location" required>
 
 <label>Office Concerned</label>
-
 <select id="targetOffice" required>
 <option value="">Select office</option>
 <option>MCA</option>
@@ -323,11 +109,7 @@ footer{
 </select>
 
 <label>Your Question / Suggestion / Concern / Issue</label>
-
-<textarea
-id="description"
-placeholder="Describe your question, suggestion, concern or issue..."
-required></textarea>
+<textarea id="description" placeholder="Describe your question, suggestion, concern or issue..." required></textarea>
 
 <button type="submit">Submit</button>
 
@@ -339,10 +121,7 @@ required></textarea>
 </div>
 
 
-<!-- =====================================================
-     OFFICIAL LOGIN
-     ===================================================== -->
-
+<!-- OFFICIAL LOGIN -->
 <div id="loginPage" class="hidden">
 
 <section class="hero">
@@ -352,12 +131,9 @@ required></textarea>
 </section>
 
 <div class="container">
-
 <div class="card">
 
-<button class="back" id="backCitizen">
-← Back to Citizen Voice
-</button>
+<button class="back" id="backCitizen">← Back to Citizen Voice</button>
 
 <h2>Official Login</h2>
 
@@ -374,16 +150,12 @@ required></textarea>
 <div id="loginMessage"></div>
 
 </form>
-
 </div>
 </div>
 </div>
 
 
-<!-- =====================================================
-     OFFICIAL DASHBOARD
-     ===================================================== -->
-
+<!-- OFFICIAL DASHBOARD -->
 <div id="officialPage" class="hidden">
 
 <section class="hero">
@@ -396,9 +168,7 @@ required></textarea>
 
 <div class="card">
 
-<button class="danger" id="logoutBtn">
-Logout
-</button>
+<button class="danger" id="logoutBtn">Logout</button>
 
 <h2>Dashboard</h2>
 
@@ -406,47 +176,21 @@ Logout
 
 <div class="stats">
 
-<div class="stat">
-<strong id="totalIssues">0</strong>
-Total Issues
-</div>
-
-<div class="stat">
-<strong id="roadCount">0</strong>
-Roads
-</div>
-
-<div class="stat">
-<strong id="waterCount">0</strong>
-Water
-</div>
-
-<div class="stat">
-<strong id="healthCount">0</strong>
-Healthcare
-</div>
-
-<div class="stat">
-<strong id="educationCount">0</strong>
-Education
-</div>
-
-<div class="stat">
-<strong id="securityCount">0</strong>
-Security
-</div>
+<div class="stat"><strong id="totalIssues">0</strong>Total Issues</div>
+<div class="stat"><strong id="roadCount">0</strong>Roads</div>
+<div class="stat"><strong id="waterCount">0</strong>Water</div>
+<div class="stat"><strong id="healthCount">0</strong>Healthcare</div>
+<div class="stat"><strong id="educationCount">0</strong>Education</div>
+<div class="stat"><strong id="securityCount">0</strong>Security</div>
 
 </div>
 </div>
 
 <div class="card">
-
 <h2>Citizen Issues</h2>
-
 <div id="issuesList">
 <p class="small">Loading issues...</p>
 </div>
-
 </div>
 
 <div class="card">
@@ -457,14 +201,9 @@ Security
 
 <label>Message</label>
 
-<textarea
-id="announcementMessage"
-placeholder="Write your official announcement..."
-required></textarea>
+<textarea id="announcementMessage" placeholder="Write your official announcement..." required></textarea>
 
-<button type="submit">
-Publish Announcement
-</button>
+<button type="submit">Publish Announcement</button>
 
 <div id="announcementMessageBox"></div>
 
@@ -475,29 +214,20 @@ Publish Announcement
 </div>
 
 
-<!-- =====================================================
-     SUPER ADMIN DASHBOARD
-     ===================================================== -->
-
+<!-- SUPER ADMIN DASHBOARD -->
 <div id="superAdminPage" class="hidden">
 
 <section class="hero">
-
 <div class="logo">🛡️</div>
-
 <h1>Super Admin</h1>
-
 <p>Citizen Voice System Management</p>
-
 </section>
 
 <div class="container">
 
 <div class="card">
 
-<button class="danger" id="superAdminLogoutBtn">
-Logout
-</button>
+<button class="danger" id="superAdminLogoutBtn">Logout</button>
 
 <h2>Super Admin Dashboard</h2>
 
@@ -506,55 +236,32 @@ Logout
 </div>
 
 
-<!-- SYSTEM OVERVIEW -->
-
 <div class="card">
 
 <h2>System Overview</h2>
 
 <div class="stats">
 
-<div class="stat">
-<strong id="adminIssueCount">0</strong>
-Issues
-</div>
-
-<div class="stat">
-<strong id="adminAnnouncementCount">0</strong>
-Announcements
-</div>
-
-<div class="stat">
-<strong id="adminOfficialCount">0</strong>
-Authorized Users
-</div>
+<div class="stat"><strong id="adminIssueCount">0</strong>Issues</div>
+<div class="stat"><strong id="adminAnnouncementCount">0</strong>Announcements</div>
+<div class="stat"><strong id="adminOfficialCount">0</strong>Authorized Users</div>
 
 </div>
-
 </div>
 
-
-<!-- SYSTEM VIEWS -->
 
 <div class="card">
 
 <h2>System Views</h2>
 
-<button class="adminButton" id="openCitizenBtn">
-👁️ Open Citizen View
-</button>
+<button class="adminButton" id="openCitizenBtn">👁️ Open Citizen View</button>
 
-<button class="adminButton" id="openOfficialBtn">
-🏢 Open Official Dashboard
-</button>
+<button class="adminButton" id="openOfficialBtn">🏢 Open Official Dashboard</button>
 
 </div>
 
 
-<!-- =====================================================
-     MANAGE OFFICIALS
-     ===================================================== -->
-
+<!-- MANAGE OFFICIALS -->
 <div class="card">
 
 <h2>👥 Manage Officials</h2>
@@ -563,60 +270,30 @@ Authorized Users
 Add and authorize officials who are allowed to use the Official Dashboard.
 </p>
 
-<button id="showAddOfficialBtn">
-➕ Add New Official
-</button>
+<button id="showAddOfficialBtn">➕ Add New Official</button>
 
 <div id="addOfficialArea" class="hidden">
 
 <hr style="margin-top:25px;margin-bottom:20px">
 
-<h3 class="formTitle">
-Create & Authorize Official
-</h3>
+<h3 class="formTitle">Create & Authorize Official</h3>
 
 <form id="addOfficialForm">
 
 <label>Official Full Name</label>
-
-<input
-type="text"
-id="newOfficialName"
-placeholder="Example: Hon. John Mwangi"
-required>
-
+<input type="text" id="newOfficialName" placeholder="Example: Hon. John Mwangi" required>
 
 <label>Email Address</label>
-
-<input
-type="email"
-id="newOfficialEmail"
-placeholder="official@example.com"
-required>
-
+<input type="email" id="newOfficialEmail" placeholder="official@example.com" required>
 
 <label>Temporary Password</label>
+<input type="password" id="newOfficialPassword" placeholder="Create temporary password" minlength="6" required>
 
-<input
-type="password"
-id="newOfficialPassword"
-placeholder="Create temporary password"
-minlength="6"
-required>
-
-<p class="small">
-The official can use this password to log in. Keep it secure.
-</p>
-
+<p class="small">The official can use this password to log in. Keep it secure.</p>
 
 <label>Office Type</label>
-
 <select id="newOfficialOfficeType" required>
-
-<option value="">
-Select office type
-</option>
-
+<option value="">Select office type</option>
 <option>MCA</option>
 <option>MP</option>
 <option>Woman Representative</option>
@@ -624,84 +301,44 @@ Select office type
 <option>Governor</option>
 <option>President</option>
 <option>Other Government Office</option>
-
 </select>
 
-
 <label>County</label>
-
-<input
-type="text"
-id="newOfficialCounty"
-placeholder="Enter county"
-required>
-
+<input type="text" id="newOfficialCounty" placeholder="Enter county" required>
 
 <label>Constituency</label>
-
-<input
-type="text"
-id="newOfficialConstituency"
-placeholder="Enter constituency">
-
+<input type="text" id="newOfficialConstituency" placeholder="Enter constituency">
 
 <label>Ward</label>
-
-<input
-type="text"
-id="newOfficialWard"
-placeholder="Enter ward">
-
+<input type="text" id="newOfficialWard" placeholder="Enter ward">
 
 <label>Office / Area Description</label>
+<input type="text" id="newOfficialArea" placeholder="Example: Igembe North">
 
-<input
-type="text"
-id="newOfficialArea"
-placeholder="Example: Igembe North">
+<button type="submit">✅ Create & Authorize Official</button>
 
-
-<button type="submit">
-✅ Create & Authorize Official
-</button>
-
-<button
-type="button"
-class="secondary"
-id="cancelAddOfficialBtn">
-
-Cancel
-
-</button>
+<button type="button" class="secondary" id="cancelAddOfficialBtn">Cancel</button>
 
 <div id="addOfficialMessage"></div>
 
 </form>
-
+</div>
 </div>
 
-</div>
 
-
-<!-- AUTHORIZED OFFICIALS -->
-
+<!-- AUTHORIZED USERS -->
 <div class="card">
 
 <h2>Authorized Officials / Users</h2>
 
 <div id="officialsList">
-
-<p class="small">
-Loading authorized users...
-</p>
-
+<p class="small">Loading authorized users...</p>
 </div>
 
 </div>
 
 
 <!-- ANNOUNCEMENT MANAGEMENT -->
-
 <div class="card">
 
 <h2>Manage Announcements</h2>
@@ -711,18 +348,13 @@ Announcements can be deleted by Super Admin after they are at least 3 days old.
 </p>
 
 <div id="adminAnnouncementsList">
-
-<p class="small">
-Loading announcements...
-</p>
-
+<p class="small">Loading announcements...</p>
 </div>
 
 </div>
 
 
 <!-- ISSUE MANAGEMENT -->
-
 <div class="card">
 
 <h2>Manage Citizen Issues</h2>
@@ -732,17 +364,12 @@ Issues can be deleted by Super Admin after they are at least 3 days old.
 </p>
 
 <div id="adminIssuesList">
-
-<p class="small">
-Loading issues...
-</p>
-
+<p class="small">Loading issues...</p>
 </div>
 
 </div>
 
 </div>
-
 </div>
 
 
@@ -750,10 +377,6 @@ Loading issues...
 Citizen Voice — Connecting Citizens With Public Offices
 </footer>
 
-
-<!-- =====================================================
-     FIREBASE
-     ===================================================== -->
 
 <script type="module">
 
@@ -774,6 +397,7 @@ getFirestore,
 collection,
 addDoc,
 getDoc,
+setDoc,
 doc,
 query,
 where,
@@ -785,79 +409,57 @@ updateDoc
 from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
 
-/* =====================================================
-   FIREBASE CONFIG
-   ===================================================== */
+/* FIREBASE CONFIG */
 
 const firebaseConfig = {
 
-apiKey:
-"AIzaSyBIJZJW392I97YZLx__9dNNk1DeAQNHgFI",
+apiKey:"AIzaSyBIJZJW392I97YZLx__9dNNk1DeAQNHgFI",
 
-authDomain:
-"voice-connect-ded08.firebaseapp.com",
+authDomain:"voice-connect-ded08.firebaseapp.com",
 
-projectId:
-"voice-connect-ded08",
+projectId:"voice-connect-ded08",
 
-storageBucket:
-"voice-connect-ded08.firebasestorage.app",
+storageBucket:"voice-connect-ded08.firebasestorage.app",
 
-messagingSenderId:
-"277049759508",
+messagingSenderId:"277049759508",
 
-appId:
-"1:277049759508:web:0eb0ab57c3b455a0591401"
+appId:"1:277049759508:web:0eb0ab57c3b455a0591401"
 
 };
 
 
-const app =
-initializeApp(firebaseConfig);
+const app=initializeApp(firebaseConfig);
 
-const auth =
-getAuth(app);
+const auth=getAuth(app);
 
-const db =
-getFirestore(app);
+const db=getFirestore(app);
 
 
-/* =====================================================
-   SECONDARY FIREBASE APP
-   Used to create official accounts without
-   logging out the Super Admin.
-   ===================================================== */
+/* SECONDARY APP */
 
-const secondaryApp =
-initializeApp(
-firebaseConfig,
-"secondaryApp"
-);
+const secondaryApp=
+initializeApp(firebaseConfig,"secondaryApp");
 
-const secondaryAuth =
+const secondaryAuth=
 getAuth(secondaryApp);
 
 
-/* =====================================================
-   PAGE ELEMENTS
-   ===================================================== */
+/* PAGE ELEMENTS */
 
-const citizenPage =
+const citizenPage=
 document.getElementById("citizenPage");
 
-const loginPage =
+const loginPage=
 document.getElementById("loginPage");
 
-const officialPage =
+const officialPage=
 document.getElementById("officialPage");
 
-const superAdminPage =
+const superAdminPage=
 document.getElementById("superAdminPage");
 
 
-/* =====================================================
-   SHOW CITIZEN
-   ===================================================== */
+/* PAGE FUNCTIONS */
 
 function showCitizen(){
 
@@ -869,10 +471,6 @@ superAdminPage.classList.add("hidden");
 }
 
 
-/* =====================================================
-   SHOW LOGIN
-   ===================================================== */
-
 function showLogin(){
 
 citizenPage.classList.add("hidden");
@@ -882,10 +480,6 @@ superAdminPage.classList.add("hidden");
 
 }
 
-
-/* =====================================================
-   SHOW OFFICIAL
-   ===================================================== */
 
 function showOfficial(){
 
@@ -897,10 +491,6 @@ superAdminPage.classList.add("hidden");
 }
 
 
-/* =====================================================
-   SHOW SUPER ADMIN
-   ===================================================== */
-
 function showSuperAdmin(){
 
 citizenPage.classList.add("hidden");
@@ -911,9 +501,7 @@ superAdminPage.classList.remove("hidden");
 }
 
 
-/* =====================================================
-   CURRENT USER DATA
-   ===================================================== */
+/* CURRENT USER DATA */
 
 async function getCurrentUserData(){
 
@@ -923,13 +511,9 @@ return null;
 
 }
 
-const snap =
+const snap=
 await getDoc(
-doc(
-db,
-"users",
-auth.currentUser.uid
-)
+doc(db,"users",auth.currentUser.uid)
 );
 
 if(!snap.exists()){
@@ -943,28 +527,26 @@ return snap.data();
 }
 
 
-/* =====================================================
-   HASH ROUTING
-   ===================================================== */
+/* ROUTING */
 
 async function route(){
 
-const hash =
+const hash=
 window.location.hash;
 
 
-if(hash === "#official"){
+if(hash==="#official"){
 
 showLogin();
 
 }
 
 
-else if(hash === "#dashboard"){
+else if(hash==="#dashboard"){
 
 if(auth.currentUser){
 
-const userData =
+const userData=
 await getCurrentUserData();
 
 if(
@@ -1001,11 +583,11 @@ showLogin();
 }
 
 
-else if(hash === "#superadmin"){
+else if(hash==="#superadmin"){
 
 if(auth.currentUser){
 
-const userData =
+const userData=
 await getCurrentUserData();
 
 if(
@@ -1047,42 +629,30 @@ showCitizen();
 }
 
 
-window.addEventListener(
-"hashchange",
-route
-);
+window.addEventListener("hashchange",route);
 
 
-/* =====================================================
-   BACK TO CITIZEN
-   ===================================================== */
+/* BACK TO CITIZEN */
 
 document
 .getElementById("backCitizen")
-.addEventListener(
-"click",
-function(){
+.addEventListener("click",function(){
 
 window.location.hash="";
 showCitizen();
 
-}
-);
+});
 
 
-/* =====================================================
-   CITIZEN SUBMISSION
-   ===================================================== */
+/* CITIZEN SUBMISSION */
 
 document
 .getElementById("issueForm")
-.addEventListener(
-"submit",
-async function(e){
+.addEventListener("submit",async function(e){
 
 e.preventDefault();
 
-const box =
+const box=
 document.getElementById("submitMessage");
 
 box.className="";
@@ -1119,11 +689,9 @@ document.getElementById("targetOffice").value,
 description:
 document.getElementById("description").value.trim(),
 
-status:
-"submitted",
+status:"submitted",
 
-createdAt:
-serverTimestamp()
+createdAt:serverTimestamp()
 
 }
 );
@@ -1134,10 +702,7 @@ box.className="message";
 box.textContent=
 "Your submission is submitted successfully.";
 
-
-document
-.getElementById("issueForm")
-.reset();
+document.getElementById("issueForm").reset();
 
 
 }catch(error){
@@ -1151,31 +716,29 @@ box.textContent=
 
 }
 
-}
-);
+});
 
 
-/* =====================================================
-   LOAD CITIZEN ANNOUNCEMENTS
-   ===================================================== */
+/* CITIZEN ANNOUNCEMENTS */
 
 async function loadAnnouncements(){
 
-const box =
+const box=
 document.getElementById("announcements");
 
 try{
 
-const q =
+const q=
 query(
 collection(db,"announcements"),
 where("status","==","published")
 );
 
-const snapshot =
+const snapshot=
 await getDocs(q);
 
 box.innerHTML="";
+
 
 if(snapshot.empty){
 
@@ -1186,35 +749,25 @@ return;
 
 }
 
-snapshot.forEach(
-docSnap=>{
 
-const data =
-docSnap.data();
+snapshot.forEach(docSnap=>{
 
-const div =
-document.createElement("div");
+const data=docSnap.data();
+
+const div=document.createElement("div");
 
 div.className="announcement";
 
 
-const strong =
-document.createElement("strong");
+const strong=document.createElement("strong");
 
 strong.textContent=
-(
-data.officialName ||
-"Public Office"
-) +
-" — " +
-(
-data.officeType ||
-"Public Office"
-);
+(data.officialName||"Public Office")+
+" — "+
+(data.officeType||"Public Office");
 
 
-const officeDetails =
-document.createElement("div");
+const officeDetails=document.createElement("div");
 
 officeDetails.className="small";
 
@@ -1223,41 +776,44 @@ officeDetails.style.marginTop="5px";
 let details="";
 
 if(data.county){
-details += data.county;
+details+=data.county;
 }
 
 if(data.constituency){
-details += details ? " • " + data.constituency : data.constituency;
+details+=details
+?" • "+data.constituency
+:data.constituency;
 }
 
 if(data.ward){
-details += details ? " • " + data.ward : data.ward;
+details+=details
+?" • "+data.ward
+:data.ward;
 }
 
 officeDetails.textContent=details;
 
 
-const message =
-document.createElement("div");
+const message=document.createElement("div");
 
 message.style.marginTop="10px";
 
-message.textContent=
-data.message || "";
+message.textContent=data.message||"";
 
 
 div.appendChild(strong);
 
 if(details){
+
 div.appendChild(officeDetails);
+
 }
 
 div.appendChild(message);
 
 box.appendChild(div);
 
-}
-);
+});
 
 }catch(error){
 
@@ -1271,49 +827,41 @@ box.innerHTML=
 }
 
 
-/* =====================================================
-   LOGIN
-   ===================================================== */
+/* LOGIN */
 
 document
 .getElementById("loginForm")
-.addEventListener(
-"submit",
-async function(e){
+.addEventListener("submit",async function(e){
 
 e.preventDefault();
 
-const box =
+const box=
 document.getElementById("loginMessage");
 
 box.className="";
 box.textContent="Signing in...";
 
 
-const email =
-document.getElementById("loginEmail")
-.value
-.trim();
+const email=
+document.getElementById("loginEmail").value.trim();
 
-const password =
-document.getElementById("loginPassword")
-.value;
+const password=
+document.getElementById("loginPassword").value;
 
 
 try{
 
-const result =
+const result=
 await signInWithEmailAndPassword(
 auth,
 email,
 password
 );
 
-const uid =
-result.user.uid;
+const uid=result.user.uid;
 
 
-const userSnap =
+const userSnap=
 await getDoc(
 doc(db,"users",uid)
 );
@@ -1330,8 +878,7 @@ throw new Error(
 }
 
 
-const data =
-userSnap.data();
+const data=userSnap.data();
 
 
 const allowed=[
@@ -1341,9 +888,7 @@ const allowed=[
 ];
 
 
-if(
-!allowed.includes(data.role)
-){
+if(!allowed.includes(data.role)){
 
 await signOut(auth);
 
@@ -1354,8 +899,6 @@ throw new Error(
 }
 
 
-/* SUPER ADMIN */
-
 if(data.role==="Super Admin"){
 
 window.location.hash="#superadmin";
@@ -1364,12 +907,7 @@ showSuperAdmin();
 
 loadSuperAdmin();
 
-}
-
-
-/* NORMAL OFFICIAL / ADMIN */
-
-else{
+}else{
 
 window.location.hash="#dashboard";
 
@@ -1387,18 +925,14 @@ console.error(error);
 box.className="message error";
 
 box.textContent=
-error.message ||
-"Login failed.";
+error.message||"Login failed.";
 
 }
 
-}
-);
+});
 
 
-/* =====================================================
-   OFFICIAL DASHBOARD
-   ===================================================== */
+/* OFFICIAL DASHBOARD */
 
 async function loadDashboard(){
 
@@ -1408,49 +942,65 @@ return;
 
 }
 
-const uid =
+const uid=
 auth.currentUser.uid;
 
 
 try{
 
-const userSnap =
+const userSnap=
 await getDoc(
 doc(db,"users",uid)
 );
 
 
-if(userSnap.exists()){
+if(!userSnap.exists()){
 
-const userData =
-userSnap.data();
+throw new Error("User profile not found.");
+
+}
 
 
-document.getElementById(
-"officialName"
-).textContent=
-"Logged in as: " +
+const userData=userSnap.data();
+
+
+/*
+ IMPORTANT FIX:
+ Check the official profile using UID.
+*/
+
+const profileSnap=
+await getDoc(
+doc(db,"officialprofile",uid)
+);
+
+
+if(
+userData.role==="Official" &&
 (
-userData.name ||
-auth.currentUser.email
-) +
-" — " +
-(
-userData.officeType ||
-"Public Office"
-) +
-(
-userData.constituency
-?
-" — " + userData.constituency
-:
-""
+!profileSnap.exists() ||
+profileSnap.data().status!=="active"
+)
+){
+
+throw new Error(
+"This official account is inactive or not authorized."
 );
 
 }
 
 
-const snapshot =
+document.getElementById("officialName").textContent=
+"Logged in as: "+
+(userData.name||auth.currentUser.email)+
+" — "+
+(userData.officeType||"Public Office")+
+(userData.constituency
+?" — "+userData.constituency
+:"");
+
+
+const snapshot=
 await getDocs(
 collection(db,"issues")
 );
@@ -1458,76 +1008,46 @@ collection(db,"issues")
 
 const issues=[];
 
-
-snapshot.forEach(
-docSnap=>{
+snapshot.forEach(docSnap=>{
 
 issues.push({
 id:docSnap.id,
 ...docSnap.data()
 });
 
-}
-);
+});
 
 
-document.getElementById(
-"totalIssues"
-).textContent=
+document.getElementById("totalIssues").textContent=
 issues.length;
 
+document.getElementById("roadCount").textContent=
+issues.filter(x=>
+String(x.category||"").toLowerCase()==="roads"
+).length;
 
-document.getElementById(
-"roadCount"
-).textContent=
-issues.filter(
-x =>
-String(x.category || "")
-.toLowerCase()==="roads"
+document.getElementById("waterCount").textContent=
+issues.filter(x=>
+String(x.category||"").toLowerCase()==="water"
+).length;
+
+document.getElementById("healthCount").textContent=
+issues.filter(x=>
+String(x.category||"").toLowerCase()==="healthcare"
+).length;
+
+document.getElementById("educationCount").textContent=
+issues.filter(x=>
+String(x.category||"").toLowerCase()==="education"
+).length;
+
+document.getElementById("securityCount").textContent=
+issues.filter(x=>
+String(x.category||"").toLowerCase()==="security"
 ).length;
 
 
-document.getElementById(
-"waterCount"
-).textContent=
-issues.filter(
-x =>
-String(x.category || "")
-.toLowerCase()==="water"
-).length;
-
-
-document.getElementById(
-"healthCount"
-).textContent=
-issues.filter(
-x =>
-String(x.category || "")
-.toLowerCase()==="healthcare"
-).length;
-
-
-document.getElementById(
-"educationCount"
-).textContent=
-issues.filter(
-x =>
-String(x.category || "")
-.toLowerCase()==="education"
-).length;
-
-
-document.getElementById(
-"securityCount"
-).textContent=
-issues.filter(
-x =>
-String(x.category || "")
-.toLowerCase()==="security"
-).length;
-
-
-const list =
+const list=
 document.getElementById("issuesList");
 
 list.innerHTML="";
@@ -1538,52 +1058,40 @@ if(issues.length===0){
 list.innerHTML=
 "<p class='small'>No issues found.</p>";
 
-}
+}else{
 
-else{
+issues.forEach(issue=>{
 
-issues.forEach(
-issue=>{
-
-const div =
-document.createElement("div");
+const div=document.createElement("div");
 
 div.className="issue";
 
 
-const title =
-document.createElement("strong");
+const title=document.createElement("strong");
 
-title.textContent=
-issue.category || "";
+title.textContent=issue.category||"";
 
 
-const description =
-document.createElement("div");
+const description=document.createElement("div");
 
 description.style.marginTop="6px";
 
 description.textContent=
-issue.description || "";
+issue.description||"";
 
 
-const place =
-document.createElement("div");
+const place=document.createElement("div");
 
 place.className="small";
 
 place.style.marginTop="10px";
 
 place.textContent=
-(issue.county || "") +
-" • " +
-(issue.constituency || "") +
-" • " +
-(issue.ward || "") +
-" • " +
-(issue.location || "") +
-" • " +
-(issue.subLocation || "");
+(issue.county||"")+" • "+
+(issue.constituency||"")+" • "+
+(issue.ward||"")+" • "+
+(issue.location||"")+" • "+
+(issue.subLocation||"");
 
 
 div.appendChild(title);
@@ -1592,18 +1100,16 @@ div.appendChild(place);
 
 list.appendChild(div);
 
-}
-);
+});
 
 }
+
 
 }catch(error){
 
 console.error(error);
 
-document.getElementById(
-"issuesList"
-).innerHTML=
+document.getElementById("issuesList").innerHTML=
 "<p class='message error'>Unable to load dashboard data.</p>";
 
 }
@@ -1611,52 +1117,66 @@ document.getElementById(
 }
 
 
-/* =====================================================
-   PUBLISH ANNOUNCEMENT
-   ===================================================== */
+/* PUBLISH ANNOUNCEMENT */
 
 document
 .getElementById("announcementForm")
-.addEventListener(
-"submit",
-async function(e){
+.addEventListener("submit",async function(e){
 
 e.preventDefault();
 
-
-const box =
-document.getElementById(
-"announcementMessageBox"
-);
+const box=
+document.getElementById("announcementMessageBox");
 
 
 try{
 
 if(!auth.currentUser){
 
-throw new Error(
-"You are not logged in."
-);
+throw new Error("You are not logged in.");
 
 }
 
 
-const uid =
-auth.currentUser.uid;
+const uid=auth.currentUser.uid;
 
 
-const userSnap =
+const userSnap=
 await getDoc(
 doc(db,"users",uid)
 );
 
 
-let userData={};
+if(!userSnap.exists()){
+
+throw new Error("Official profile not found.");
+
+}
 
 
-if(userSnap.exists()){
+const userData=userSnap.data();
 
-userData=userSnap.data();
+
+if(
+userData.role==="Official"
+){
+
+const profileSnap=
+await getDoc(
+doc(db,"officialprofile",uid)
+);
+
+
+if(
+!profileSnap.exists() ||
+profileSnap.data().status!=="active"
+){
+
+throw new Error(
+"Your official account is inactive."
+);
+
+}
 
 }
 
@@ -1666,35 +1186,27 @@ collection(db,"announcements"),
 {
 
 message:
-document.getElementById(
-"announcementMessage"
-).value.trim(),
+document.getElementById("announcementMessage")
+.value.trim(),
 
 officeType:
-userData.officeType ||
-"Public Office",
+userData.officeType||"Public Office",
 
 officialName:
-userData.name ||
-auth.currentUser.email,
+userData.name||auth.currentUser.email,
 
 county:
-userData.county ||
-"",
+userData.county||"",
 
 constituency:
-userData.constituency ||
-"",
+userData.constituency||"",
 
 ward:
-userData.ward ||
-"",
+userData.ward||"",
 
-status:
-"published",
+status:"published",
 
-createdAt:
-serverTimestamp()
+createdAt:serverTimestamp()
 
 }
 );
@@ -1707,13 +1219,10 @@ box.textContent=
 
 
 document
-.getElementById(
-"announcementForm"
-)
+.getElementById("announcementForm")
 .reset();
 
-
-loadAnnouncements();
+await loadAnnouncements();
 
 
 }catch(error){
@@ -1723,17 +1232,15 @@ console.error(error);
 box.className="message error";
 
 box.textContent=
+error.message||
 "Announcement could not be published.";
 
 }
 
-}
-);
+});
 
 
-/* =====================================================
-   DATE HELPERS
-   ===================================================== */
+/* DATE HELPERS */
 
 function getCreatedDate(data){
 
@@ -1753,8 +1260,7 @@ return null;
 
 function getAgeInDays(data){
 
-const created =
-getCreatedDate(data);
+const created=getCreatedDate(data);
 
 if(!created){
 
@@ -1762,16 +1268,12 @@ return null;
 
 }
 
-const now =
-new Date();
-
-const difference =
-now.getTime() -
+const difference=
+new Date().getTime()-
 created.getTime();
 
 return Math.floor(
-difference /
-(1000*60*60*24)
+difference/(1000*60*60*24)
 );
 
 }
@@ -1779,79 +1281,59 @@ difference /
 
 function canDelete(data){
 
-const age =
-getAgeInDays(data);
+const age=getAgeInDays(data);
 
-return age !== null && age >= 3;
+return age!==null&&age>=3;
 
 }
 
 
-/* =====================================================
-   SHOW / HIDE ADD OFFICIAL
-   ===================================================== */
+/* SHOW ADD OFFICIAL */
 
 document
 .getElementById("showAddOfficialBtn")
-.addEventListener(
-"click",
-function(){
+.addEventListener("click",function(){
 
 document
 .getElementById("addOfficialArea")
 .classList.remove("hidden");
 
 window.scrollTo({
-top:document
-.getElementById("addOfficialArea")
-.offsetTop,
+top:document.getElementById("addOfficialArea").offsetTop,
 behavior:"smooth"
 });
 
-}
-);
+});
 
+
+/* CANCEL ADD OFFICIAL */
 
 document
 .getElementById("cancelAddOfficialBtn")
-.addEventListener(
-"click",
-function(){
+.addEventListener("click",function(){
 
 document
 .getElementById("addOfficialArea")
 .classList.add("hidden");
 
-document
-.getElementById("addOfficialForm")
-.reset();
+document.getElementById("addOfficialForm").reset();
 
-document
-.getElementById("addOfficialMessage")
-.innerHTML="";
+document.getElementById("addOfficialMessage").innerHTML="";
 
-}
-);
+});
 
 
-/* =====================================================
-   ADD / AUTHORIZE OFFICIAL
-   ===================================================== */
+/* ADD OFFICIAL */
 
 document
 .getElementById("addOfficialForm")
-.addEventListener(
-"submit",
-async function(e){
+.addEventListener("submit",async function(e){
 
 e.preventDefault();
 
 
-const messageBox =
-document.getElementById(
-"addOfficialMessage"
-);
-
+const messageBox=
+document.getElementById("addOfficialMessage");
 
 messageBox.className="";
 messageBox.textContent=
@@ -1872,18 +1354,9 @@ return;
 
 try{
 
-/*
- First verify that current user
- is still Super Admin.
-*/
-
-const adminSnap =
+const adminSnap=
 await getDoc(
-doc(
-db,
-"users",
-auth.currentUser.uid
-)
+doc(db,"users",auth.currentUser.uid)
 );
 
 
@@ -1899,85 +1372,62 @@ throw new Error(
 }
 
 
-const name =
-document
-.getElementById("newOfficialName")
-.value
-.trim();
+const name=
+document.getElementById("newOfficialName")
+.value.trim();
 
+const email=
+document.getElementById("newOfficialEmail")
+.value.trim();
 
-const email =
-document
-.getElementById("newOfficialEmail")
-.value
-.trim();
-
-
-const password =
-document
-.getElementById("newOfficialPassword")
+const password=
+document.getElementById("newOfficialPassword")
 .value;
 
-
-const officeType =
-document
-.getElementById("newOfficialOfficeType")
+const officeType=
+document.getElementById("newOfficialOfficeType")
 .value;
 
+const county=
+document.getElementById("newOfficialCounty")
+.value.trim();
 
-const county =
-document
-.getElementById("newOfficialCounty")
-.value
-.trim();
+const constituency=
+document.getElementById("newOfficialConstituency")
+.value.trim();
 
+const ward=
+document.getElementById("newOfficialWard")
+.value.trim();
 
-const constituency =
-document
-.getElementById("newOfficialConstituency")
-.value
-.trim();
-
-
-const ward =
-document
-.getElementById("newOfficialWard")
-.value
-.trim();
-
-
-const area =
-document
-.getElementById("newOfficialArea")
-.value
-.trim();
+const area=
+document.getElementById("newOfficialArea")
+.value.trim();
 
 
 /*
- Create Firebase Authentication account
- using the secondary Firebase app.
- This keeps Super Admin logged in.
-*/
+ CREATE AUTH ACCOUNT
+ */
 
-const credential =
+const credential=
 await createUserWithEmailAndPassword(
 secondaryAuth,
 email,
 password
 );
 
-
-const newUid =
+const newUid=
 credential.user.uid;
 
 
 /*
- Create users profile.
-*/
+ CREATE USERS DOCUMENT
+ */
 
-await updateOrCreateUser(
-newUid,
+await setDoc(
+doc(db,"users",newUid),
 {
+
 name:name,
 email:email,
 role:"Official",
@@ -1988,17 +1438,21 @@ ward:ward,
 area:area,
 status:"active",
 createdAt:serverTimestamp()
+
 }
 );
 
 
 /*
- Create official profile.
-*/
+ IMPORTANT FIX:
+ CREATE OFFICIAL PROFILE USING UID
+ NOT AUTO-ID.
+ */
 
-await addDoc(
-collection(db,"officialprofile"),
+await setDoc(
+doc(db,"officialprofile",newUid),
 {
+
 userId:newUid,
 name:name,
 email:email,
@@ -2009,14 +1463,14 @@ ward:ward,
 area:area,
 status:"active",
 createdAt:serverTimestamp()
+
 }
 );
 
 
 /*
- Sign out only the secondary account.
- Super Admin remains logged in.
-*/
+ LOG OUT ONLY SECONDARY ACCOUNT
+ */
 
 await signOut(secondaryAuth);
 
@@ -2027,28 +1481,16 @@ messageBox.textContent=
 "Official created and authorized successfully.";
 
 
-/*
- Clear form.
-*/
+document.getElementById("addOfficialForm").reset();
 
-document
-.getElementById("addOfficialForm")
-.reset();
-
-
-/*
- Reload Super Admin data.
-*/
-
-loadSuperAdmin();
+await loadSuperAdmin();
 
 
 }catch(error){
 
 console.error(error);
 
-messageBox.className=
-"message error";
+messageBox.className="message error";
 
 
 if(error.code==="auth/email-already-in-use"){
@@ -2056,132 +1498,25 @@ if(error.code==="auth/email-already-in-use"){
 messageBox.textContent=
 "This email already has a Firebase account.";
 
-}
-
-else if(error.code==="auth/weak-password"){
+}else if(error.code==="auth/weak-password"){
 
 messageBox.textContent=
 "Password is too weak. Use at least 6 characters.";
 
-}
-
-else{
+}else{
 
 messageBox.textContent=
-"Could not create official: " +
-(error.message || "Unknown error.");
+"Could not create official: "+
+(error.message||"Unknown error.");
 
 }
 
 }
 
-}
-);
+});
 
 
-/* =====================================================
-   CREATE / UPDATE USER PROFILE
-   ===================================================== */
-
-async function updateOrCreateUser(
-uid,
-data
-){
-
-/*
- Firestore rules allow Super Admin
- to create the users document.
-*/
-
-await addDocToSpecificUser(
-uid,
-data
-);
-
-}
-
-
-async function addDocToSpecificUser(
-uid,
-data
-){
-
-/*
- We use setDoc-like behavior through
- updateDoc if the document already exists,
- otherwise the normal users creation
- is handled below.
-*/
-
-const existing =
-await getDoc(
-doc(db,"users",uid)
-);
-
-
-if(existing.exists()){
-
-await updateDoc(
-doc(db,"users",uid),
-data
-);
-
-return;
-
-}
-
-
-/*
- Since the imported SDK above does not use
- setDoc, create the document through
- a temporary collection write is not appropriate.
-
- This branch is replaced below by the direct
- REST-free Firestore add helper.
-*/
-
-await createUserDocument(
-uid,
-data
-);
-
-}
-
-
-/*
- Firestore document creation helper.
-*/
-
-async function createUserDocument(
-uid,
-data
-){
-
-/*
- We need setDoc for a specific Firebase UID.
- Load it dynamically from the Firebase SDK.
-*/
-
-const firestoreModule =
-await import(
-"https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js"
-);
-
-await firestoreModule.setDoc(
-firestoreModule.doc(
-db,
-"users",
-uid
-),
-data
-);
-
-}
-
-
-/* =====================================================
-   SUPER ADMIN DASHBOARD
-   ===================================================== */
+/* SUPER ADMIN DASHBOARD */
 
 async function loadSuperAdmin(){
 
@@ -2194,13 +1529,9 @@ return;
 
 try{
 
-const userSnap =
+const userSnap=
 await getDoc(
-doc(
-db,
-"users",
-auth.currentUser.uid
-)
+doc(db,"users",auth.currentUser.uid)
 );
 
 
@@ -2218,122 +1549,90 @@ return;
 }
 
 
-const adminData =
-userSnap.data();
+const adminData=userSnap.data();
 
 
-document.getElementById(
-"superAdminName"
-).textContent=
-"Logged in as: " +
-(
-adminData.name ||
-auth.currentUser.email
-) +
+document.getElementById("superAdminName").textContent=
+"Logged in as: "+
+(adminData.name||auth.currentUser.email)+
 " — Super Admin";
 
 
-/* LOAD ISSUES */
+/* ISSUES */
 
-const issueSnapshot =
+const issueSnapshot=
 await getDocs(
 collection(db,"issues")
 );
 
-
 const issues=[];
 
-
-issueSnapshot.forEach(
-docSnap=>{
+issueSnapshot.forEach(docSnap=>{
 
 issues.push({
 id:docSnap.id,
 ...docSnap.data()
 });
 
-}
-);
+});
 
 
-/* LOAD ANNOUNCEMENTS */
+/* ANNOUNCEMENTS */
 
-const announcementSnapshot =
+const announcementSnapshot=
 await getDocs(
 collection(db,"announcements")
 );
 
-
 const announcements=[];
 
-
-announcementSnapshot.forEach(
-docSnap=>{
+announcementSnapshot.forEach(docSnap=>{
 
 announcements.push({
 id:docSnap.id,
 ...docSnap.data()
 });
 
-}
-);
+});
 
 
-/* LOAD USERS */
+/* USERS */
 
-const userSnapshot =
+const userSnapshot=
 await getDocs(
 collection(db,"users")
 );
 
-
 const users=[];
 
-
-userSnapshot.forEach(
-docSnap=>{
+userSnapshot.forEach(docSnap=>{
 
 users.push({
 id:docSnap.id,
 ...docSnap.data()
 });
 
-}
-);
+});
 
 
-document.getElementById(
-"adminIssueCount"
-).textContent=
+document.getElementById("adminIssueCount").textContent=
 issues.length;
 
-
-document.getElementById(
-"adminAnnouncementCount"
-).textContent=
+document.getElementById("adminAnnouncementCount").textContent=
 announcements.length;
 
-
-document.getElementById(
-"adminOfficialCount"
-).textContent=
-users.filter(
-u =>
-u.role==="Official" ||
-u.role==="Admin" ||
+document.getElementById("adminOfficialCount").textContent=
+users.filter(u=>
+u.role==="Official"||
+u.role==="Admin"||
 u.role==="Super Admin"
 ).length;
 
 
-/* =====================================================
-   USERS / OFFICIALS LIST
-   ===================================================== */
+/* OFFICIAL LIST */
 
-const officialsList =
-document.getElementById(
-"officialsList"
-);
-
+const officialsList=
+document.getElementById("officialsList");
 
 officialsList.innerHTML="";
 
@@ -2343,29 +1642,21 @@ if(users.length===0){
 officialsList.innerHTML=
 "<p class='small'>No authorized users found.</p>";
 
-}
+}else{
 
-else{
+users.forEach(user=>{
 
-users.forEach(
-user=>{
-
-const div =
-document.createElement("div");
+const div=document.createElement("div");
 
 div.className="office";
 
 
-const name =
-document.createElement("strong");
+const name=document.createElement("strong");
 
-name.textContent=
-user.name ||
-"No name";
+name.textContent=user.name||"No name";
 
 
-const info =
-document.createElement("div");
+const info=document.createElement("div");
 
 info.className="small";
 
@@ -2375,52 +1666,49 @@ info.style.marginTop="7px";
 let locationText="";
 
 if(user.county){
-locationText += user.county;
+
+locationText+=user.county;
+
 }
 
 if(user.constituency){
-locationText += locationText
-? " • " + user.constituency
-: user.constituency;
+
+locationText+=locationText
+?" • "+user.constituency
+:user.constituency;
+
 }
 
 if(user.ward){
-locationText += locationText
-? " • " + user.ward
-: user.ward;
+
+locationText+=locationText
+?" • "+user.ward
+:user.ward;
+
 }
 
 
 info.textContent=
-"Role: " +
-(user.role || "Not specified") +
-" • " +
-(user.officeType || "Office not specified") +
-" • " +
-(user.email || "Email not stored") +
-(
-locationText
-? " • " + locationText
-: ""
-);
+"Role: "+
+(user.role||"Not specified")+
+" • "+
+(user.officeType||"Office not specified")+
+" • "+
+(user.email||"Email not stored")+
+(locationText?" • "+locationText:"");
 
 
-const status =
-document.createElement("div");
+const status=document.createElement("div");
 
 status.style.marginTop="8px";
 
 
-if(
-user.status==="active"
-){
+if(user.status==="active"){
 
 status.innerHTML=
 "<span class='statusActive'>ACTIVE</span>";
 
-}
-
-else{
+}else{
 
 status.innerHTML=
 "<span class='statusInactive'>INACTIVE</span>";
@@ -2434,12 +1722,12 @@ div.appendChild(status);
 
 
 /*
- Only Officials get activate/deactivate button.
-*/
+ ACTIVATE / DEACTIVATE
+ */
 
 if(user.role==="Official"){
 
-const actionButton =
+const actionButton=
 document.createElement("button");
 
 
@@ -2450,9 +1738,7 @@ actionButton.className="warning";
 actionButton.textContent=
 "⛔ Deactivate Official";
 
-}
-
-else{
+}else{
 
 actionButton.className="adminButton";
 
@@ -2468,11 +1754,15 @@ async function(){
 
 try{
 
-const newStatus =
+const newStatus=
 user.status==="active"
-? "inactive"
-: "active";
+?"inactive"
+:"active";
 
+
+/*
+ Update users/{uid}
+ */
 
 await updateDoc(
 doc(db,"users",user.id),
@@ -2483,32 +1773,22 @@ status:newStatus
 
 
 /*
- Also update official profile
- when possible.
-*/
+ IMPORTANT FIX:
+ Update officialprofile/{uid}
+ directly.
+ */
 
-const profileQuery =
-query(
-collection(db,"officialprofile"),
-where("userId","==",user.id)
-);
+const profileRef=
+doc(db,"officialprofile",user.id);
 
-
-const profileSnapshot =
-await getDocs(profileQuery);
+const profileSnap=
+await getDoc(profileRef);
 
 
-for(
-const profileDoc
-of profileSnapshot.docs
-){
+if(profileSnap.exists()){
 
 await updateDoc(
-doc(
-db,
-"officialprofile",
-profileDoc.id
-),
+profileRef,
 {
 status:newStatus
 }
@@ -2519,12 +1799,12 @@ status:newStatus
 
 alert(
 newStatus==="active"
-? "Official activated successfully."
-: "Official deactivated successfully."
+?"Official activated successfully."
+:"Official deactivated successfully."
 );
 
 
-loadSuperAdmin();
+await loadSuperAdmin();
 
 
 }catch(error){
@@ -2548,21 +1828,17 @@ div.appendChild(actionButton);
 
 officialsList.appendChild(div);
 
-}
-);
+});
 
 }
 
 
-/* =====================================================
-   ANNOUNCEMENT MANAGEMENT
-   ===================================================== */
+/* ANNOUNCEMENT MANAGEMENT */
 
-const announcementList =
+const announcementList=
 document.getElementById(
 "adminAnnouncementsList"
 );
-
 
 announcementList.innerHTML="";
 
@@ -2572,68 +1848,44 @@ if(announcements.length===0){
 announcementList.innerHTML=
 "<p class='small'>No announcements found.</p>";
 
-}
+}else{
 
-else{
+announcements.forEach(announcement=>{
 
-announcements.forEach(
-announcement=>{
-
-const div =
-document.createElement("div");
+const div=document.createElement("div");
 
 div.className="managementItem";
 
 
-const title =
-document.createElement("strong");
+const title=document.createElement("strong");
 
 title.textContent=
-(
-announcement.officialName ||
-"Public Office"
-) +
-" — " +
-(
-announcement.officeType ||
-""
-);
+(announcement.officialName||"Public Office")+
+" — "+
+(announcement.officeType||"");
 
 
-const message =
-document.createElement("div");
+const message=document.createElement("div");
 
 message.style.marginTop="8px";
 
 message.textContent=
-announcement.message || "";
+announcement.message||"";
 
 
-const age =
-document.createElement("div");
+const age=document.createElement("div");
 
 age.className="age";
 
 
-const ageDays =
+const ageDays=
 getAgeInDays(announcement);
 
 
-if(ageDays===null){
-
 age.textContent=
-"Age: date unavailable";
-
-}
-
-else{
-
-age.textContent=
-"Age: " +
-ageDays +
-" day(s)";
-
-}
+ageDays===null
+?"Age: date unavailable"
+:"Age: "+ageDays+" day(s)";
 
 
 div.appendChild(title);
@@ -2643,7 +1895,7 @@ div.appendChild(age);
 
 if(canDelete(announcement)){
 
-const deleteButton =
+const deleteButton=
 document.createElement("button");
 
 deleteButton.className="danger";
@@ -2656,13 +1908,9 @@ deleteButton.addEventListener(
 "click",
 async function(){
 
-const confirmDelete =
-confirm(
+if(!confirm(
 "Delete this announcement permanently?"
-);
-
-
-if(!confirmDelete){
+)){
 
 return;
 
@@ -2684,9 +1932,9 @@ alert(
 "Announcement deleted successfully."
 );
 
+await loadSuperAdmin();
 
-loadSuperAdmin();
-loadAnnouncements();
+await loadAnnouncements();
 
 
 }catch(error){
@@ -2705,11 +1953,9 @@ alert(
 
 div.appendChild(deleteButton);
 
-}
+}else{
 
-else{
-
-const note =
+const note=
 document.createElement("div");
 
 note.className="small";
@@ -2726,21 +1972,15 @@ div.appendChild(note);
 
 announcementList.appendChild(div);
 
-}
-);
+});
 
 }
 
 
-/* =====================================================
-   ISSUE MANAGEMENT
-   ===================================================== */
+/* ISSUE MANAGEMENT */
 
-const issueList =
-document.getElementById(
-"adminIssuesList"
-);
-
+const issueList=
+document.getElementById("adminIssuesList");
 
 issueList.innerHTML="";
 
@@ -2750,81 +1990,56 @@ if(issues.length===0){
 issueList.innerHTML=
 "<p class='small'>No citizen issues found.</p>";
 
-}
+}else{
 
-else{
+issues.forEach(issue=>{
 
-issues.forEach(
-issue=>{
-
-const div =
-document.createElement("div");
+const div=document.createElement("div");
 
 div.className="managementItem";
 
 
-const title =
-document.createElement("strong");
+const title=document.createElement("strong");
 
 title.textContent=
-issue.category ||
-"Citizen Issue";
+issue.category||"Citizen Issue";
 
 
-const description =
-document.createElement("div");
+const description=document.createElement("div");
 
 description.style.marginTop="8px";
 
 description.textContent=
-issue.description ||
-"";
+issue.description||"";
 
 
-const location =
-document.createElement("div");
+const location=document.createElement("div");
 
 location.className="small";
 
 location.style.marginTop="8px";
 
 location.textContent=
-(issue.county || "") +
-" • " +
-(issue.constituency || "") +
-" • " +
-(issue.ward || "") +
-" • " +
-(issue.location || "") +
-" • " +
-(issue.subLocation || "");
+(issue.county||"")+" • "+
+(issue.constituency||"")+" • "+
+(issue.ward||"")+" • "+
+(issue.location||"")+" • "+
+(issue.subLocation||"");
 
 
-const age =
-document.createElement("div");
+const age=document.createElement("div");
 
 age.className="age";
 
 
-const ageDays =
+const ageDays=
 getAgeInDays(issue);
 
 
-if(ageDays===null){
-
 age.textContent=
-"Age: date unavailable";
-
-}
-
-else{
-
-age.textContent=
-"Age: " +
-ageDays +
-" day(s)";
-
-}
+ageDays===null
+?"Age: date unavailable"
+:"Age: "+ageDays+" day(s)";
 
 
 div.appendChild(title);
@@ -2835,7 +2050,7 @@ div.appendChild(age);
 
 if(canDelete(issue)){
 
-const deleteButton =
+const deleteButton=
 document.createElement("button");
 
 deleteButton.className="danger";
@@ -2848,13 +2063,9 @@ deleteButton.addEventListener(
 "click",
 async function(){
 
-const confirmDelete =
-confirm(
+if(!confirm(
 "Delete this citizen issue permanently?"
-);
-
-
-if(!confirmDelete){
+)){
 
 return;
 
@@ -2864,11 +2075,7 @@ return;
 try{
 
 await deleteDoc(
-doc(
-db,
-"issues",
-issue.id
-)
+doc(db,"issues",issue.id)
 );
 
 
@@ -2876,8 +2083,7 @@ alert(
 "Issue deleted successfully."
 );
 
-
-loadSuperAdmin();
+await loadSuperAdmin();
 
 
 }catch(error){
@@ -2896,11 +2102,9 @@ alert(
 
 div.appendChild(deleteButton);
 
-}
+}else{
 
-else{
-
-const note =
+const note=
 document.createElement("div");
 
 note.className="small";
@@ -2917,8 +2121,7 @@ div.appendChild(note);
 
 issueList.appendChild(div);
 
-}
-);
+});
 
 }
 
@@ -2927,57 +2130,47 @@ issueList.appendChild(div);
 
 console.error(error);
 
-
 document.getElementById(
 "adminIssuesList"
 ).innerHTML=
-"<p class='message error'>Unable to load Super Admin data. Firestore permissions may need to be updated.</p>";
+"<p class='message error'>Unable to load Super Admin data.</p>";
 
 }
 
 }
 
 
-/* =====================================================
-   SUPER ADMIN NAVIGATION
-   ===================================================== */
+/* SUPER ADMIN NAVIGATION */
 
 document
 .getElementById("openCitizenBtn")
-.addEventListener(
-"click",
-function(){
+.addEventListener("click",function(){
 
 window.location.hash="";
+
 showCitizen();
 
-}
-);
+});
 
 
 document
 .getElementById("openOfficialBtn")
-.addEventListener(
-"click",
-function(){
+.addEventListener("click",async function(){
 
 window.location.hash="#dashboard";
+
 showOfficial();
-loadDashboard();
 
-}
-);
+await loadDashboard();
+
+});
 
 
-/* =====================================================
-   SUPER ADMIN LOGOUT
-   ===================================================== */
+/* SUPER ADMIN LOGOUT */
 
 document
 .getElementById("superAdminLogoutBtn")
-.addEventListener(
-"click",
-async function(){
+.addEventListener("click",async function(){
 
 await signOut(auth);
 
@@ -2985,19 +2178,14 @@ window.location.hash="";
 
 showCitizen();
 
-}
-);
+});
 
 
-/* =====================================================
-   OFFICIAL LOGOUT
-   ===================================================== */
+/* OFFICIAL LOGOUT */
 
 document
 .getElementById("logoutBtn")
-.addEventListener(
-"click",
-async function(){
+.addEventListener("click",async function(){
 
 await signOut(auth);
 
@@ -3005,13 +2193,10 @@ window.location.hash="";
 
 showCitizen();
 
-}
-);
+});
 
 
-/* =====================================================
-   AUTH STATE
-   ===================================================== */
+/* AUTH STATE */
 
 onAuthStateChanged(
 auth,
@@ -3020,7 +2205,7 @@ async user=>{
 if(!user){
 
 if(
-window.location.hash==="#dashboard" ||
+window.location.hash==="#dashboard"||
 window.location.hash==="#superadmin"
 ){
 
@@ -3033,13 +2218,10 @@ return;
 }
 
 
-if(
-window.location.hash==="#superadmin"
-){
+if(window.location.hash==="#superadmin"){
 
-const data =
+const data=
 await getCurrentUserData();
-
 
 if(
 data &&
@@ -3047,23 +2229,21 @@ data.role==="Super Admin"
 ){
 
 showSuperAdmin();
-loadSuperAdmin();
+
+await loadSuperAdmin();
 
 }
 
 }
 
-}
-);
+});
 
 
-/* =====================================================
-   START APP
-   ===================================================== */
+/* START */
 
 await loadAnnouncements();
 
-route();
+await route();
 
 </script>
 
