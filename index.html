@@ -285,6 +285,7 @@ required></textarea>
 <p id="officialName" class="small"></p>
 
 <div class="stats">
+
 <div class="stat">
 <strong id="totalIssues">0</strong>
 Total Issues
@@ -314,8 +315,8 @@ Education
 <strong id="securityCount">0</strong>
 Security
 </div>
-</div>
 
+</div>
 </div>
 
 <div class="card">
@@ -331,7 +332,9 @@ Security
 <form id="announcementForm">
 
 <label>Message</label>
-<textarea id="announcementMessage"
+
+<textarea
+id="announcementMessage"
 placeholder="Write your official announcement..."
 required></textarea>
 
@@ -371,15 +374,16 @@ import {
   collection,
   addDoc,
   getDocs,
+  getDoc,
+  doc,
   query,
   where,
-  orderBy,
   serverTimestamp
 }
 from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
 
-/* ================= FIREBASE VOICE CONNECT ================= */
+/* ================= FIREBASE ================= */
 
 const firebaseConfig = {
   apiKey: "AIzaSyBIJZJW392I97YZLx__9dNNk1DeAQNHgFI",
@@ -397,26 +401,40 @@ const db = getFirestore(app);
 
 /* ================= PAGES ================= */
 
-const citizenPage = document.getElementById("citizenPage");
-const loginPage = document.getElementById("loginPage");
-const officialPage = document.getElementById("officialPage");
+const citizenPage =
+  document.getElementById("citizenPage");
+
+const loginPage =
+  document.getElementById("loginPage");
+
+const officialPage =
+  document.getElementById("officialPage");
+
 
 function showCitizen(){
+
   citizenPage.classList.remove("hidden");
   loginPage.classList.add("hidden");
   officialPage.classList.add("hidden");
+
 }
 
+
 function showLogin(){
+
   citizenPage.classList.add("hidden");
   loginPage.classList.remove("hidden");
   officialPage.classList.add("hidden");
+
 }
 
+
 function showOfficial(){
+
   citizenPage.classList.add("hidden");
   loginPage.classList.add("hidden");
   officialPage.classList.remove("hidden");
+
 }
 
 
@@ -427,118 +445,117 @@ function route(){
   const hash = window.location.hash;
 
   if(hash === "#official"){
+
     showLogin();
+
   }else if(hash === "#dashboard"){
+
     if(auth.currentUser){
+
       showOfficial();
       loadDashboard();
+
     }else{
+
       showLogin();
+
     }
+
   }else{
+
     showCitizen();
+
   }
+
 }
 
-window.addEventListener("hashchange", route);
 
-document.getElementById("backCitizen").onclick = function(){
-  window.location.hash = "";
+window.addEventListener("hashchange",route);
+
+
+document.getElementById("backCitizen")
+.addEventListener("click",function(){
+
+  window.location.hash="";
   showCitizen();
-};
 
-
-/* ================= KENYA COUNTIES ================= */
-
-const counties = [
-"BARINGO",
-"BOMET",
-"BUNGOMA",
-"BUSIA",
-"ELGEYO-MARAKWET",
-"EMBU",
-"GARISSA",
-"HOMA BAY",
-"ISIOLO",
-"KAJIADO",
-"KAKAMEGA",
-"KIAMBU",
-"KILIFI",
-"KIRINYAGA",
-"KISII",
-"KISUMU",
-"KITUI",
-"MACHAKOS",
-"MAKUENI",
-"MANDERA",
-"MERU",
-"MIGORI",
-"MARSABIT",
-"MOYale",
-"NAIROBI",
-"NAKURU",
-"NANDI",
-"NAROK",
-"NYAMIRA",
-"NYANDARUA",
-"NYERI",
-"SAMBURU",
-"SIAYA",
-"TAITA-TAVETA",
-"TANA RIVER",
-"THARAKA-NITHI",
-"TRANS NZOIA",
-"TURKANA",
-"UASIN GISHU",
-"VIHIGA",
-"WAJIR",
-"WEST POKOT"
-];
-
-const countySelect = document.getElementById("county");
-
-counties.forEach(county=>{
-  const option=document.createElement("option");
-  option.value=county;
-  option.textContent=county;
-  countySelect.appendChild(option);
 });
 
 
-/* ================= FIRESTORE LOCATIONS ================= */
+/* =========================================================
+   KENYA ADMINISTRATIVE DATA
+   COUNTY → CONSTITUENCY → WARD
+   ========================================================= */
+
+const kenyaDataURL =
+"https://cdn.jsdelivr.net/npm/kenya-administrative-divisions@1.0.1/+esm";
+
+
+let kenyaData = null;
+
+
+/* ================= LOCATION DATA ================= */
 
 let locationData=[];
 
-async function loadLocations(){
+
+/* =========================================================
+   LOAD KENYA COUNTY / CONSTITUENCY / WARD DATA
+   ========================================================= */
+
+async function loadKenyaAdministrativeData(){
 
   try{
 
-    const snapshot=await getDocs(collection(db,"locations"));
+    const module = await import(kenyaDataURL);
 
-    locationData=[];
+    kenyaData =
+      module.kenyaAdministrativeDivisions ||
+      module.default ||
+      module;
 
-    snapshot.forEach(doc=>{
-      const data=doc.data();
+    const counties =
+      kenyaData.getCounties
+        ? kenyaData.getCounties()
+        : [];
 
-      locationData.push({
-        county:String(data.county || "").trim(),
-        constituency:String(data.constituency || "").trim(),
-        ward:String(data.ward || "").trim(),
-        location:String(data.location || "").trim(),
-        subLocation:String(
-          data.subLocation ||
-          data.sublocation ||
-          data["sub-location"] ||
-          ""
-        ).trim()
-      });
+    const countySelect =
+      document.getElementById("county");
+
+    countySelect.innerHTML =
+      '<option value="">Select county</option>';
+
+    counties.forEach(county=>{
+
+      const option =
+        document.createElement("option");
+
+      option.value =
+        county.name ||
+        county.countyName ||
+        county;
+
+      option.textContent =
+        county.name ||
+        county.countyName ||
+        county;
+
+      countySelect.appendChild(option);
+
     });
 
   }catch(error){
 
-    console.error("Location error:",error);
+    console.error(
+      "Kenya administrative data error:",
+      error
+    );
+
+    document.getElementById("county").innerHTML =
+      '<option value="">Unable to load counties</option>';
 
   }
+
 }
 
 
@@ -546,29 +563,40 @@ async function loadLocations(){
 
 function resetSelect(id,text){
 
-  const select=document.getElementById(id);
+  const select =
+    document.getElementById(id);
 
   select.innerHTML="";
 
-  const option=document.createElement("option");
+  const option =
+    document.createElement("option");
+
   option.value="";
   option.textContent=text;
 
   select.appendChild(option);
+
 }
 
 
 function addUnique(selectId,values){
 
-  const select=document.getElementById(selectId);
+  const select =
+    document.getElementById(selectId);
 
-  const unique=[...new Set(values.filter(v=>v))];
+  const unique =
+    [...new Set(
+      values
+      .filter(v=>v)
+      .map(v=>String(v).trim())
+    )];
 
   unique.sort();
 
   unique.forEach(value=>{
 
-    const option=document.createElement("option");
+    const option =
+      document.createElement("option");
 
     option.value=value;
     option.textContent=value;
@@ -576,245 +604,556 @@ function addUnique(selectId,values){
     select.appendChild(option);
 
   });
+
 }
 
 
-countySelect.addEventListener("change",()=>{
+/* =========================================================
+   COUNTY CHANGE
+   ========================================================= */
 
-  const county=countySelect.value;
+document.getElementById("county")
+.addEventListener("change",()=>{
 
-  resetSelect("constituency","Select constituency");
-  resetSelect("ward","Select ward");
-  resetSelect("location","Select location");
-  resetSelect("subLocation","Select sub-location");
+  const county =
+    document.getElementById("county").value;
 
-  if(!county)return;
-
-  const rows=locationData.filter(x=>
-    x.county.toLowerCase()===county.toLowerCase()
-  );
-
-  addUnique(
+  resetSelect(
     "constituency",
-    rows.map(x=>x.constituency)
+    "Select constituency"
   );
+
+  resetSelect(
+    "ward",
+    "Select ward"
+  );
+
+  resetSelect(
+    "location",
+    "Select location"
+  );
+
+  resetSelect(
+    "subLocation",
+    "Select sub-location"
+  );
+
+  if(!county || !kenyaData)return;
+
+
+  try{
+
+    const constituencies =
+      kenyaData.getConstituencies({
+        countyName:county
+      });
+
+    const names =
+      constituencies.map(c=>
+        c.name ||
+        c.constituencyName
+      );
+
+    addUnique(
+      "constituency",
+      names
+    );
+
+  }catch(error){
+
+    console.error(
+      "Constituency error:",
+      error
+    );
+
+  }
 
 });
 
+
+/* =========================================================
+   CONSTITUENCY CHANGE
+   ========================================================= */
 
 document.getElementById("constituency")
 .addEventListener("change",()=>{
 
-  const county=countySelect.value;
-  const constituency=document.getElementById("constituency").value;
+  const county =
+    document.getElementById("county").value;
 
-  resetSelect("ward","Select ward");
-  resetSelect("location","Select location");
-  resetSelect("subLocation","Select sub-location");
+  const constituency =
+    document.getElementById("constituency").value;
 
-  if(!county || !constituency)return;
-
-  const rows=locationData.filter(x=>
-    x.county.toLowerCase()===county.toLowerCase() &&
-    x.constituency.toLowerCase()===constituency.toLowerCase()
+  resetSelect(
+    "ward",
+    "Select ward"
   );
 
-  addUnique("ward",rows.map(x=>x.ward));
+  resetSelect(
+    "location",
+    "Select location"
+  );
+
+  resetSelect(
+    "subLocation",
+    "Select sub-location"
+  );
+
+  if(
+    !county ||
+    !constituency ||
+    !kenyaData
+  )return;
+
+
+  try{
+
+    const wards =
+      kenyaData.getWards({
+        constituencyName:constituency
+      });
+
+    const names =
+      wards.map(w=>
+        w.name ||
+        w.wardName
+      );
+
+    addUnique(
+      "ward",
+      names
+    );
+
+  }catch(error){
+
+    console.error(
+      "Ward error:",
+      error
+    );
+
+  }
 
 });
 
+
+/* =========================================================
+   WARD CHANGE
+   LOCATION + SUB-LOCATION STILL COME FROM FIRESTORE
+   ========================================================= */
 
 document.getElementById("ward")
 .addEventListener("change",()=>{
 
-  const county=countySelect.value;
-  const constituency=document.getElementById("constituency").value;
-  const ward=document.getElementById("ward").value;
+  const county =
+    document.getElementById("county").value;
 
-  resetSelect("location","Select location");
-  resetSelect("subLocation","Select sub-location");
+  const constituency =
+    document.getElementById("constituency").value;
 
-  if(!county || !constituency || !ward)return;
+  const ward =
+    document.getElementById("ward").value;
 
-  const rows=locationData.filter(x=>
-    x.county.toLowerCase()===county.toLowerCase() &&
-    x.constituency.toLowerCase()===constituency.toLowerCase() &&
-    x.ward.toLowerCase()===ward.toLowerCase()
+  resetSelect(
+    "location",
+    "Select location"
   );
 
-  addUnique("location",rows.map(x=>x.location));
+  resetSelect(
+    "subLocation",
+    "Select sub-location"
+  );
+
+  if(
+    !county ||
+    !constituency ||
+    !ward
+  )return;
+
+
+  const rows =
+    locationData.filter(x=>
+      x.county.toLowerCase()===
+      county.toLowerCase() &&
+
+      x.constituency.toLowerCase()===
+      constituency.toLowerCase() &&
+
+      x.ward.toLowerCase()===
+      ward.toLowerCase()
+    );
+
+
+  addUnique(
+    "location",
+    rows.map(x=>x.location)
+  );
 
 });
 
+
+/* =========================================================
+   LOCATION CHANGE
+   ========================================================= */
 
 document.getElementById("location")
 .addEventListener("change",()=>{
 
-  const county=countySelect.value;
-  const constituency=document.getElementById("constituency").value;
-  const ward=document.getElementById("ward").value;
-  const location=document.getElementById("location").value;
+  const county =
+    document.getElementById("county").value;
 
-  resetSelect("subLocation","Select sub-location");
+  const constituency =
+    document.getElementById("constituency").value;
 
-  if(!county || !constituency || !ward || !location)return;
+  const ward =
+    document.getElementById("ward").value;
 
-  const rows=locationData.filter(x=>
-    x.county.toLowerCase()===county.toLowerCase() &&
-    x.constituency.toLowerCase()===constituency.toLowerCase() &&
-    x.ward.toLowerCase()===ward.toLowerCase() &&
-    x.location.toLowerCase()===location.toLowerCase()
+  const location =
+    document.getElementById("location").value;
+
+  resetSelect(
+    "subLocation",
+    "Select sub-location"
   );
 
-  addUnique("subLocation",rows.map(x=>x.subLocation));
+  if(
+    !county ||
+    !constituency ||
+    !ward ||
+    !location
+  )return;
+
+
+  const rows =
+    locationData.filter(x=>
+      x.county.toLowerCase()===
+      county.toLowerCase() &&
+
+      x.constituency.toLowerCase()===
+      constituency.toLowerCase() &&
+
+      x.ward.toLowerCase()===
+      ward.toLowerCase() &&
+
+      x.location.toLowerCase()===
+      location.toLowerCase()
+    );
+
+
+  addUnique(
+    "subLocation",
+    rows.map(x=>x.subLocation)
+  );
 
 });
 
 
-/* ================= CITIZEN SUBMISSION ================= */
+/* =========================================================
+   FIRESTORE LOCATIONS
+   ========================================================= */
+
+async function loadLocations(){
+
+  try{
+
+    const snapshot =
+      await getDocs(
+        collection(db,"locations")
+      );
+
+    locationData=[];
+
+    snapshot.forEach(docSnap=>{
+
+      const data =
+        docSnap.data();
+
+      locationData.push({
+
+        county:
+          String(data.county || "").trim(),
+
+        constituency:
+          String(data.constituency || "").trim(),
+
+        ward:
+          String(data.ward || "").trim(),
+
+        location:
+          String(data.location || "").trim(),
+
+        subLocation:
+          String(
+            data.subLocation ||
+            data.sublocation ||
+            data["sub-location"] ||
+            ""
+          ).trim()
+
+      });
+
+    });
+
+  }catch(error){
+
+    console.error(
+      "Firestore location error:",
+      error
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   CITIZEN SUBMISSION
+   ========================================================= */
 
 document.getElementById("issueForm")
 .addEventListener("submit",async(e)=>{
 
   e.preventDefault();
 
-  const box=document.getElementById("submitMessage");
+  const box =
+    document.getElementById("submitMessage");
 
   box.className="";
   box.textContent="Submitting...";
 
+
   try{
 
-    await addDoc(collection(db,"issues"),{
+    await addDoc(
+      collection(db,"issues"),
+      {
 
-      category:document.getElementById("category").value,
-      county:countySelect.value,
-      constituency:document.getElementById("constituency").value,
-      ward:document.getElementById("ward").value,
-      location:document.getElementById("location").value,
-      subLocation:document.getElementById("subLocation").value,
-      targetOffice:document.getElementById("targetOffice").value,
-      description:document.getElementById("description").value,
-      status:"submitted",
-      createdAt:serverTimestamp()
+        category:
+          document.getElementById("category").value,
 
-    });
+        county:
+          document.getElementById("county").value,
+
+        constituency:
+          document.getElementById("constituency").value,
+
+        ward:
+          document.getElementById("ward").value,
+
+        location:
+          document.getElementById("location").value,
+
+        subLocation:
+          document.getElementById("subLocation").value,
+
+        targetOffice:
+          document.getElementById("targetOffice").value,
+
+        description:
+          document.getElementById("description").value,
+
+        status:"submitted",
+
+        createdAt:
+          serverTimestamp()
+
+      }
+    );
+
 
     box.className="message";
-    box.textContent="Your submission is submitted successfully.";
+
+    box.textContent =
+      "Your submission is submitted successfully.";
+
 
     document.getElementById("issueForm").reset();
 
-    resetSelect("constituency","Select constituency");
-    resetSelect("ward","Select ward");
-    resetSelect("location","Select location");
-    resetSelect("subLocation","Select sub-location");
+
+    resetSelect(
+      "constituency",
+      "Select constituency"
+    );
+
+    resetSelect(
+      "ward",
+      "Select ward"
+    );
+
+    resetSelect(
+      "location",
+      "Select location"
+    );
+
+    resetSelect(
+      "subLocation",
+      "Select sub-location"
+    );
+
 
   }catch(error){
 
     console.error(error);
 
-    box.className="message error";
-    box.textContent="Submission failed. Please try again.";
+    box.className =
+      "message error";
+
+    box.textContent =
+      "Submission failed. Please try again.";
 
   }
 
 });
 
 
-/* ================= ANNOUNCEMENTS ================= */
+/* =========================================================
+   ANNOUNCEMENTS
+   ========================================================= */
 
 async function loadAnnouncements(){
 
-  const box=document.getElementById("announcements");
+  const box =
+    document.getElementById("announcements");
 
   try{
 
-    const q=query(
-      collection(db,"announcements"),
-      where("status","==","published")
-    );
+    const q =
+      query(
+        collection(db,"announcements"),
+        where(
+          "status",
+          "==",
+          "published"
+        )
+      );
 
-    const snapshot=await getDocs(q);
+    const snapshot =
+      await getDocs(q);
 
     box.innerHTML="";
 
+
     if(snapshot.empty){
 
-      box.innerHTML="<p class='small'>No official announcements yet.</p>";
+      box.innerHTML =
+        "<p class='small'>No official announcements yet.</p>";
+
       return;
 
     }
 
-    snapshot.forEach(doc=>{
 
-      const data=doc.data();
+    snapshot.forEach(docSnap=>{
 
-      const div=document.createElement("div");
-      div.className="announcement";
+      const data =
+        docSnap.data();
 
-      div.innerHTML=
-        "<strong>Official Announcement From "+
-        (data.officeType || "Public Office")+
-        " — "+
-        (data.officialName || "")+
-        "</strong><br><br>"+
-        (data.message || "");
+      const div =
+        document.createElement("div");
+
+      div.className =
+        "announcement";
+
+
+      const strong =
+        document.createElement("strong");
+
+      strong.textContent =
+        "Official Announcement From " +
+        (data.officeType ||
+        "Public Office") +
+        " — " +
+        (data.officialName || "");
+
+
+      const message =
+        document.createElement("div");
+
+      message.style.marginTop="10px";
+
+      message.textContent =
+        data.message || "";
+
+
+      div.appendChild(strong);
+      div.appendChild(message);
 
       box.appendChild(div);
 
     });
 
+
   }catch(error){
 
     console.error(error);
-    box.innerHTML="<p class='small'>Unable to load announcements.</p>";
+
+    box.innerHTML =
+      "<p class='small'>Unable to load announcements.</p>";
 
   }
+
 }
 
 
-/* ================= LOGIN ================= */
+/* =========================================================
+   LOGIN
+   ========================================================= */
 
 document.getElementById("loginForm")
 .addEventListener("submit",async(e)=>{
 
   e.preventDefault();
 
-  const box=document.getElementById("loginMessage");
+  const box =
+    document.getElementById("loginMessage");
 
   box.className="";
   box.textContent="Signing in...";
 
-  const email=document.getElementById("loginEmail").value.trim();
-  const password=document.getElementById("loginPassword").value;
+
+  const email =
+    document.getElementById("loginEmail")
+    .value
+    .trim();
+
+  const password =
+    document.getElementById("loginPassword")
+    .value;
+
 
   try{
 
-    const result=await signInWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
+    const result =
+      await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
 
-    const uid=result.user.uid;
 
-    const userDoc=await getDocs(
-      query(
-        collection(db,"users"),
-        where("__name__","==",uid)
-      )
-    );
+    const uid =
+      result.user.uid;
 
-    if(userDoc.empty){
+
+    const userSnap =
+      await getDoc(
+        doc(db,"users",uid)
+      );
+
+
+    if(!userSnap.exists()){
 
       await signOut(auth);
 
-      throw new Error("No authorized user profile found.");
+      throw new Error(
+        "No authorized user profile found."
+      );
 
     }
 
-    const data=userDoc.docs[0].data();
+
+    const data =
+      userSnap.data();
+
 
     const allowed=[
       "Official",
@@ -822,13 +1161,17 @@ document.getElementById("loginForm")
       "Super Admin"
     ];
 
+
     if(!allowed.includes(data.role)){
 
       await signOut(auth);
 
-      throw new Error("This account is not authorized for official access.");
+      throw new Error(
+        "This account is not authorized for official access."
+      );
 
     }
+
 
     window.location.hash="#dashboard";
 
@@ -836,110 +1179,197 @@ document.getElementById("loginForm")
 
     loadDashboard();
 
+
   }catch(error){
 
     console.error(error);
 
-    box.className="message error";
-    box.textContent=error.message || "Login failed.";
+    box.className =
+      "message error";
+
+    box.textContent =
+      error.message ||
+      "Login failed.";
 
   }
 
 });
 
 
-/* ================= DASHBOARD ================= */
+/* =========================================================
+   DASHBOARD
+   ========================================================= */
 
 async function loadDashboard(){
 
   if(!auth.currentUser)return;
 
-  const uid=auth.currentUser.uid;
+
+  const uid =
+    auth.currentUser.uid;
+
 
   try{
 
-    const userSnap=await getDocs(
-      query(
-        collection(db,"users"),
-        where("__name__","==",uid)
-      )
-    );
+    const userSnap =
+      await getDoc(
+        doc(db,"users",uid)
+      );
 
-    if(!userSnap.empty){
 
-      const userData=userSnap.docs[0].data();
+    if(userSnap.exists()){
 
-      document.getElementById("officialName").textContent=
-        "Logged in as: "+
-        (userData.name || auth.currentUser.email)+
-        " — Role: "+
+      const userData =
+        userSnap.data();
+
+
+      document.getElementById(
+        "officialName"
+      ).textContent =
+        "Logged in as: " +
+        (userData.name ||
+        auth.currentUser.email) +
+        " — Role: " +
         (userData.role || "");
 
     }
 
-    const snapshot=await getDocs(
-      collection(db,"issues")
-    );
+
+    const snapshot =
+      await getDocs(
+        collection(db,"issues")
+      );
+
 
     const issues=[];
 
-    snapshot.forEach(doc=>{
+
+    snapshot.forEach(docSnap=>{
+
       issues.push({
-        id:doc.id,
-        ...doc.data()
+
+        id:docSnap.id,
+
+        ...docSnap.data()
+
       });
+
     });
 
-    document.getElementById("totalIssues").textContent=issues.length;
 
-    document.getElementById("roadCount").textContent=
+    document.getElementById(
+      "totalIssues"
+    ).textContent =
+      issues.length;
+
+
+    document.getElementById(
+      "roadCount"
+    ).textContent =
       issues.filter(x=>
-        String(x.category||"").toLowerCase()==="roads"
+        String(x.category || "")
+        .toLowerCase()==="roads"
       ).length;
 
-    document.getElementById("waterCount").textContent=
+
+    document.getElementById(
+      "waterCount"
+    ).textContent =
       issues.filter(x=>
-        String(x.category||"").toLowerCase()==="water"
+        String(x.category || "")
+        .toLowerCase()==="water"
       ).length;
 
-    document.getElementById("healthCount").textContent=
+
+    document.getElementById(
+      "healthCount"
+    ).textContent =
       issues.filter(x=>
-        String(x.category||"").toLowerCase()==="healthcare"
+        String(x.category || "")
+        .toLowerCase()==="healthcare"
       ).length;
 
-    document.getElementById("educationCount").textContent=
+
+    document.getElementById(
+      "educationCount"
+    ).textContent =
       issues.filter(x=>
-        String(x.category||"").toLowerCase()==="education"
+        String(x.category || "")
+        .toLowerCase()==="education"
       ).length;
 
-    document.getElementById("securityCount").textContent=
+
+    document.getElementById(
+      "securityCount"
+    ).textContent =
       issues.filter(x=>
-        String(x.category||"").toLowerCase()==="security"
+        String(x.category || "")
+        .toLowerCase()==="security"
       ).length;
 
-    const list=document.getElementById("issuesList");
+
+    const list =
+      document.getElementById(
+        "issuesList"
+      );
+
 
     list.innerHTML="";
 
+
     if(issues.length===0){
 
-      list.innerHTML="<p class='small'>No issues found.</p>";
+      list.innerHTML =
+        "<p class='small'>No issues found.</p>";
 
     }else{
 
       issues.forEach(issue=>{
 
-        const div=document.createElement("div");
+        const div =
+          document.createElement("div");
+
         div.className="issue";
 
-        div.innerHTML=
-          "<strong>"+(issue.category||"")+"</strong><br>"+
-          (issue.description||"")+"<br><br>"+
-          "<span class='small'>"+
-          (issue.county||"")+" • "+
-          (issue.constituency||"")+" • "+
-          (issue.ward||"")+
-          "</span>";
+
+        const title =
+          document.createElement("strong");
+
+        title.textContent =
+          issue.category || "";
+
+
+        const description =
+          document.createElement("div");
+
+        description.style.marginTop="6px";
+
+        description.textContent =
+          issue.description || "";
+
+
+        const place =
+          document.createElement("div");
+
+        place.className="small";
+
+        place.style.marginTop="10px";
+
+        place.textContent =
+          (issue.county || "") +
+          " • " +
+          (issue.constituency || "") +
+          " • " +
+          (issue.ward || "") +
+          " • " +
+          (issue.location || "") +
+          " • " +
+          (issue.subLocation || "");
+
+
+        div.appendChild(title);
+        div.appendChild(description);
+        div.appendChild(place);
 
         list.appendChild(div);
 
@@ -947,11 +1377,14 @@ async function loadDashboard(){
 
     }
 
+
   }catch(error){
 
     console.error(error);
 
-    document.getElementById("issuesList").innerHTML=
+    document.getElementById(
+      "issuesList"
+    ).innerHTML =
       "<p class='message error'>Unable to load dashboard data. Your security rules may need the official read permission.</p>";
 
   }
@@ -959,60 +1392,93 @@ async function loadDashboard(){
 }
 
 
-/* ================= POST ANNOUNCEMENT ================= */
+/* =========================================================
+   PUBLISH ANNOUNCEMENT
+   ========================================================= */
 
 document.getElementById("announcementForm")
 .addEventListener("submit",async(e)=>{
 
   e.preventDefault();
 
-  const box=document.getElementById("announcementMessageBox");
+
+  const box =
+    document.getElementById(
+      "announcementMessageBox"
+    );
+
 
   try{
 
-    const uid=auth.currentUser.uid;
+    const uid =
+      auth.currentUser.uid;
 
-    const userSnap=await getDocs(
-      query(
-        collection(db,"users"),
-        where("__name__","==",uid)
-      )
-    );
+
+    const userSnap =
+      await getDoc(
+        doc(db,"users",uid)
+      );
+
 
     let userData={};
 
-    if(!userSnap.empty){
-      userData=userSnap.docs[0].data();
+
+    if(userSnap.exists()){
+
+      userData =
+        userSnap.data();
+
     }
 
-    await addDoc(collection(db,"announcements"),{
 
-      message:document.getElementById("announcementMessage").value,
+    await addDoc(
+      collection(db,"announcements"),
+      {
 
-      officeType:userData.officeType || "Public Office",
+        message:
+          document.getElementById(
+            "announcementMessage"
+          ).value,
 
-      officialName:userData.name ||
-        auth.currentUser.email,
+        officeType:
+          userData.officeType ||
+          "Public Office",
 
-      status:"published",
+        officialName:
+          userData.name ||
+          auth.currentUser.email,
 
-      createdAt:serverTimestamp()
+        status:"published",
 
-    });
+        createdAt:
+          serverTimestamp()
+
+      }
+    );
+
 
     box.className="message";
-    box.textContent="Announcement published successfully.";
 
-    document.getElementById("announcementForm").reset();
+    box.textContent =
+      "Announcement published successfully.";
+
+
+    document.getElementById(
+      "announcementForm"
+    ).reset();
+
 
     loadAnnouncements();
+
 
   }catch(error){
 
     console.error(error);
 
-    box.className="message error";
-    box.textContent=
+    box.className =
+      "message error";
+
+    box.textContent =
       "Announcement could not be published.";
 
   }
@@ -1020,7 +1486,9 @@ document.getElementById("announcementForm")
 });
 
 
-/* ================= LOGOUT ================= */
+/* =========================================================
+   LOGOUT
+   ========================================================= */
 
 document.getElementById("logoutBtn")
 .addEventListener("click",async()=>{
@@ -1034,24 +1502,37 @@ document.getElementById("logoutBtn")
 });
 
 
-/* ================= AUTH STATE ================= */
+/* =========================================================
+   AUTH STATE
+   ========================================================= */
 
 onAuthStateChanged(auth,user=>{
 
-  if(!user && window.location.hash==="#dashboard"){
+  if(
+    !user &&
+    window.location.hash==="#dashboard"
+  ){
+
     window.location.hash="#official";
+
   }
 
 });
 
 
-/* ================= START ================= */
+/* =========================================================
+   START APP
+   ========================================================= */
+
+await loadKenyaAdministrativeData();
 
 await loadLocations();
+
 await loadAnnouncements();
+
 route();
 
 </script>
 
 </body>
-               </html>
+  </html>
