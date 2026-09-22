@@ -257,57 +257,47 @@ Select category
 
 <label>County</label>
 
-<select id="county" required>
-
-<option value="">
-Select county
-</option>
-
-</select>
+<input
+type="text"
+id="county"
+placeholder="Enter county"
+required>
 
 
 <label>Constituency</label>
 
-<select id="constituency" required>
-
-<option value="">
-Select constituency
-</option>
-
-</select>
+<input
+type="text"
+id="constituency"
+placeholder="Enter constituency"
+required>
 
 
 <label>Ward</label>
 
-<select id="ward" required>
-
-<option value="">
-Select ward
-</option>
-
-</select>
+<input
+type="text"
+id="ward"
+placeholder="Enter ward"
+required>
 
 
 <label>Location</label>
 
-<select id="location" required>
-
-<option value="">
-Select location
-</option>
-
-</select>
+<input
+type="text"
+id="location"
+placeholder="Enter location"
+required>
 
 
 <label>Sub-location</label>
 
-<select id="subLocation" required>
-
-<option value="">
-Select sub-location
-</option>
-
-</select>
+<input
+type="text"
+id="subLocation"
+placeholder="Enter sub-location"
+required>
 
 
 <label>Office Concerned</label>
@@ -578,11 +568,11 @@ import {
 getFirestore,
 collection,
 addDoc,
-getDocs,
 getDoc,
 doc,
 query,
 where,
+getDocs,
 serverTimestamp
 
 }
@@ -752,711 +742,6 @@ showCitizen();
 
 
 /* =====================================================
-   LOCATION DATA
-   ===================================================== */
-
-/*
-
-IMPORTANT:
-
-We are NOT using an external Kenya
-administrative package anymore.
-
-County
-Constituency
-Ward
-Location
-Sub-location
-
-will all come from Firestore.
-
-*/
-
-
-let locationData=[];
-
-
-/* =====================================================
-   CONVERT FIRESTORE OBJECTS INTO TEXT
-   ===================================================== */
-
-/*
-
-This is the main fix for:
-
-[object Object]
-
-If Firestore gives us:
-
-{
-  name: "Meru"
-}
-
-we return:
-
-Meru
-
-If it gives:
-
-{
-  countyName: "Meru"
-}
-
-we return:
-
-Meru
-
-*/
-
-function textValue(value){
-
-if(value === null ||
-   value === undefined){
-
-return "";
-
-}
-
-
-/* Already text */
-
-if(typeof value === "string"){
-
-return value.trim();
-
-}
-
-
-/* Number */
-
-if(typeof value === "number"){
-
-return String(value);
-
-}
-
-
-/* Array */
-
-if(Array.isArray(value)){
-
-for(const item of value){
-
-const result =
-textValue(item);
-
-if(result){
-
-return result;
-
-}
-
-}
-
-return "";
-
-}
-
-
-/* Object */
-
-if(typeof value === "object"){
-
-const possibleKeys=[
-
-"name",
-
-"countyName",
-
-"constituencyName",
-
-"wardName",
-
-"locationName",
-
-"subLocationName",
-
-"subLocation",
-
-"sublocation",
-
-"label",
-
-"title",
-
-"value",
-
-"text"
-
-];
-
-
-for(const key of possibleKeys){
-
-if(value[key] !== undefined){
-
-const result =
-textValue(value[key]);
-
-if(result){
-
-return result;
-
-}
-
-}
-
-}
-
-
-/* Firebase-like object */
-
-if(value._key){
-
-return textValue(value._key);
-
-}
-
-
-/* Last safe attempt */
-
-try{
-
-const result =
-JSON.stringify(value);
-
-if(result &&
-   result !== "{}"){
-
-return result;
-
-}
-
-}catch(error){}
-
-}
-
-
-return "";
-
-}
-
-
-/* =====================================================
-   RESET SELECT
-   ===================================================== */
-
-function resetSelect(
-id,
-text
-){
-
-const select =
-document.getElementById(id);
-
-
-select.innerHTML="";
-
-
-const option =
-document.createElement("option");
-
-
-option.value="";
-
-option.textContent=text;
-
-
-select.appendChild(option);
-
-}
-
-
-/* =====================================================
-   ADD UNIQUE TEXT VALUES
-   ===================================================== */
-
-function addUnique(
-selectId,
-values
-){
-
-const select =
-document.getElementById(selectId);
-
-
-const cleaned=[];
-
-
-values.forEach(value=>{
-
-const text =
-textValue(value);
-
-if(text){
-
-cleaned.push(text);
-
-}
-
-});
-
-
-const unique =
-[
-...new Set(cleaned)
-];
-
-
-unique.sort(
-(a,b)=>
-a.localeCompare(b)
-);
-
-
-unique.forEach(value=>{
-
-const option =
-document.createElement("option");
-
-
-option.value=value;
-
-option.textContent=value;
-
-
-select.appendChild(option);
-
-});
-
-}
-
-
-/* =====================================================
-   LOAD LOCATIONS FROM FIRESTORE
-   ===================================================== */
-
-async function loadLocations(){
-
-try{
-
-console.log(
-"Loading locations from Firestore..."
-);
-
-
-const snapshot =
-await getDocs(
-collection(db,"locations")
-);
-
-
-locationData=[];
-
-
-snapshot.forEach(docSnap=>{
-
-const data =
-docSnap.data();
-
-
-/*
-
-IMPORTANT:
-
-Each field is passed through
-textValue().
-
-Therefore objects will no
-longer become [object Object].
-
-*/
-
-const row={
-
-county:
-textValue(data.county),
-
-constituency:
-textValue(data.constituency),
-
-ward:
-textValue(data.ward),
-
-location:
-textValue(data.location),
-
-subLocation:
-textValue(
-data.subLocation ||
-data.sublocation ||
-data["sub-location"]
-)
-
-};
-
-
-if(
-row.county ||
-row.constituency ||
-row.ward
-){
-
-locationData.push(row);
-
-}
-
-});
-
-
-console.log(
-"Locations loaded:",
-locationData
-);
-
-
-/* =====================================================
-   LOAD COUNTY DROPDOWN
-   ===================================================== */
-
-resetSelect(
-"county",
-"Select county"
-);
-
-
-addUnique(
-"county",
-locationData.map(
-row=>row.county
-)
-);
-
-
-/* =====================================================
-   IF NO DATA
-   ===================================================== */
-
-if(locationData.length===0){
-
-resetSelect(
-"county",
-"No location data found"
-);
-
-console.warn(
-"No documents found in locations collection."
-);
-
-}
-
-}catch(error){
-
-console.error(
-"Location loading error:",
-error
-);
-
-
-resetSelect(
-"county",
-"Unable to load counties"
-);
-
-}
-
-}
-
-
-/* =====================================================
-   COUNTY CHANGE
-   ===================================================== */
-
-document
-.getElementById("county")
-.addEventListener(
-"change",
-function(){
-
-const county =
-document.getElementById(
-"county"
-).value;
-
-
-resetSelect(
-"constituency",
-"Select constituency"
-);
-
-resetSelect(
-"ward",
-"Select ward"
-);
-
-resetSelect(
-"location",
-"Select location"
-);
-
-resetSelect(
-"subLocation",
-"Select sub-location"
-);
-
-
-if(!county){
-
-return;
-
-}
-
-
-/* =====================================================
-   GET CONSTITUENCIES FOR COUNTY
-   ===================================================== */
-
-const rows =
-locationData.filter(
-row=>
-row.county === county
-);
-
-
-addUnique(
-"constituency",
-rows.map(
-row=>row.constituency
-)
-);
-
-}
-);
-
-
-/* =====================================================
-   CONSTITUENCY CHANGE
-   ===================================================== */
-
-document
-.getElementById("constituency")
-.addEventListener(
-"change",
-function(){
-
-const county =
-document.getElementById(
-"county"
-).value;
-
-
-const constituency =
-document.getElementById(
-"constituency"
-).value;
-
-
-resetSelect(
-"ward",
-"Select ward"
-);
-
-resetSelect(
-"location",
-"Select location"
-);
-
-resetSelect(
-"subLocation",
-"Select sub-location"
-);
-
-
-if(
-!county ||
-!constituency
-){
-
-return;
-
-}
-
-
-/* =====================================================
-   GET WARDS
-   ===================================================== */
-
-const rows =
-locationData.filter(
-row=>
-row.county === county &&
-row.constituency === constituency
-);
-
-
-addUnique(
-"ward",
-rows.map(
-row=>row.ward
-)
-);
-
-}
-);
-
-
-/* =====================================================
-   WARD CHANGE
-   ===================================================== */
-
-document
-.getElementById("ward")
-.addEventListener(
-"change",
-function(){
-
-const county =
-document.getElementById(
-"county"
-).value;
-
-
-const constituency =
-document.getElementById(
-"constituency"
-).value;
-
-
-const ward =
-document.getElementById(
-"ward"
-).value;
-
-
-resetSelect(
-"location",
-"Select location"
-);
-
-resetSelect(
-"subLocation",
-"Select sub-location"
-);
-
-
-if(
-!county ||
-!constituency ||
-!ward
-){
-
-return;
-
-}
-
-
-/* =====================================================
-   GET LOCATIONS
-   ===================================================== */
-
-const rows =
-locationData.filter(
-row=>
-row.county === county &&
-row.constituency === constituency &&
-row.ward === ward
-);
-
-
-addUnique(
-"location",
-rows.map(
-row=>row.location
-)
-);
-
-}
-);
-
-
-/* =====================================================
-   LOCATION CHANGE
-   ===================================================== */
-
-document
-.getElementById("location")
-.addEventListener(
-"change",
-function(){
-
-const county =
-document.getElementById(
-"county"
-).value;
-
-
-const constituency =
-document.getElementById(
-"constituency"
-).value;
-
-
-const ward =
-document.getElementById(
-"ward"
-).value;
-
-
-const location =
-document.getElementById(
-"location"
-).value;
-
-
-resetSelect(
-"subLocation",
-"Select sub-location"
-);
-
-
-if(
-!county ||
-!constituency ||
-!ward ||
-!location
-){
-
-return;
-
-}
-
-
-/* =====================================================
-   GET SUB-LOCATIONS
-   ===================================================== */
-
-const rows =
-locationData.filter(
-row=>
-row.county === county &&
-row.constituency === constituency &&
-row.ward === ward &&
-row.location === location
-);
-
-
-addUnique(
-"subLocation",
-rows.map(
-row=>row.subLocation
-)
-);
-
-}
-);
-
-
-/* =====================================================
    CITIZEN SUBMISSION
    ===================================================== */
 
@@ -1495,27 +780,27 @@ document.getElementById(
 county:
 document.getElementById(
 "county"
-).value,
+).value.trim(),
 
 constituency:
 document.getElementById(
 "constituency"
-).value,
+).value.trim(),
 
 ward:
 document.getElementById(
 "ward"
-).value,
+).value.trim(),
 
 location:
 document.getElementById(
 "location"
-).value,
+).value.trim(),
 
 subLocation:
 document.getElementById(
 "subLocation"
-).value,
+).value.trim(),
 
 targetOffice:
 document.getElementById(
@@ -1525,7 +810,7 @@ document.getElementById(
 description:
 document.getElementById(
 "description"
-).value,
+).value.trim(),
 
 status:
 "submitted",
@@ -1546,40 +831,6 @@ box.textContent=
 document
 .getElementById("issueForm")
 .reset();
-
-
-resetSelect(
-"county",
-"Select county"
-);
-
-addUnique(
-"county",
-locationData.map(
-row=>row.county
-)
-);
-
-
-resetSelect(
-"constituency",
-"Select constituency"
-);
-
-resetSelect(
-"ward",
-"Select ward"
-);
-
-resetSelect(
-"location",
-"Select location"
-);
-
-resetSelect(
-"subLocation",
-"Select sub-location"
-);
 
 
 }catch(error){
@@ -2170,7 +1421,7 @@ db,
 message:
 document.getElementById(
 "announcementMessage"
-).value,
+).value.trim(),
 
 officeType:
 userData.officeType ||
@@ -2274,8 +1525,6 @@ window.location.hash=
 /* =====================================================
    START APP
    ===================================================== */
-
-await loadLocations();
 
 await loadAnnouncements();
 
