@@ -1,7 +1,6 @@
-hereconst CACHE_NAME = "citizen-voice-v2";
+hereconst CACHE_NAME = "citizen-voice-v3";
 
 const APP_SHELL = [
-  "./",
   "./index.html",
   "./manifest.json",
   "./icon-192.png",
@@ -10,8 +9,14 @@ const APP_SHELL = [
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(APP_SHELL);
+    caches.open(CACHE_NAME).then(async (cache) => {
+      for (const file of APP_SHELL) {
+        try {
+          await cache.add(file);
+        } catch (error) {
+          console.warn("Could not cache:", file, error);
+        }
+      }
     })
   );
 
@@ -38,8 +43,12 @@ self.addEventListener("fetch", (event) => {
   if (url.origin !== self.location.origin) return;
 
   event.respondWith(
-    caches.match(event.request).then((cached) => {
-      return cached || fetch(event.request);
-    })
+    fetch(event.request)
+      .then((response) => {
+        return response;
+      })
+      .catch(() => {
+        return caches.match(event.request);
+      })
   );
 });
