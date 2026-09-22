@@ -7,12 +7,14 @@ here<!DOCTYPE html>
 
 <style>
 *{box-sizing:border-box}
+
 body{
   margin:0;
   font-family:Arial,sans-serif;
   color:#17202a;
   background:#f4f7f5;
 }
+
 .hero{
   min-height:220px;
   padding:28px 18px;
@@ -23,8 +25,10 @@ body{
     linear-gradient(#111 0 20%,#c00 20% 40%,#fff 40% 60%,#08783e 60% 80%,#111 80%);
   border-bottom:6px solid #d4af37;
 }
+
 .logo{
-  width:82px;height:82px;
+  width:82px;
+  height:82px;
   margin:auto;
   border:4px solid white;
   border-radius:50%;
@@ -34,14 +38,23 @@ body{
   font-size:38px;
   background:rgba(0,0,0,.35);
 }
-.hero h1{margin:12px 0 5px;font-size:34px}
-.hero p{margin:0;font-size:15px}
+
+.hero h1{
+  margin:12px 0 5px;
+  font-size:34px;
+}
+
+.hero p{
+  margin:0;
+  font-size:15px;
+}
 
 .container{
   max-width:850px;
   margin:25px auto;
   padding:0 15px;
 }
+
 .card{
   background:white;
   padding:22px;
@@ -49,21 +62,34 @@ body{
   border-radius:16px;
   box-shadow:0 4px 18px rgba(0,0,0,.08);
 }
-h2{margin-top:0;color:#075b35}
+
+h2{
+  margin-top:0;
+  color:#075b35;
+}
+
 label{
   display:block;
   margin-top:14px;
   margin-bottom:6px;
   font-weight:bold;
 }
-input,select,textarea{
+
+input,
+select,
+textarea{
   width:100%;
   padding:13px;
   border:1px solid #ccd5cf;
   border-radius:9px;
   font-size:16px;
 }
-textarea{min-height:130px;resize:vertical}
+
+textarea{
+  min-height:130px;
+  resize:vertical;
+}
+
 button{
   width:100%;
   padding:14px;
@@ -75,9 +101,19 @@ button{
   font-size:17px;
   font-weight:bold;
 }
-button:hover{opacity:.9}
-.secondary{background:#555}
-.danger{background:#b00020}
+
+button:hover{
+  opacity:.9;
+}
+
+.secondary{
+  background:#555;
+}
+
+.danger{
+  background:#b00020;
+}
+
 .announcement{
   border-left:5px solid #08783e;
   padding:12px;
@@ -85,7 +121,11 @@ button:hover{opacity:.9}
   background:#f3f8f5;
   border-radius:8px;
 }
-.hidden{display:none!important}
+
+.hidden{
+  display:none!important;
+}
+
 .message{
   margin-top:14px;
   padding:12px;
@@ -93,37 +133,48 @@ button:hover{opacity:.9}
   background:#e8f5e9;
   color:#155724;
 }
+
 .error{
   background:#fdecea;
   color:#8a1c1c;
 }
+
 .stats{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
   gap:10px;
 }
+
 .stat{
   padding:15px;
   background:#f2f6f3;
   border-radius:10px;
   text-align:center;
 }
+
 .stat strong{
   display:block;
   font-size:27px;
   color:#08783e;
 }
+
 .issue{
   border:1px solid #ddd;
   border-radius:10px;
   padding:14px;
   margin:10px 0;
 }
-.small{font-size:13px;color:#666}
+
+.small{
+  font-size:13px;
+  color:#666;
+}
+
 .back{
   background:#444;
   margin-bottom:10px;
 }
+
 footer{
   text-align:center;
   padding:25px;
@@ -135,33 +186,59 @@ footer{
 
 <body>
 
-<!-- ================= CITIZEN PAGE ================= -->
+<!-- =====================================================
+     CITIZEN PAGE
+     ===================================================== -->
 
 <div id="citizenPage">
 
 <section class="hero">
+
   <div class="logo">🎙️</div>
+
   <h1>Citizen Voice</h1>
+
   <p>Your Voice • Your Community • Your Future</p>
+
 </section>
+
 
 <div class="container">
 
-<div class="card">
-<h2>Official Announcements</h2>
-<div id="announcements">
-<p class="small">Loading announcements...</p>
-</div>
-</div>
+<!-- ANNOUNCEMENTS -->
 
 <div class="card">
+
+<h2>Official Announcements</h2>
+
+<div id="announcements">
+
+<p class="small">
+Loading announcements...
+</p>
+
+</div>
+
+</div>
+
+
+<!-- CITIZEN FORM -->
+
+<div class="card">
+
 <h2>Share Your Voice</h2>
 
 <form id="issueForm">
 
+
 <label>Category</label>
+
 <select id="category" required>
-<option value="">Select category</option>
+
+<option value="">
+Select category
+</option>
+
 <option>Roads</option>
 <option>Water</option>
 <option>Healthcare</option>
@@ -174,36 +251,73 @@ footer{
 <option>Development</option>
 <option>Employment</option>
 <option>Other</option>
+
 </select>
+
 
 <label>County</label>
+
 <select id="county" required>
-<option value="">Select county</option>
+
+<option value="">
+Select county
+</option>
+
 </select>
+
 
 <label>Constituency</label>
+
 <select id="constituency" required>
-<option value="">Select constituency</option>
+
+<option value="">
+Select constituency
+</option>
+
 </select>
+
 
 <label>Ward</label>
+
 <select id="ward" required>
-<option value="">Select ward</option>
+
+<option value="">
+Select ward
+</option>
+
 </select>
+
 
 <label>Location</label>
+
 <select id="location" required>
-<option value="">Select location</option>
+
+<option value="">
+Select location
+</option>
+
 </select>
+
 
 <label>Sub-location</label>
+
 <select id="subLocation" required>
-<option value="">Select sub-location</option>
+
+<option value="">
+Select sub-location
+</option>
+
 </select>
 
+
 <label>Office Concerned</label>
+
 <select id="targetOffice" required>
-<option value="">Select office</option>
+
+<option value="">
+Select office
+</option>
+
 <option>MCA</option>
 <option>MP</option>
 <option>Woman Representative</option>
@@ -211,78 +325,140 @@ footer{
 <option>Governor</option>
 <option>President</option>
 <option>Other Government Office</option>
+
 </select>
 
-<label>Your Question / Suggestion / Concern / Issue</label>
-<textarea id="description"
+
+<label>
+Your Question / Suggestion / Concern / Issue
+</label>
+
+<textarea
+id="description"
 placeholder="Describe your question, suggestion, concern or issue..."
 required></textarea>
 
-<button type="submit">Submit</button>
+
+<button type="submit">
+Submit
+</button>
+
 
 <div id="submitMessage"></div>
 
 </form>
+
 </div>
 
 </div>
+
 </div>
 
 
-<!-- ================= OFFICIAL LOGIN ================= -->
+<!-- =====================================================
+     OFFICIAL LOGIN
+     ===================================================== -->
 
 <div id="loginPage" class="hidden">
 
 <section class="hero">
-  <div class="logo">🔐</div>
-  <h1>Official Access</h1>
-  <p>Authorized Officials Only</p>
+
+<div class="logo">🔐</div>
+
+<h1>Official Access</h1>
+
+<p>Authorized Officials Only</p>
+
 </section>
 
+
 <div class="container">
+
 <div class="card">
 
-<button class="back" id="backCitizen">← Back to Citizen Voice</button>
+<button
+class="back"
+id="backCitizen">
+
+← Back to Citizen Voice
+
+</button>
+
 
 <h2>Official Login</h2>
+
 
 <form id="loginForm">
 
 <label>Email</label>
-<input type="email" id="loginEmail" required>
+
+<input
+type="email"
+id="loginEmail"
+required>
+
 
 <label>Password</label>
-<input type="password" id="loginPassword" required>
 
-<button type="submit">Login</button>
+<input
+type="password"
+id="loginPassword"
+required>
+
+
+<button type="submit">
+Login
+</button>
+
 
 <div id="loginMessage"></div>
 
 </form>
+
 </div>
+
 </div>
+
 </div>
 
 
-<!-- ================= OFFICIAL DASHBOARD ================= -->
+<!-- =====================================================
+     OFFICIAL DASHBOARD
+     ===================================================== -->
 
 <div id="officialPage" class="hidden">
 
 <section class="hero">
-  <div class="logo">📊</div>
-  <h1>Official Dashboard</h1>
-  <p>Citizen Voice</p>
+
+<div class="logo">📊</div>
+
+<h1>Official Dashboard</h1>
+
+<p>Citizen Voice</p>
+
 </section>
+
 
 <div class="container">
 
 <div class="card">
 
-<button class="danger" id="logoutBtn">Logout</button>
+<button
+class="danger"
+id="logoutBtn">
+
+Logout
+
+</button>
+
 
 <h2>Dashboard</h2>
 
-<p id="officialName" class="small"></p>
+<p
+id="officialName"
+class="small">
+</p>
+
 
 <div class="stats">
 
@@ -291,25 +467,30 @@ required></textarea>
 Total Issues
 </div>
 
+
 <div class="stat">
 <strong id="roadCount">0</strong>
 Roads
 </div>
+
 
 <div class="stat">
 <strong id="waterCount">0</strong>
 Water
 </div>
 
+
 <div class="stat">
 <strong id="healthCount">0</strong>
 Healthcare
 </div>
 
+
 <div class="stat">
 <strong id="educationCount">0</strong>
 Education
 </div>
+
 
 <div class="stat">
 <strong id="securityCount">0</strong>
@@ -317,16 +498,27 @@ Security
 </div>
 
 </div>
+
 </div>
 
+
 <div class="card">
+
 <h2>Citizen Issues</h2>
+
 <div id="issuesList">
-<p class="small">Loading issues...</p>
-</div>
+
+<p class="small">
+Loading issues...
+</p>
+
 </div>
 
+</div>
+
+
 <div class="card">
+
 <h2>Publish Official Announcement</h2>
 
 <form id="announcementForm">
@@ -338,14 +530,20 @@ id="announcementMessage"
 placeholder="Write your official announcement..."
 required></textarea>
 
-<button type="submit">Publish Announcement</button>
+
+<button type="submit">
+Publish Announcement
+</button>
+
 
 <div id="announcementMessageBox"></div>
 
 </form>
+
 </div>
 
 </div>
+
 </div>
 
 
@@ -354,1177 +552,1728 @@ Citizen Voice — Connecting Citizens With Public Offices
 </footer>
 
 
-<!-- ================= FIREBASE ================= -->
+<!-- =====================================================
+     FIREBASE
+     ===================================================== -->
 
 <script type="module">
 
 import { initializeApp }
 from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 
+
 import {
-  getAuth,
-  onAuthStateChanged,
-  signInWithEmailAndPassword,
-  signOut
+
+getAuth,
+onAuthStateChanged,
+signInWithEmailAndPassword,
+signOut
+
 }
 from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
+
 import {
-  getFirestore,
-  collection,
-  addDoc,
-  getDocs,
-  getDoc,
-  doc,
-  query,
-  where,
-  serverTimestamp
+
+getFirestore,
+collection,
+addDoc,
+getDocs,
+getDoc,
+doc,
+query,
+where,
+serverTimestamp
+
 }
 from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
 
-/* ================= FIREBASE ================= */
+/* =====================================================
+   FIREBASE CONFIG
+   ===================================================== */
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBIJZJW392I97YZLx__9dNNk1DeAQNHgFI",
-  authDomain: "voice-connect-ded08.firebaseapp.com",
-  projectId: "voice-connect-ded08",
-  storageBucket: "voice-connect-ded08.firebasestorage.app",
-  messagingSenderId: "277049759508",
-  appId: "1:277049759508:web:0eb0ab57c3b455a0591401"
+
+apiKey:
+"AIzaSyBIJZJW392I97YZLx__9dNNk1DeAQNHgFI",
+
+authDomain:
+"voice-connect-ded08.firebaseapp.com",
+
+projectId:
+"voice-connect-ded08",
+
+storageBucket:
+"voice-connect-ded08.firebasestorage.app",
+
+messagingSenderId:
+"277049759508",
+
+appId:
+"1:277049759508:web:0eb0ab57c3b455a0591401"
+
 };
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
+
+const app =
+initializeApp(firebaseConfig);
+
+const auth =
+getAuth(app);
+
+const db =
+getFirestore(app);
 
 
-/* ================= PAGES ================= */
+/* =====================================================
+   PAGE ELEMENTS
+   ===================================================== */
 
 const citizenPage =
-  document.getElementById("citizenPage");
+document.getElementById("citizenPage");
 
 const loginPage =
-  document.getElementById("loginPage");
+document.getElementById("loginPage");
 
 const officialPage =
-  document.getElementById("officialPage");
+document.getElementById("officialPage");
 
+
+/* =====================================================
+   SHOW CITIZEN
+   ===================================================== */
 
 function showCitizen(){
 
-  citizenPage.classList.remove("hidden");
-  loginPage.classList.add("hidden");
-  officialPage.classList.add("hidden");
+citizenPage.classList.remove("hidden");
+
+loginPage.classList.add("hidden");
+
+officialPage.classList.add("hidden");
 
 }
 
+
+/* =====================================================
+   SHOW LOGIN
+   ===================================================== */
 
 function showLogin(){
 
-  citizenPage.classList.add("hidden");
-  loginPage.classList.remove("hidden");
-  officialPage.classList.add("hidden");
+citizenPage.classList.add("hidden");
+
+loginPage.classList.remove("hidden");
+
+officialPage.classList.add("hidden");
 
 }
 
+
+/* =====================================================
+   SHOW OFFICIAL
+   ===================================================== */
 
 function showOfficial(){
 
-  citizenPage.classList.add("hidden");
-  loginPage.classList.add("hidden");
-  officialPage.classList.remove("hidden");
+citizenPage.classList.add("hidden");
+
+loginPage.classList.add("hidden");
+
+officialPage.classList.remove("hidden");
 
 }
 
 
-/* ================= HASH ROUTING ================= */
+/* =====================================================
+   HASH ROUTING
+   ===================================================== */
 
 function route(){
 
-  const hash = window.location.hash;
+const hash =
+window.location.hash;
 
-  if(hash === "#official"){
 
-    showLogin();
+if(hash === "#official"){
 
-  }else if(hash === "#dashboard"){
-
-    if(auth.currentUser){
-
-      showOfficial();
-      loadDashboard();
-
-    }else{
-
-      showLogin();
-
-    }
-
-  }else{
-
-    showCitizen();
-
-  }
+showLogin();
 
 }
 
 
-window.addEventListener("hashchange",route);
+else if(hash === "#dashboard"){
+
+if(auth.currentUser){
+
+showOfficial();
+
+loadDashboard();
+
+}
+
+else{
+
+showLogin();
+
+}
+
+}
 
 
-document.getElementById("backCitizen")
+else{
+
+showCitizen();
+
+}
+
+}
+
+
+window.addEventListener(
+"hashchange",
+route
+);
+
+
+/* =====================================================
+   BACK TO CITIZEN
+   ===================================================== */
+
+document
+.getElementById("backCitizen")
 .addEventListener("click",function(){
 
-  window.location.hash="";
-  showCitizen();
+window.location.hash="";
+
+showCitizen();
 
 });
 
 
-/* =========================================================
-   KENYA ADMINISTRATIVE DATA
-   COUNTY → CONSTITUENCY → WARD
-   ========================================================= */
+/* =====================================================
+   LOCATION DATA
+   ===================================================== */
 
-const kenyaDataURL =
-"https://cdn.jsdelivr.net/npm/kenya-administrative-divisions@1.0.1/+esm";
+/*
 
+IMPORTANT:
 
-let kenyaData = null;
+We are NOT using an external Kenya
+administrative package anymore.
 
+County
+Constituency
+Ward
+Location
+Sub-location
 
-/* ================= LOCATION DATA ================= */
+will all come from Firestore.
+
+*/
+
 
 let locationData=[];
 
 
-/* =========================================================
-   LOAD KENYA COUNTY / CONSTITUENCY / WARD DATA
-   ========================================================= */
+/* =====================================================
+   CONVERT FIRESTORE OBJECTS INTO TEXT
+   ===================================================== */
 
-async function loadKenyaAdministrativeData(){
+/*
 
-  try{
+This is the main fix for:
 
-    const module = await import(kenyaDataURL);
+[object Object]
 
-    kenyaData =
-      module.kenyaAdministrativeDivisions ||
-      module.default ||
-      module;
+If Firestore gives us:
 
-    const counties =
-      kenyaData.getCounties
-        ? kenyaData.getCounties()
-        : [];
+{
+  name: "Meru"
+}
 
-    const countySelect =
-      document.getElementById("county");
+we return:
 
-    countySelect.innerHTML =
-      '<option value="">Select county</option>';
+Meru
 
-    counties.forEach(county=>{
+If it gives:
 
-      const option =
-        document.createElement("option");
+{
+  countyName: "Meru"
+}
 
-      option.value =
-        county.name ||
-        county.countyName ||
-        county;
+we return:
 
-      option.textContent =
-        county.name ||
-        county.countyName ||
-        county;
+Meru
 
-      countySelect.appendChild(option);
+*/
 
-    });
+function textValue(value){
 
-  }catch(error){
+if(value === null ||
+   value === undefined){
 
-    console.error(
-      "Kenya administrative data error:",
-      error
-    );
-
-    document.getElementById("county").innerHTML =
-      '<option value="">Unable to load counties</option>';
-
-  }
+return "";
 
 }
 
 
-/* ================= DEPENDENT DROPDOWNS ================= */
+/* Already text */
 
-function resetSelect(id,text){
+if(typeof value === "string"){
 
-  const select =
-    document.getElementById(id);
-
-  select.innerHTML="";
-
-  const option =
-    document.createElement("option");
-
-  option.value="";
-  option.textContent=text;
-
-  select.appendChild(option);
+return value.trim();
 
 }
 
 
-function addUnique(selectId,values){
+/* Number */
 
-  const select =
-    document.getElementById(selectId);
+if(typeof value === "number"){
 
-  const unique =
-    [...new Set(
-      values
-      .filter(v=>v)
-      .map(v=>String(v).trim())
-    )];
-
-  unique.sort();
-
-  unique.forEach(value=>{
-
-    const option =
-      document.createElement("option");
-
-    option.value=value;
-    option.textContent=value;
-
-    select.appendChild(option);
-
-  });
+return String(value);
 
 }
 
 
-/* =========================================================
-   COUNTY CHANGE
-   ========================================================= */
+/* Array */
 
-document.getElementById("county")
-.addEventListener("change",()=>{
+if(Array.isArray(value)){
 
-  const county =
-    document.getElementById("county").value;
+for(const item of value){
 
-  resetSelect(
-    "constituency",
-    "Select constituency"
-  );
+const result =
+textValue(item);
 
-  resetSelect(
-    "ward",
-    "Select ward"
-  );
+if(result){
 
-  resetSelect(
-    "location",
-    "Select location"
-  );
+return result;
 
-  resetSelect(
-    "subLocation",
-    "Select sub-location"
-  );
+}
 
-  if(!county || !kenyaData)return;
+}
+
+return "";
+
+}
 
 
-  try{
+/* Object */
 
-    const constituencies =
-      kenyaData.getConstituencies({
-        countyName:county
-      });
+if(typeof value === "object"){
 
-    const names =
-      constituencies.map(c=>
-        c.name ||
-        c.constituencyName
-      );
+const possibleKeys=[
 
-    addUnique(
-      "constituency",
-      names
-    );
+"name",
 
-  }catch(error){
+"countyName",
 
-    console.error(
-      "Constituency error:",
-      error
-    );
+"constituencyName",
 
-  }
+"wardName",
 
-});
+"locationName",
 
+"subLocationName",
 
-/* =========================================================
-   CONSTITUENCY CHANGE
-   ========================================================= */
+"subLocation",
 
-document.getElementById("constituency")
-.addEventListener("change",()=>{
+"sublocation",
 
-  const county =
-    document.getElementById("county").value;
+"label",
 
-  const constituency =
-    document.getElementById("constituency").value;
+"title",
 
-  resetSelect(
-    "ward",
-    "Select ward"
-  );
+"value",
 
-  resetSelect(
-    "location",
-    "Select location"
-  );
+"text"
 
-  resetSelect(
-    "subLocation",
-    "Select sub-location"
-  );
-
-  if(
-    !county ||
-    !constituency ||
-    !kenyaData
-  )return;
+];
 
 
-  try{
+for(const key of possibleKeys){
 
-    const wards =
-      kenyaData.getWards({
-        constituencyName:constituency
-      });
+if(value[key] !== undefined){
 
-    const names =
-      wards.map(w=>
-        w.name ||
-        w.wardName
-      );
+const result =
+textValue(value[key]);
 
-    addUnique(
-      "ward",
-      names
-    );
+if(result){
 
-  }catch(error){
+return result;
 
-    console.error(
-      "Ward error:",
-      error
-    );
+}
 
-  }
+}
 
-});
+}
 
 
-/* =========================================================
-   WARD CHANGE
-   LOCATION + SUB-LOCATION STILL COME FROM FIRESTORE
-   ========================================================= */
+/* Firebase-like object */
 
-document.getElementById("ward")
-.addEventListener("change",()=>{
+if(value._key){
 
-  const county =
-    document.getElementById("county").value;
+return textValue(value._key);
 
-  const constituency =
-    document.getElementById("constituency").value;
-
-  const ward =
-    document.getElementById("ward").value;
-
-  resetSelect(
-    "location",
-    "Select location"
-  );
-
-  resetSelect(
-    "subLocation",
-    "Select sub-location"
-  );
-
-  if(
-    !county ||
-    !constituency ||
-    !ward
-  )return;
+}
 
 
-  const rows =
-    locationData.filter(x=>
-      x.county.toLowerCase()===
-      county.toLowerCase() &&
+/* Last safe attempt */
 
-      x.constituency.toLowerCase()===
-      constituency.toLowerCase() &&
+try{
 
-      x.ward.toLowerCase()===
-      ward.toLowerCase()
-    );
+const result =
+JSON.stringify(value);
+
+if(result &&
+   result !== "{}"){
+
+return result;
+
+}
+
+}catch(error){}
+
+}
 
 
-  addUnique(
-    "location",
-    rows.map(x=>x.location)
-  );
+return "";
+
+}
+
+
+/* =====================================================
+   RESET SELECT
+   ===================================================== */
+
+function resetSelect(
+id,
+text
+){
+
+const select =
+document.getElementById(id);
+
+
+select.innerHTML="";
+
+
+const option =
+document.createElement("option");
+
+
+option.value="";
+
+option.textContent=text;
+
+
+select.appendChild(option);
+
+}
+
+
+/* =====================================================
+   ADD UNIQUE TEXT VALUES
+   ===================================================== */
+
+function addUnique(
+selectId,
+values
+){
+
+const select =
+document.getElementById(selectId);
+
+
+const cleaned=[];
+
+
+values.forEach(value=>{
+
+const text =
+textValue(value);
+
+if(text){
+
+cleaned.push(text);
+
+}
 
 });
 
 
-/* =========================================================
-   LOCATION CHANGE
-   ========================================================= */
-
-document.getElementById("location")
-.addEventListener("change",()=>{
-
-  const county =
-    document.getElementById("county").value;
-
-  const constituency =
-    document.getElementById("constituency").value;
-
-  const ward =
-    document.getElementById("ward").value;
-
-  const location =
-    document.getElementById("location").value;
-
-  resetSelect(
-    "subLocation",
-    "Select sub-location"
-  );
-
-  if(
-    !county ||
-    !constituency ||
-    !ward ||
-    !location
-  )return;
+const unique =
+[
+...new Set(cleaned)
+];
 
 
-  const rows =
-    locationData.filter(x=>
-      x.county.toLowerCase()===
-      county.toLowerCase() &&
-
-      x.constituency.toLowerCase()===
-      constituency.toLowerCase() &&
-
-      x.ward.toLowerCase()===
-      ward.toLowerCase() &&
-
-      x.location.toLowerCase()===
-      location.toLowerCase()
-    );
+unique.sort(
+(a,b)=>
+a.localeCompare(b)
+);
 
 
-  addUnique(
-    "subLocation",
-    rows.map(x=>x.subLocation)
-  );
+unique.forEach(value=>{
+
+const option =
+document.createElement("option");
+
+
+option.value=value;
+
+option.textContent=value;
+
+
+select.appendChild(option);
 
 });
 
+}
 
-/* =========================================================
-   FIRESTORE LOCATIONS
-   ========================================================= */
+
+/* =====================================================
+   LOAD LOCATIONS FROM FIRESTORE
+   ===================================================== */
 
 async function loadLocations(){
 
-  try{
+try{
 
-    const snapshot =
-      await getDocs(
-        collection(db,"locations")
-      );
+console.log(
+"Loading locations from Firestore..."
+);
 
-    locationData=[];
 
-    snapshot.forEach(docSnap=>{
+const snapshot =
+await getDocs(
+collection(db,"locations")
+);
 
-      const data =
-        docSnap.data();
 
-      locationData.push({
+locationData=[];
 
-        county:
-          String(data.county || "").trim(),
 
-        constituency:
-          String(data.constituency || "").trim(),
+snapshot.forEach(docSnap=>{
 
-        ward:
-          String(data.ward || "").trim(),
+const data =
+docSnap.data();
 
-        location:
-          String(data.location || "").trim(),
 
-        subLocation:
-          String(
-            data.subLocation ||
-            data.sublocation ||
-            data["sub-location"] ||
-            ""
-          ).trim()
+/*
 
-      });
+IMPORTANT:
 
-    });
+Each field is passed through
+textValue().
 
-  }catch(error){
+Therefore objects will no
+longer become [object Object].
 
-    console.error(
-      "Firestore location error:",
-      error
-    );
+*/
 
-  }
+const row={
+
+county:
+textValue(data.county),
+
+constituency:
+textValue(data.constituency),
+
+ward:
+textValue(data.ward),
+
+location:
+textValue(data.location),
+
+subLocation:
+textValue(
+data.subLocation ||
+data.sublocation ||
+data["sub-location"]
+)
+
+};
+
+
+if(
+row.county ||
+row.constituency ||
+row.ward
+){
+
+locationData.push(row);
 
 }
-
-
-/* =========================================================
-   CITIZEN SUBMISSION
-   ========================================================= */
-
-document.getElementById("issueForm")
-.addEventListener("submit",async(e)=>{
-
-  e.preventDefault();
-
-  const box =
-    document.getElementById("submitMessage");
-
-  box.className="";
-  box.textContent="Submitting...";
-
-
-  try{
-
-    await addDoc(
-      collection(db,"issues"),
-      {
-
-        category:
-          document.getElementById("category").value,
-
-        county:
-          document.getElementById("county").value,
-
-        constituency:
-          document.getElementById("constituency").value,
-
-        ward:
-          document.getElementById("ward").value,
-
-        location:
-          document.getElementById("location").value,
-
-        subLocation:
-          document.getElementById("subLocation").value,
-
-        targetOffice:
-          document.getElementById("targetOffice").value,
-
-        description:
-          document.getElementById("description").value,
-
-        status:"submitted",
-
-        createdAt:
-          serverTimestamp()
-
-      }
-    );
-
-
-    box.className="message";
-
-    box.textContent =
-      "Your submission is submitted successfully.";
-
-
-    document.getElementById("issueForm").reset();
-
-
-    resetSelect(
-      "constituency",
-      "Select constituency"
-    );
-
-    resetSelect(
-      "ward",
-      "Select ward"
-    );
-
-    resetSelect(
-      "location",
-      "Select location"
-    );
-
-    resetSelect(
-      "subLocation",
-      "Select sub-location"
-    );
-
-
-  }catch(error){
-
-    console.error(error);
-
-    box.className =
-      "message error";
-
-    box.textContent =
-      "Submission failed. Please try again.";
-
-  }
 
 });
 
 
-/* =========================================================
+console.log(
+"Locations loaded:",
+locationData
+);
+
+
+/* =====================================================
+   LOAD COUNTY DROPDOWN
+   ===================================================== */
+
+resetSelect(
+"county",
+"Select county"
+);
+
+
+addUnique(
+"county",
+locationData.map(
+row=>row.county
+)
+);
+
+
+/* =====================================================
+   IF NO DATA
+   ===================================================== */
+
+if(locationData.length===0){
+
+resetSelect(
+"county",
+"No location data found"
+);
+
+console.warn(
+"No documents found in locations collection."
+);
+
+}
+
+}catch(error){
+
+console.error(
+"Location loading error:",
+error
+);
+
+
+resetSelect(
+"county",
+"Unable to load counties"
+);
+
+}
+
+}
+
+
+/* =====================================================
+   COUNTY CHANGE
+   ===================================================== */
+
+document
+.getElementById("county")
+.addEventListener(
+"change",
+function(){
+
+const county =
+document.getElementById(
+"county"
+).value;
+
+
+resetSelect(
+"constituency",
+"Select constituency"
+);
+
+resetSelect(
+"ward",
+"Select ward"
+);
+
+resetSelect(
+"location",
+"Select location"
+);
+
+resetSelect(
+"subLocation",
+"Select sub-location"
+);
+
+
+if(!county){
+
+return;
+
+}
+
+
+/* =====================================================
+   GET CONSTITUENCIES FOR COUNTY
+   ===================================================== */
+
+const rows =
+locationData.filter(
+row=>
+row.county === county
+);
+
+
+addUnique(
+"constituency",
+rows.map(
+row=>row.constituency
+)
+);
+
+}
+);
+
+
+/* =====================================================
+   CONSTITUENCY CHANGE
+   ===================================================== */
+
+document
+.getElementById("constituency")
+.addEventListener(
+"change",
+function(){
+
+const county =
+document.getElementById(
+"county"
+).value;
+
+
+const constituency =
+document.getElementById(
+"constituency"
+).value;
+
+
+resetSelect(
+"ward",
+"Select ward"
+);
+
+resetSelect(
+"location",
+"Select location"
+);
+
+resetSelect(
+"subLocation",
+"Select sub-location"
+);
+
+
+if(
+!county ||
+!constituency
+){
+
+return;
+
+}
+
+
+/* =====================================================
+   GET WARDS
+   ===================================================== */
+
+const rows =
+locationData.filter(
+row=>
+row.county === county &&
+row.constituency === constituency
+);
+
+
+addUnique(
+"ward",
+rows.map(
+row=>row.ward
+)
+);
+
+}
+);
+
+
+/* =====================================================
+   WARD CHANGE
+   ===================================================== */
+
+document
+.getElementById("ward")
+.addEventListener(
+"change",
+function(){
+
+const county =
+document.getElementById(
+"county"
+).value;
+
+
+const constituency =
+document.getElementById(
+"constituency"
+).value;
+
+
+const ward =
+document.getElementById(
+"ward"
+).value;
+
+
+resetSelect(
+"location",
+"Select location"
+);
+
+resetSelect(
+"subLocation",
+"Select sub-location"
+);
+
+
+if(
+!county ||
+!constituency ||
+!ward
+){
+
+return;
+
+}
+
+
+/* =====================================================
+   GET LOCATIONS
+   ===================================================== */
+
+const rows =
+locationData.filter(
+row=>
+row.county === county &&
+row.constituency === constituency &&
+row.ward === ward
+);
+
+
+addUnique(
+"location",
+rows.map(
+row=>row.location
+)
+);
+
+}
+);
+
+
+/* =====================================================
+   LOCATION CHANGE
+   ===================================================== */
+
+document
+.getElementById("location")
+.addEventListener(
+"change",
+function(){
+
+const county =
+document.getElementById(
+"county"
+).value;
+
+
+const constituency =
+document.getElementById(
+"constituency"
+).value;
+
+
+const ward =
+document.getElementById(
+"ward"
+).value;
+
+
+const location =
+document.getElementById(
+"location"
+).value;
+
+
+resetSelect(
+"subLocation",
+"Select sub-location"
+);
+
+
+if(
+!county ||
+!constituency ||
+!ward ||
+!location
+){
+
+return;
+
+}
+
+
+/* =====================================================
+   GET SUB-LOCATIONS
+   ===================================================== */
+
+const rows =
+locationData.filter(
+row=>
+row.county === county &&
+row.constituency === constituency &&
+row.ward === ward &&
+row.location === location
+);
+
+
+addUnique(
+"subLocation",
+rows.map(
+row=>row.subLocation
+)
+);
+
+}
+);
+
+
+/* =====================================================
+   CITIZEN SUBMISSION
+   ===================================================== */
+
+document
+.getElementById("issueForm")
+.addEventListener(
+"submit",
+async function(e){
+
+e.preventDefault();
+
+
+const box =
+document.getElementById(
+"submitMessage"
+);
+
+
+box.className="";
+
+box.textContent=
+"Submitting...";
+
+
+try{
+
+await addDoc(
+collection(db,"issues"),
+{
+
+category:
+document.getElementById(
+"category"
+).value,
+
+county:
+document.getElementById(
+"county"
+).value,
+
+constituency:
+document.getElementById(
+"constituency"
+).value,
+
+ward:
+document.getElementById(
+"ward"
+).value,
+
+location:
+document.getElementById(
+"location"
+).value,
+
+subLocation:
+document.getElementById(
+"subLocation"
+).value,
+
+targetOffice:
+document.getElementById(
+"targetOffice"
+).value,
+
+description:
+document.getElementById(
+"description"
+).value,
+
+status:
+"submitted",
+
+createdAt:
+serverTimestamp()
+
+}
+);
+
+
+box.className="message";
+
+box.textContent=
+"Your submission is submitted successfully.";
+
+
+document
+.getElementById("issueForm")
+.reset();
+
+
+resetSelect(
+"county",
+"Select county"
+);
+
+addUnique(
+"county",
+locationData.map(
+row=>row.county
+)
+);
+
+
+resetSelect(
+"constituency",
+"Select constituency"
+);
+
+resetSelect(
+"ward",
+"Select ward"
+);
+
+resetSelect(
+"location",
+"Select location"
+);
+
+resetSelect(
+"subLocation",
+"Select sub-location"
+);
+
+
+}catch(error){
+
+console.error(error);
+
+
+box.className=
+"message error";
+
+
+box.textContent=
+"Submission failed. Please try again.";
+
+}
+
+}
+);
+
+
+/* =====================================================
    ANNOUNCEMENTS
-   ========================================================= */
+   ===================================================== */
 
 async function loadAnnouncements(){
 
-  const box =
-    document.getElementById("announcements");
-
-  try{
-
-    const q =
-      query(
-        collection(db,"announcements"),
-        where(
-          "status",
-          "==",
-          "published"
-        )
-      );
-
-    const snapshot =
-      await getDocs(q);
-
-    box.innerHTML="";
+const box =
+document.getElementById(
+"announcements"
+);
 
 
-    if(snapshot.empty){
+try{
 
-      box.innerHTML =
-        "<p class='small'>No official announcements yet.</p>";
-
-      return;
-
-    }
-
-
-    snapshot.forEach(docSnap=>{
-
-      const data =
-        docSnap.data();
-
-      const div =
-        document.createElement("div");
-
-      div.className =
-        "announcement";
+const q =
+query(
+collection(
+db,
+"announcements"
+),
+where(
+"status",
+"==",
+"published"
+)
+);
 
 
-      const strong =
-        document.createElement("strong");
-
-      strong.textContent =
-        "Official Announcement From " +
-        (data.officeType ||
-        "Public Office") +
-        " — " +
-        (data.officialName || "");
+const snapshot =
+await getDocs(q);
 
 
-      const message =
-        document.createElement("div");
-
-      message.style.marginTop="10px";
-
-      message.textContent =
-        data.message || "";
+box.innerHTML="";
 
 
-      div.appendChild(strong);
-      div.appendChild(message);
+if(snapshot.empty){
 
-      box.appendChild(div);
+box.innerHTML=
+"<p class='small'>No official announcements yet.</p>";
 
-    });
-
-
-  }catch(error){
-
-    console.error(error);
-
-    box.innerHTML =
-      "<p class='small'>Unable to load announcements.</p>";
-
-  }
+return;
 
 }
 
 
-/* =========================================================
+snapshot.forEach(
+docSnap=>{
+
+const data =
+docSnap.data();
+
+
+const div =
+document.createElement(
+"div"
+);
+
+
+div.className=
+"announcement";
+
+
+const strong =
+document.createElement(
+"strong"
+);
+
+
+strong.textContent=
+"Official Announcement From " +
+(
+data.officeType ||
+"Public Office"
+) +
+" — " +
+(
+data.officialName ||
+""
+);
+
+
+const message =
+document.createElement(
+"div"
+);
+
+
+message.style.marginTop=
+"10px";
+
+
+message.textContent=
+data.message || "";
+
+
+div.appendChild(
+strong
+);
+
+div.appendChild(
+message
+);
+
+
+box.appendChild(
+div
+);
+
+}
+);
+
+
+}catch(error){
+
+console.error(error);
+
+
+box.innerHTML=
+"<p class='small'>Unable to load announcements.</p>";
+
+}
+
+}
+
+
+/* =====================================================
    LOGIN
-   ========================================================= */
+   ===================================================== */
 
-document.getElementById("loginForm")
-.addEventListener("submit",async(e)=>{
+document
+.getElementById("loginForm")
+.addEventListener(
+"submit",
+async function(e){
 
-  e.preventDefault();
-
-  const box =
-    document.getElementById("loginMessage");
-
-  box.className="";
-  box.textContent="Signing in...";
+e.preventDefault();
 
 
-  const email =
-    document.getElementById("loginEmail")
-    .value
-    .trim();
-
-  const password =
-    document.getElementById("loginPassword")
-    .value;
+const box =
+document.getElementById(
+"loginMessage"
+);
 
 
-  try{
+box.className="";
 
-    const result =
-      await signInWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
+box.textContent=
+"Signing in...";
 
 
-    const uid =
-      result.user.uid;
+const email =
+document.getElementById(
+"loginEmail"
+)
+.value
+.trim();
 
 
-    const userSnap =
-      await getDoc(
-        doc(db,"users",uid)
-      );
+const password =
+document.getElementById(
+"loginPassword"
+)
+.value;
 
 
-    if(!userSnap.exists()){
+try{
 
-      await signOut(auth);
-
-      throw new Error(
-        "No authorized user profile found."
-      );
-
-    }
-
-
-    const data =
-      userSnap.data();
+const result =
+await signInWithEmailAndPassword(
+auth,
+email,
+password
+);
 
 
-    const allowed=[
-      "Official",
-      "Admin",
-      "Super Admin"
-    ];
+const uid =
+result.user.uid;
 
 
-    if(!allowed.includes(data.role)){
-
-      await signOut(auth);
-
-      throw new Error(
-        "This account is not authorized for official access."
-      );
-
-    }
-
-
-    window.location.hash="#dashboard";
-
-    showOfficial();
-
-    loadDashboard();
+const userSnap =
+await getDoc(
+doc(
+db,
+"users",
+uid
+)
+);
 
 
-  }catch(error){
+if(!userSnap.exists()){
 
-    console.error(error);
+await signOut(auth);
 
-    box.className =
-      "message error";
+throw new Error(
+"No authorized user profile found."
+);
 
-    box.textContent =
-      error.message ||
-      "Login failed.";
-
-  }
-
-});
+}
 
 
-/* =========================================================
+const data =
+userSnap.data();
+
+
+const allowed=[
+
+"Official",
+"Admin",
+"Super Admin"
+
+];
+
+
+if(
+!allowed.includes(
+data.role
+)
+){
+
+await signOut(auth);
+
+throw new Error(
+"This account is not authorized for official access."
+);
+
+}
+
+
+window.location.hash=
+"#dashboard";
+
+
+showOfficial();
+
+loadDashboard();
+
+
+}catch(error){
+
+console.error(error);
+
+
+box.className=
+"message error";
+
+
+box.textContent=
+error.message ||
+"Login failed.";
+
+}
+
+}
+);
+
+
+/* =====================================================
    DASHBOARD
-   ========================================================= */
+   ===================================================== */
 
 async function loadDashboard(){
 
-  if(!auth.currentUser)return;
+if(!auth.currentUser){
 
-
-  const uid =
-    auth.currentUser.uid;
-
-
-  try{
-
-    const userSnap =
-      await getDoc(
-        doc(db,"users",uid)
-      );
-
-
-    if(userSnap.exists()){
-
-      const userData =
-        userSnap.data();
-
-
-      document.getElementById(
-        "officialName"
-      ).textContent =
-        "Logged in as: " +
-        (userData.name ||
-        auth.currentUser.email) +
-        " — Role: " +
-        (userData.role || "");
-
-    }
-
-
-    const snapshot =
-      await getDocs(
-        collection(db,"issues")
-      );
-
-
-    const issues=[];
-
-
-    snapshot.forEach(docSnap=>{
-
-      issues.push({
-
-        id:docSnap.id,
-
-        ...docSnap.data()
-
-      });
-
-    });
-
-
-    document.getElementById(
-      "totalIssues"
-    ).textContent =
-      issues.length;
-
-
-    document.getElementById(
-      "roadCount"
-    ).textContent =
-      issues.filter(x=>
-        String(x.category || "")
-        .toLowerCase()==="roads"
-      ).length;
-
-
-    document.getElementById(
-      "waterCount"
-    ).textContent =
-      issues.filter(x=>
-        String(x.category || "")
-        .toLowerCase()==="water"
-      ).length;
-
-
-    document.getElementById(
-      "healthCount"
-    ).textContent =
-      issues.filter(x=>
-        String(x.category || "")
-        .toLowerCase()==="healthcare"
-      ).length;
-
-
-    document.getElementById(
-      "educationCount"
-    ).textContent =
-      issues.filter(x=>
-        String(x.category || "")
-        .toLowerCase()==="education"
-      ).length;
-
-
-    document.getElementById(
-      "securityCount"
-    ).textContent =
-      issues.filter(x=>
-        String(x.category || "")
-        .toLowerCase()==="security"
-      ).length;
-
-
-    const list =
-      document.getElementById(
-        "issuesList"
-      );
-
-
-    list.innerHTML="";
-
-
-    if(issues.length===0){
-
-      list.innerHTML =
-        "<p class='small'>No issues found.</p>";
-
-    }else{
-
-      issues.forEach(issue=>{
-
-        const div =
-          document.createElement("div");
-
-        div.className="issue";
-
-
-        const title =
-          document.createElement("strong");
-
-        title.textContent =
-          issue.category || "";
-
-
-        const description =
-          document.createElement("div");
-
-        description.style.marginTop="6px";
-
-        description.textContent =
-          issue.description || "";
-
-
-        const place =
-          document.createElement("div");
-
-        place.className="small";
-
-        place.style.marginTop="10px";
-
-        place.textContent =
-          (issue.county || "") +
-          " • " +
-          (issue.constituency || "") +
-          " • " +
-          (issue.ward || "") +
-          " • " +
-          (issue.location || "") +
-          " • " +
-          (issue.subLocation || "");
-
-
-        div.appendChild(title);
-        div.appendChild(description);
-        div.appendChild(place);
-
-        list.appendChild(div);
-
-      });
-
-    }
-
-
-  }catch(error){
-
-    console.error(error);
-
-    document.getElementById(
-      "issuesList"
-    ).innerHTML =
-      "<p class='message error'>Unable to load dashboard data. Your security rules may need the official read permission.</p>";
-
-  }
+return;
 
 }
 
 
-/* =========================================================
+const uid =
+auth.currentUser.uid;
+
+
+try{
+
+const userSnap =
+await getDoc(
+doc(
+db,
+"users",
+uid
+)
+);
+
+
+if(userSnap.exists()){
+
+const userData =
+userSnap.data();
+
+
+document.getElementById(
+"officialName"
+).textContent=
+"Logged in as: " +
+(
+userData.name ||
+auth.currentUser.email
+) +
+" — Role: " +
+(
+userData.role ||
+""
+);
+
+}
+
+
+const snapshot =
+await getDocs(
+collection(
+db,
+"issues"
+)
+);
+
+
+const issues=[];
+
+
+snapshot.forEach(
+docSnap=>{
+
+issues.push({
+
+id:
+docSnap.id,
+
+...docSnap.data()
+
+});
+
+}
+);
+
+
+document.getElementById(
+"totalIssues"
+).textContent=
+issues.length;
+
+
+document.getElementById(
+"roadCount"
+).textContent=
+issues.filter(
+x=>
+String(
+x.category || ""
+)
+.toLowerCase()==="roads"
+).length;
+
+
+document.getElementById(
+"waterCount"
+).textContent=
+issues.filter(
+x=>
+String(
+x.category || ""
+)
+.toLowerCase()==="water"
+).length;
+
+
+document.getElementById(
+"healthCount"
+).textContent=
+issues.filter(
+x=>
+String(
+x.category || ""
+)
+.toLowerCase()==="healthcare"
+).length;
+
+
+document.getElementById(
+"educationCount"
+).textContent=
+issues.filter(
+x=>
+String(
+x.category || ""
+)
+.toLowerCase()==="education"
+).length;
+
+
+document.getElementById(
+"securityCount"
+).textContent=
+issues.filter(
+x=>
+String(
+x.category || ""
+)
+.toLowerCase()==="security"
+).length;
+
+
+const list =
+document.getElementById(
+"issuesList"
+);
+
+
+list.innerHTML="";
+
+
+if(issues.length===0){
+
+list.innerHTML=
+"<p class='small'>No issues found.</p>";
+
+}
+
+
+else{
+
+issues.forEach(
+issue=>{
+
+const div =
+document.createElement(
+"div"
+);
+
+
+div.className=
+"issue";
+
+
+const title =
+document.createElement(
+"strong"
+);
+
+
+title.textContent=
+issue.category || "";
+
+
+const description =
+document.createElement(
+"div"
+);
+
+
+description.style.marginTop=
+"6px";
+
+
+description.textContent=
+issue.description || "";
+
+
+const place =
+document.createElement(
+"div"
+);
+
+
+place.className=
+"small";
+
+
+place.style.marginTop=
+"10px";
+
+
+place.textContent=
+(issue.county || "") +
+" • " +
+(issue.constituency || "") +
+" • " +
+(issue.ward || "") +
+" • " +
+(issue.location || "") +
+" • " +
+(issue.subLocation || "");
+
+
+div.appendChild(title);
+
+div.appendChild(description);
+
+div.appendChild(place);
+
+
+list.appendChild(div);
+
+}
+);
+
+}
+
+
+}catch(error){
+
+console.error(error);
+
+
+document.getElementById(
+"issuesList"
+).innerHTML=
+"<p class='message error'>Unable to load dashboard data. Your security rules may need the official read permission.</p>";
+
+}
+
+}
+
+
+/* =====================================================
    PUBLISH ANNOUNCEMENT
-   ========================================================= */
+   ===================================================== */
 
-document.getElementById("announcementForm")
-.addEventListener("submit",async(e)=>{
+document
+.getElementById("announcementForm")
+.addEventListener(
+"submit",
+async function(e){
 
-  e.preventDefault();
-
-
-  const box =
-    document.getElementById(
-      "announcementMessageBox"
-    );
+e.preventDefault();
 
 
-  try{
-
-    const uid =
-      auth.currentUser.uid;
-
-
-    const userSnap =
-      await getDoc(
-        doc(db,"users",uid)
-      );
+const box =
+document.getElementById(
+"announcementMessageBox"
+);
 
 
-    let userData={};
+try{
+
+const uid =
+auth.currentUser.uid;
 
 
-    if(userSnap.exists()){
-
-      userData =
-        userSnap.data();
-
-    }
-
-
-    await addDoc(
-      collection(db,"announcements"),
-      {
-
-        message:
-          document.getElementById(
-            "announcementMessage"
-          ).value,
-
-        officeType:
-          userData.officeType ||
-          "Public Office",
-
-        officialName:
-          userData.name ||
-          auth.currentUser.email,
-
-        status:"published",
-
-        createdAt:
-          serverTimestamp()
-
-      }
-    );
+const userSnap =
+await getDoc(
+doc(
+db,
+"users",
+uid
+)
+);
 
 
-    box.className="message";
-
-    box.textContent =
-      "Announcement published successfully.";
+let userData={};
 
 
-    document.getElementById(
-      "announcementForm"
-    ).reset();
+if(userSnap.exists()){
+
+userData=
+userSnap.data();
+
+}
 
 
-    loadAnnouncements();
+await addDoc(
+collection(
+db,
+"announcements"
+),
+{
+
+message:
+document.getElementById(
+"announcementMessage"
+).value,
+
+officeType:
+userData.officeType ||
+"Public Office",
+
+officialName:
+userData.name ||
+auth.currentUser.email,
+
+status:
+"published",
+
+createdAt:
+serverTimestamp()
+
+}
+);
 
 
-  }catch(error){
-
-    console.error(error);
-
-    box.className =
-      "message error";
-
-    box.textContent =
-      "Announcement could not be published.";
-
-  }
-
-});
+box.className=
+"message";
 
 
-/* =========================================================
+box.textContent=
+"Announcement published successfully.";
+
+
+document
+.getElementById(
+"announcementForm"
+)
+.reset();
+
+
+loadAnnouncements();
+
+
+}catch(error){
+
+console.error(error);
+
+
+box.className=
+"message error";
+
+
+box.textContent=
+"Announcement could not be published.";
+
+}
+
+}
+);
+
+
+/* =====================================================
    LOGOUT
-   ========================================================= */
+   ===================================================== */
 
-document.getElementById("logoutBtn")
-.addEventListener("click",async()=>{
+document
+.getElementById("logoutBtn")
+.addEventListener(
+"click",
+async function(){
 
-  await signOut(auth);
-
-  window.location.hash="";
-
-  showCitizen();
-
-});
+await signOut(auth);
 
 
-/* =========================================================
+window.location.hash="";
+
+
+showCitizen();
+
+}
+);
+
+
+/* =====================================================
    AUTH STATE
-   ========================================================= */
+   ===================================================== */
 
-onAuthStateChanged(auth,user=>{
+onAuthStateChanged(
+auth,
+user=>{
 
-  if(
-    !user &&
-    window.location.hash==="#dashboard"
-  ){
+if(
+!user &&
+window.location.hash===
+"#dashboard"
+){
 
-    window.location.hash="#official";
+window.location.hash=
+"#official";
 
-  }
+}
 
-});
+}
+);
 
 
-/* =========================================================
+/* =====================================================
    START APP
-   ========================================================= */
-
-await loadKenyaAdministrativeData();
+   ===================================================== */
 
 await loadLocations();
 
