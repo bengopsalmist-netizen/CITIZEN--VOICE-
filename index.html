@@ -147,6 +147,10 @@ footer{text-align:center;padding:25px;color:#666;font-size:13px}
 
 <button type="submit">Login</button>
 
+<button type="button" class="secondary" id="forgotPasswordBtn">
+Forgot Password?
+</button>
+
 <div id="loginMessage"></div>
 
 </form>
@@ -388,7 +392,8 @@ getAuth,
 onAuthStateChanged,
 signInWithEmailAndPassword,
 signOut,
-createUserWithEmailAndPassword
+createUserWithEmailAndPassword,
+sendPasswordResetEmail
 }
 from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
@@ -825,6 +830,59 @@ box.innerHTML=
 }
 
 }
+
+
+/* FORGOT PASSWORD */
+
+document
+.getElementById("forgotPasswordBtn")
+.addEventListener("click",async function(){
+
+const email=
+document.getElementById("loginEmail").value.trim();
+
+const box=
+document.getElementById("loginMessage");
+
+if(!email){
+
+box.className="message error";
+
+box.textContent=
+"Please enter your email address first.";
+
+return;
+
+}
+
+box.className="";
+box.textContent=
+"Sending password reset email...";
+
+try{
+
+await sendPasswordResetEmail(
+auth,
+email
+);
+
+box.className="message";
+
+box.textContent=
+"If that email is registered, a password reset email has been sent. Please check your inbox.";
+
+}catch(error){
+
+console.error(error);
+
+box.className="message error";
+
+box.textContent=
+"Unable to send password reset email. Please check the email address and try again.";
+
+}
+
+});
 
 
 /* LOGIN */
@@ -2248,4 +2306,4 @@ await route();
 </script>
 
 </body>
-  </html>
+ </html>
