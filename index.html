@@ -11,66 +11,238 @@ here<!DOCTYPE html>
 
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;color:#17202a;background:#f4f7f5}
+
+body{
+margin:0;
+font-family:Arial,sans-serif;
+color:#17202a;
+background:#f4f7f5
+}
+
 .hero{
-min-height:220px;padding:28px 18px;color:white;text-align:center;
-background:linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
+min-height:220px;
+padding:28px 18px;
+color:white;
+text-align:center;
+background:
+linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
 linear-gradient(#111 0 20%,#c00 20% 40%,#fff 40% 60%,#08783e 60% 80%,#111 80%);
 border-bottom:6px solid #d4af37
 }
+
 .logo{
-width:82px;height:82px;margin:auto;border:4px solid white;
-border-radius:50%;display:flex;align-items:center;
-justify-content:center;font-size:38px;background:rgba(0,0,0,.35)
+width:82px;
+height:82px;
+margin:auto;
+border:4px solid white;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:38px;
+background:rgba(0,0,0,.35)
 }
-.hero h1{margin:12px 0 5px;font-size:34px}
-.hero p{margin:0;font-size:15px}
-.container{max-width:900px;margin:25px auto;padding:0 15px}
+
+.hero h1{
+margin:12px 0 5px;
+font-size:34px
+}
+
+.hero p{
+margin:0;
+font-size:15px
+}
+
+.container{
+max-width:900px;
+margin:25px auto;
+padding:0 15px
+}
+
 .card{
-background:white;padding:22px;margin-bottom:20px;border-radius:16px;
+background:white;
+padding:22px;
+margin-bottom:20px;
+border-radius:16px;
 box-shadow:0 4px 18px rgba(0,0,0,.08)
 }
-h2{margin-top:0;color:#075b35}
-h3{color:#075b35}
-label{display:block;margin-top:14px;margin-bottom:6px;font-weight:bold}
+
+h2{
+margin-top:0;
+color:#075b35
+}
+
+h3{
+color:#075b35
+}
+
+label{
+display:block;
+margin-top:14px;
+margin-bottom:6px;
+font-weight:bold
+}
+
 input,select,textarea{
-width:100%;padding:13px;border:1px solid #ccd5cf;
-border-radius:9px;font-size:16px
+width:100%;
+padding:13px;
+border:1px solid #ccd5cf;
+border-radius:9px;
+font-size:16px
 }
-textarea{min-height:130px;resize:vertical}
+
+textarea{
+min-height:130px;
+resize:vertical
+}
+
 button{
-width:100%;padding:14px;margin-top:18px;border:0;
-border-radius:9px;background:#08783e;color:white;
-font-size:17px;font-weight:bold
+width:100%;
+padding:14px;
+margin-top:18px;
+border:0;
+border-radius:9px;
+background:#08783e;
+color:white;
+font-size:17px;
+font-weight:bold
 }
+
 .secondary{background:#555}
 .danger{background:#b00020}
 .warning{background:#b8860b}
 .hidden{display:none!important}
-.message{margin-top:14px;padding:12px;border-radius:8px;background:#e8f5e9;color:#155724}
-.error{background:#fdecea;color:#8a1c1c}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
-.stat{padding:15px;background:#f2f6f3;border-radius:10px;text-align:center}
-.stat strong{display:block;font-size:27px;color:#08783e}
+
+.message{
+margin-top:14px;
+padding:12px;
+border-radius:8px;
+background:#e8f5e9;
+color:#155724
+}
+
+.error{
+background:#fdecea;
+color:#8a1c1c
+}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
+gap:10px
+}
+
+.stat{
+padding:15px;
+background:#f2f6f3;
+border-radius:10px;
+text-align:center
+}
+
+.stat strong{
+display:block;
+font-size:27px;
+color:#08783e
+}
+
 .issue,.managementItem,.office{
-border:1px solid #ddd;border-radius:10px;padding:14px;margin:10px 0
+border:1px solid #ddd;
+border-radius:10px;
+padding:14px;
+margin:10px 0
 }
+
 .announcement{
-border-left:5px solid #08783e;padding:12px;margin:12px 0;
-background:#f3f8f5;border-radius:8px
+border-left:5px solid #08783e;
+padding:12px;
+margin:12px 0;
+background:#f3f8f5;
+border-radius:8px
 }
-.small{font-size:13px;color:#666}
-.back{background:#444;margin-bottom:10px}
-.adminButton{margin-top:10px}
-.age{font-size:13px;color:#666;margin-top:8px}
+
+.small{
+font-size:13px;
+color:#666
+}
+
+.back{
+background:#444;
+margin-bottom:10px
+}
+
+.adminButton{
+margin-top:10px
+}
+
+.age{
+font-size:13px;
+color:#666;
+margin-top:8px
+}
+
 .statusActive,.statusInactive{
-display:inline-block;padding:5px 9px;border-radius:15px;
-font-size:12px;font-weight:bold;margin-top:8px
+display:inline-block;
+padding:5px 9px;
+border-radius:15px;
+font-size:12px;
+font-weight:bold;
+margin-top:8px
 }
-.statusActive{background:#dff3e5;color:#146c2e}
-.statusInactive{background:#f5dddd;color:#9b1c1c}
-footer{text-align:center;padding:25px;color:#666;font-size:13px}
-hr{border:0;border-top:1px solid #ddd;margin:20px 0}
+
+.statusActive{
+background:#dff3e5;
+color:#146c2e
+}
+
+.statusInactive{
+background:#f5dddd;
+color:#9b1c1c
+}
+
+footer{
+text-align:center;
+padding:25px;
+color:#666;
+font-size:13px
+}
+
+hr{
+border:0;
+border-top:1px solid #ddd;
+margin:20px 0
+}
+
+.levelButtons{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+gap:8px;
+margin-top:15px
+}
+
+.levelButton{
+margin-top:0;
+padding:11px;
+font-size:14px;
+background:#075b35
+}
+
+.levelButton.active{
+background:#b8860b
+}
+
+.locationBox{
+background:#f7faf8;
+padding:15px;
+border-radius:10px;
+margin-top:15px
+}
+
+.emptyBox{
+padding:12px;
+background:#f5f5f5;
+border-radius:8px;
+color:#666
+}
 </style>
 </head>
 
@@ -88,21 +260,95 @@ hr{border:0;border-top:1px solid #ddd;margin:20px 0}
 
 <div class="container">
 
+<!-- CITIZEN ANNOUNCEMENTS -->
+
 <div class="card">
+
 <h2>Official Announcements</h2>
+
+<p class="small">
+Choose an announcement level to see messages from public offices
+serving your area.
+</p>
+
+<div class="locationBox">
+
+<h3>📍 My Location</h3>
+
+<label>County</label>
+<input id="announcementCounty"
+placeholder="Enter your county">
+
+<label>Constituency</label>
+<input id="announcementConstituency"
+placeholder="Enter your constituency">
+
+<label>Ward</label>
+<input id="announcementWard"
+placeholder="Enter your ward">
+
+<button id="saveAnnouncementLocation">
+Save My Location
+</button>
+
+<div id="announcementLocationMessage"></div>
+
+</div>
+
+<div class="levelButtons">
+
+<button class="levelButton" data-level="Ward">
+MCA Announcements
+</button>
+
+<button class="levelButton" data-level="Constituency">
+MP Announcements
+</button>
+
+<button class="levelButton" data-level="County">
+Woman Rep Announcements
+</button>
+
+<button class="levelButton" data-level="County">
+Senator Announcements
+</button>
+
+<button class="levelButton" data-level="County">
+Governor Announcements
+</button>
+
+<button class="levelButton" data-level="National">
+President Announcements
+</button>
+
+</div>
+
+<div id="announcementSelectedTitle"
+style="margin-top:20px;font-weight:bold">
+All Official Announcements
+</div>
+
 <div id="announcements">
 <p class="small">Loading announcements...</p>
 </div>
+
 </div>
 
+
+<!-- SHARE VOICE -->
+
 <div class="card">
+
 <h2>Share Your Voice</h2>
 
 <form id="issueForm">
 
 <label>Category</label>
+
 <select id="category" required>
+
 <option value="">Select category</option>
+
 <option>Roads</option>
 <option>Water</option>
 <option>Healthcare</option>
@@ -115,26 +361,56 @@ hr{border:0;border-top:1px solid #ddd;margin:20px 0}
 <option>Development</option>
 <option>Employment</option>
 <option>Other</option>
+
 </select>
 
+
 <label>County</label>
-<input id="county" placeholder="Enter county" required>
+
+<input
+id="county"
+placeholder="Enter county"
+required>
+
 
 <label>Constituency</label>
-<input id="constituency" placeholder="Enter constituency" required>
+
+<input
+id="constituency"
+placeholder="Enter constituency"
+required>
+
 
 <label>Ward</label>
-<input id="ward" placeholder="Enter ward" required>
+
+<input
+id="ward"
+placeholder="Enter ward"
+required>
+
 
 <label>Location</label>
-<input id="location" placeholder="Enter location" required>
+
+<input
+id="location"
+placeholder="Enter location"
+required>
+
 
 <label>Sub-location</label>
-<input id="subLocation" placeholder="Enter sub-location" required>
+
+<input
+id="subLocation"
+placeholder="Enter sub-location"
+required>
+
 
 <label>Office Concerned</label>
+
 <select id="targetOffice" required>
+
 <option value="">Select office</option>
+
 <option>MCA</option>
 <option>MP</option>
 <option>Woman Representative</option>
@@ -142,26 +418,43 @@ hr{border:0;border-top:1px solid #ddd;margin:20px 0}
 <option>Governor</option>
 <option>President</option>
 <option>Other Government Office</option>
+
 </select>
 
-<label>Your Question / Suggestion / Concern / Issue</label>
-<textarea id="description"
-placeholder="Describe your question, suggestion, concern or issue..."
-required></textarea>
 
-<button type="submit">Submit</button>
+<label>Your Question / Suggestion / Concern / Issue</label>
+
+<textarea
+id="description"
+placeholder="Describe your question, suggestion, concern or issue..."
+required>
+</textarea>
+
+<button type="submit">
+Submit
+</button>
 
 <div id="submitMessage"></div>
 
 </form>
+
 </div>
 
+
+<!-- OFFICIAL ACCESS -->
+
 <div class="card">
+
 <h2>Official Access</h2>
+
 <p class="small">
 Authorized public officials can access their dashboard here.
 </p>
-<button id="officialAccessBtn">🔐 Official Login</button>
+
+<button id="officialAccessBtn">
+🔐 Official Login
+</button>
+
 </div>
 
 </div>
@@ -179,24 +472,44 @@ Authorized public officials can access their dashboard here.
 </section>
 
 <div class="container">
+
 <div class="card">
 
-<button class="back" id="backCitizen">← Back to Citizen Voice</button>
+<button class="back" id="backCitizen">
+← Back to Citizen Voice
+</button>
 
 <h2>Official Login</h2>
 
 <form id="loginForm">
 
 <label>Email</label>
-<input type="email" id="loginEmail" required>
+
+<input
+type="email"
+id="loginEmail"
+required>
+
 
 <label>Password</label>
-<input type="password" id="loginPassword" required>
 
-<button type="submit">Login</button>
+<input
+type="password"
+id="loginPassword"
+required>
 
-<button type="button" class="secondary" id="forgotPasswordBtn">
+
+<button type="submit">
+Login
+</button>
+
+<button
+type="button"
+class="secondary"
+id="forgotPasswordBtn">
+
 Forgot Password?
+
 </button>
 
 <div id="loginMessage"></div>
@@ -204,6 +517,7 @@ Forgot Password?
 </form>
 
 </div>
+
 </div>
 </div>
 
@@ -213,16 +527,22 @@ Forgot Password?
 <div id="officialPage" class="hidden">
 
 <section class="hero">
+
 <div class="logo">📊</div>
+
 <h1>Official Dashboard</h1>
+
 <p>Citizen Voice</p>
+
 </section>
 
 <div class="container">
 
 <div class="card">
 
-<button class="danger" id="logoutBtn">Logout</button>
+<button class="danger" id="logoutBtn">
+Logout
+</button>
 
 <h2>Dashboard</h2>
 
@@ -268,12 +588,19 @@ Security
 </div>
 </div>
 
+
 <div class="card">
+
 <h2>Citizen Issues</h2>
+
 <div id="issuesList">
-<p class="small">Loading issues...</p>
+<p class="small">
+Loading issues...
+</p>
 </div>
+
 </div>
+
 
 <div class="card">
 
@@ -283,19 +610,26 @@ Security
 
 <label>Message</label>
 
-<textarea id="announcementMessage"
+<textarea
+id="announcementMessage"
 placeholder="Write your official announcement..."
-required></textarea>
+required>
+</textarea>
 
 <p class="small">
-Your announcement will automatically use your authorized office level and jurisdiction.
+Your announcement level is automatically determined by your authorized office:
+MCA = Ward, MP = Constituency, Woman Representative = County,
+Senator = County, Governor = County, President = National.
 </p>
 
-<button type="submit">Publish Announcement</button>
+<button type="submit">
+Publish Announcement
+</button>
 
 <div id="announcementMessageBox"></div>
 
 </form>
+
 </div>
 
 </div>
@@ -307,22 +641,33 @@ Your announcement will automatically use your authorized office level and jurisd
 <div id="superAdminPage" class="hidden">
 
 <section class="hero">
+
 <div class="logo">🛡️</div>
+
 <h1>Super Admin</h1>
+
 <p>Citizen Voice System Management</p>
+
 </section>
 
 <div class="container">
 
 <div class="card">
 
-<button class="danger" id="superAdminLogoutBtn">
+<button
+class="danger"
+id="superAdminLogoutBtn">
+
 Logout
+
 </button>
 
 <h2>Super Admin Dashboard</h2>
 
-<p id="superAdminName" class="small"></p>
+<p
+id="superAdminName"
+class="small">
+</p>
 
 </div>
 
@@ -334,18 +679,33 @@ Logout
 <div class="stats">
 
 <div class="stat">
-<strong id="adminIssueCount">0</strong>
+
+<strong id="adminIssueCount">
+0
+</strong>
+
 Issues
+
 </div>
 
 <div class="stat">
-<strong id="adminAnnouncementCount">0</strong>
+
+<strong id="adminAnnouncementCount">
+0
+</strong>
+
 Announcements
+
 </div>
 
 <div class="stat">
-<strong id="adminOfficialCount">0</strong>
+
+<strong id="adminOfficialCount">
+0
+</strong>
+
 Authorized Users
+
 </div>
 
 </div>
@@ -391,28 +751,42 @@ Add and authorize officials who are allowed to use the Official Dashboard.
 <form id="addOfficialForm">
 
 <label>Official Full Name</label>
-<input id="newOfficialName"
+
+<input
+id="newOfficialName"
 placeholder="Example: Hon. John Mwangi"
 required>
 
+
 <label>Email Address</label>
-<input type="email"
+
+<input
+type="email"
 id="newOfficialEmail"
 placeholder="official@example.com"
 required>
 
+
 <label>Temporary Password</label>
-<input type="password"
+
+<input
+type="password"
 id="newOfficialPassword"
 placeholder="Create temporary password"
 minlength="6"
 required>
 
+
 <label>Office Type</label>
 
-<select id="newOfficialOfficeType" required>
+<select
+id="newOfficialOfficeType"
+required>
 
-<option value="">Select office type</option>
+<option value="">
+Select office type
+</option>
+
 <option>MCA</option>
 <option>MP</option>
 <option>Woman Representative</option>
@@ -423,30 +797,46 @@ required>
 
 </select>
 
+
 <label>County</label>
-<input id="newOfficialCounty"
+
+<input
+id="newOfficialCounty"
 placeholder="Enter county">
 
+
 <label>Constituency</label>
-<input id="newOfficialConstituency"
+
+<input
+id="newOfficialConstituency"
 placeholder="Enter constituency">
 
+
 <label>Ward</label>
-<input id="newOfficialWard"
+
+<input
+id="newOfficialWard"
 placeholder="Enter ward">
 
+
 <label>Office / Area Description</label>
-<input id="newOfficialArea"
+
+<input
+id="newOfficialArea"
 placeholder="Example: Igembe North">
+
 
 <button type="submit">
 ✅ Create & Authorize Official
 </button>
 
-<button type="button"
+<button
+type="button"
 class="secondary"
 id="cancelAddOfficialBtn">
+
 Cancel
+
 </button>
 
 <div id="addOfficialMessage"></div>
@@ -464,7 +854,11 @@ Cancel
 <h2>Authorized Officials / Users</h2>
 
 <div id="officialsList">
-<p class="small">Loading authorized users...</p>
+
+<p class="small">
+Loading authorized users...
+</p>
+
 </div>
 
 </div>
@@ -510,8 +904,12 @@ Citizen Voice — Connecting Citizens With Public Offices
 
 <script type="module">
 
-import { initializeApp }
-from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+import {
+initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
 
 import {
 getAuth,
@@ -521,7 +919,9 @@ signOut,
 createUserWithEmailAndPassword,
 sendPasswordResetEmail
 }
-from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+from
+"https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
 
 import {
 getFirestore,
@@ -537,38 +937,52 @@ serverTimestamp,
 deleteDoc,
 updateDoc
 }
-from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+from
+"https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
 
 /* ================= FIREBASE ================= */
 
-const firebaseConfig = {
+const firebaseConfig={
 
-apiKey:"AIzaSyBIJZJW392I97YZLx__9dNNk1DeAQNHgFI",
+apiKey:
+"AIzaSyBIJZJW392I97YZLx__9dNNk1DeAQNHgFI",
 
-authDomain:"voice-connect-ded08.firebaseapp.com",
+authDomain:
+"voice-connect-ded08.firebaseapp.com",
 
-projectId:"voice-connect-ded08",
+projectId:
+"voice-connect-ded08",
 
-storageBucket:"voice-connect-ded08.firebasestorage.app",
+storageBucket:
+"voice-connect-ded08.firebasestorage.app",
 
-messagingSenderId:"277049759508",
+messagingSenderId:
+"277049759508",
 
-appId:"1:277049759508:web:0eb0ab57c3b455a0591401"
+appId:
+"1:277049759508:web:0eb0ab57c3b455a0591401"
 
 };
 
-const app=initializeApp(firebaseConfig);
 
-const auth=getAuth(app);
+const app=
+initializeApp(firebaseConfig);
 
-const db=getFirestore(app);
+const auth=
+getAuth(app);
+
+const db=
+getFirestore(app);
 
 
 /* SECONDARY AUTH */
 
 const secondaryApp=
-initializeApp(firebaseConfig,"secondaryApp");
+initializeApp(
+firebaseConfig,
+"secondaryApp"
+);
 
 const secondaryAuth=
 getAuth(secondaryApp);
@@ -586,36 +1000,64 @@ return String(value||"")
 }
 
 
+/*
+Office -> announcement jurisdiction level
+*/
+
 function officeLevel(value){
 
-const v=normalize(value);
+const v=
+normalize(value);
 
-if(v==="president"||v==="national") return "National";
+if(v==="mca")
+return "Ward";
 
-if(v==="mca") return "Ward";
+if(v==="mp")
+return "Constituency";
 
-if(v==="mp"||v==="woman representative") return "Constituency";
+if(v==="woman representative")
+return "County";
 
-if(v==="senator"||v==="governor") return "County";
+if(v==="senator")
+return "County";
+
+if(v==="governor")
+return "County";
+
+if(v==="president"||v==="national")
+return "National";
 
 return "National";
 
 }
 
 
+/*
+Office -> target office label
+*/
+
 function targetLevel(value){
 
-const v=normalize(value);
+const v=
+normalize(value);
 
-if(v==="president") return "National";
+if(v==="mca")
+return "MCA";
 
-if(v==="mca") return "MCA";
+if(v==="mp")
+return "MP";
 
-if(v==="mp"||v==="woman representative") return "MP";
+if(v==="woman representative")
+return "Woman Representative";
 
-if(v==="senator") return "Senator";
+if(v==="senator")
+return "Senator";
 
-if(v==="governor") return "Governor";
+if(v==="governor")
+return "Governor";
+
+if(v==="president"||v==="national")
+return "President";
 
 return value||"Other";
 
@@ -640,8 +1082,11 @@ document.getElementById("superAdminPage");
 function showCitizen(){
 
 citizenPage.classList.remove("hidden");
+
 loginPage.classList.add("hidden");
+
 officialPage.classList.add("hidden");
+
 superAdminPage.classList.add("hidden");
 
 }
@@ -650,8 +1095,11 @@ superAdminPage.classList.add("hidden");
 function showLogin(){
 
 citizenPage.classList.add("hidden");
+
 loginPage.classList.remove("hidden");
+
 officialPage.classList.add("hidden");
+
 superAdminPage.classList.add("hidden");
 
 }
@@ -660,8 +1108,11 @@ superAdminPage.classList.add("hidden");
 function showOfficial(){
 
 citizenPage.classList.add("hidden");
+
 loginPage.classList.add("hidden");
+
 officialPage.classList.remove("hidden");
+
 superAdminPage.classList.add("hidden");
 
 }
@@ -670,8 +1121,11 @@ superAdminPage.classList.add("hidden");
 function showSuperAdmin(){
 
 citizenPage.classList.add("hidden");
+
 loginPage.classList.add("hidden");
+
 officialPage.classList.add("hidden");
+
 superAdminPage.classList.remove("hidden");
 
 }
@@ -681,45 +1135,168 @@ superAdminPage.classList.remove("hidden");
 
 async function getCurrentUserData(){
 
-if(!auth.currentUser) return null;
+if(!auth.currentUser)
+return null;
 
 const snap=
 await getDoc(
-doc(db,"users",auth.currentUser.uid)
+doc(
+db,
+"users",
+auth.currentUser.uid
+)
 );
 
-return snap.exists()?snap.data():null;
+return snap.exists()
+?snap.data()
+:null;
+
+}
+
+
+/* ================= OFFICIAL ISSUE QUERIES ================= */
+
+/*
+IMPORTANT:
+
+We do not download every issue anymore.
+
+The query is restricted by:
+County
+Constituency
+Ward
+Target Office
+
+This prepares the system for Firestore security rules.
+*/
+
+
+async function getIssuesByTarget(
+county,
+target,
+constituency=null,
+ward=null
+){
+
+let conditions=[
+where("county","==",county),
+where("targetOffice","==",target)
+];
+
+if(constituency!==null){
+
+conditions.push(
+where(
+"constituency",
+"==",
+constituency
+)
+);
+
+}
+
+if(ward!==null){
+
+conditions.push(
+where(
+"ward",
+"==",
+ward
+)
+);
+
+}
+
+const q=
+query(
+collection(db,"issues"),
+...conditions
+);
+
+const snapshot=
+await getDocs(q);
+
+const results=[];
+
+snapshot.forEach(s=>{
+
+results.push({
+id:s.id,
+...s.data()
+});
+
+});
+
+return results;
+
+}
+
+
+/*
+Remove duplicates when several target queries
+return the same issue.
+*/
+
+function mergeIssues(groups){
+
+const map=new Map();
+
+groups.flat().forEach(issue=>{
+
+map.set(issue.id,issue);
+
+});
+
+return Array.from(map.values());
 
 }
 
 
 /* ================= ISSUE VISIBILITY ================= */
 
-function issueVisibleToOfficial(issue,user){
+function issueVisibleToOfficial(
+issue,
+user
+){
 
-if(!user) return false;
+if(!user)
+return false;
 
-if(user.role==="Super Admin") return true;
+if(user.role==="Super Admin")
+return true;
 
-const role=normalize(user.officeType);
-const county=normalize(user.county);
-const constituency=normalize(user.constituency);
-const ward=normalize(user.ward);
+const role=
+normalize(user.officeType);
 
-const issueCounty=normalize(issue.county);
-const issueConstituency=normalize(issue.constituency);
-const issueWard=normalize(issue.ward);
+const county=
+normalize(user.county);
 
-const target=targetLevel(issue.targetOffice);
+const constituency=
+normalize(user.constituency);
+
+const ward=
+normalize(user.ward);
+
+const issueCounty=
+normalize(issue.county);
+
+const issueConstituency=
+normalize(issue.constituency);
+
+const issueWard=
+normalize(issue.ward);
+
+const target=
+targetLevel(issue.targetOffice);
 
 
 /* MCA */
 
 if(role==="mca"){
 
-return issueWard===ward &&
+return issueCounty===county &&
 issueConstituency===constituency &&
-issueCounty===county &&
+issueWard===ward &&
 target==="MCA";
 
 }
@@ -727,14 +1304,28 @@ target==="MCA";
 
 /* MP */
 
-if(role==="mp"||role==="woman representative"){
+if(role==="mp"){
 
-if(
-issueCounty!==county ||
-issueConstituency!==constituency
-)return false;
+return issueCounty===county &&
+issueConstituency===constituency &&
+(
+target==="MCA"||
+target==="MP"
+);
 
-return ["MCA","MP"].includes(target);
+}
+
+
+/* WOMAN REPRESENTATIVE */
+
+if(role==="woman representative"){
+
+return issueCounty===county &&
+(
+target==="MCA"||
+target==="MP"||
+target==="Woman Representative"
+);
 
 }
 
@@ -743,9 +1334,13 @@ return ["MCA","MP"].includes(target);
 
 if(role==="senator"){
 
-if(issueCounty!==county)return false;
-
-return ["MCA","MP","Senator"].includes(target);
+return issueCounty===county &&
+(
+target==="MCA"||
+target==="MP"||
+target==="Woman Representative"||
+target==="Senator"
+);
 
 }
 
@@ -754,16 +1349,24 @@ return ["MCA","MP","Senator"].includes(target);
 
 if(role==="governor"){
 
-if(issueCounty!==county)return false;
-
-return ["MCA","MP","Senator","Governor"].includes(target);
+return issueCounty===county &&
+(
+target==="MCA"||
+target==="MP"||
+target==="Woman Representative"||
+target==="Senator"||
+target==="Governor"
+);
 
 }
 
 
 /* NATIONAL */
 
-if(role==="president"||role==="national"){
+if(
+role==="president"||
+role==="national"
+){
 
 return true;
 
@@ -778,8 +1381,176 @@ return false;
 
 async function getVisibleIssues(user){
 
+const county=
+normalize(user.county);
+
+const constituency=
+normalize(user.constituency);
+
+const ward=
+normalize(user.ward);
+
+const role=
+normalize(user.officeType);
+
+let groups=[];
+
+
+/* MCA */
+
+if(role==="mca"){
+
+groups.push(
+await getIssuesByTarget(
+county,
+"MCA",
+constituency,
+ward
+)
+);
+
+}
+
+
+/* MP */
+
+else if(role==="mp"){
+
+groups.push(
+await getIssuesByTarget(
+county,
+"MCA",
+constituency
+)
+);
+
+groups.push(
+await getIssuesByTarget(
+county,
+"MP",
+constituency
+)
+);
+
+}
+
+
+/* WOMAN REPRESENTATIVE */
+
+else if(role==="woman representative"){
+
+groups.push(
+await getIssuesByTarget(
+county,
+"MCA"
+)
+);
+
+groups.push(
+await getIssuesByTarget(
+county,
+"MP"
+)
+);
+
+groups.push(
+await getIssuesByTarget(
+county,
+"Woman Representative"
+)
+);
+
+}
+
+
+/* SENATOR */
+
+else if(role==="senator"){
+
+groups.push(
+await getIssuesByTarget(
+county,
+"MCA"
+)
+);
+
+groups.push(
+await getIssuesByTarget(
+county,
+"MP"
+)
+);
+
+groups.push(
+await getIssuesByTarget(
+county,
+"Woman Representative"
+)
+);
+
+groups.push(
+await getIssuesByTarget(
+county,
+"Senator"
+)
+);
+
+}
+
+
+/* GOVERNOR */
+
+else if(role==="governor"){
+
+groups.push(
+await getIssuesByTarget(
+county,
+"MCA"
+)
+);
+
+groups.push(
+await getIssuesByTarget(
+county,
+"MP"
+)
+);
+
+groups.push(
+await getIssuesByTarget(
+county,
+"Woman Representative"
+)
+);
+
+groups.push(
+await getIssuesByTarget(
+county,
+"Senator"
+)
+);
+
+groups.push(
+await getIssuesByTarget(
+county,
+"Governor"
+)
+);
+
+}
+
+
+/* NATIONAL */
+
+else if(
+role==="president"||
+role==="national"
+){
+
 const snapshot=
-await getDocs(collection(db,"issues"));
+await getDocs(
+collection(db,"issues")
+);
 
 const all=[];
 
@@ -792,95 +1563,126 @@ id:s.id,
 
 });
 
-return all.filter(issue=>
-issueVisibleToOfficial(issue,user)
+return all;
+
+}
+
+
+const merged=
+mergeIssues(groups);
+
+
+/*
+Secondary UI verification.
+*/
+
+return merged.filter(
+issue=>
+issueVisibleToOfficial(
+issue,
+user
+)
 );
 
 }
 
 
-/* ================= CITIZEN ISSUE ================= */
+/* ================= CITIZEN LOCATION ================= */
 
-document
-.getElementById("issueForm")
-.addEventListener("submit",async e=>{
+function loadSavedAnnouncementLocation(){
 
-e.preventDefault();
+const saved=
+localStorage.getItem(
+"citizenLocation"
+);
 
-const box=
-document.getElementById("submitMessage");
-
-box.className="";
-box.textContent="Submitting...";
+if(!saved)
+return;
 
 try{
 
-const county=
-document.getElementById("county").value.trim();
+const data=
+JSON.parse(saved);
 
-const constituency=
-document.getElementById("constituency").value.trim();
+document.getElementById(
+"announcementCounty"
+).value=
+data.county||"";
 
-const ward=
-document.getElementById("ward").value.trim();
+document.getElementById(
+"announcementConstituency"
+).value=
+data.constituency||"";
 
-const targetOffice=
-document.getElementById("targetOffice").value;
-
-await addDoc(
-collection(db,"issues"),
-{
-
-category:
-document.getElementById("category").value,
-
-county:county,
-
-constituency:constituency,
-
-ward:ward,
-
-location:
-document.getElementById("location").value.trim(),
-
-subLocation:
-document.getElementById("subLocation").value.trim(),
-
-targetOffice:targetOffice,
-
-targetLevel:targetLevel(targetOffice),
-
-description:
-document.getElementById("description").value.trim(),
-
-status:"submitted",
-
-createdAt:serverTimestamp()
-
-}
-);
-
-box.className="message";
-
-box.textContent=
-"Your submission is submitted successfully.";
-
-document
-.getElementById("issueForm")
-.reset();
+document.getElementById(
+"announcementWard"
+).value=
+data.ward||"";
 
 }catch(error){
 
 console.error(error);
 
-box.className="message error";
-
-box.textContent=
-"Submission failed. Please try again.";
+}
 
 }
 
-});
+
+function getAnnouncementLocation(){
+
+return{
+
+county:normalize(
+document.getElementById(
+"announcementCounty"
+).value
+),
+
+constituency:normalize(
+document.getElementById(
+"announcementConstituency"
+).value
+),
+
+ward:normalize(
+document.getElementById(
+"announcementWard"
+).value
+)
+
+};
+
+}
+
+
+document
+.getElementById(
+"saveAnnouncementLocation"
+)
+.addEventListener(
+"click",
+()=>{
+
+const location=
+getAnnouncementLocation();
+
+localStorage.setItem(
+"citizenLocation",
+JSON.stringify(location)
+);
+
+const box=
+document.getElementById(
+"announcementLocationMessage"
+);
+
+box.className="message";
+
+box.textContent=
+"Your location has been saved on this device.";
+
+}
+);
 
 
 /* ================= ANNOUNCEMENTS ================= */
@@ -890,43 +1692,115 @@ function inferAnnouncementLevel(data){
 if(data.announcementLevel)
 return data.announcementLevel;
 
-const office=normalize(data.officeType);
-
-if(office==="mca")return "Ward";
-
-if(
-office==="mp"||
-office==="woman representative"
-)return "Constituency";
-
-if(
-office==="senator"||
-office==="governor"
-)return "County";
-
-return "National";
+return officeLevel(
+data.officeType
+);
 
 }
 
 
-function announcementVisible(data){
+function announcementMatchesLevel(
+data,
+selectedLevel
+){
+
+return inferAnnouncementLevel(data)===
+selectedLevel;
+
+}
+
+
+function announcementMatchesLocation(
+data,
+selectedLevel
+){
+
+const location=
+getAnnouncementLocation();
+
+const county=
+normalize(data.county);
+
+const constituency=
+normalize(data.constituency);
+
+const ward=
+normalize(data.ward);
+
 
 /*
-Citizen has no login.
-If local location has been saved,
-we can later filter announcements.
-For now published announcements remain visible.
+National
 */
 
-return data.status==="published";
+if(selectedLevel==="National")
+return true;
+
+
+/*
+Citizen must provide location
+for local announcements.
+*/
+
+if(!location.county)
+return false;
+
+
+/*
+Ward
+*/
+
+if(selectedLevel==="Ward"){
+
+return county===location.county &&
+ward===location.ward;
 
 }
 
 
-async function loadAnnouncements(){
+/*
+Constituency
+*/
+
+if(selectedLevel==="Constituency"){
+
+return county===location.county &&
+constituency===location.constituency;
+
+}
+
+
+/*
+County
+*/
+
+if(selectedLevel==="County"){
+
+return county===location.county;
+
+}
+
+
+return false;
+
+}
+
+
+let selectedAnnouncementLevel=null;
+
+
+async function loadAnnouncements(
+selectedLevel=null
+){
 
 const box=
-document.getElementById("announcements");
+document.getElementById(
+"announcements"
+);
+
+const title=
+document.getElementById(
+"announcementSelectedTitle"
+);
 
 try{
 
@@ -934,39 +1808,105 @@ const snapshot=
 await getDocs(
 query(
 collection(db,"announcements"),
-where("status","==","published")
+where(
+"status",
+"==",
+"published"
+)
 )
 );
 
 box.innerHTML="";
 
-if(snapshot.empty){
+
+if(selectedLevel){
+
+title.textContent=
+getAnnouncementLevelTitle(
+selectedLevel
+);
+
+}else{
+
+title.textContent=
+"All Official Announcements";
+
+}
+
+
+const announcements=[];
+
+snapshot.forEach(s=>{
+
+announcements.push({
+id:s.id,
+...s.data()
+});
+
+});
+
+
+const filtered=
+announcements.filter(data=>{
+
+if(selectedLevel){
+
+if(
+!announcementMatchesLevel(
+data,
+selectedLevel
+)
+)return false;
+
+return announcementMatchesLocation(
+data,
+selectedLevel
+);
+
+}
+
+
+/*
+Initial view:
+show published announcements.
+*/
+
+return true;
+
+});
+
+
+if(filtered.length===0){
 
 box.innerHTML=
-"<p class='small'>No official announcements yet.</p>";
+"<div class='emptyBox'>No announcements found for this level and location.</div>";
 
 return;
 
 }
 
-snapshot.forEach(s=>{
 
-const data=s.data();
+filtered.forEach(data=>{
 
-if(!announcementVisible(data))return;
-
-const div=document.createElement("div");
+const div=
+document.createElement("div");
 
 div.className="announcement";
 
-const title=document.createElement("strong");
 
-title.textContent=
-(data.officialName||"Public Office")+
+const titleEl=
+document.createElement("strong");
+
+titleEl.textContent=
+(data.officialName||
+"Public Office")+
 " — "+
-(data.officeType||"Public Office");
+(data.officeType||
+"Public Office");
 
-const level=document.createElement("div");
+
+const level=
+document.createElement("div");
 
 level.className="small";
 
@@ -976,7 +1916,9 @@ level.textContent=
 "Level: "+
 inferAnnouncementLevel(data);
 
-const place=document.createElement("div");
+
+const place=
+document.createElement("div");
 
 place.className="small";
 
@@ -984,32 +1926,48 @@ place.style.marginTop="4px";
 
 let p="";
 
-if(data.county)p+=data.county;
+
+if(data.county)
+p+=data.county;
+
 
 if(data.constituency)
-p+=p?" • "+data.constituency:data.constituency;
+p+=p
+?" • "+data.constituency
+:data.constituency;
+
 
 if(data.ward)
-p+=p?" • "+data.ward:data.ward;
+p+=p
+?" • "+data.ward
+:data.ward;
+
 
 place.textContent=p;
 
-const message=document.createElement("div");
+
+const message=
+document.createElement("div");
 
 message.style.marginTop="10px";
 
-message.textContent=data.message||"";
+message.textContent=
+data.message||"";
 
-div.appendChild(title);
+
+div.appendChild(titleEl);
+
 div.appendChild(level);
 
-if(p)div.appendChild(place);
+if(p)
+div.appendChild(place);
 
 div.appendChild(message);
 
 box.appendChild(div);
 
 });
+
 
 }catch(error){
 
@@ -1023,42 +1981,521 @@ box.innerHTML=
 }
 
 
+function getAnnouncementLevelTitle(level){
+
+if(level==="Ward")
+return "MCA Announcements — Your Ward";
+
+if(level==="Constituency")
+return "MP Announcements — Your Constituency";
+
+if(level==="County")
+return "County Announcements";
+
+if(level==="National")
+return "President / National Announcements";
+
+return "Official Announcements";
+
+}
+
+
+/*
+Announcement level buttons.
+For County there are three different offices,
+so we use an additional office filter.
+*/
+
+document
+.querySelectorAll(".levelButton")
+.forEach(button=>{
+
+button.addEventListener(
+"click",
+async()=>{
+
+document
+.querySelectorAll(".levelButton")
+.forEach(b=>
+b.classList.remove("active")
+);
+
+button.classList.add("active");
+
+const level=
+button.dataset.level;
+
+const text=
+button.textContent.trim();
+
+const box=
+document.getElementById(
+"announcements"
+);
+
+const title=
+document.getElementById(
+"announcementSelectedTitle"
+);
+
+try{
+
+const snapshot=
+await getDocs(
+query(
+collection(db,"announcements"),
+where(
+"status",
+"==",
+"published"
+)
+)
+);
+
+box.innerHTML="";
+
+
+let officeFilter=null;
+
+
+if(text.includes("MCA"))
+officeFilter="MCA";
+
+else if(text.includes("MP"))
+officeFilter="MP";
+
+else if(text.includes("Woman Rep"))
+officeFilter=
+"Woman Representative";
+
+else if(text.includes("Senator"))
+officeFilter="Senator";
+
+else if(text.includes("Governor"))
+officeFilter="Governor";
+
+else if(text.includes("President"))
+officeFilter="President";
+
+
+if(text.includes("MCA"))
+title.textContent=
+"MCA Announcements — Your Ward";
+
+else if(text.includes("MP"))
+title.textContent=
+"MP Announcements — Your Constituency";
+
+else if(text.includes("Woman Rep"))
+title.textContent=
+"Woman Representative Announcements — Your County";
+
+else if(text.includes("Senator"))
+title.textContent=
+"Senator Announcements — Your County";
+
+else if(text.includes("Governor"))
+title.textContent=
+"Governor Announcements — Your County";
+
+else
+title.textContent=
+"President / National Announcements";
+
+
+const results=[];
+
+snapshot.forEach(s=>{
+
+const data=s.data();
+
+if(
+inferAnnouncementLevel(data)!==
+level
+)
+return;
+
+if(
+officeFilter &&
+normalize(data.officeType)!==
+normalize(officeFilter)
+)
+return;
+
+if(
+!announcementMatchesLocation(
+data,
+level
+)
+)
+return;
+
+results.push(data);
+
+});
+
+
+if(results.length===0){
+
+box.innerHTML=
+"<div class='emptyBox'>No announcements found for your selected level and location.</div>";
+
+return;
+
+}
+
+
+results.forEach(data=>{
+
+const div=
+document.createElement("div");
+
+div.className="announcement";
+
+
+const titleEl=
+document.createElement("strong");
+
+titleEl.textContent=
+(data.officialName||
+"Public Office")+
+" — "+
+(data.officeType||
+"Public Office");
+
+
+const levelEl=
+document.createElement("div");
+
+levelEl.className="small";
+
+levelEl.style.marginTop="5px";
+
+levelEl.textContent=
+"Level: "+
+inferAnnouncementLevel(data);
+
+
+const place=
+document.createElement("div");
+
+place.className="small";
+
+place.style.marginTop="4px";
+
+let p="";
+
+
+if(data.county)
+p+=data.county;
+
+
+if(data.constituency)
+p+=p
+?" • "+data.constituency
+:data.constituency;
+
+
+if(data.ward)
+p+=p
+?" • "+data.ward
+:data.ward;
+
+
+place.textContent=p;
+
+
+const message=
+document.createElement("div");
+
+message.style.marginTop="10px";
+
+message.textContent=
+data.message||"";
+
+
+div.appendChild(titleEl);
+
+div.appendChild(levelEl);
+
+if(p)
+div.appendChild(place);
+
+div.appendChild(message);
+
+box.appendChild(div);
+
+});
+
+
+}catch(error){
+
+console.error(error);
+
+box.innerHTML=
+"<p class='small'>Unable to load announcements.</p>";
+
+}
+
+});
+
+});
+
+
+/* ================= CITIZEN ISSUE ================= */
+
+document
+.getElementById("issueForm")
+.addEventListener(
+"submit",
+async e=>{
+
+e.preventDefault();
+
+const box=
+document.getElementById(
+"submitMessage"
+);
+
+box.className="";
+
+box.textContent=
+"Submitting...";
+
+
+try{
+
+const county=
+document.getElementById(
+"county"
+).value.trim();
+
+
+const constituency=
+document.getElementById(
+"constituency"
+).value.trim();
+
+
+const ward=
+document.getElementById(
+"ward"
+).value.trim();
+
+
+const targetOffice=
+document.getElementById(
+"targetOffice"
+).value;
+
+
+/*
+Basic routing validation.
+*/
+
+if(
+targetOffice==="MCA" &&
+(!county||!constituency||!ward)
+){
+
+throw new Error(
+"MCA issue requires County, Constituency and Ward."
+);
+
+}
+
+
+if(
+targetOffice==="MP" &&
+(!county||!constituency)
+){
+
+throw new Error(
+"MP issue requires County and Constituency."
+);
+
+}
+
+
+if(
+targetOffice==="Woman Representative" &&
+!county
+){
+
+throw new Error(
+"Woman Representative issue requires County."
+);
+
+}
+
+
+if(
+(
+targetOffice==="Senator"||
+targetOffice==="Governor"
+)&&
+!county
+){
+
+throw new Error(
+"Senator/Governor issue requires County."
+);
+
+}
+
+
+/*
+Save location for announcements too.
+*/
+
+localStorage.setItem(
+"citizenLocation",
+JSON.stringify({
+
+county:normalize(county),
+
+constituency:
+normalize(constituency),
+
+ward:
+normalize(ward)
+
+})
+);
+
+
+await addDoc(
+collection(db,"issues"),
+{
+
+category:
+document.getElementById(
+"category"
+).value,
+
+county:county,
+
+constituency:constituency,
+
+ward:ward,
+
+location:
+document.getElementById(
+"location"
+).value.trim(),
+
+subLocation:
+document.getElementById(
+"subLocation"
+).value.trim(),
+
+targetOffice:
+targetOffice,
+
+targetLevel:
+targetLevel(targetOffice),
+
+description:
+document.getElementById(
+"description"
+).value.trim(),
+
+status:"submitted",
+
+createdAt:
+serverTimestamp()
+
+}
+);
+
+
+box.className="message";
+
+box.textContent=
+"Your submission is submitted successfully and routed according to the selected office and location.";
+
+
+document
+.getElementById("issueForm")
+.reset();
+
+
+loadSavedAnnouncementLocation();
+
+
+}catch(error){
+
+console.error(error);
+
+box.className=
+"message error";
+
+box.textContent=
+error.message||
+"Submission failed. Please try again.";
+
+}
+
+});
+
+
 /* ================= LOGIN ================= */
 
 document
-.getElementById("officialAccessBtn")
-.addEventListener("click",()=>{
+.getElementById(
+"officialAccessBtn"
+)
+.addEventListener(
+"click",
+()=>{
 
-window.location.hash="#official";
+window.location.hash=
+"#official";
+
 showLogin();
 
-});
+}
+);
 
 
 document
-.getElementById("backCitizen")
-.addEventListener("click",()=>{
+.getElementById(
+"backCitizen"
+)
+.addEventListener(
+"click",
+()=>{
 
 window.location.hash="";
+
 showCitizen();
 
-});
+}
+);
 
 
 document
-.getElementById("forgotPasswordBtn")
-.addEventListener("click",async()=>{
+.getElementById(
+"forgotPasswordBtn"
+)
+.addEventListener(
+"click",
+async()=>{
 
 const email=
-document.getElementById("loginEmail")
-.value.trim();
+document.getElementById(
+"loginEmail"
+).value.trim();
 
 const box=
-document.getElementById("loginMessage");
+document.getElementById(
+"loginMessage"
+);
 
 if(!email){
 
-box.className="message error";
+box.className=
+"message error";
 
 box.textContent=
 "Please enter your email address first.";
@@ -1067,9 +2504,13 @@ return;
 
 }
 
+
 try{
 
-await sendPasswordResetEmail(auth,email);
+await sendPasswordResetEmail(
+auth,
+email
+);
 
 box.className="message";
 
@@ -1080,41 +2521,62 @@ box.textContent=
 
 console.error(error);
 
-box.className="message error";
+box.className=
+"message error";
 
 box.textContent=
 "Unable to send password reset email.";
 
 }
 
-});
+}
+);
 
 
 document
-.getElementById("loginForm")
-.addEventListener("submit",async e=>{
+.getElementById(
+"loginForm"
+)
+.addEventListener(
+"submit",
+async e=>{
 
 e.preventDefault();
 
 const box=
-document.getElementById("loginMessage");
+document.getElementById(
+"loginMessage"
+);
 
 box.className="";
-box.textContent="Signing in...";
+
+box.textContent=
+"Signing in...";
+
 
 try{
 
 const result=
 await signInWithEmailAndPassword(
 auth,
-document.getElementById("loginEmail").value.trim(),
-document.getElementById("loginPassword").value
+document.getElementById(
+"loginEmail"
+).value.trim(),
+document.getElementById(
+"loginPassword"
+).value
 );
+
 
 const snap=
 await getDoc(
-doc(db,"users",result.user.uid)
+doc(
+db,
+"users",
+result.user.uid
+)
 );
+
 
 if(!snap.exists()){
 
@@ -1126,11 +2588,15 @@ throw new Error(
 
 }
 
-const data=snap.data();
+
+const data=
+snap.data();
+
 
 if(data.role==="Super Admin"){
 
-window.location.hash="#superadmin";
+window.location.hash=
+"#superadmin";
 
 showSuperAdmin();
 
@@ -1141,7 +2607,8 @@ data.role==="Official"||
 data.role==="Admin"
 ){
 
-window.location.hash="#dashboard";
+window.location.hash=
+"#dashboard";
 
 showOfficial();
 
@@ -1161,14 +2628,17 @@ throw new Error(
 
 console.error(error);
 
-box.className="message error";
+box.className=
+"message error";
 
 box.textContent=
-error.message||"Login failed.";
+error.message||
+"Login failed.";
 
 }
 
-});
+}
+);
 
 
 /* ================= OFFICIAL DASHBOARD ================= */
@@ -1178,6 +2648,7 @@ async function loadDashboard(){
 const user=
 await getCurrentUserData();
 
+
 if(!user){
 
 showLogin();
@@ -1186,66 +2657,94 @@ return;
 
 }
 
+
 const issues=
 await getVisibleIssues(user);
 
+
 const concernIssues=
-issues.filter(x=>
+issues.filter(
+x=>
 normalize(x.targetOffice)===
 normalize(user.officeType)
-||
-(
-normalize(user.officeType)==="president" &&
-normalize(x.targetOffice)==="president"
-)
 );
 
 
-document.getElementById("officialName")
-.textContent=
+document.getElementById(
+"officialName"
+).textContent=
 "Logged in as: "+
-(user.name||auth.currentUser.email)+
+(user.name||
+auth.currentUser.email)+
 " — "+
-(user.officeType||"Public Office")+
+(user.officeType||
+"Public Office")+
+(user.county?
+" — "+user.county:"")+
 (user.constituency?
 " — "+user.constituency:"")+
 (user.ward?
 " — "+user.ward:"");
 
 
-document.getElementById("totalIssues")
-.textContent=issues.length;
+document.getElementById(
+"totalIssues"
+).textContent=
+issues.length;
 
-document.getElementById("concernIssues")
-.textContent=concernIssues.length;
+
+document.getElementById(
+"concernIssues"
+).textContent=
+concernIssues.length;
 
 
-const countCategory=category=>
-issues.filter(x=>
-normalize(x.category)===normalize(category)
+const countCategory=
+category=>
+issues.filter(
+x=>
+normalize(x.category)===
+normalize(category)
 ).length;
 
 
-document.getElementById("roadCount")
-.textContent=countCategory("Roads");
+document.getElementById(
+"roadCount"
+).textContent=
+countCategory("Roads");
 
-document.getElementById("waterCount")
-.textContent=countCategory("Water");
 
-document.getElementById("healthCount")
-.textContent=countCategory("Healthcare");
+document.getElementById(
+"waterCount"
+).textContent=
+countCategory("Water");
 
-document.getElementById("educationCount")
-.textContent=countCategory("Education");
 
-document.getElementById("securityCount")
-.textContent=countCategory("Security");
+document.getElementById(
+"healthCount"
+).textContent=
+countCategory("Healthcare");
+
+
+document.getElementById(
+"educationCount"
+).textContent=
+countCategory("Education");
+
+
+document.getElementById(
+"securityCount"
+).textContent=
+countCategory("Security");
 
 
 const list=
-document.getElementById("issuesList");
+document.getElementById(
+"issuesList"
+);
 
 list.innerHTML="";
+
 
 if(issues.length===0){
 
@@ -1259,19 +2758,25 @@ return;
 
 issues.forEach(issue=>{
 
-const div=document.createElement("div");
+const div=
+document.createElement("div");
 
 div.className="issue";
 
-const title=document.createElement("strong");
+
+const title=
+document.createElement("strong");
 
 title.textContent=
-(issue.category||"Issue")+
+(issue.category||
+"Issue")+
 " — Target: "+
-(issue.targetOffice||"Office");
+(issue.targetOffice||
+"Office");
 
 
-const desc=document.createElement("div");
+const desc=
+document.createElement("div");
 
 desc.style.marginTop="7px";
 
@@ -1279,7 +2784,8 @@ desc.textContent=
 issue.description||"";
 
 
-const place=document.createElement("div");
+const place=
+document.createElement("div");
 
 place.className="small";
 
@@ -1294,7 +2800,9 @@ place.textContent=
 
 
 div.appendChild(title);
+
 div.appendChild(desc);
+
 div.appendChild(place);
 
 list.appendChild(div);
@@ -1307,61 +2815,89 @@ list.appendChild(div);
 /* ================= PUBLISH ANNOUNCEMENT ================= */
 
 document
-.getElementById("announcementForm")
-.addEventListener("submit",async e=>{
+.getElementById(
+"announcementForm"
+)
+.addEventListener(
+"submit",
+async e=>{
 
 e.preventDefault();
 
 const box=
-document.getElementById("announcementMessageBox");
+document.getElementById(
+"announcementMessageBox"
+);
+
 
 try{
 
 const user=
 await getCurrentUserData();
 
-if(!user)
-throw new Error("You are not logged in.");
 
-let level=officeLevel(user.officeType);
+if(!user)
+throw new Error(
+"You are not logged in."
+);
+
+
+let level=
+officeLevel(
+user.officeType
+);
+
 
 await addDoc(
 collection(db,"announcements"),
 {
 
 message:
-document.getElementById("announcementMessage")
-.value.trim(),
+document.getElementById(
+"announcementMessage"
+).value.trim(),
 
 officialName:
-user.name||auth.currentUser.email,
+user.name||
+auth.currentUser.email,
 
 officeType:
-user.officeType||"Public Office",
+user.officeType||
+"Public Office",
 
-county:user.county||"",
+county:
+user.county||"",
 
-constituency:user.constituency||"",
+constituency:
+user.constituency||"",
 
-ward:user.ward||"",
+ward:
+user.ward||"",
 
-announcementLevel:level,
+announcementLevel:
+level,
 
 status:"published",
 
-createdAt:serverTimestamp()
+createdAt:
+serverTimestamp()
 
 }
 );
+
 
 box.className="message";
 
 box.textContent=
 "Announcement published successfully.";
 
+
 document
-.getElementById("announcementForm")
+.getElementById(
+"announcementForm"
+)
 .reset();
+
 
 await loadAnnouncements();
 
@@ -1369,7 +2905,8 @@ await loadAnnouncements();
 
 console.error(error);
 
-box.className="message error";
+box.className=
+"message error";
 
 box.textContent=
 error.message||
@@ -1377,48 +2914,73 @@ error.message||
 
 }
 
-});
+}
+);
 
 
 /* ================= ADD OFFICIAL ================= */
 
 document
-.getElementById("showAddOfficialBtn")
-.addEventListener("click",()=>{
+.getElementById(
+"showAddOfficialBtn"
+)
+.addEventListener(
+"click",
+()=>{
 
 document
-.getElementById("addOfficialArea")
+.getElementById(
+"addOfficialArea"
+)
 .classList.remove("hidden");
 
-});
+}
+);
 
 
 document
-.getElementById("cancelAddOfficialBtn")
-.addEventListener("click",()=>{
+.getElementById(
+"cancelAddOfficialBtn"
+)
+.addEventListener(
+"click",
+()=>{
 
 document
-.getElementById("addOfficialArea")
+.getElementById(
+"addOfficialArea"
+)
 .classList.add("hidden");
 
 document
-.getElementById("addOfficialForm")
+.getElementById(
+"addOfficialForm"
+)
 .reset();
 
-});
+}
+);
 
 
 document
-.getElementById("addOfficialForm")
-.addEventListener("submit",async e=>{
+.getElementById(
+"addOfficialForm"
+)
+.addEventListener(
+"submit",
+async e=>{
 
 e.preventDefault();
 
 const box=
-document.getElementById("addOfficialMessage");
+document.getElementById(
+"addOfficialMessage"
+);
 
 box.className="";
-box.textContent="Creating official account...";
+
+box.textContent=
+"Creating official account...";
 
 
 try{
@@ -1426,43 +2988,65 @@ try{
 const admin=
 await getCurrentUserData();
 
-if(!admin||admin.role!=="Super Admin")
+
+if(
+!admin||
+admin.role!=="Super Admin"
+){
+
 throw new Error(
 "Only Super Admin can create officials."
 );
 
+}
+
 
 const name=
-document.getElementById("newOfficialName")
-.value.trim();
+document.getElementById(
+"newOfficialName"
+).value.trim();
+
 
 const email=
-document.getElementById("newOfficialEmail")
-.value.trim();
+document.getElementById(
+"newOfficialEmail"
+).value.trim();
+
 
 const password=
-document.getElementById("newOfficialPassword")
-.value;
+document.getElementById(
+"newOfficialPassword"
+).value;
+
 
 const officeType=
-document.getElementById("newOfficialOfficeType")
-.value;
+document.getElementById(
+"newOfficialOfficeType"
+).value;
+
 
 const county=
-document.getElementById("newOfficialCounty")
-.value.trim();
+document.getElementById(
+"newOfficialCounty"
+).value.trim();
+
 
 const constituency=
-document.getElementById("newOfficialConstituency")
-.value.trim();
+document.getElementById(
+"newOfficialConstituency"
+).value.trim();
+
 
 const ward=
-document.getElementById("newOfficialWard")
-.value.trim();
+document.getElementById(
+"newOfficialWard"
+).value.trim();
+
 
 const area=
-document.getElementById("newOfficialArea")
-.value.trim();
+document.getElementById(
+"newOfficialArea"
+).value.trim();
 
 
 /* VALIDATE JURISDICTION */
@@ -1470,8 +3054,13 @@ document.getElementById("newOfficialArea")
 const role=
 normalize(officeType);
 
-if(role==="mca" &&
-(!county||!constituency||!ward)){
+
+if(
+role==="mca" &&
+(!county||
+!constituency||
+!ward)
+){
 
 throw new Error(
 "MCA requires County, Constituency and Ward."
@@ -1479,10 +3068,11 @@ throw new Error(
 
 }
 
+
 if(
-(role==="mp"||
-role==="woman representative") &&
-(!county||!constituency)
+role==="mp" &&
+(!county||
+!constituency)
 ){
 
 throw new Error(
@@ -1491,9 +3081,28 @@ throw new Error(
 
 }
 
+
+/*
+Woman Representative is COUNTY level.
+*/
+
 if(
-(role==="senator"||
-role==="governor") &&
+role==="woman representative" &&
+!county
+){
+
+throw new Error(
+"Woman Representative requires County."
+);
+
+}
+
+
+if(
+(
+role==="senator"||
+role==="governor"
+)&&
 !county
 ){
 
@@ -1513,13 +3122,18 @@ email,
 password
 );
 
-const uid=credential.user.uid;
+const uid=
+credential.user.uid;
 
 
 /* USERS */
 
 await setDoc(
-doc(db,"users",uid),
+doc(
+db,
+"users",
+uid
+),
 {
 
 name:name,
@@ -1532,15 +3146,22 @@ officeType:officeType,
 
 county:county,
 
-constituency:constituency,
+constituency:
+role==="woman representative"
+?""
+:constituency,
 
-ward:ward,
+ward:
+role==="mca"
+?ward
+:"",
 
 area:area,
 
 status:"active",
 
-createdAt:serverTimestamp()
+createdAt:
+serverTimestamp()
 
 }
 );
@@ -1549,7 +3170,11 @@ createdAt:serverTimestamp()
 /* OFFICIAL PROFILE */
 
 await setDoc(
-doc(db,"officialprofile",uid),
+doc(
+db,
+"officialprofile",
+uid
+),
 {
 
 userId:uid,
@@ -1562,15 +3187,22 @@ officeType:officeType,
 
 county:county,
 
-constituency:constituency,
+constituency:
+role==="woman representative"
+?""
+:constituency,
 
-ward:ward,
+ward:
+role==="mca"
+?ward
+:"",
 
 area:area,
 
 status:"active",
 
-createdAt:serverTimestamp()
+createdAt:
+serverTimestamp()
 
 }
 );
@@ -1584,9 +3216,13 @@ box.className="message";
 box.textContent=
 "Official created and authorized successfully.";
 
+
 document
-.getElementById("addOfficialForm")
+.getElementById(
+"addOfficialForm"
+)
 .reset();
+
 
 await loadSuperAdmin();
 
@@ -1595,7 +3231,8 @@ await loadSuperAdmin();
 
 console.error(error);
 
-box.className="message error";
+box.className=
+"message error";
 
 box.textContent=
 error.message||
@@ -1603,7 +3240,8 @@ error.message||
 
 }
 
-});
+}
+);
 
 
 /* ================= AGE ================= */
@@ -1613,14 +3251,18 @@ function getAgeDays(data){
 if(
 !data.createdAt||
 !data.createdAt.toDate
-)return null;
+)
+return null;
+
 
 return Math.floor(
 (
 new Date().getTime()-
 data.createdAt.toDate().getTime()
 )/
-(1000*60*60*24)
+(
+1000*60*60*24
+)
 );
 
 }
@@ -1633,7 +3275,11 @@ async function loadSuperAdmin(){
 const user=
 await getCurrentUserData();
 
-if(!user||user.role!=="Super Admin"){
+
+if(
+!user||
+user.role!=="Super Admin"
+){
 
 await signOut(auth);
 
@@ -1644,53 +3290,80 @@ return;
 }
 
 
-document.getElementById("superAdminName")
-.textContent=
+document.getElementById(
+"superAdminName"
+).textContent=
 "Logged in as: "+
-(user.name||auth.currentUser.email)+
+(user.name||
+auth.currentUser.email)+
 " — Super Admin";
 
 
 const issueSnap=
-await getDocs(collection(db,"issues"));
+await getDocs(
+collection(db,"issues")
+);
+
 
 const announcementSnap=
-await getDocs(collection(db,"announcements"));
+await getDocs(
+collection(db,"announcements")
+);
+
 
 const userSnap=
-await getDocs(collection(db,"users"));
+await getDocs(
+collection(db,"users")
+);
 
 
 const issues=[];
 
 issueSnap.forEach(s=>
-issues.push({id:s.id,...s.data()})
+issues.push({
+id:s.id,
+...s.data()
+})
 );
 
 
 const announcements=[];
 
 announcementSnap.forEach(s=>
-announcements.push({id:s.id,...s.data()})
+announcements.push({
+id:s.id,
+...s.data()
+})
 );
 
 
 const users=[];
 
 userSnap.forEach(s=>
-users.push({id:s.id,...s.data()})
+users.push({
+id:s.id,
+...s.data()
+})
 );
 
 
-document.getElementById("adminIssueCount")
-.textContent=issues.length;
+document.getElementById(
+"adminIssueCount"
+).textContent=
+issues.length;
 
-document.getElementById("adminAnnouncementCount")
-.textContent=announcements.length;
 
-document.getElementById("adminOfficialCount")
-.textContent=
-users.filter(u=>
+document.getElementById(
+"adminAnnouncementCount"
+).textContent=
+announcements.length;
+
+
+document.getElementById(
+"adminOfficialCount"
+).textContent=
+users.filter(
+u=>
 u.role==="Official"||
 u.role==="Admin"||
 u.role==="Super Admin"
@@ -1700,9 +3373,12 @@ u.role==="Super Admin"
 /* USERS */
 
 const usersBox=
-document.getElementById("officialsList");
+document.getElementById(
+"officialsList"
+);
 
 usersBox.innerHTML="";
+
 
 users.forEach(user=>{
 
@@ -1710,20 +3386,26 @@ if(
 user.role!=="Official"&&
 user.role!=="Admin"&&
 user.role!=="Super Admin"
-)return;
+)
+return;
 
 
-const div=document.createElement("div");
+const div=
+document.createElement("div");
 
 div.className="office";
 
-const name=document.createElement("strong");
+
+const name=
+document.createElement("strong");
 
 name.textContent=
-user.name||"No name";
+user.name||
+"No name";
 
 
-const info=document.createElement("div");
+const info=
+document.createElement("div");
 
 info.className="small";
 
@@ -1737,7 +3419,33 @@ info.textContent=
 (user.email||"");
 
 
-const status=document.createElement("div");
+const jurisdiction=
+document.createElement("div");
+
+jurisdiction.className="small";
+
+jurisdiction.style.marginTop="5px";
+
+let j="";
+
+if(user.county)
+j+="County: "+user.county;
+
+if(user.constituency)
+j+=j
+?" • Constituency: "+user.constituency
+:"Constituency: "+user.constituency;
+
+if(user.ward)
+j+=j
+?" • Ward: "+user.ward
+:"Ward: "+user.ward;
+
+jurisdiction.textContent=j;
+
+
+const status=
+document.createElement("div");
 
 status.className=
 user.status==="active"
@@ -1751,7 +3459,12 @@ user.status==="active"
 
 
 div.appendChild(name);
+
 div.appendChild(info);
+
+if(j)
+div.appendChild(jurisdiction);
+
 div.appendChild(status);
 
 
@@ -1759,7 +3472,8 @@ div.appendChild(status);
 
 if(user.role==="Official"){
 
-const button=document.createElement("button");
+const button=
+document.createElement("button");
 
 button.className=
 user.status==="active"
@@ -1772,7 +3486,9 @@ user.status==="active"
 :"✅ Activate Official";
 
 
-button.addEventListener("click",async()=>{
+button.addEventListener(
+"click",
+async()=>{
 
 const newStatus=
 user.status==="active"
@@ -1781,22 +3497,38 @@ user.status==="active"
 
 
 await updateDoc(
-doc(db,"users",user.id),
-{status:newStatus}
+doc(
+db,
+"users",
+user.id
+),
+{
+status:newStatus
+}
 );
 
 
 const profileRef=
-doc(db,"officialprofile",user.id);
+doc(
+db,
+"officialprofile",
+user.id
+);
+
 
 const profile=
-await getDoc(profileRef);
+await getDoc(
+profileRef
+);
+
 
 if(profile.exists()){
 
 await updateDoc(
 profileRef,
-{status:newStatus}
+{
+status:newStatus
+}
 );
 
 }
@@ -1804,7 +3536,8 @@ profileRef,
 
 await loadSuperAdmin();
 
-});
+}
+);
 
 
 div.appendChild(button);
@@ -1829,19 +3562,38 @@ announcementBox.innerHTML="";
 
 announcements.forEach(item=>{
 
-const div=document.createElement("div");
+const div=
+document.createElement("div");
 
-div.className="managementItem";
+div.className=
+"managementItem";
 
-const title=document.createElement("strong");
+
+const title=
+document.createElement("strong");
 
 title.textContent=
-(item.officialName||"Public Office")+
+(item.officialName||
+"Public Office")+
 " — "+
-(item.officeType||"");
+(item.officeType||
+"");
 
 
-const message=document.createElement("div");
+const level=
+document.createElement("div");
+
+level.className="small";
+
+level.style.marginTop="5px";
+
+level.textContent=
+"Level: "+
+inferAnnouncementLevel(item);
+
+
+const message=
+document.createElement("div");
 
 message.style.marginTop="8px";
 
@@ -1849,11 +3601,40 @@ message.textContent=
 item.message||"";
 
 
-const age=document.createElement("div");
+const location=
+document.createElement("div");
+
+location.className="small";
+
+location.style.marginTop="7px";
+
+let p="";
+
+if(item.county)
+p+="County: "+item.county;
+
+if(item.constituency)
+p+=p
+?" • Constituency: "+item.constituency
+:"Constituency: "+item.constituency;
+
+if(item.ward)
+p+=p
+?" • Ward: "+item.ward
+:"Ward: "+item.ward;
+
+location.textContent=p;
+
+
+const age=
+document.createElement("div");
 
 age.className="age";
 
-const days=getAgeDays(item);
+
+const days=
+getAgeDays(item);
+
 
 age.textContent=
 days===null
@@ -1862,13 +3643,24 @@ days===null
 
 
 div.appendChild(title);
+
+div.appendChild(level);
+
 div.appendChild(message);
+
+if(p)
+div.appendChild(location);
+
 div.appendChild(age);
 
 
-if(days!==null&&days>=3){
+if(
+days!==null&&
+days>=3
+){
 
-const button=document.createElement("button");
+const button=
+document.createElement("button");
 
 button.className="danger";
 
@@ -1876,28 +3668,39 @@ button.textContent=
 "🗑️ Delete Announcement";
 
 
-button.addEventListener("click",async()=>{
+button.addEventListener(
+"click",
+async()=>{
 
 if(!confirm(
 "Delete this announcement permanently?"
-))return;
+))
+return;
 
 
 await deleteDoc(
-doc(db,"announcements",item.id)
+doc(
+db,
+"announcements",
+item.id
+)
 );
 
+
 await loadSuperAdmin();
+
 await loadAnnouncements();
 
-});
+}
+);
 
 
 div.appendChild(button);
 
 }else{
 
-const note=document.createElement("div");
+const note=
+document.createElement("div");
 
 note.className="small";
 
@@ -1919,27 +3722,35 @@ announcementBox.appendChild(div);
 /* ISSUES */
 
 const issueBox=
-document.getElementById("adminIssuesList");
+document.getElementById(
+"adminIssuesList"
+);
 
 issueBox.innerHTML="";
 
 
 issues.forEach(item=>{
 
-const div=document.createElement("div");
+const div=
+document.createElement("div");
 
-div.className="managementItem";
+div.className=
+"managementItem";
 
 
-const title=document.createElement("strong");
+const title=
+document.createElement("strong");
 
 title.textContent=
-(item.category||"Issue")+
+(item.category||
+"Issue")+
 " — "+
-(item.targetOffice||"");
+(item.targetOffice||
+"");
 
 
-const description=document.createElement("div");
+const description=
+document.createElement("div");
 
 description.style.marginTop="7px";
 
@@ -1947,7 +3758,8 @@ description.textContent=
 item.description||"";
 
 
-const location=document.createElement("div");
+const location=
+document.createElement("div");
 
 location.className="small";
 
@@ -1959,11 +3771,15 @@ location.textContent=
 (item.ward||"");
 
 
-const age=document.createElement("div");
+const age=
+document.createElement("div");
 
 age.className="age";
 
-const days=getAgeDays(item);
+
+const days=
+getAgeDays(item);
+
 
 age.textContent=
 days===null
@@ -1972,14 +3788,21 @@ days===null
 
 
 div.appendChild(title);
+
 div.appendChild(description);
+
 div.appendChild(location);
+
 div.appendChild(age);
 
 
-if(days!==null&&days>=3){
+if(
+days!==null&&
+days>=3
+){
 
-const button=document.createElement("button");
+const button=
+document.createElement("button");
 
 button.className="danger";
 
@@ -1987,27 +3810,37 @@ button.textContent=
 "🗑️ Delete Issue";
 
 
-button.addEventListener("click",async()=>{
+button.addEventListener(
+"click",
+async()=>{
 
 if(!confirm(
 "Delete this citizen issue permanently?"
-))return;
+))
+return;
 
 
 await deleteDoc(
-doc(db,"issues",item.id)
+doc(
+db,
+"issues",
+item.id
+)
 );
+
 
 await loadSuperAdmin();
 
-});
+}
+);
 
 
 div.appendChild(button);
 
 }else{
 
-const note=document.createElement("div");
+const note=
+document.createElement("div");
 
 note.className="small";
 
@@ -2031,32 +3864,47 @@ issueBox.appendChild(div);
 /* ================= SUPER ADMIN NAVIGATION ================= */
 
 document
-.getElementById("openCitizenBtn")
-.addEventListener("click",()=>{
+.getElementById(
+"openCitizenBtn"
+)
+.addEventListener(
+"click",
+()=>{
 
 window.location.hash="";
 
 showCitizen();
 
-});
+}
+);
 
 
 document
-.getElementById("openOfficialBtn")
-.addEventListener("click",async()=>{
+.getElementById(
+"openOfficialBtn"
+)
+.addEventListener(
+"click",
+async()=>{
 
-window.location.hash="#dashboard";
+window.location.hash=
+"#dashboard";
 
 showOfficial();
 
 await loadDashboard();
 
-});
+}
+);
 
 
 document
-.getElementById("superAdminLogoutBtn")
-.addEventListener("click",async()=>{
+.getElementById(
+"superAdminLogoutBtn"
+)
+.addEventListener(
+"click",
+async()=>{
 
 await signOut(auth);
 
@@ -2064,12 +3912,17 @@ window.location.hash="";
 
 showCitizen();
 
-});
+}
+);
 
 
 document
-.getElementById("logoutBtn")
-.addEventListener("click",async()=>{
+.getElementById(
+"logoutBtn"
+)
+.addEventListener(
+"click",
+async()=>{
 
 await signOut(auth);
 
@@ -2077,14 +3930,17 @@ window.location.hash="";
 
 showCitizen();
 
-});
+}
+);
 
 
 /* ================= ROUTING ================= */
 
 async function route(){
 
-const hash=window.location.hash;
+const hash=
+window.location.hash;
+
 
 if(hash==="#official"){
 
@@ -2105,11 +3961,13 @@ return;
 
 }
 
+
 const user=
 await getCurrentUserData();
 
+
 if(
-user &&
+user&&
 (
 user.role==="Official"||
 user.role==="Admin"||
@@ -2144,8 +4002,10 @@ return;
 
 }
 
+
 const user=
 await getCurrentUserData();
+
 
 if(
 user&&
@@ -2176,13 +4036,17 @@ showCitizen();
 
 /* ================= AUTH STATE ================= */
 
-onAuthStateChanged(auth,async user=>{
+onAuthStateChanged(
+auth,
+async user=>{
 
 if(!user){
 
 if(
-window.location.hash==="#dashboard"||
-window.location.hash==="#superadmin"
+window.location.hash===
+"#dashboard"||
+window.location.hash===
+"#superadmin"
 ){
 
 showLogin();
@@ -2193,10 +4057,15 @@ return;
 
 }
 
-if(window.location.hash==="#superadmin"){
+
+if(
+window.location.hash===
+"#superadmin"
+){
 
 const data=
 await getCurrentUserData();
+
 
 if(
 data&&
@@ -2211,13 +4080,19 @@ await loadSuperAdmin();
 
 }
 
-});
+}
+);
 
 
-window.addEventListener("hashchange",route);
+window.addEventListener(
+"hashchange",
+route
+);
 
 
 /* ================= START ================= */
+
+loadSavedAnnouncementLocation();
 
 await loadAnnouncements();
 
@@ -2230,27 +4105,38 @@ await route();
 
 <script>
 
-if("serviceWorker" in navigator){
+if(
+"serviceWorker"
+in navigator
+){
 
-window.addEventListener("load",function(){
+window.addEventListener(
+"load",
+function(){
 
 navigator.serviceWorker
-.register("./service-worker.js")
-.then(function(){
+.register(
+"./service-worker.js"
+)
+.then(
+function(){
 
 console.log(
 "Citizen Voice service worker registered."
 );
 
-})
-.catch(function(error){
+}
+)
+.catch(
+function(error){
 
 console.error(
 "Service worker registration failed:",
 error
 );
 
-});
+}
+);
 
 });
 
