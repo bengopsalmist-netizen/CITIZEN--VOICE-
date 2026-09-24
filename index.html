@@ -260,15 +260,12 @@ color:#666
 
 <div class="container">
 
-<!-- CITIZEN ANNOUNCEMENTS -->
-
 <div class="card">
 
 <h2>Official Announcements</h2>
 
 <p class="small">
-Choose an announcement level to see messages from public offices
-serving your area.
+Choose an announcement level to see messages from public offices serving your area.
 </p>
 
 <div class="locationBox">
@@ -276,16 +273,13 @@ serving your area.
 <h3>📍 My Location</h3>
 
 <label>County</label>
-<input id="announcementCounty"
-placeholder="Enter your county">
+<input id="announcementCounty" placeholder="Enter your county">
 
 <label>Constituency</label>
-<input id="announcementConstituency"
-placeholder="Enter your constituency">
+<input id="announcementConstituency" placeholder="Enter your constituency">
 
 <label>Ward</label>
-<input id="announcementWard"
-placeholder="Enter your ward">
+<input id="announcementWard" placeholder="Enter your ward">
 
 <button id="saveAnnouncementLocation">
 Save My Location
@@ -297,27 +291,27 @@ Save My Location
 
 <div class="levelButtons">
 
-<button class="levelButton" data-level="Ward">
+<button class="levelButton" data-level="Ward" data-office="MCA">
 MCA Announcements
 </button>
 
-<button class="levelButton" data-level="Constituency">
+<button class="levelButton" data-level="Constituency" data-office="MP">
 MP Announcements
 </button>
 
-<button class="levelButton" data-level="County">
+<button class="levelButton" data-level="County" data-office="Woman Representative">
 Woman Rep Announcements
 </button>
 
-<button class="levelButton" data-level="County">
+<button class="levelButton" data-level="County" data-office="Senator">
 Senator Announcements
 </button>
 
-<button class="levelButton" data-level="County">
+<button class="levelButton" data-level="County" data-office="Governor">
 Governor Announcements
 </button>
 
-<button class="levelButton" data-level="National">
+<button class="levelButton" data-level="National" data-office="President">
 President Announcements
 </button>
 
@@ -335,8 +329,6 @@ All Official Announcements
 </div>
 
 
-<!-- SHARE VOICE -->
-
 <div class="card">
 
 <h2>Share Your Voice</h2>
@@ -346,9 +338,7 @@ All Official Announcements
 <label>Category</label>
 
 <select id="category" required>
-
 <option value="">Select category</option>
-
 <option>Roads</option>
 <option>Water</option>
 <option>Healthcare</option>
@@ -361,56 +351,28 @@ All Official Announcements
 <option>Development</option>
 <option>Employment</option>
 <option>Other</option>
-
 </select>
 
-
 <label>County</label>
-
-<input
-id="county"
-placeholder="Enter county"
-required>
-
+<input id="county" placeholder="Enter county" required>
 
 <label>Constituency</label>
-
-<input
-id="constituency"
-placeholder="Enter constituency"
-required>
-
+<input id="constituency" placeholder="Enter constituency">
 
 <label>Ward</label>
-
-<input
-id="ward"
-placeholder="Enter ward"
-required>
-
+<input id="ward" placeholder="Enter ward">
 
 <label>Location</label>
-
-<input
-id="location"
-placeholder="Enter location"
-required>
-
+<input id="location" placeholder="Enter location" required>
 
 <label>Sub-location</label>
-
-<input
-id="subLocation"
-placeholder="Enter sub-location"
-required>
-
+<input id="subLocation" placeholder="Enter sub-location" required>
 
 <label>Office Concerned</label>
 
 <select id="targetOffice" required>
 
 <option value="">Select office</option>
-
 <option>MCA</option>
 <option>MP</option>
 <option>Woman Representative</option>
@@ -421,14 +383,14 @@ required>
 
 </select>
 
+<div id="officeRequirementMessage" class="small"></div>
 
 <label>Your Question / Suggestion / Concern / Issue</label>
 
 <textarea
 id="description"
 placeholder="Describe your question, suggestion, concern or issue..."
-required>
-</textarea>
+required></textarea>
 
 <button type="submit">
 Submit
@@ -440,8 +402,6 @@ Submit
 
 </div>
 
-
-<!-- OFFICIAL ACCESS -->
 
 <div class="card">
 
@@ -484,32 +444,17 @@ Authorized public officials can access their dashboard here.
 <form id="loginForm">
 
 <label>Email</label>
-
-<input
-type="email"
-id="loginEmail"
-required>
-
+<input type="email" id="loginEmail" required>
 
 <label>Password</label>
-
-<input
-type="password"
-id="loginPassword"
-required>
-
+<input type="password" id="loginPassword" required>
 
 <button type="submit">
 Login
 </button>
 
-<button
-type="button"
-class="secondary"
-id="forgotPasswordBtn">
-
+<button type="button" class="secondary" id="forgotPasswordBtn">
 Forgot Password?
-
 </button>
 
 <div id="loginMessage"></div>
@@ -529,9 +474,7 @@ Forgot Password?
 <section class="hero">
 
 <div class="logo">📊</div>
-
 <h1>Official Dashboard</h1>
-
 <p>Citizen Voice</p>
 
 </section>
@@ -586,6 +529,7 @@ Security
 </div>
 
 </div>
+
 </div>
 
 
@@ -594,9 +538,7 @@ Security
 <h2>Citizen Issues</h2>
 
 <div id="issuesList">
-<p class="small">
-Loading issues...
-</p>
+<p class="small">Loading issues...</p>
 </div>
 
 </div>
@@ -613,8 +555,7 @@ Loading issues...
 <textarea
 id="announcementMessage"
 placeholder="Write your official announcement..."
-required>
-</textarea>
+required></textarea>
 
 <p class="small">
 Your announcement level is automatically determined by your authorized office:
@@ -654,20 +595,13 @@ Publish Announcement
 
 <div class="card">
 
-<button
-class="danger"
-id="superAdminLogoutBtn">
-
+<button class="danger" id="superAdminLogoutBtn">
 Logout
-
 </button>
 
 <h2>Super Admin Dashboard</h2>
 
-<p
-id="superAdminName"
-class="small">
-</p>
+<p id="superAdminName" class="small"></p>
 
 </div>
 
@@ -679,33 +613,18 @@ class="small">
 <div class="stats">
 
 <div class="stat">
-
-<strong id="adminIssueCount">
-0
-</strong>
-
+<strong id="adminIssueCount">0</strong>
 Issues
-
 </div>
 
 <div class="stat">
-
-<strong id="adminAnnouncementCount">
-0
-</strong>
-
+<strong id="adminAnnouncementCount">0</strong>
 Announcements
-
 </div>
 
 <div class="stat">
-
-<strong id="adminOfficialCount">
-0
-</strong>
-
+<strong id="adminOfficialCount">0</strong>
 Authorized Users
-
 </div>
 
 </div>
@@ -728,8 +647,6 @@ Authorized Users
 </div>
 
 
-<!-- ADD OFFICIAL -->
-
 <div class="card">
 
 <h2>👥 Manage Officials</h2>
@@ -751,42 +668,28 @@ Add and authorize officials who are allowed to use the Official Dashboard.
 <form id="addOfficialForm">
 
 <label>Official Full Name</label>
-
-<input
-id="newOfficialName"
+<input id="newOfficialName"
 placeholder="Example: Hon. John Mwangi"
 required>
 
-
 <label>Email Address</label>
-
-<input
-type="email"
+<input type="email"
 id="newOfficialEmail"
 placeholder="official@example.com"
 required>
 
-
 <label>Temporary Password</label>
-
-<input
-type="password"
+<input type="password"
 id="newOfficialPassword"
 placeholder="Create temporary password"
 minlength="6"
 required>
 
-
 <label>Office Type</label>
 
-<select
-id="newOfficialOfficeType"
-required>
+<select id="newOfficialOfficeType" required>
 
-<option value="">
-Select office type
-</option>
-
+<option value="">Select office type</option>
 <option>MCA</option>
 <option>MP</option>
 <option>Woman Representative</option>
@@ -797,46 +700,30 @@ Select office type
 
 </select>
 
-
 <label>County</label>
-
-<input
-id="newOfficialCounty"
+<input id="newOfficialCounty"
 placeholder="Enter county">
 
-
 <label>Constituency</label>
-
-<input
-id="newOfficialConstituency"
+<input id="newOfficialConstituency"
 placeholder="Enter constituency">
 
-
 <label>Ward</label>
-
-<input
-id="newOfficialWard"
+<input id="newOfficialWard"
 placeholder="Enter ward">
 
-
 <label>Office / Area Description</label>
-
-<input
-id="newOfficialArea"
+<input id="newOfficialArea"
 placeholder="Example: Igembe North">
-
 
 <button type="submit">
 ✅ Create & Authorize Official
 </button>
 
-<button
-type="button"
+<button type="button"
 class="secondary"
 id="cancelAddOfficialBtn">
-
 Cancel
-
 </button>
 
 <div id="addOfficialMessage"></div>
@@ -847,24 +734,16 @@ Cancel
 </div>
 
 
-<!-- AUTHORIZED USERS -->
-
 <div class="card">
 
 <h2>Authorized Officials / Users</h2>
 
 <div id="officialsList">
-
-<p class="small">
-Loading authorized users...
-</p>
-
+<p class="small">Loading authorized users...</p>
 </div>
 
 </div>
 
-
-<!-- ANNOUNCEMENT MANAGEMENT -->
 
 <div class="card">
 
@@ -878,8 +757,6 @@ Announcements can be deleted by Super Admin after they are at least 3 days old.
 
 </div>
 
-
-<!-- ISSUE MANAGEMENT -->
 
 <div class="card">
 
@@ -904,12 +781,8 @@ Citizen Voice — Connecting Citizens With Public Offices
 
 <script type="module">
 
-import {
-initializeApp
-}
-from
-"https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
-
+import {initializeApp}
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 
 import {
 getAuth,
@@ -919,9 +792,7 @@ signOut,
 createUserWithEmailAndPassword,
 sendPasswordResetEmail
 }
-from
-"https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
-
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
 import {
 getFirestore,
@@ -937,55 +808,28 @@ serverTimestamp,
 deleteDoc,
 updateDoc
 }
-from
-"https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
 
 /* ================= FIREBASE ================= */
 
 const firebaseConfig={
-
-apiKey:
-"AIzaSyBIJZJW392I97YZLx__9dNNk1DeAQNHgFI",
-
-authDomain:
-"voice-connect-ded08.firebaseapp.com",
-
-projectId:
-"voice-connect-ded08",
-
-storageBucket:
-"voice-connect-ded08.firebasestorage.app",
-
-messagingSenderId:
-"277049759508",
-
-appId:
-"1:277049759508:web:0eb0ab57c3b455a0591401"
-
+apiKey:"AIzaSyBIJZJW392I97YZLx__9dNNk1DeAQNHgFI",
+authDomain:"voice-connect-ded08.firebaseapp.com",
+projectId:"voice-connect-ded08",
+storageBucket:"voice-connect-ded08.firebasestorage.app",
+messagingSenderId:"277049759508",
+appId:"1:277049759508:web:0eb0ab57c3b455a0591401"
 };
 
-
-const app=
-initializeApp(firebaseConfig);
-
-const auth=
-getAuth(app);
-
-const db=
-getFirestore(app);
-
-
-/* SECONDARY AUTH */
+const app=initializeApp(firebaseConfig);
+const auth=getAuth(app);
+const db=getFirestore(app);
 
 const secondaryApp=
-initializeApp(
-firebaseConfig,
-"secondaryApp"
-);
+initializeApp(firebaseConfig,"secondaryApp");
 
-const secondaryAuth=
-getAuth(secondaryApp);
+const secondaryAuth=getAuth(secondaryApp);
 
 
 /* ================= HELPERS ================= */
@@ -1000,61 +844,48 @@ return String(value||"")
 }
 
 
-/*
-Office -> announcement jurisdiction level
-*/
+function same(a,b){
+
+return normalize(a)===normalize(b);
+
+}
+
 
 function officeLevel(value){
 
-const v=
-normalize(value);
+const v=normalize(value);
 
-if(v==="mca")
-return "Ward";
+if(v==="mca") return "Ward";
 
-if(v==="mp")
-return "Constituency";
+if(v==="mp") return "Constituency";
 
-if(v==="woman representative")
-return "County";
+if(v==="woman representative") return "County";
 
-if(v==="senator")
-return "County";
+if(v==="senator") return "County";
 
-if(v==="governor")
-return "County";
+if(v==="governor") return "County";
 
-if(v==="president"||v==="national")
-return "National";
+if(v==="president"||v==="national") return "National";
 
 return "National";
 
 }
 
 
-/*
-Office -> target office label
-*/
-
 function targetLevel(value){
 
-const v=
-normalize(value);
+const v=normalize(value);
 
-if(v==="mca")
-return "MCA";
+if(v==="mca") return "MCA";
 
-if(v==="mp")
-return "MP";
+if(v==="mp") return "MP";
 
 if(v==="woman representative")
 return "Woman Representative";
 
-if(v==="senator")
-return "Senator";
+if(v==="senator") return "Senator";
 
-if(v==="governor")
-return "Governor";
+if(v==="governor") return "Governor";
 
 if(v==="president"||v==="national")
 return "President";
@@ -1082,11 +913,8 @@ document.getElementById("superAdminPage");
 function showCitizen(){
 
 citizenPage.classList.remove("hidden");
-
 loginPage.classList.add("hidden");
-
 officialPage.classList.add("hidden");
-
 superAdminPage.classList.add("hidden");
 
 }
@@ -1095,11 +923,8 @@ superAdminPage.classList.add("hidden");
 function showLogin(){
 
 citizenPage.classList.add("hidden");
-
 loginPage.classList.remove("hidden");
-
 officialPage.classList.add("hidden");
-
 superAdminPage.classList.add("hidden");
 
 }
@@ -1108,11 +933,8 @@ superAdminPage.classList.add("hidden");
 function showOfficial(){
 
 citizenPage.classList.add("hidden");
-
 loginPage.classList.add("hidden");
-
 officialPage.classList.remove("hidden");
-
 superAdminPage.classList.add("hidden");
 
 }
@@ -1121,17 +943,14 @@ superAdminPage.classList.add("hidden");
 function showSuperAdmin(){
 
 citizenPage.classList.add("hidden");
-
 loginPage.classList.add("hidden");
-
 officialPage.classList.add("hidden");
-
 superAdminPage.classList.remove("hidden");
 
 }
 
 
-/* ================= USER DATA ================= */
+/* ================= CURRENT USER ================= */
 
 async function getCurrentUserData(){
 
@@ -1140,142 +959,60 @@ return null;
 
 const snap=
 await getDoc(
-doc(
-db,
-"users",
-auth.currentUser.uid
-)
+doc(db,"users",auth.currentUser.uid)
 );
 
-return snap.exists()
-?snap.data()
-:null;
+if(!snap.exists())
+return null;
+
+return {
+id:snap.id,
+...snap.data()
+};
 
 }
 
 
-/* ================= OFFICIAL ISSUE QUERIES ================= */
+/* ================= ISSUE ROUTING ================= */
 
 /*
+This function decides which issues an official
+is allowed to see.
+
 IMPORTANT:
+We intentionally read the stored issues first and
+then normalize location values before matching.
 
-We do not download every issue anymore.
+This fixes cases such as:
 
-The query is restricted by:
-County
-Constituency
-Ward
-Target Office
+Meru
+meru
+ MERU
 
-This prepares the system for Firestore security rules.
+Igembe North
+IGEMBE NORTH
+igembe north
 */
 
-
-async function getIssuesByTarget(
-county,
-target,
-constituency=null,
-ward=null
-){
-
-let conditions=[
-where("county","==",county),
-where("targetOffice","==",target)
-];
-
-if(constituency!==null){
-
-conditions.push(
-where(
-"constituency",
-"==",
-constituency
-)
-);
-
-}
-
-if(ward!==null){
-
-conditions.push(
-where(
-"ward",
-"==",
-ward
-)
-);
-
-}
-
-const q=
-query(
-collection(db,"issues"),
-...conditions
-);
-
-const snapshot=
-await getDocs(q);
-
-const results=[];
-
-snapshot.forEach(s=>{
-
-results.push({
-id:s.id,
-...s.data()
-});
-
-});
-
-return results;
-
-}
-
-
-/*
-Remove duplicates when several target queries
-return the same issue.
-*/
-
-function mergeIssues(groups){
-
-const map=new Map();
-
-groups.flat().forEach(issue=>{
-
-map.set(issue.id,issue);
-
-});
-
-return Array.from(map.values());
-
-}
-
-
-/* ================= ISSUE VISIBILITY ================= */
-
-function issueVisibleToOfficial(
-issue,
-user
-){
+function issueVisibleToOfficial(issue,user){
 
 if(!user)
 return false;
 
-if(user.role==="Super Admin")
+if(
+user.role==="Super Admin"||
+user.role==="Admin"
+)
 return true;
 
-const role=
-normalize(user.officeType);
+const role=normalize(user.officeType);
 
-const county=
-normalize(user.county);
+const county=normalize(user.county);
 
 const constituency=
 normalize(user.constituency);
 
-const ward=
-normalize(user.ward);
+const ward=normalize(user.ward);
 
 const issueCounty=
 normalize(issue.county);
@@ -1294,9 +1031,9 @@ targetLevel(issue.targetOffice);
 
 if(role==="mca"){
 
-return issueCounty===county &&
-issueConstituency===constituency &&
-issueWard===ward &&
+return same(issueCounty,county) &&
+same(issueConstituency,constituency) &&
+same(issueWard,ward) &&
 target==="MCA";
 
 }
@@ -1306,8 +1043,8 @@ target==="MCA";
 
 if(role==="mp"){
 
-return issueCounty===county &&
-issueConstituency===constituency &&
+return same(issueCounty,county) &&
+same(issueConstituency,constituency) &&
 (
 target==="MCA"||
 target==="MP"
@@ -1320,7 +1057,7 @@ target==="MP"
 
 if(role==="woman representative"){
 
-return issueCounty===county &&
+return same(issueCounty,county) &&
 (
 target==="MCA"||
 target==="MP"||
@@ -1334,7 +1071,7 @@ target==="Woman Representative"
 
 if(role==="senator"){
 
-return issueCounty===county &&
+return same(issueCounty,county) &&
 (
 target==="MCA"||
 target==="MP"||
@@ -1349,7 +1086,7 @@ target==="Senator"
 
 if(role==="governor"){
 
-return issueCounty===county &&
+return same(issueCounty,county) &&
 (
 target==="MCA"||
 target==="MP"||
@@ -1361,7 +1098,7 @@ target==="Governor"
 }
 
 
-/* NATIONAL */
+/* PRESIDENT / NATIONAL */
 
 if(
 role==="president"||
@@ -1377,214 +1114,282 @@ return false;
 }
 
 
-/* ================= LOAD ISSUES ================= */
+/*
+Direct concern means the issue was specifically
+addressed to this official's office.
+*/
 
-async function getVisibleIssues(user){
+function isDirectConcern(issue,user){
 
-const county=
-normalize(user.county);
+if(!user)
+return false;
 
-const constituency=
-normalize(user.constituency);
+const role=normalize(user.officeType);
 
-const ward=
-normalize(user.ward);
-
-const role=
-normalize(user.officeType);
-
-let groups=[];
+const target=
+targetLevel(issue.targetOffice);
 
 
 /* MCA */
 
 if(role==="mca"){
 
-groups.push(
-await getIssuesByTarget(
-county,
-"MCA",
-constituency,
-ward
-)
-);
+return target==="MCA" &&
+same(issue.county,user.county) &&
+same(issue.constituency,user.constituency) &&
+same(issue.ward,user.ward);
 
 }
 
 
 /* MP */
 
-else if(role==="mp"){
+if(role==="mp"){
 
-groups.push(
-await getIssuesByTarget(
-county,
-"MCA",
-constituency
-)
-);
-
-groups.push(
-await getIssuesByTarget(
-county,
-"MP",
-constituency
-)
-);
+return target==="MP" &&
+same(issue.county,user.county) &&
+same(issue.constituency,user.constituency);
 
 }
 
 
-/* WOMAN REPRESENTATIVE */
+/* WOMAN REP */
 
-else if(role==="woman representative"){
+if(role==="woman representative"){
 
-groups.push(
-await getIssuesByTarget(
-county,
-"MCA"
-)
-);
-
-groups.push(
-await getIssuesByTarget(
-county,
-"MP"
-)
-);
-
-groups.push(
-await getIssuesByTarget(
-county,
-"Woman Representative"
-)
-);
+return target==="Woman Representative" &&
+same(issue.county,user.county);
 
 }
 
 
 /* SENATOR */
 
-else if(role==="senator"){
+if(role==="senator"){
 
-groups.push(
-await getIssuesByTarget(
-county,
-"MCA"
-)
-);
-
-groups.push(
-await getIssuesByTarget(
-county,
-"MP"
-)
-);
-
-groups.push(
-await getIssuesByTarget(
-county,
-"Woman Representative"
-)
-);
-
-groups.push(
-await getIssuesByTarget(
-county,
-"Senator"
-)
-);
+return target==="Senator" &&
+same(issue.county,user.county);
 
 }
 
 
 /* GOVERNOR */
 
-else if(role==="governor"){
+if(role==="governor"){
 
-groups.push(
-await getIssuesByTarget(
-county,
-"MCA"
-)
-);
-
-groups.push(
-await getIssuesByTarget(
-county,
-"MP"
-)
-);
-
-groups.push(
-await getIssuesByTarget(
-county,
-"Woman Representative"
-)
-);
-
-groups.push(
-await getIssuesByTarget(
-county,
-"Senator"
-)
-);
-
-groups.push(
-await getIssuesByTarget(
-county,
-"Governor"
-)
-);
+return target==="Governor" &&
+same(issue.county,user.county);
 
 }
 
 
-/* NATIONAL */
+/* PRESIDENT */
 
-else if(
+if(
 role==="president"||
 role==="national"
 ){
+
+return target==="President";
+
+}
+
+return false;
+
+}
+
+
+/* ================= LOAD ALL ISSUES ================= */
+
+/*
+For the current version we deliberately load all issues
+for the official dashboard and filter them locally.
+
+This makes Total Issues truly system-wide and fixes
+the previous Firestore query mismatch caused by
+case-sensitive location values.
+
+Firestore security tightening can be done later.
+*/
+
+async function getAllIssues(){
 
 const snapshot=
 await getDocs(
 collection(db,"issues")
 );
 
-const all=[];
+const issues=[];
 
 snapshot.forEach(s=>{
 
-all.push({
+issues.push({
 id:s.id,
 ...s.data()
 });
 
 });
 
-return all;
+return issues;
 
 }
 
 
-const merged=
-mergeIssues(groups);
+async function getVisibleIssues(user){
 
+const allIssues=
+await getAllIssues();
 
-/*
-Secondary UI verification.
-*/
-
-return merged.filter(
+return allIssues.filter(
 issue=>
-issueVisibleToOfficial(
-issue,
-user
-)
+issueVisibleToOfficial(issue,user)
 );
 
 }
+
+
+/* ================= LOCATION VALIDATION ================= */
+
+const targetOfficeElement=
+document.getElementById("targetOffice");
+
+const countyElement=
+document.getElementById("county");
+
+const constituencyElement=
+document.getElementById("constituency");
+
+const wardElement=
+document.getElementById("ward");
+
+const requirementMessage=
+document.getElementById(
+"officeRequirementMessage"
+);
+
+
+function updateIssueLocationRequirements(){
+
+const office=
+targetOfficeElement.value;
+
+const v=normalize(office);
+
+const countyRequired=true;
+
+const constituencyRequired=
+v==="mca"||
+v==="mp";
+
+const wardRequired=
+v==="mca";
+
+
+countyElement.required=countyRequired;
+
+const oldConstituencyRequired=
+constituencyElement.required;
+
+const oldWardRequired=
+wardElement.required;
+
+const labels=document.querySelectorAll(
+"#issueForm label"
+);
+
+const constituencyLabel=
+Array.from(labels).find(
+x=>x.textContent.trim()==="Constituency"
+);
+
+const wardLabel=
+Array.from(labels).find(
+x=>x.textContent.trim()==="Ward"
+);
+
+if(constituencyRequired){
+
+constituencyElement.required=true;
+
+if(constituencyLabel)
+constituencyLabel.textContent=
+"Constituency *";
+
+}else{
+
+constituencyElement.required=false;
+
+if(constituencyLabel)
+constituencyLabel.textContent=
+"Constituency";
+
+}
+
+if(wardRequired){
+
+wardElement.required=true;
+
+if(wardLabel)
+wardLabel.textContent=
+"Ward *";
+
+}else{
+
+wardElement.required=false;
+
+if(wardLabel)
+wardLabel.textContent="Ward";
+
+}
+
+if(v==="mca"){
+
+requirementMessage.textContent=
+"MCA requires County + Constituency + Ward.";
+
+}else if(v==="mp"){
+
+requirementMessage.textContent=
+"MP requires County + Constituency.";
+
+}else if(
+v==="woman representative"
+){
+
+requirementMessage.textContent=
+"Woman Representative requires County only.";
+
+}else if(v==="senator"){
+
+requirementMessage.textContent=
+"Senator requires County only.";
+
+}else if(v==="governor"){
+
+requirementMessage.textContent=
+"Governor requires County only.";
+
+}else if(
+v==="president"
+){
+
+requirementMessage.textContent=
+"President / National requires national-level routing.";
+
+}else{
+
+requirementMessage.textContent="";
+}
+
+}
+
+
+targetOfficeElement.addEventListener(
+"change",
+updateIssueLocationRequirements
+);
+
+updateIssueLocationRequirements();
 
 
 /* ================= CITIZEN LOCATION ================= */
@@ -1592,22 +1397,18 @@ user
 function loadSavedAnnouncementLocation(){
 
 const saved=
-localStorage.getItem(
-"citizenLocation"
-);
+localStorage.getItem("citizenLocation");
 
 if(!saved)
 return;
 
 try{
 
-const data=
-JSON.parse(saved);
+const data=JSON.parse(saved);
 
 document.getElementById(
 "announcementCounty"
-).value=
-data.county||"";
+).value=data.county||"";
 
 document.getElementById(
 "announcementConstituency"
@@ -1632,19 +1433,22 @@ function getAnnouncementLocation(){
 
 return{
 
-county:normalize(
+county:
+normalize(
 document.getElementById(
 "announcementCounty"
 ).value
 ),
 
-constituency:normalize(
+constituency:
+normalize(
 document.getElementById(
 "announcementConstituency"
 ).value
 ),
 
-ward:normalize(
+ward:
+normalize(
 document.getElementById(
 "announcementWard"
 ).value
@@ -1656,9 +1460,7 @@ document.getElementById(
 
 
 document
-.getElementById(
-"saveAnnouncementLocation"
-)
+.getElementById("saveAnnouncementLocation")
 .addEventListener(
 "click",
 ()=>{
@@ -1692,20 +1494,7 @@ function inferAnnouncementLevel(data){
 if(data.announcementLevel)
 return data.announcementLevel;
 
-return officeLevel(
-data.officeType
-);
-
-}
-
-
-function announcementMatchesLevel(
-data,
-selectedLevel
-){
-
-return inferAnnouncementLevel(data)===
-selectedLevel;
+return officeLevel(data.officeType);
 
 }
 
@@ -1727,183 +1516,56 @@ normalize(data.constituency);
 const ward=
 normalize(data.ward);
 
-
-/*
-National
-*/
-
 if(selectedLevel==="National")
 return true;
-
-
-/*
-Citizen must provide location
-for local announcements.
-*/
 
 if(!location.county)
 return false;
 
-
-/*
-Ward
-*/
-
 if(selectedLevel==="Ward"){
 
-return county===location.county &&
-ward===location.ward;
+return same(county,location.county) &&
+same(ward,location.ward);
 
 }
-
-
-/*
-Constituency
-*/
 
 if(selectedLevel==="Constituency"){
 
-return county===location.county &&
-constituency===location.constituency;
+return same(county,location.county) &&
+same(
+constituency,
+location.constituency
+);
 
 }
-
-
-/*
-County
-*/
 
 if(selectedLevel==="County"){
 
-return county===location.county;
+return same(county,location.county);
 
 }
-
 
 return false;
 
 }
 
 
-let selectedAnnouncementLevel=null;
-
-
-async function loadAnnouncements(
-selectedLevel=null
-){
-
-const box=
-document.getElementById(
-"announcements"
-);
-
-const title=
-document.getElementById(
-"announcementSelectedTitle"
-);
-
-try{
-
-const snapshot=
-await getDocs(
-query(
-collection(db,"announcements"),
-where(
-"status",
-"==",
-"published"
-)
-)
-);
-
-box.innerHTML="";
-
-
-if(selectedLevel){
-
-title.textContent=
-getAnnouncementLevelTitle(
-selectedLevel
-);
-
-}else{
-
-title.textContent=
-"All Official Announcements";
-
-}
-
-
-const announcements=[];
-
-snapshot.forEach(s=>{
-
-announcements.push({
-id:s.id,
-...s.data()
-});
-
-});
-
-
-const filtered=
-announcements.filter(data=>{
-
-if(selectedLevel){
-
-if(
-!announcementMatchesLevel(
-data,
-selectedLevel
-)
-)return false;
-
-return announcementMatchesLocation(
-data,
-selectedLevel
-);
-
-}
-
-
-/*
-Initial view:
-show published announcements.
-*/
-
-return true;
-
-});
-
-
-if(filtered.length===0){
-
-box.innerHTML=
-"<div class='emptyBox'>No announcements found for this level and location.</div>";
-
-return;
-
-}
-
-
-filtered.forEach(data=>{
+function renderAnnouncement(data){
 
 const div=
 document.createElement("div");
 
 div.className="announcement";
 
-
-const titleEl=
+const title=
 document.createElement("strong");
 
-titleEl.textContent=
+title.textContent=
 (data.officialName||
 "Public Office")+
 " — "+
 (data.officeType||
 "Public Office");
-
 
 const level=
 document.createElement("div");
@@ -1916,7 +1578,6 @@ level.textContent=
 "Level: "+
 inferAnnouncementLevel(data);
 
-
 const place=
 document.createElement("div");
 
@@ -1926,25 +1587,20 @@ place.style.marginTop="4px";
 
 let p="";
 
-
 if(data.county)
 p+=data.county;
-
 
 if(data.constituency)
 p+=p
 ?" • "+data.constituency
 :data.constituency;
 
-
 if(data.ward)
 p+=p
 ?" • "+data.ward
 :data.ward;
 
-
 place.textContent=p;
-
 
 const message=
 document.createElement("div");
@@ -1954,9 +1610,7 @@ message.style.marginTop="10px";
 message.textContent=
 data.message||"";
 
-
-div.appendChild(titleEl);
-
+div.appendChild(title);
 div.appendChild(level);
 
 if(p)
@@ -1964,10 +1618,68 @@ div.appendChild(place);
 
 div.appendChild(message);
 
-box.appendChild(div);
+return div;
+
+}
+
+
+async function getPublishedAnnouncements(){
+
+const snapshot=
+await getDocs(
+query(
+collection(db,"announcements"),
+where("status","==","published")
+)
+);
+
+const list=[];
+
+snapshot.forEach(s=>{
+
+list.push({
+id:s.id,
+...s.data()
+});
 
 });
 
+return list;
+
+}
+
+
+async function loadAnnouncements(){
+
+const box=
+document.getElementById("announcements");
+
+box.innerHTML=
+"<p class='small'>Loading announcements...</p>";
+
+try{
+
+const announcements=
+await getPublishedAnnouncements();
+
+box.innerHTML="";
+
+if(announcements.length===0){
+
+box.innerHTML=
+"<div class='emptyBox'>No published announcements yet.</div>";
+
+return;
+
+}
+
+announcements.forEach(data=>{
+
+box.appendChild(
+renderAnnouncement(data)
+);
+
+});
 
 }catch(error){
 
@@ -1981,30 +1693,30 @@ box.innerHTML=
 }
 
 
-function getAnnouncementLevelTitle(level){
+function announcementTitle(level,office){
 
-if(level==="Ward")
+if(office==="MCA")
 return "MCA Announcements — Your Ward";
 
-if(level==="Constituency")
+if(office==="MP")
 return "MP Announcements — Your Constituency";
 
-if(level==="County")
-return "County Announcements";
+if(office==="Woman Representative")
+return "Woman Representative Announcements — Your County";
 
-if(level==="National")
+if(office==="Senator")
+return "Senator Announcements — Your County";
+
+if(office==="Governor")
+return "Governor Announcements — Your County";
+
+if(office==="President")
 return "President / National Announcements";
 
 return "Official Announcements";
 
 }
 
-
-/*
-Announcement level buttons.
-For County there are three different offices,
-so we use an additional office filter.
-*/
 
 document
 .querySelectorAll(".levelButton")
@@ -2016,8 +1728,8 @@ async()=>{
 
 document
 .querySelectorAll(".levelButton")
-.forEach(b=>
-b.classList.remove("active")
+.forEach(
+b=>b.classList.remove("active")
 );
 
 button.classList.add("active");
@@ -2025,115 +1737,52 @@ button.classList.add("active");
 const level=
 button.dataset.level;
 
-const text=
-button.textContent.trim();
-
-const box=
-document.getElementById(
-"announcements"
-);
+const office=
+button.dataset.office;
 
 const title=
 document.getElementById(
 "announcementSelectedTitle"
 );
 
-try{
-
-const snapshot=
-await getDocs(
-query(
-collection(db,"announcements"),
-where(
-"status",
-"==",
-"published"
-)
-)
+const box=
+document.getElementById(
+"announcements"
 );
 
-box.innerHTML="";
-
-
-let officeFilter=null;
-
-
-if(text.includes("MCA"))
-officeFilter="MCA";
-
-else if(text.includes("MP"))
-officeFilter="MP";
-
-else if(text.includes("Woman Rep"))
-officeFilter=
-"Woman Representative";
-
-else if(text.includes("Senator"))
-officeFilter="Senator";
-
-else if(text.includes("Governor"))
-officeFilter="Governor";
-
-else if(text.includes("President"))
-officeFilter="President";
-
-
-if(text.includes("MCA"))
 title.textContent=
-"MCA Announcements — Your Ward";
+announcementTitle(level,office);
 
-else if(text.includes("MP"))
-title.textContent=
-"MP Announcements — Your Constituency";
+box.innerHTML=
+"<p class='small'>Loading announcements...</p>";
 
-else if(text.includes("Woman Rep"))
-title.textContent=
-"Woman Representative Announcements — Your County";
+try{
 
-else if(text.includes("Senator"))
-title.textContent=
-"Senator Announcements — Your County";
+const announcements=
+await getPublishedAnnouncements();
 
-else if(text.includes("Governor"))
-title.textContent=
-"Governor Announcements — Your County";
-
-else
-title.textContent=
-"President / National Announcements";
-
-
-const results=[];
-
-snapshot.forEach(s=>{
-
-const data=s.data();
+const results=
+announcements.filter(data=>{
 
 if(
 inferAnnouncementLevel(data)!==
 level
 )
-return;
+return false;
 
 if(
-officeFilter &&
-normalize(data.officeType)!==
-normalize(officeFilter)
+!same(data.officeType,office)
 )
-return;
+return false;
 
-if(
-!announcementMatchesLocation(
+return announcementMatchesLocation(
 data,
 level
-)
-)
-return;
-
-results.push(data);
+);
 
 });
 
+box.innerHTML="";
 
 if(results.length===0){
 
@@ -2144,89 +1793,13 @@ return;
 
 }
 
-
 results.forEach(data=>{
 
-const div=
-document.createElement("div");
-
-div.className="announcement";
-
-
-const titleEl=
-document.createElement("strong");
-
-titleEl.textContent=
-(data.officialName||
-"Public Office")+
-" — "+
-(data.officeType||
-"Public Office");
-
-
-const levelEl=
-document.createElement("div");
-
-levelEl.className="small";
-
-levelEl.style.marginTop="5px";
-
-levelEl.textContent=
-"Level: "+
-inferAnnouncementLevel(data);
-
-
-const place=
-document.createElement("div");
-
-place.className="small";
-
-place.style.marginTop="4px";
-
-let p="";
-
-
-if(data.county)
-p+=data.county;
-
-
-if(data.constituency)
-p+=p
-?" • "+data.constituency
-:data.constituency;
-
-
-if(data.ward)
-p+=p
-?" • "+data.ward
-:data.ward;
-
-
-place.textContent=p;
-
-
-const message=
-document.createElement("div");
-
-message.style.marginTop="10px";
-
-message.textContent=
-data.message||"";
-
-
-div.appendChild(titleEl);
-
-div.appendChild(levelEl);
-
-if(p)
-div.appendChild(place);
-
-div.appendChild(message);
-
-box.appendChild(div);
+box.appendChild(
+renderAnnouncement(data)
+);
 
 });
-
 
 }catch(error){
 
@@ -2242,7 +1815,7 @@ box.innerHTML=
 });
 
 
-/* ================= CITIZEN ISSUE ================= */
+/* ================= CITIZEN ISSUE SUBMISSION ================= */
 
 document
 .getElementById("issueForm")
@@ -2258,95 +1831,121 @@ document.getElementById(
 );
 
 box.className="";
-
-box.textContent=
-"Submitting...";
-
+box.textContent="Submitting...";
 
 try{
+
+const category=
+document.getElementById(
+"category"
+).value;
 
 const county=
 document.getElementById(
 "county"
 ).value.trim();
 
-
 const constituency=
 document.getElementById(
 "constituency"
 ).value.trim();
-
 
 const ward=
 document.getElementById(
 "ward"
 ).value.trim();
 
+const location=
+document.getElementById(
+"location"
+).value.trim();
+
+const subLocation=
+document.getElementById(
+"subLocation"
+).value.trim();
 
 const targetOffice=
 document.getElementById(
 "targetOffice"
 ).value;
 
+const description=
+document.getElementById(
+"description"
+).value.trim();
 
-/*
-Basic routing validation.
-*/
+const target=
+normalize(targetOffice);
 
-if(
-targetOffice==="MCA" &&
-(!county||!constituency||!ward)
-){
+
+/* VALIDATION */
+
+if(!county){
 
 throw new Error(
-"MCA issue requires County, Constituency and Ward."
+"County is required."
 );
 
 }
 
-
 if(
-targetOffice==="MP" &&
-(!county||!constituency)
+target==="mca" &&
+(!constituency||!ward)
 ){
 
 throw new Error(
-"MP issue requires County and Constituency."
+"MCA requires County, Constituency and Ward."
 );
 
 }
 
+if(
+target==="mp" &&
+!constituency
+){
+
+throw new Error(
+"MP requires County and Constituency."
+);
+
+}
 
 if(
-targetOffice==="Woman Representative" &&
+target==="woman representative" &&
 !county
 ){
 
 throw new Error(
-"Woman Representative issue requires County."
+"Woman Representative requires County."
 );
 
 }
 
-
 if(
-(
-targetOffice==="Senator"||
-targetOffice==="Governor"
-)&&
+target==="senator" &&
 !county
 ){
 
 throw new Error(
-"Senator/Governor issue requires County."
+"Senator requires County."
+);
+
+}
+
+if(
+target==="governor" &&
+!county
+){
+
+throw new Error(
+"Governor requires County."
 );
 
 }
 
 
-/*
-Save location for announcements too.
-*/
+/* SAVE CITIZEN LOCATION */
 
 localStorage.setItem(
 "citizenLocation",
@@ -2357,48 +1956,48 @@ county:normalize(county),
 constituency:
 normalize(constituency),
 
-ward:
-normalize(ward)
+ward:normalize(ward)
 
 })
 );
 
 
+/*
+IMPORTANT:
+The success message is shown only AFTER
+addDoc completes successfully.
+*/
+
+const saved=
 await addDoc(
 collection(db,"issues"),
 {
 
-category:
-document.getElementById(
-"category"
-).value,
+category:category,
 
 county:county,
 
+countyKey:normalize(county),
+
 constituency:constituency,
+
+constituencyKey:
+normalize(constituency),
 
 ward:ward,
 
-location:
-document.getElementById(
-"location"
-).value.trim(),
+wardKey:normalize(ward),
 
-subLocation:
-document.getElementById(
-"subLocation"
-).value.trim(),
+location:location,
 
-targetOffice:
-targetOffice,
+subLocation:subLocation,
+
+targetOffice:targetOffice,
 
 targetLevel:
 targetLevel(targetOffice),
 
-description:
-document.getElementById(
-"description"
-).value.trim(),
+description:description,
 
 status:"submitted",
 
@@ -2409,19 +2008,26 @@ serverTimestamp()
 );
 
 
+if(!saved.id){
+
+throw new Error(
+"Issue could not be confirmed as saved."
+);
+
+}
+
 box.className="message";
 
 box.textContent=
-"Your submission is submitted successfully and routed according to the selected office and location.";
-
+"Your issue or concern has been submitted successfully.";
 
 document
 .getElementById("issueForm")
 .reset();
 
+updateIssueLocationRequirements();
 
 loadSavedAnnouncementLocation();
-
 
 }catch(error){
 
@@ -2442,15 +2048,12 @@ error.message||
 /* ================= LOGIN ================= */
 
 document
-.getElementById(
-"officialAccessBtn"
-)
+.getElementById("officialAccessBtn")
 .addEventListener(
 "click",
 ()=>{
 
-window.location.hash=
-"#official";
+window.location.hash="#official";
 
 showLogin();
 
@@ -2459,9 +2062,7 @@ showLogin();
 
 
 document
-.getElementById(
-"backCitizen"
-)
+.getElementById("backCitizen")
 .addEventListener(
 "click",
 ()=>{
@@ -2475,9 +2076,7 @@ showCitizen();
 
 
 document
-.getElementById(
-"forgotPasswordBtn"
-)
+.getElementById("forgotPasswordBtn")
 .addEventListener(
 "click",
 async()=>{
@@ -2503,7 +2102,6 @@ box.textContent=
 return;
 
 }
-
 
 try{
 
@@ -2534,9 +2132,7 @@ box.textContent=
 
 
 document
-.getElementById(
-"loginForm"
-)
+.getElementById("loginForm")
 .addEventListener(
 "submit",
 async e=>{
@@ -2549,10 +2145,7 @@ document.getElementById(
 );
 
 box.className="";
-
-box.textContent=
-"Signing in...";
-
+box.textContent="Signing in...";
 
 try{
 
@@ -2567,7 +2160,6 @@ document.getElementById(
 ).value
 );
 
-
 const snap=
 await getDoc(
 doc(
@@ -2576,7 +2168,6 @@ db,
 result.user.uid
 )
 );
-
 
 if(!snap.exists()){
 
@@ -2588,15 +2179,11 @@ throw new Error(
 
 }
 
-
-const data=
-snap.data();
-
+const data=snap.data();
 
 if(data.role==="Super Admin"){
 
-window.location.hash=
-"#superadmin";
+window.location.hash="#superadmin";
 
 showSuperAdmin();
 
@@ -2607,8 +2194,7 @@ data.role==="Official"||
 data.role==="Admin"
 ){
 
-window.location.hash=
-"#dashboard";
+window.location.hash="#dashboard";
 
 showOfficial();
 
@@ -2648,7 +2234,6 @@ async function loadDashboard(){
 const user=
 await getCurrentUserData();
 
-
 if(!user){
 
 showLogin();
@@ -2657,16 +2242,25 @@ return;
 
 }
 
+const allIssues=
+await getAllIssues();
 
-const issues=
-await getVisibleIssues(user);
-
+const visibleIssues=
+allIssues.filter(
+issue=>
+issueVisibleToOfficial(
+issue,
+user
+)
+);
 
 const concernIssues=
-issues.filter(
-x=>
-normalize(x.targetOffice)===
-normalize(user.officeType)
+allIssues.filter(
+issue=>
+isDirectConcern(
+issue,
+user
+)
 );
 
 
@@ -2687,11 +2281,21 @@ auth.currentUser.email)+
 " — "+user.ward:"");
 
 
+/*
+TOTAL ISSUES:
+GLOBAL SYSTEM-WIDE COUNT.
+*/
+
 document.getElementById(
 "totalIssues"
 ).textContent=
-issues.length;
+allIssues.length;
 
+
+/*
+YOUR CONCERN:
+DIRECT TARGET ONLY.
+*/
 
 document.getElementById(
 "concernIssues"
@@ -2701,10 +2305,9 @@ concernIssues.length;
 
 const countCategory=
 category=>
-issues.filter(
+visibleIssues.filter(
 x=>
-normalize(x.category)===
-normalize(category)
+same(x.category,category)
 ).length;
 
 
@@ -2713,24 +2316,20 @@ document.getElementById(
 ).textContent=
 countCategory("Roads");
 
-
 document.getElementById(
 "waterCount"
 ).textContent=
 countCategory("Water");
-
 
 document.getElementById(
 "healthCount"
 ).textContent=
 countCategory("Healthcare");
 
-
 document.getElementById(
 "educationCount"
 ).textContent=
 countCategory("Education");
-
 
 document.getElementById(
 "securityCount"
@@ -2746,7 +2345,7 @@ document.getElementById(
 list.innerHTML="";
 
 
-if(issues.length===0){
+if(visibleIssues.length===0){
 
 list.innerHTML=
 "<p class='small'>No issues found for your jurisdiction.</p>";
@@ -2756,13 +2355,31 @@ return;
 }
 
 
-issues.forEach(issue=>{
+/*
+Direct concerns appear first.
+*/
+
+visibleIssues.sort(
+(a,b)=>{
+
+const ad=
+isDirectConcern(a,user)?1:0;
+
+const bd=
+isDirectConcern(b,user)?1:0;
+
+return bd-ad;
+
+}
+);
+
+
+visibleIssues.forEach(issue=>{
 
 const div=
 document.createElement("div");
 
 div.className="issue";
-
 
 const title=
 document.createElement("strong");
@@ -2774,6 +2391,20 @@ title.textContent=
 (issue.targetOffice||
 "Office");
 
+const direct=
+isDirectConcern(issue,user);
+
+const directLabel=
+document.createElement("div");
+
+directLabel.className="small";
+
+directLabel.style.marginTop="5px";
+
+directLabel.textContent=
+direct
+?"🎯 Direct Concern"
+:"👁️ Jurisdiction Issue";
 
 const desc=
 document.createElement("div");
@@ -2783,7 +2414,6 @@ desc.style.marginTop="7px";
 desc.textContent=
 issue.description||"";
 
-
 const place=
 document.createElement("div");
 
@@ -2791,18 +2421,38 @@ place.className="small";
 
 place.style.marginTop="9px";
 
-place.textContent=
-(issue.county||"")+" • "+
-(issue.constituency||"")+" • "+
-(issue.ward||"")+" • "+
-(issue.location||"")+" • "+
-(issue.subLocation||"");
+let p="";
 
+if(issue.county)
+p+=issue.county;
+
+if(issue.constituency)
+p+=p
+?" • "+issue.constituency
+:issue.constituency;
+
+if(issue.ward)
+p+=p
+?" • "+issue.ward
+:issue.ward;
+
+if(issue.location)
+p+=p
+?" • "+issue.location
+:issue.location;
+
+if(issue.subLocation)
+p+=p
+?" • "+issue.subLocation
+:issue.subLocation;
+
+place.textContent=p;
 
 div.appendChild(title);
-
+div.appendChild(directLabel);
 div.appendChild(desc);
 
+if(p)
 div.appendChild(place);
 
 list.appendChild(div);
@@ -2815,9 +2465,7 @@ list.appendChild(div);
 /* ================= PUBLISH ANNOUNCEMENT ================= */
 
 document
-.getElementById(
-"announcementForm"
-)
+.getElementById("announcementForm")
 .addEventListener(
 "submit",
 async e=>{
@@ -2829,24 +2477,21 @@ document.getElementById(
 "announcementMessageBox"
 );
 
+box.className="";
+box.textContent="Publishing...";
 
 try{
 
 const user=
 await getCurrentUserData();
 
-
 if(!user)
 throw new Error(
 "You are not logged in."
 );
 
-
-let level=
-officeLevel(
-user.officeType
-);
-
+const level=
+officeLevel(user.officeType);
 
 await addDoc(
 collection(db,"announcements"),
@@ -2874,8 +2519,7 @@ user.constituency||"",
 ward:
 user.ward||"",
 
-announcementLevel:
-level,
+announcementLevel:level,
 
 status:"published",
 
@@ -2885,19 +2529,14 @@ serverTimestamp()
 }
 );
 
-
 box.className="message";
 
 box.textContent=
 "Announcement published successfully.";
 
-
 document
-.getElementById(
-"announcementForm"
-)
+.getElementById("announcementForm")
 .reset();
-
 
 await loadAnnouncements();
 
@@ -2921,17 +2560,13 @@ error.message||
 /* ================= ADD OFFICIAL ================= */
 
 document
-.getElementById(
-"showAddOfficialBtn"
-)
+.getElementById("showAddOfficialBtn")
 .addEventListener(
 "click",
 ()=>{
 
 document
-.getElementById(
-"addOfficialArea"
-)
+.getElementById("addOfficialArea")
 .classList.remove("hidden");
 
 }
@@ -2939,23 +2574,17 @@ document
 
 
 document
-.getElementById(
-"cancelAddOfficialBtn"
-)
+.getElementById("cancelAddOfficialBtn")
 .addEventListener(
 "click",
 ()=>{
 
 document
-.getElementById(
-"addOfficialArea"
-)
+.getElementById("addOfficialArea")
 .classList.add("hidden");
 
 document
-.getElementById(
-"addOfficialForm"
-)
+.getElementById("addOfficialForm")
 .reset();
 
 }
@@ -2963,9 +2592,7 @@ document
 
 
 document
-.getElementById(
-"addOfficialForm"
-)
+.getElementById("addOfficialForm")
 .addEventListener(
 "submit",
 async e=>{
@@ -2978,16 +2605,13 @@ document.getElementById(
 );
 
 box.className="";
-
 box.textContent=
 "Creating official account...";
-
 
 try{
 
 const admin=
 await getCurrentUserData();
-
 
 if(
 !admin||
@@ -3000,60 +2624,51 @@ throw new Error(
 
 }
 
-
 const name=
 document.getElementById(
 "newOfficialName"
 ).value.trim();
-
 
 const email=
 document.getElementById(
 "newOfficialEmail"
 ).value.trim();
 
-
 const password=
 document.getElementById(
 "newOfficialPassword"
 ).value;
-
 
 const officeType=
 document.getElementById(
 "newOfficialOfficeType"
 ).value;
 
-
 const county=
 document.getElementById(
 "newOfficialCounty"
 ).value.trim();
-
 
 const constituency=
 document.getElementById(
 "newOfficialConstituency"
 ).value.trim();
 
-
 const ward=
 document.getElementById(
 "newOfficialWard"
 ).value.trim();
-
 
 const area=
 document.getElementById(
 "newOfficialArea"
 ).value.trim();
 
-
-/* VALIDATE JURISDICTION */
-
 const role=
 normalize(officeType);
 
+
+/* JURISDICTION VALIDATION */
 
 if(
 role==="mca" &&
@@ -3068,7 +2683,6 @@ throw new Error(
 
 }
 
-
 if(
 role==="mp" &&
 (!county||
@@ -3081,11 +2695,6 @@ throw new Error(
 
 }
 
-
-/*
-Woman Representative is COUNTY level.
-*/
-
 if(
 role==="woman representative" &&
 !county
@@ -3097,23 +2706,32 @@ throw new Error(
 
 }
 
-
 if(
-(
-role==="senator"||
-role==="governor"
-)&&
+role==="senator" &&
 !county
 ){
 
 throw new Error(
-"Senator/Governor requires County."
+"Senator requires County."
+);
+
+}
+
+if(
+role==="governor" &&
+!county
+){
+
+throw new Error(
+"Governor requires County."
 );
 
 }
 
 
-/* CREATE SECONDARY AUTH ACCOUNT */
+/*
+President is national.
+*/
 
 const credential=
 await createUserWithEmailAndPassword(
@@ -3129,11 +2747,7 @@ credential.user.uid;
 /* USERS */
 
 await setDoc(
-doc(
-db,
-"users",
-uid
-),
+doc(db,"users",uid),
 {
 
 name:name,
@@ -3147,9 +2761,10 @@ officeType:officeType,
 county:county,
 
 constituency:
-role==="woman representative"
-?""
-:constituency,
+role==="mca"||
+role==="mp"
+?constituency
+:"",
 
 ward:
 role==="mca"
@@ -3170,11 +2785,7 @@ serverTimestamp()
 /* OFFICIAL PROFILE */
 
 await setDoc(
-doc(
-db,
-"officialprofile",
-uid
-),
+doc(db,"officialprofile",uid),
 {
 
 userId:uid,
@@ -3188,9 +2799,10 @@ officeType:officeType,
 county:county,
 
 constituency:
-role==="woman representative"
-?""
-:constituency,
+role==="mca"||
+role==="mp"
+?constituency
+:"",
 
 ward:
 role==="mca"
@@ -3210,22 +2822,16 @@ serverTimestamp()
 
 await signOut(secondaryAuth);
 
-
 box.className="message";
 
 box.textContent=
 "Official created and authorized successfully.";
 
-
 document
-.getElementById(
-"addOfficialForm"
-)
+.getElementById("addOfficialForm")
 .reset();
 
-
 await loadSuperAdmin();
-
 
 }catch(error){
 
@@ -3254,15 +2860,12 @@ if(
 )
 return null;
 
-
 return Math.floor(
 (
-new Date().getTime()-
+Date.now()-
 data.createdAt.toDate().getTime()
 )/
-(
-1000*60*60*24
-)
+(1000*60*60*24)
 );
 
 }
@@ -3274,7 +2877,6 @@ async function loadSuperAdmin(){
 
 const user=
 await getCurrentUserData();
-
 
 if(
 !user||
@@ -3288,7 +2890,6 @@ showLogin();
 return;
 
 }
-
 
 document.getElementById(
 "superAdminName"
@@ -3304,12 +2905,10 @@ await getDocs(
 collection(db,"issues")
 );
 
-
 const announcementSnap=
 await getDocs(
 collection(db,"announcements")
 );
-
 
 const userSnap=
 await getDocs(
@@ -3352,12 +2951,10 @@ document.getElementById(
 ).textContent=
 issues.length;
 
-
 document.getElementById(
 "adminAnnouncementCount"
 ).textContent=
 announcements.length;
-
 
 document.getElementById(
 "adminOfficialCount"
@@ -3395,14 +2992,12 @@ document.createElement("div");
 
 div.className="office";
 
-
 const name=
 document.createElement("strong");
 
 name.textContent=
 user.name||
 "No name";
-
 
 const info=
 document.createElement("div");
@@ -3417,7 +3012,6 @@ info.textContent=
 (user.officeType||"")+
 " • "+
 (user.email||"");
-
 
 const jurisdiction=
 document.createElement("div");
@@ -3443,7 +3037,6 @@ j+=j
 
 jurisdiction.textContent=j;
 
-
 const status=
 document.createElement("div");
 
@@ -3457,9 +3050,7 @@ user.status==="active"
 ?"ACTIVE"
 :"INACTIVE";
 
-
 div.appendChild(name);
-
 div.appendChild(info);
 
 if(j)
@@ -3495,18 +3086,12 @@ user.status==="active"
 ?"inactive"
 :"active";
 
-
 await updateDoc(
-doc(
-db,
-"users",
-user.id
-),
+doc(db,"users",user.id),
 {
 status:newStatus
 }
 );
-
 
 const profileRef=
 doc(
@@ -3515,12 +3100,8 @@ db,
 user.id
 );
 
-
 const profile=
-await getDoc(
-profileRef
-);
-
+await getDoc(profileRef);
 
 if(profile.exists()){
 
@@ -3533,17 +3114,14 @@ status:newStatus
 
 }
 
-
 await loadSuperAdmin();
 
 }
 );
 
-
 div.appendChild(button);
 
 }
-
 
 usersBox.appendChild(div);
 
@@ -3568,7 +3146,6 @@ document.createElement("div");
 div.className=
 "managementItem";
 
-
 const title=
 document.createElement("strong");
 
@@ -3576,9 +3153,7 @@ title.textContent=
 (item.officialName||
 "Public Office")+
 " — "+
-(item.officeType||
-"");
-
+(item.officeType||"");
 
 const level=
 document.createElement("div");
@@ -3591,7 +3166,6 @@ level.textContent=
 "Level: "+
 inferAnnouncementLevel(item);
 
-
 const message=
 document.createElement("div");
 
@@ -3599,7 +3173,6 @@ message.style.marginTop="8px";
 
 message.textContent=
 item.message||"";
-
 
 const location=
 document.createElement("div");
@@ -3625,27 +3198,21 @@ p+=p
 
 location.textContent=p;
 
-
 const age=
 document.createElement("div");
 
 age.className="age";
 
-
 const days=
 getAgeDays(item);
-
 
 age.textContent=
 days===null
 ?"Age unavailable"
 :"Age: "+days+" day(s)";
 
-
 div.appendChild(title);
-
 div.appendChild(level);
-
 div.appendChild(message);
 
 if(p)
@@ -3667,7 +3234,6 @@ button.className="danger";
 button.textContent=
 "🗑️ Delete Announcement";
 
-
 button.addEventListener(
 "click",
 async()=>{
@@ -3677,7 +3243,6 @@ if(!confirm(
 ))
 return;
 
-
 await deleteDoc(
 doc(
 db,
@@ -3686,14 +3251,11 @@ item.id
 )
 );
 
-
 await loadSuperAdmin();
-
 await loadAnnouncements();
 
 }
 );
-
 
 div.appendChild(button);
 
@@ -3712,7 +3274,6 @@ note.textContent=
 div.appendChild(note);
 
 }
-
 
 announcementBox.appendChild(div);
 
@@ -3737,7 +3298,6 @@ document.createElement("div");
 div.className=
 "managementItem";
 
-
 const title=
 document.createElement("strong");
 
@@ -3748,7 +3308,6 @@ title.textContent=
 (item.targetOffice||
 "");
 
-
 const description=
 document.createElement("div");
 
@@ -3756,7 +3315,6 @@ description.style.marginTop="7px";
 
 description.textContent=
 item.description||"";
-
 
 const location=
 document.createElement("div");
@@ -3768,31 +3326,25 @@ location.style.marginTop="7px";
 location.textContent=
 (item.county||"")+" • "+
 (item.constituency||"")+" • "+
-(item.ward||"");
-
+(item.ward||"")+" • "+
+(item.location||"");
 
 const age=
 document.createElement("div");
 
 age.className="age";
 
-
 const days=
 getAgeDays(item);
-
 
 age.textContent=
 days===null
 ?"Age unavailable"
 :"Age: "+days+" day(s)";
 
-
 div.appendChild(title);
-
 div.appendChild(description);
-
 div.appendChild(location);
-
 div.appendChild(age);
 
 
@@ -3809,7 +3361,6 @@ button.className="danger";
 button.textContent=
 "🗑️ Delete Issue";
 
-
 button.addEventListener(
 "click",
 async()=>{
@@ -3819,7 +3370,6 @@ if(!confirm(
 ))
 return;
 
-
 await deleteDoc(
 doc(
 db,
@@ -3828,12 +3378,10 @@ item.id
 )
 );
 
-
 await loadSuperAdmin();
 
 }
 );
-
 
 div.appendChild(button);
 
@@ -3853,7 +3401,6 @@ div.appendChild(note);
 
 }
 
-
 issueBox.appendChild(div);
 
 });
@@ -3864,9 +3411,7 @@ issueBox.appendChild(div);
 /* ================= SUPER ADMIN NAVIGATION ================= */
 
 document
-.getElementById(
-"openCitizenBtn"
-)
+.getElementById("openCitizenBtn")
 .addEventListener(
 "click",
 ()=>{
@@ -3880,15 +3425,12 @@ showCitizen();
 
 
 document
-.getElementById(
-"openOfficialBtn"
-)
+.getElementById("openOfficialBtn")
 .addEventListener(
 "click",
 async()=>{
 
-window.location.hash=
-"#dashboard";
+window.location.hash="#dashboard";
 
 showOfficial();
 
@@ -3899,9 +3441,7 @@ await loadDashboard();
 
 
 document
-.getElementById(
-"superAdminLogoutBtn"
-)
+.getElementById("superAdminLogoutBtn")
 .addEventListener(
 "click",
 async()=>{
@@ -3917,9 +3457,7 @@ showCitizen();
 
 
 document
-.getElementById(
-"logoutBtn"
-)
+.getElementById("logoutBtn")
 .addEventListener(
 "click",
 async()=>{
@@ -3961,23 +3499,29 @@ return;
 
 }
 
-
 const user=
 await getCurrentUserData();
-
 
 if(
 user&&
 (
 user.role==="Official"||
-user.role==="Admin"||
-user.role==="Super Admin"
+user.role==="Admin"
 )
 ){
 
 showOfficial();
 
 await loadDashboard();
+
+}else if(
+user&&
+user.role==="Super Admin"
+){
+
+showSuperAdmin();
+
+await loadSuperAdmin();
 
 }else{
 
@@ -4002,10 +3546,8 @@ return;
 
 }
 
-
 const user=
 await getCurrentUserData();
-
 
 if(
 user&&
@@ -4066,7 +3608,6 @@ window.location.hash===
 const data=
 await getCurrentUserData();
 
-
 if(
 data&&
 data.role==="Super Admin"
@@ -4075,6 +3616,30 @@ data.role==="Super Admin"
 showSuperAdmin();
 
 await loadSuperAdmin();
+
+}
+
+}
+
+if(
+window.location.hash===
+"#dashboard"
+){
+
+const data=
+await getCurrentUserData();
+
+if(
+data&&
+(
+data.role==="Official"||
+data.role==="Admin"
+)
+){
+
+showOfficial();
+
+await loadDashboard();
 
 }
 
@@ -4094,6 +3659,8 @@ route
 
 loadSavedAnnouncementLocation();
 
+updateIssueLocationRequirements();
+
 await loadAnnouncements();
 
 await route();
@@ -4101,23 +3668,18 @@ await route();
 </script>
 
 
-<!-- SERVICE WORKER -->
+<!-- ================= SERVICE WORKER ================= -->
 
 <script>
 
-if(
-"serviceWorker"
-in navigator
-){
+if("serviceWorker" in navigator){
 
 window.addEventListener(
 "load",
 function(){
 
 navigator.serviceWorker
-.register(
-"./service-worker.js"
-)
+.register("./service-worker.js")
 .then(
 function(){
 
